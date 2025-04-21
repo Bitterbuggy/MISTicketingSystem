@@ -1,0 +1,120 @@
+
+/*  import google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* LOGIN PAGE */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(0, 56, 168, 0.7), rgba(125, 162, 225, 0.702));
+}
+
+/* Left Side (Image) */
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    margin-top: 1.8rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Blue dot before heading */
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #0038a8;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+/* Login Card */
+.login-container {
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+}
+
+/* Right Side (Form) */
+
+.login-container h3{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0038a8;
+    position: absolute;
+    top: 2rem;
+    left: 5rem;
+}
+
+.login-container h4{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0038a8;
+    position: absolute;
+    top: 4rem;
+    left: 5rem;
+    right: 5rem;
+}
+
+.login-container h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0038a8;
+}
+
+.login-container p {
+    font-size: .9rem;
+    color: #0038a8;
+}
+
+.custom-input {
+    border-radius: 18px;
+    background-color: #fafafa;
+    font-size: 15px;
+
+}
+
+.custom-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.custom-icon {
+    border-top-right-radius: 17px;
+    border-bottom-right-radius: 17px;
+}
+
+.btn {
+    background-color: #0038a8;
+    border-radius: 30px;
+    font-size: 15px;
+    width: 100%;
+    height: 2.45rem;
+    margin-top: 3rem;
+    color: white;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: #e2edfd;
+    font-weight: bold;
+    color: #0038a8;
+}
+
+.links {
+    color: #0038a8;
+    font-size: 15px;
+}
