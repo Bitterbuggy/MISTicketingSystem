@@ -11,6 +11,7 @@ include 'get-location.php';
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,157 +113,21 @@ include 'get-location.php';
                 <h5>Completed</h5>
                 <p class="ticket-count">25</p>
                 </div>
-            </div>
-            </div>
+            </nav>
+           
 
-            <!-- Pie Chart 
-            <div class="col-md-3">
-                <canvas id="branchMostTicketChart" width="150" height="150"></canvas>
-            </div> -->
-
-            <div class="row no-gutters mt-1 align-items-center">
-            <div class="d-flex justify-content-between align-items-center mt-3">
-                <!-- Tabs -->
-                <ul class="nav nav-tabs mt-4" id="nav-tix" role="tablist">
-                    <li class="nav-item">
-                    <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" id="ongoing-tab" data-bs-toggle="tab" href="#ongoing" role="tab" aria-controls="ongoing" aria-selected="false">On Going</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
-                    </li>
-                </ul>
-
-                <!-- View All Tickets Link -->
-                <p class="view m-0"><a href="tickets.php">View All Tickets<i class="fa-solid fa-chevron-right"></i></a>
-                </p>
-            </div>
-
-        <!-- Tab Content Container -->
-        <div class="tab-content" id="nav-tix-content">
-            <!-- Pending Tab -->
-            <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                <table class="table table-sm table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Ticket ID</th>
-                            <th>Type of Issue</th>
-                            <th>Branch</th>
-                            <th>Assigned IT</th>
-                            <th>Date and Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#P001</td>
-                            <td>Computer not booting</td>
-                            <td>2025-04-08</td>
-                            <td>John Doe</td>
-                            <td>2025-04-08 10:00:05 AM</td>
-                        </tr>
-                        <tr>
-                            <td>#P002</td>
-                            <td>Printer not working</td>
-                            <td>2025-04-07</td>
-                            <td>John Doe</td>
-                            <td>2025-04-07 12:30:13 PM</td>
-                        </tr>
-                        <tr>
-                            <td>#P003</td>
-                            <td>Email issues</td>
-                            <td>2025-04-06</td>
-                            <td>John Doe</td>
-                            <td>2025-04-06 09:45:32 AM</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- On Going Tab -->
-            <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
-                <table class="table table-sm table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Ticket ID</th>
-                            <th>Type of Issue</th>
-                            <th>Branch</th>
-                            <th>Assigned IT</th>
-                            <th>Date and Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#O001</td>
-                            <td>Software installation</td>
-                            <td>2025-04-08</td>
-                            <td>John Doe</td>
-                            <td>2025-04-08 10:00:05 AM</td>
-                        </tr>
-                        <tr>
-                            <td>#O002</td>
-                            <td>Network setup</td>
-                            <td>2025-04-07</td>
-                            <td>John Doe</td>
-                            <td>2025-04-07 12:30:02 PM</td>
-                        </tr>
-                        <tr>
-                            <td>#O003</td>
-                            <td>Scanner configuration</td>
-                            <td>2025-04-06</td>
-                            <td>John Doe</td>
-                            <td>2025-04-06 09:15:01 AM</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Completed Tab -->
-            <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                <table class="table table-sm table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Ticket ID</th>
-                            <th>Type of Issue</th>
-                            <th>Branch</th>
-                            <th>Assigned IT</th>
-                            <th>Date and Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#C001</td>
-                            <td>Monitor replacement</td>
-                            <td>2025-04-08</td>
-                            <td>John Doe</td>
-                            <td>2025-04-08 10:00:45 AM</td>
-                        </tr>
-                        <tr>
-                            <td>#C002</td>
-                            <td>Password reset</td>
-                            <td>2025-04-07</td>
-                            <td>Jane Smith</td>
-                            <td>2025-04-07 12:30:13 PM</td>
-                        </tr>
-                        <tr>
-                            <td>#C003</td>
-                            <td>Keyboard issue</td>
-                            <td>2025-04-06</td>
-                            <td>Bob Johnson</td>
-                            <td>2025-04-06 09:15:15 AM</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        </div>
-        </main>
+             <!-- Main Content Container -->
+             <div class="main-content" style="margin-left: 260px; padding: 20px;">
+                <h2>Welcome Admin, <?php echo $_SESSION['FirstName']; ?>!</h2>
+                <p>You are now logged in as Admin.</p>
+                <br>
+                
         </div>
     </div>
-
-<script src="../asset/js/greeting-card.js"></script>
-<script src="../asset/js/branchMostTicketChart.js"></script>
-<script src="../asset/js/mostIssueChart.js"></script>
 </body>
 </html>
+
+  
+
+
+

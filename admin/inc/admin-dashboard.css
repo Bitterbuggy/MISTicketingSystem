@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f3f2f7;
+  overflow-x: hidden;
+}
+
+.ticket-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: 0.3s ease;
+  }
+  
+  .ticket-card h5 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .ticket-card .ticket-count {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  /* Optional: color accents per status */
+  .ticket-card.pending {
+    border-top: 5px solid #ffc107;
+  }
+  
+  .ticket-card.ongoing {
+    border-top: 5px solid #17a2b8;
+  }
+  
+  .ticket-card.completed {
+    border-top: 5px solid #28a745;
+  }
+  
+  /* Responsive tweak */
+  @media (max-width: 768px) {
+    .ticket-card {
+      padding: 16px;
+    }
+  }
+  
+/* Tabs container spacing */
+.nav-tabs {
+    margin-bottom: 10px;
+}
+
+/* Table wrapper for spacing between tabs */
+.ticket-category {
+    margin-bottom: 20px;
+}
+
+/* General table styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.table thead {
+    background-color: #3b5b9f;
+    color: #fff;
+}
+
+.table thead th {
+    padding: 12px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.table tbody td {
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    border-top: 1px solid #eee;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f8f8;
+}
+
+/* Responsive tweak */
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 15px;
+    }
+
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 12px;
+        width: 45%;
+        padding-right: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
