@@ -1,47 +1,76 @@
-<aside id="sidebar" class="sidebar-toggle">
-    <div class="sidebar-logo">
-        <img src="../asset/img/qcpl-logo.png" alt="Logo" width="50rem">
-        <br><a href="#" class="sidebar-logo-txt">QCPL</a>
+<!-- Start of Header -->
+<aside class="layout-container d-flex">
+    <div class="header d-flex justify-content-between align-items-center">
+    <h3 class="mt-0">Dashboard</h3>
+    <div class="header-right d-flex align-items-center">
+        <!-- Notification Icon -->
+        <div class="notification-icon">
+        <i class="fa-solid fa-bell"></i>
+        </div>
+
+        <!-- User Profile -->
+        <div class="profile-icon">
+        <i class="fa-solid fa-user-circle"></i>
+        </div>
     </div>
+    </div>
+    <!-- End of Header -->
 
-    <!-- Navigation -->
-    <ul class="sidebar-nav p-0">
-        <li class="sidebar-item active">
-            <a href="../admin/admindashboard.php" class="sidebar-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
-                <i class="fa-solid fa-house icon"></i>
-            </a>
-        </li>
-        <li class="sidebar-item inactive">
-            <a href="tickets.php" class="sidebar-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Tickets">
-                <i class="fa-solid fa-ticket icon"></i>
-            </a>
-        </li>
-        <li class="sidebar-item inactive">
-            <a href="../admin/manageasset.php" class="sidebar-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Assets">
-                <i class="fa-solid fa-toolbox icon"></i>
-            </a>
-        </li>
-        <li class="sidebar-item inactive">
-            <a href="../admin/ManageIT.php" class="sidebar-link" data-bs-toggle="tooltip" data-bs-placement="right" title="IT Staff">
-                <i class="fa-solid fa-id-card-clip icon"></i>
-            </a>
-        </li>
-        <li class="sidebar-item inactive">
-            <a href="../admin/ManageBranch.php" class="sidebar-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Branches">
-                <i class="fa-solid fa-book-open icon"></i>
-            </a>
-        </li>
-        <li class="sidebar-item inactive">
-            <a href="../auth/activitylogs.php" class="sidebar-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Acitvity Logs">
-            <i class="fas fa-history"></i>
-            </a>
-        </li>
+    <!-- Start of Sidebar -->
+    <div class="layout-container d-flex">
+        <div id="sidebar" class="sidebar d-flex flex-column">
+        <div class="sidebar-header text-center py-3">
+            <img src="../../assets/img/qcpl-sts-logo.png" alt="QCPL STS Logo" class="logo-img">
+            <div class="sidebar-title mt-2">QCPL-STS</div>
+        </div>
 
-         <!-- Logout Option -->
-         <li class="sidebar-item logout">
-            <a href="../auth/logout.php" class="sidebar-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Logout">
-                <i class="fa-solid fa-right-from-bracket icon"></i>
-            </a>
-        </li>
-    </ul>
+        <div class="sidebar-menu flex-grow-1">
+            <ul class="sidebar-nav p-0">
+            <li class="sidebar-item active">
+                <a href="dashboard.php">
+                <span class="icon"><i class="fa fa-house"></i></span>
+                <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="tickets.php">
+                <span class="icon"><i class="fa fa-ticket"></i></span>
+                <span class="text">Tickets</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="assets.php">
+                <span class="icon"><i class="fa fa-toolbox"></i></span>
+                <span class="text">Assets</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="staff.php">
+                <span class="icon"><i class="fa fa-id-card-clip"></i></span>
+                <span class="text">IT Staff</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="branches.php">
+                <span class="icon"><i class="fa fa-book-open"></i></span>
+                <span class="text">Branches</span>
+                </a>
+            </li>
+            </ul>
+        </div>
+
+        <!-- Sidebar logout section -->
+        <div class="sidebar-logout">
+            <ul class="sidebar-nav p-0">
+            <li class="sidebar-item">
+                <a href="logout.php">
+                <span class="icon"><i class="fa fa-right-from-bracket"></i></span>
+                <span class="text">Log Out</span>
+                </a>
+            </li>
+            </ul>
+        </div>  
+    </div>
+    <!-- End of Sidebar -->
+</div>
 </aside>
