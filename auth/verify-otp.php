@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card">
             <div class="card-body">
                 <div class="text-center mb-5 logo">
-                    <img src="../asset/img/qcpl-logo.png" alt="QCPL Logo" class="logo" width="100px">
+                    <img src="../asset/img/qcpl-sts-logo.png" alt="QCPL Logo" class="logo" width="100px">
                     <h3 class="text-center mt-0">QCPL</h3>
                     <h4 class="text-center mt-0">Verify OTP</h4>
                 </div>

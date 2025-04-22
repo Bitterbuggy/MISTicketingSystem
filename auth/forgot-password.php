@@ -58,18 +58,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card">
             <div class="card-body">
                 <div class="text-center mb-5 logo">
+                    <img src="../asset/img/qcpl-sts-logo.png" alt="QCPL Logo" class="logo" width="80px">
+                    <h3 class="text-center mt-0">QCPL STS</h3>
                     <h4 class="text-center mt-0">Forgot Password</h4>
                 </div>
                 <div id="error-message" class="alert alert-danger mt-3" style="display: none;"></div>
                 
-                <form method="POST">
+                <form method="POST"  id="forgot-password-form">
                     <div class="form-group">
                         <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Enter Email Address" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100 mt-3">Send OTP</button>
                 </form>
                 <div class="text-center mt-3">
-                    <a href="../auth/login.php" class="links">Back to Login</a>
+                    <a href="index.php" class="links">Back to Login</a>
                 </div>
             </div>
         </div>
