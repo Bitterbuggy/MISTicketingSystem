@@ -20,8 +20,8 @@ include 'get-location.php';
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../assets/css/header-sidebar.css">
-    <link rel="stylesheet" href="../assets/css/admin-dashboard.css">
+    <link rel ="stylesheet" href="../asset/css/header-sidebar.css">
+    <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@ include 'get-location.php';
                                     <i class="fa-solid fa-location-dot"></i> <?php echo $location; ?>
                                 </div>
                             </div>
-                            <img src="../assets/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
+                            <img src="../asset/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
                         </div>
                     </div>
 
@@ -261,8 +261,8 @@ include 'get-location.php';
         </div>
     </div>
 
-<script src="../assets/js/greeting-card.js"></script>
-<script src="../assets/js/branchMostTicketChart.js"></script>
-<script src="../assets/js/mostIssueChart.js"></script>
+<script src="../asset/js/greeting-card.js"></script>
+<script src="../asset/js/branchMostTicketChart.js"></script>
+<script src="../asset/js/mostIssueChart.js"></script>
 </body>
 </html>
