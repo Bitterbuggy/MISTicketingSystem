@@ -38,7 +38,7 @@ h3 {
     font-weight: bold;
     color: #0136a0;
     position: absolute;
-    top: 9rem;
+    top: 10rem;
     left: 8rem;
     right: 8rem;
 }
@@ -63,7 +63,7 @@ h4 {
 }
 
 .btn:hover {
-    background-color: #e2edfd;
+    background-color: #c4dbfd;
     font-weight: bold;
     color: #0038a8;
 }
