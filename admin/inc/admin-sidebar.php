@@ -20,7 +20,7 @@
     <div class="layout-container d-flex">
         <div id="sidebar" class="sidebar d-flex flex-column">
         <div class="sidebar-header text-center py-3">
-            <img src="../../assets/img/qcpl-sts-logo.png" alt="QCPL STS Logo" class="logo-img">
+            <img src="../../asset/img/qcpl-sts-logo.png" alt="QCPL STS Logo" class="logo-img">
             <div class="sidebar-title mt-2">QCPL-STS</div>
         </div>
 

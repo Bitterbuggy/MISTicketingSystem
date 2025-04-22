@@ -1,13 +1,13 @@
 <?php
 
-include 'config.php';
-include 'check_session.php';
+include '../Includes/config.php';
+include '../Includes/check_session.php';
 if ($_SESSION['RoleId'] != 1) {
     header('Location: home.php');
     exit();
 }
 
-include 'get-location.php';
+include '../Includes/get-location.php';
 
 ?>
 
@@ -39,7 +39,7 @@ include 'get-location.php';
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include 'admin-sidebar.php'; ?>
+        <?php include '../admin/inc/admin-sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -57,7 +57,7 @@ include 'get-location.php';
                                     <i class="fa-solid fa-location-dot"></i> <?php echo $location; ?>
                                 </div>
                             </div>
-                            <img src="../assets/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
+                            <img src="../asset/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
                         </div>
                     </div>
 
@@ -261,8 +261,8 @@ include 'get-location.php';
         </div>
     </div>
 
-<script src="../assets/js/greeting-card.js"></script>
-<script src="../assets/js/branchMostTicketChart.js"></script>
-<script src="../assets/js/mostIssueChart.js"></script>
+<script src="../asset/js/greeting-card.js"></script>
+<script src="../asset/js/branchMostTicketChart.js"></script>
+<script src="../asset/js/mostIssueChart.js"></script>
 </body>
 </html>
