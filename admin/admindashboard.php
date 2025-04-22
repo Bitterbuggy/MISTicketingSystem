@@ -268,5 +268,3 @@ if ($_SESSION['RoleId'] != 1) {
 
 </body>
 </html>
-
-
