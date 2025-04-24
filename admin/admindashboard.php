@@ -244,6 +244,26 @@ if ($_SESSION['RoleId'] != 1) {
                             </table>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Charts Container -->
+                <div class="row no-gutters mt-3 align-items-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="chart-card">
+                            <canvas id="branchMostTicketChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="chart-card">
+                            <canvas id="mostSoftwareIssueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="chart-card">
+                            <canvas id="mostHardwareIssueChart"></canvas>
+                        </div>
+                    </div>
+            </div>
         </div>
         </div>
             </main>
