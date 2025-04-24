@@ -48,10 +48,10 @@ include '../Includes/get-location.php';
             <main class="px-4 py-5">
                 <div class="row align-items-stretch">
                     <!-- Welcome Card -->
-                    <div class="col-md-8 mb-3">
+                    <div class="col-md-6 mb-3">
                         <div class="welcome-card">
                             <div class="card-content">
-                                <h2 id="greeting"></h2>
+                                <h3 id="greeting"></h3>
                                 <h1 class="fw-bold"><?php echo $_SESSION['FirstName']; ?></h1>
                                 <div class="location-tag">
                                     <i class="fa-solid fa-location-dot"></i> <?php echo $location; ?>
@@ -60,65 +60,95 @@ include '../Includes/get-location.php';
                             <img src="../asset/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
                         </div>
                     </div>
+ 
+                    <!-- Recent Ticket Card -->
+                    <div class="col-md-4 mb-3">
+                    <div class="ticket-container">
+                    <div class="ticket-header">
+                        <h5 class= "fw-bold text-center" id="ticket-title">RECENT TICKET</h5>
+                    </div>
+                    
+                    <div class="ticket-body">
+                    <div class="ticket-grid">
+                    <div>Ticket ID<br><span id="ticket-id"><strong style="text-transform: uppercase;">QCPL-123456</strong></span></div>
+                    <div>Status<br><span id="ticket-status"><strong style="text-transform: uppercase;">Pending</strong></span></div>
+                    </div>
+                    <div class="ticket-grid">
+                        <div>Branch<br><span id="ticket-branch"><strong style="text-transform: uppercase;">Cubao</strong></span></div>
+                        <div>Issue<br><span id="ticket-issue"><strong style="text-transform: uppercase;">Monitor Replacement</strong></span></div>
+                    </div>
+
+                    <div class="ticket-grid">
+                        <div>Date<br><span id="ticket-date"><strong style="text-transform: uppercase;">April 23, 2025</strong></span></div>
+                        <div>Time<br><span id="ticket-time"><strong style="text-transform: uppercase;">11:04:16</strong></span></div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
 
                     <!-- Live Date and Time Card -->
                     <div class="col-md-2 mb-3">
-                        <div class="live-card p-3 text-center shadow-sm">
+                        <div class="live-card text-center">
                             <h6 class="fw-semibold text-muted mb-2"><i class="fa-solid fa-calendar"></i><br>Today is</h6>
-                            <h4 id="live-date-line1" class="fw-bold"></h4>
-                            <h4 id="live-date-line2" class="fw-bold mb-3"></h4>
+                            <h5 id="live-date-line1" class="fw-bold"></h5>
+                            <h5 id="live-date-line2" class="fw-bold"></h5>
                             <hr class="my-3">
                             <h6 class="fw-semibold text-muted mb-2"><i class="fa-solid fa-clock"></i><br>Right now, it's</h6>
-                            <h1 id="live-time" class="fw-bold"></h1>
+                            <h1 id="live-time" class="fw-bold" style="font-size: 34px;"></h1>
+                        </div>
+                    </div>
+                
+                    <!-- Ticket Summary Cards -->
+                    <div class="row mt-4">
+                    <h3 class="fw-bold mb-3" id="ticket-summary-title">Ticket Summary</h3>
+
+                    <!-- Pending -->
+                    <div class="col-md-4 mb-3">
+                        <div class="ticket-card pending h-100">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <h5>Pending</h5>
+                        <p class="ticket-count">12</p>
                         </div>
                     </div>
 
-                    <!-- Recent Ticket Card -->
-
-                    <div class="col-md-2 mb-3">
-                        <div class="recent-ticket-card p-3 shadow-sm">
-                            <h6 class="text-uppercase fw-bold border-bottom pb-2">Recent Ticket</h6>
-                            <p class="mb-1"><strong>Branch:</strong> Marikina</p>
-                            <p class="mb-1"><strong>Ticket ID:</strong> #TK-0349</p>
-                            <p class="mb-1"><strong>Issue:</strong> Printer not working</p>
-                            <p class="mb-1"><strong>Date:</strong> Apr 18, 2025</p>
-                            <p class="mb-0"><strong>Status:</strong> Pending</p>
+                    <!-- On Going -->
+                    <div class="col-md-4 mb-3">
+                        <div class="ticket-card ongoing h-100">
+                        <i class="fa-solid fa-spinner"></i>
+                        <h5>On Going</h5>
+                        <p class="ticket-count">8</p>
                         </div>
                     </div>
-                </div>
 
-            <!-- Ticket Summary Cards: Pending, On Going, Completed-->
-            <div class="row g-3 mt-4 align-items-center">
+                    <!-- Completed -->
+                    <div class="col-md-4 mb-3">
+                        <div class="ticket-card completed h-100">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <h5>Completed</h5>
+                        <p class="ticket-count">25</p>
+                        </div>
+                    </div>
+                    </div>
 
-            <!-- Pending -->
-            <div class="col-md-3">
-                <div class="ticket-card pending">
-                <h5>Pending</h5>
-                <p class="ticket-count">12</p>
-                </div>
-            </div>
+                    <!-- Charts Section 
+                    <div class="row">
+                    Left: Branch Chart (taller) 
+                    <div class="col-md-8 d-flex">
+                        <div class="pie-chart-card w-100" style="display: flex; flex-direction: column; justify-content: center;">
+                        <canvas id="branchMostTicketChart" style="height: 100%; min-height: 300px;"></canvas>
+                        </div>
+                    </div>-->
 
-            <!-- On Going -->
-            <div class="col-md-3">
-                <div class="ticket-card ongoing">
-                <h5>On Going</h5>
-                <p class="ticket-count">8</p>
-                </div>
-            </div>
-
-            <!-- Completed -->
-            <div class="col-md-3">
-                <div class="ticket-card completed">
-                <h5>Completed</h5>
-                <p class="ticket-count">25</p>
-                </div>
-            </div>
-            </div>
-
-            <!-- Pie Chart 
-            <div class="col-md-3">
-                <canvas id="branchMostTicketChart" width="150" height="150"></canvas>
-            </div> -->
+                    <!-- Right: Stacked Software + Hardware Charts 
+                    <div class="col-md-4 d-flex flex-column justify-content-between">
+                        <div class="pie-chart-card mb-3 flex-fill">                        
+                            <canvas id="mostSoftwareIssueChart" style="height: 150px;"></canvas>
+                        </div>
+                        <div class="pie-chart-card flex-fill">
+                        <canvas id="mostHardwareIssueChart" style="height: 150px;"></canvas>
+                        </div>
+                    </div>
+                    </div>-->
 
             <div class="row no-gutters mt-1 align-items-center">
             <div class="d-flex justify-content-between align-items-center mt-3">
@@ -262,7 +292,6 @@ include '../Includes/get-location.php';
     </div>
 
 <script src="../asset/js/greeting-card.js"></script>
-<script src="../asset/js/branchMostTicketChart.js"></script>
-<script src="../asset/js/mostIssueChart.js"></script>
+<script src="../asset/js/admin-dashboard-charts.js"></script>
 </body>
 </html>
