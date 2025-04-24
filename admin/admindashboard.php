@@ -6,9 +6,6 @@ if ($_SESSION['RoleId'] != 1) {
     header('Location: home.php');
     exit();
 }
-
-include '../Includes/get-location.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -43,10 +40,9 @@ include '../Includes/get-location.php';
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
-
-            <!-- Main Content (separate from header) -->
+            <!-- Main Content -->
             <main class="px-4 py-5">
-                <div class="row align-items-stretch">
+                <div class="row no-gutters mt-1 align-items-center">
                     <!-- Welcome Card -->
                     <div class="col-md-6 mb-3">
                         <div class="welcome-card">
@@ -54,7 +50,8 @@ include '../Includes/get-location.php';
                                 <h3 id="greeting"></h3>
                                 <h1 class="fw-bold"><?php echo $_SESSION['FirstName']; ?></h1>
                                 <div class="location-tag">
-                                    <i class="fa-solid fa-location-dot"></i> <?php echo $location; ?>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span id="location">Quezon City, Philippines</span>
                                 </div>
                             </div>
                             <img src="../asset/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
@@ -63,27 +60,27 @@ include '../Includes/get-location.php';
  
                     <!-- Recent Ticket Card -->
                     <div class="col-md-4 mb-3">
-                    <div class="ticket-container">
-                    <div class="ticket-header">
-                        <h5 class= "fw-bold text-center" id="ticket-title">RECENT TICKET</h5>
-                    </div>
-                    
-                    <div class="ticket-body">
-                    <div class="ticket-grid">
-                    <div>Ticket ID<br><span id="ticket-id"><strong style="text-transform: uppercase;">QCPL-123456</strong></span></div>
-                    <div>Status<br><span id="ticket-status"><strong style="text-transform: uppercase;">Pending</strong></span></div>
-                    </div>
-                    <div class="ticket-grid">
-                        <div>Branch<br><span id="ticket-branch"><strong style="text-transform: uppercase;">Cubao</strong></span></div>
-                        <div>Issue<br><span id="ticket-issue"><strong style="text-transform: uppercase;">Monitor Replacement</strong></span></div>
-                    </div>
+                        <div class="ticket-container">
+                            <div class="ticket-header">
+                                <h5 class= "fw-bold text-center" id="ticket-title">RECENT TICKET</h5>
+                            </div>
+                            
+                            <div class="ticket-body">
+                            <div class="ticket-grid">
+                                <div>Ticket ID<br><span id="ticket-id">000001</span></div>
+                                <div>Status<br><span id="ticket-status">Pending</span></div>
+                            </div>
+                            <div class="ticket-grid">
+                                <div>Branch<br><span id="ticket-branch">Cubao</span></div>
+                                <div>Issue<br><span id="ticket-issue">Monitor Replacement</span></div>
+                            </div>
 
-                    <div class="ticket-grid">
-                        <div>Date<br><span id="ticket-date"><strong style="text-transform: uppercase;">April 23, 2025</strong></span></div>
-                        <div>Time<br><span id="ticket-time"><strong style="text-transform: uppercase;">11:04:16</strong></span></div>
-                    </div>
-                    </div>
-                    </div>
+                            <div class="ticket-grid">
+                                <div>Date<br><span id="ticket-date">April 23, 2025</span></div>
+                                <div>Time<br><span id="ticket-time">11:04:16</span></div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Live Date and Time Card -->
@@ -97,13 +94,14 @@ include '../Includes/get-location.php';
                             <h1 id="live-time" class="fw-bold" style="font-size: 34px;"></h1>
                         </div>
                     </div>
-                
-                    <!-- Ticket Summary Cards -->
-                    <div class="row mt-4">
+                </div>
+
+                <!-- Ticket Summary Cards -->
+                <div class="row no-gutters mt-3 align-items-center">
                     <h3 class="fw-bold mb-3" id="ticket-summary-title">Ticket Summary</h3>
 
                     <!-- Pending -->
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <div class="ticket-card pending h-100">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                         <h5>Pending</h5>
@@ -112,186 +110,148 @@ include '../Includes/get-location.php';
                     </div>
 
                     <!-- On Going -->
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <div class="ticket-card ongoing h-100">
-                        <i class="fa-solid fa-spinner"></i>
+                        <i class="fa-solid fa-sync-alt fa-spin"></i>
                         <h5>On Going</h5>
                         <p class="ticket-count">8</p>
                         </div>
                     </div>
 
                     <!-- Completed -->
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <div class="ticket-card completed h-100">
                         <i class="fa-solid fa-circle-check"></i>
                         <h5>Completed</h5>
                         <p class="ticket-count">25</p>
                         </div>
                     </div>
-                    </div>
 
-                    <!-- Charts Section 
-                    <div class="row">
-                    Left: Branch Chart (taller) 
-                    <div class="col-md-8 d-flex">
-                        <div class="pie-chart-card w-100" style="display: flex; flex-direction: column; justify-content: center;">
-                        <canvas id="branchMostTicketChart" style="height: 100%; min-height: 300px;"></canvas>
-                        </div>
-                    </div>-->
-
-                    <!-- Right: Stacked Software + Hardware Charts 
-                    <div class="col-md-4 d-flex flex-column justify-content-between">
-                        <div class="pie-chart-card mb-3 flex-fill">                        
-                            <canvas id="mostSoftwareIssueChart" style="height: 150px;"></canvas>
-                        </div>
-                        <div class="pie-chart-card flex-fill">
-                        <canvas id="mostHardwareIssueChart" style="height: 150px;"></canvas>
+                    <!-- Total -->
+                    <div class="col-md-3 mb-3">
+                        <div class="ticket-card total h-100">
+                        <i class="fa-solid fa-clipboard"></i>
+                        <h5>Total</h5>
+                        <p class="ticket-count">41</p>
                         </div>
                     </div>
-                    </div>-->
 
-            <div class="row no-gutters mt-1 align-items-center">
-            <div class="d-flex justify-content-between align-items-center mt-3">
-                <!-- Tabs -->
-                <ul class="nav nav-tabs mt-4" id="nav-tix" role="tablist">
-                    <li class="nav-item">
-                    <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" id="ongoing-tab" data-bs-toggle="tab" href="#ongoing" role="tab" aria-controls="ongoing" aria-selected="false">On Going</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
-                    </li>
-                </ul>
+                        <!-- Tabs for Ticket Summary -->
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <ul class="nav nav-tabs mt-2" id="nav-tix" role="tablist">
+                                <li class="nav-item">
+                                <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" id="ongoing-tab" data-bs-toggle="tab" href="#ongoing" role="tab" aria-controls="ongoing" aria-selected="false">On Going</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
+                                </li>
+                            </ul>
 
-                <!-- View All Tickets Link -->
-                <p class="view m-0"><a href="tickets.php">View All Tickets<i class="fa-solid fa-chevron-right"></i></a>
-                </p>
-            </div>
+                        <!-- View All Tickets Link -->
+                        <p class="view m-0"><a href="tickets.php">View All Tickets <i class="fa-solid fa-chevron-right"></i></a></p>
+                        </div>
 
-        <!-- Tab Content Container -->
-        <div class="tab-content" id="nav-tix-content">
-            <!-- Pending Tab -->
-            <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                <table class="table table-sm table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Ticket ID</th>
-                            <th>Type of Issue</th>
-                            <th>Branch</th>
-                            <th>Assigned IT</th>
-                            <th>Date and Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#P001</td>
-                            <td>Computer not booting</td>
-                            <td>2025-04-08</td>
-                            <td>John Doe</td>
-                            <td>2025-04-08 10:00:05 AM</td>
-                        </tr>
-                        <tr>
-                            <td>#P002</td>
-                            <td>Printer not working</td>
-                            <td>2025-04-07</td>
-                            <td>John Doe</td>
-                            <td>2025-04-07 12:30:13 PM</td>
-                        </tr>
-                        <tr>
-                            <td>#P003</td>
-                            <td>Email issues</td>
-                            <td>2025-04-06</td>
-                            <td>John Doe</td>
-                            <td>2025-04-06 09:45:32 AM</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <!-- Tab Content Container -->
+                        <div class="tab-content" id="nav-tix-content">
+                            <!-- Pending Tab -->
+                            <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                                <table class="table table-md table-bordered table-striped">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th class="tixId" style="width: 4%">Ticket ID</th>
+                                        <th class="branch"style="width: 7%">Branch</th>
+                                        <th class="dateTime"style="width: 5%">Date and Time</th>
+                                        <th class="issue"style="width: 7%">Issue</th>
+                                        <th class="assignedIT"style="width: 5%">Assigned IT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>000001</td>
+                                        <td>Branch 1</td>
+                                        <td>Apr 24, 2025 10:00:00</td>
+                                        <td>Issue 1</td>
+                                        <td>IT 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>000002</td>
+                                        <td>Branch 2</td>
+                                        <td>Apr 24, 2025 10:00:00</td>
+                                        <td>Issue 2</td>
+                                        <td>IT 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>000003</td>
+                                        <td>Branch 3</td>
+                                        <td>Apr 24, 2025 10:00:00</td>
+                                        <td>Issue 3</td>
+                                        <td>IT 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>000004</td>
+                                        <td>Branch 4</td>
+                                        <td>Apr 24, 2025 10:00:00</td>
+                                        <td>Issue 4</td>                                     
+                                        <td>IT 4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>000005</td>
+                                        <td>Branch 5</td>
+                                        <td>Apr 24, 2025 10:00:00</td>
+                                        <td>Issue 5</td>
+                                        <td>IT 5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-            <!-- On Going Tab -->
-            <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
-                <table class="table table-sm table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Ticket ID</th>
-                            <th>Type of Issue</th>
-                            <th>Branch</th>
-                            <th>Assigned IT</th>
-                            <th>Date and Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#O001</td>
-                            <td>Software installation</td>
-                            <td>2025-04-08</td>
-                            <td>John Doe</td>
-                            <td>2025-04-08 10:00:05 AM</td>
-                        </tr>
-                        <tr>
-                            <td>#O002</td>
-                            <td>Network setup</td>
-                            <td>2025-04-07</td>
-                            <td>John Doe</td>
-                            <td>2025-04-07 12:30:02 PM</td>
-                        </tr>
-                        <tr>
-                            <td>#O003</td>
-                            <td>Scanner configuration</td>
-                            <td>2025-04-06</td>
-                            <td>John Doe</td>
-                            <td>2025-04-06 09:15:01 AM</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <!-- On Going Tab -->
+                        <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
+                            <table class="table table-md table-bordered table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="tixId" style="width: 4%">Ticket ID</th>
+                                        <th class="branch"style="width: 7%">Branch</th>
+                                        <th class="dateTime"style="width: 5%">Date and Time</th>
+                                        <th class="issue"style="width: 7%">Issue</th>
+                                        <th class="assignedIT"style="width: 5%">Assigned IT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Rows will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
 
-            <!-- Completed Tab -->
-            <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                <table class="table table-sm table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Ticket ID</th>
-                            <th>Type of Issue</th>
-                            <th>Branch</th>
-                            <th>Assigned IT</th>
-                            <th>Date and Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#C001</td>
-                            <td>Monitor replacement</td>
-                            <td>2025-04-08</td>
-                            <td>John Doe</td>
-                            <td>2025-04-08 10:00:45 AM</td>
-                        </tr>
-                        <tr>
-                            <td>#C002</td>
-                            <td>Password reset</td>
-                            <td>2025-04-07</td>
-                            <td>Jane Smith</td>
-                            <td>2025-04-07 12:30:13 PM</td>
-                        </tr>
-                        <tr>
-                            <td>#C003</td>
-                            <td>Keyboard issue</td>
-                            <td>2025-04-06</td>
-                            <td>Bob Johnson</td>
-                            <td>2025-04-06 09:15:15 AM</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <!-- Completed Tab -->
+                        <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                            <table class="table table-md table-bordered table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="tixId" style="width: 4%">Ticket ID</th>
+                                        <th class="branch"style="width: 7%">Branch</th>
+                                        <th class="dateTime"style="width: 5%">Date and Time</th>
+                                        <th class="issue"style="width: 7%">Issue</th>
+                                        <th class="assignedIT"style="width: 5%">Assigned IT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Rows will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
         </div>
         </div>
-        </main>
+            </main>
         </div>
     </div>
 
 <script src="../asset/js/greeting-card.js"></script>
+<script src="../asset/js/nav-tab-tables.js"></script>
 <script src="../asset/js/admin-dashboard-charts.js"></script>
 </body>
 </html>

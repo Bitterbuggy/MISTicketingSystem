@@ -1,7 +1,7 @@
 // Sidebar toggle
 document.getElementById('sidebarCollapse').addEventListener('click', function () {
     document.getElementById('sidebar').classList.toggle('collapsed');
-    document.getElementById('body')?.classList.toggle('collapsed'); // if you have a #body div
+    document.getElementById('body')?.classList.toggle('collapsed');
 });
 
 // Active sidebar item switching

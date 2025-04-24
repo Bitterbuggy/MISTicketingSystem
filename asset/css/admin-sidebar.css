@@ -155,6 +155,10 @@
   background-color: #0038a8;
 }
 
+.sidebar-item.active:hover {
+  background-color: #0038a8;
+}
+
 .sidebar-item.active a,
 .sidebar-item.active .icon {
   color: white;
