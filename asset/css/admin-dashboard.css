@@ -62,7 +62,7 @@ main {
   color: white;
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 15px;
+  font-size: 1rem;
   text-transform: uppercase;
 }
 
@@ -246,7 +246,6 @@ hr {
 }
 
 .ticket-card.completed i {
-  font-size: 40px;
   animation: checkmarkTick 2s infinite;
 }
 
