@@ -70,7 +70,7 @@
         <div class="sidebar-logout">
             <ul class="sidebar-nav p-0">
             <li class="sidebar-item">
-                <a href="logout.php">
+                <a href="../auth/logout.php">
                 <span class="icon"><i class="fa fa-right-from-bracket"></i></span>
                 <span class="text">Log Out</span>
                 </a>
