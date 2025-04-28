@@ -7,6 +7,9 @@ if ($_SESSION['RoleId'] != 1) {
     exit();
 }
 include '../Includes/get-location.php';
+
+include '../Includes/get-location.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -84,9 +87,16 @@ include '../Includes/get-location.php';
                         </div>
                     </div>
                 </div>
+            </nav>
+           
 
-            <!-- Ticket Summary Cards: Pending, On Going, Completed-->
-            <div class="row g-3 mt-4 align-items-center">
+             <!-- Main Content Container -->
+             <div class="main-content" style="margin-left: 260px; padding: 20px;">
+                <h2>Welcome Admin, <?php echo $_SESSION['FirstName']; ?>!</h2>
+                <p>You are now logged in as Admin.</p>
+                <br>
+                <!-- Ticket Summary -->
+            <div class="row g-3 mt-4">
             <!-- Pending -->
             <div class="col-md-3">
                 <div class="ticket-card pending">
