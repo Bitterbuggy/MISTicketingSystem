@@ -8,7 +8,7 @@ if ($_SESSION['RoleId'] != 1) {
 }
 include '../Includes/get-location.php';
 
-include '../Includes/get-location.php';
+
 
 ?>
 
