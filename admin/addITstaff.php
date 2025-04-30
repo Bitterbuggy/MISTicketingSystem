@@ -2,66 +2,109 @@
 session_start();
 include '../Includes/config.php'; // Ensure this is included at the top
 
-if (isset($_SESSION['success_message'])) {
-    echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
-    unset($_SESSION['success_message']); // Remove the message after displaying
-}
-
-
-
+//if (isset($_SESSION['success_message'])) {
+   // echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
+   // unset($_SESSION['success_message']); // Remove the message after displaying
+//}
+if (isset($_SESSION['success_message'])): ?>
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p><?php echo $_SESSION['success_message']; ?></p>
+      </div>
+    </div>
+    <?php unset($_SESSION['success_message']); ?>
+    <?php endif; 
+    
 ?>
 
 
 <!DOCTYPE html>
-<html>
-<head>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCPL STS - Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-logo.png">
+    <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
-    <!-- CSS Link/s -->
-    <link rel="stylesheet" href="../asset/css/sidenavbar_admin.css">
+    <!-- External CSS Link/s -->
+    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
 
     <!-- Bootstrap CSS -->
-    <link href="../../vendor/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Font Awesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="forms.css">
-  
-    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+/* The Modal (background) */
+.modal {
+  display: block; /* Show the modal by default if it exists */
+  position: fixed;
+  z-index: 1000;
+  padding-top: 150px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 400px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+</style>
+
 </head>
 
 <body>
-    <div class="row align-items-center vh-100">
-        <div class="col-5 mx-auto">
+    <div class="layout-container d-flex">
+      
  <!-- Include Sidebar -->
  <?php include '../admin/inc/admin-sidebar.php'; ?>
 
-<!-- Main Content -->
-<div class="container-fluid p-0 cont" id="body">
-     
-    <nav class="navbar sticky-top">
-        <div class="row no-gutters">
-            <div class="col-1">
-                <button type="button" class="toggler-btn">
-                    <i class="fa-solid fa-align-justify"></i>
-                </button>
-            </div>
-            <!--<div class="col-8 sticky-top" style="width: 60rem; margin-left: 2rem; margin-top: -2.2rem;">
-                <h1 class="nav-title">Dashboard</h1>
-            </div>-->
-        </div>
-    </nav>
-   
 
-     <!-- Main Content Container -->
-     <div class="main-content" style="margin-left: 260px; padding: 20px;">
+    
+
+     <!-- Wrapper for Header + Main -->
+     <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
+
+<!-- Main Content (separate from header) -->
+<main class="px-4 py-5">
+    <div class="row align-items-stretch">
         <h2>Welcome Admin, <?php echo $_SESSION['FirstName']; ?>!</h2>
         <p>You are now logged in as Admin.</p>
         <br>
@@ -182,6 +225,25 @@ if (isset($_SESSION['success_message'])) {
         }
     });
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('successModal');
+  var span = document.getElementsByClassName('close')[0];
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Optional: Close modal when clicking outside the modal content
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
+</script>
+
 
 </body>
 </html>
