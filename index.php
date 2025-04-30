@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCPL STS Login</title>
-    <link rel="icon" type="image/x-icon"  alt="qcpl_logo" href="asset/img/qcpl-logo.png">
+    <link rel="icon" type="image/x-icon"  alt="qcpl_logo" href="asset/img/qcpl-sts-logo.png">
 
     <!-- Link for Bootstrap -->
     <!--<link href="../vendor/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">

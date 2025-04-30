@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f3f2f7;
+  overflow-x: hidden;
+}
+
+main {
+  margin-right: 12px;
+}
+
+/* NAVIGATION BAR */
+.tixmgmt-nav {
+    margin: auto;
+    text-align: center;
+    width: 34%;
+}
+
+.tixmgmt-nav .div-mods {
+    border: 3px solid #0038a8;
+    padding: 10px;
+    text-align: center;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 32.5%;
+    margin-right: .5rem;
+}
+
+.mods {
+    text-decoration: none;
+    color: #0038a8;
+}
+
+.inactive:hover {
+    background-color: #92a2b7;
+}
+
+.active {
+    background-color: #0038a8;
+    font-weight: 600;
+}
+
+.active a {
+    color: #fafafa;
+}
+
+.item-active {
+    color: #fafafa;
+    text-decoration: none;
+    font-weight: bold;
+}
