@@ -1,3 +1,7 @@
+<script>
+  var pageTitle = "Dashboard";
+</script>
+
 <?php
 
 include '../Includes/config.php';
@@ -31,12 +35,13 @@ if ($_SESSION['RoleId'] != 1) {
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../admin/inc/admin-sidebar.php'; ?>
+        <?php include '../admin/inc/adminSidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -270,8 +275,12 @@ if ($_SESSION['RoleId'] != 1) {
         </div>
     </div>
 
-<script src="../asset/js/greeting-card.js"></script>
-<script src="../asset/js/nav-tab-tables.js"></script>
-<script src="../asset/js/admin-dashboard-charts.js"></script>
+    <!-- Custom JS Link/s -->
+    <script src="../asset/js/admin-sidebar.js"></script>
+    <script src="../asset/js/greetingCard.js"></script>
+    <script src="../asset/js/recentTicket.js"></script>
+    <script src="../asset/js/ticketSummary.js"></script>
+    <script src="../asset/js/adminNavTables.js"></script>
+    <script src="../asset/js/adminCharts.js"></script>
 </body>
 </html>

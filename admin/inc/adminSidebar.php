@@ -1,7 +1,7 @@
 <!-- Start of Header -->
 <aside class="layout-container d-flex">
     <div class="header d-flex justify-content-between align-items-center">
-    <h3 class="mt-0">Dashboard</h3>
+    <h3 class="mt-0" id="page-title"></h3>
     <div class="header-right d-flex align-items-center">
         <!-- Notification Icon -->
         <div class="notification-icon">
@@ -27,31 +27,31 @@
         <div class="sidebar-menu flex-grow-1">
             <ul class="sidebar-nav p-0">
             <li class="sidebar-item active">
-                <a href="dashboard.php">
+                <a href="adminDashboard.php">
                 <span class="icon"><i class="fa fa-house"></i></span>
                 <span class="text">Dashboard</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="tickets.php">
+                <a href="adminTicketMgmt.php">
                 <span class="icon"><i class="fa fa-ticket"></i></span>
                 <span class="text">Tickets</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="assets.php">
+                <a href="admin-assetmgmt.php">
                 <span class="icon"><i class="fa fa-toolbox"></i></span>
                 <span class="text">Assets</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="staff.php">
+                <a href="admin-staffmgmt.php">
                 <span class="icon"><i class="fa fa-id-card-clip"></i></span>
                 <span class="text">IT Staff</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="branches.php">
+                <a href="admin-branchmgmt.php">
                 <span class="icon"><i class="fa fa-book-open"></i></span>
                 <span class="text">Branches</span>
                 </a>

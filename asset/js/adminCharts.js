@@ -69,7 +69,7 @@ new Chart(ctx1, {
             borderRadius: 10
         }]
     },
-    options: getOptions('Top Branches')
+    options: getOptions('Branch with Most Tickets')
 });
 
 // Chart 2: Software Issues
@@ -91,7 +91,7 @@ new Chart(ctx2, {
             borderRadius: 10
         }]
     },
-    options: getOptions('Software Issues')
+    options: getOptions('Top Software Issues')
 });
 
 // Chart 3: Hardware Issues
@@ -113,5 +113,5 @@ new Chart(ctx3, {
             borderRadius: 10
         }]
     },
-    options: getOptions('Hardware Issues')
+    options: getOptions('Top Hardware Issues')
 });

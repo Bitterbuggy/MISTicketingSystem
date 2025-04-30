@@ -251,16 +251,16 @@ hr {
 
 @keyframes checkmarkTick {
   0% {
-    transform: scale(0) rotate(5deg);  /* Start with small and rotated */
+    transform: scale(0) rotate(0deg);  /* Start with small and rotated */
     opacity: 0;
   }
   50% {
-    transform: scale(1.2) rotate(20deg);  /* Slightly enlarge */
+    transform: scale(1) rotate(0deg);  /* Slightly enlarge */
     opacity: 1;
   }
   100% {
-    transform: scale(1) rotate(0deg);  /* Final normal state */
-    opacity: 1;
+    transform: scale(0) rotate(0deg);  /* Final normal state */
+    opacity: 0;
   }
 }
 
