@@ -20,40 +20,108 @@ main {
 .tixmgmt-nav {
     margin: auto;
     text-align: center;
-    width: 34%;
 }
 
 .tixmgmt-nav .div-mods {
-    border: 3px solid #0038a8;
-    padding: 10px;
-    text-align: center;
+    border: 3px solid #0060c7;
+    padding: 6px;
     border-radius: 50px;
     font-weight: 600;
+    display: flex;
+    width: 30%;
+    height: 45px;
+    font-size: 17px;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
     cursor: pointer;
-    width: 32.5%;
-    margin-right: .5rem;
 }
 
 .mods {
     text-decoration: none;
-    color: #0038a8;
-}
-
-.inactive:hover {
-    background-color: #92a2b7;
+    color: #0060c7;
 }
 
 .active {
-    background-color: #0038a8;
+    background-color: #0060c7;
+}
+
+.active span {
+    color: #fafafa;
     font-weight: 600;
 }
 
-.active a {
-    color: #fafafa;
+.inactive {
+    background-color: white;
+    font-weight: 600;
 }
 
-.item-active {
-    color: #fafafa;
-    text-decoration: none;
-    font-weight: bold;
+.inactive:hover {
+    background-color: #e9ecef;
+    color: #0060c7;
+}
+
+/* TABLE */
+.table-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 2.8rem;
+    margin-right: 2.6rem;
+    background-color: #fafafa;
+}
+
+.table {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+  width: 100% !important;
+}
+
+.table tr td, .table tr th {
+    padding: 1rem !important;
+    color: #002d5d !important;
+    cursor: pointer !important;
+}
+
+.table thead th {
+  cursor: default !important;
+  color: #0151a5 !important;
+}
+
+/* TICKET STATUS BUTTONS */
+.btn-pending {
+    background-color: #ffc107 !important;
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
+}
+
+.btn-ongoing {
+    background-color: #17a2b8 !important;
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
+}
+
+.btn-completed {
+    background-color: #0fa100 !important;
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
+}
+
+.btn-cancelled {
+    background-color: #cf1127 !important;
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
 }

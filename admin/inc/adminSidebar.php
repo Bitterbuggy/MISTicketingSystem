@@ -26,7 +26,7 @@
 
         <div class="sidebar-menu flex-grow-1">
             <ul class="sidebar-nav p-0">
-            <li class="sidebar-item active">
+            <li class="sidebar-item active default">
                 <a href="adminDashboard.php">
                 <span class="icon"><i class="fa fa-house"></i></span>
                 <span class="text">Dashboard</span>
@@ -39,19 +39,19 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="admin-assetmgmt.php">
+                <a href="admin-AssetMgmt.php">
                 <span class="icon"><i class="fa fa-toolbox"></i></span>
                 <span class="text">Assets</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="admin-staffmgmt.php">
+                <a href="admin-StaffMgmt.php">
                 <span class="icon"><i class="fa fa-id-card-clip"></i></span>
                 <span class="text">IT Staff</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="admin-branchmgmt.php">
+                <a href="admin-BranchMgmt.php">
                 <span class="icon"><i class="fa fa-book-open"></i></span>
                 <span class="text">Branches</span>
                 </a>
@@ -63,7 +63,7 @@
         <div class="sidebar-logout">
             <ul class="sidebar-nav p-0">
             <li class="sidebar-item">
-                <a href="logout.php">
+                <a href="../auth/logout.php">
                 <span class="icon"><i class="fa fa-right-from-bracket"></i></span>
                 <span class="text">Log Out</span>
                 </a>

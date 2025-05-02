@@ -166,46 +166,46 @@ if ($_SESSION['RoleId'] != 1) {
                                 <table class="table table-md table-bordered table-striped">
                                     <thead class="thead-dark">
                                     <tr>
+                                        <th class="dateTime"style="width: 5%">Submitted At</th>
                                         <th class="tixId" style="width: 4%">Ticket ID</th>
                                         <th class="branch"style="width: 7%">Branch</th>
-                                        <th class="dateTime"style="width: 5%">Date and Time</th>
                                         <th class="issue"style="width: 7%">Issue</th>
                                         <th class="assignedIT"style="width: 5%">Assigned IT</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td>Apr 24, 2025, 10:00:00</td>
                                         <td>000001</td>
                                         <td>Branch 1</td>
-                                        <td>Apr 24, 2025 10:00:00</td>
                                         <td>Issue 1</td>
                                         <td>IT 1</td>
                                     </tr>
                                     <tr>
+                                        <td>Apr 24, 2025, 10:00:00</td>
                                         <td>000002</td>
                                         <td>Branch 2</td>
-                                        <td>Apr 24, 2025 10:00:00</td>
                                         <td>Issue 2</td>
                                         <td>IT 2</td>
                                     </tr>
                                     <tr>
+                                        <td>Apr 24, 2025, 10:00:00</td>
                                         <td>000003</td>
                                         <td>Branch 3</td>
-                                        <td>Apr 24, 2025 10:00:00</td>
                                         <td>Issue 3</td>
                                         <td>IT 3</td>
                                     </tr>
                                     <tr>
+                                        <td>Apr 24, 2025, 10:00:00</td>
                                         <td>000004</td>
                                         <td>Branch 4</td>
-                                        <td>Apr 24, 2025 10:00:00</td>
                                         <td>Issue 4</td>                                     
                                         <td>IT 4</td>
                                     </tr>
                                     <tr>
+                                        <td>Apr 24, 2025, 10:00:00</td>
                                         <td>000005</td>
                                         <td>Branch 5</td>
-                                        <td>Apr 24, 2025 10:00:00</td>
                                         <td>Issue 5</td>
                                         <td>IT 5</td>
                                     </tr>
@@ -218,9 +218,9 @@ if ($_SESSION['RoleId'] != 1) {
                             <table class="table table-md table-bordered table-striped">
                                 <thead class="thead-dark">
                                     <tr>
+                                        <th class="dateTime"style="width: 5%">Submitted At</th>
                                         <th class="tixId" style="width: 4%">Ticket ID</th>
                                         <th class="branch"style="width: 7%">Branch</th>
-                                        <th class="dateTime"style="width: 5%">Date and Time</th>
                                         <th class="issue"style="width: 7%">Issue</th>
                                         <th class="assignedIT"style="width: 5%">Assigned IT</th>
                                     </tr>
@@ -236,9 +236,9 @@ if ($_SESSION['RoleId'] != 1) {
                             <table class="table table-md table-bordered table-striped">
                                 <thead class="thead-dark">
                                     <tr>
+                                        <th class="dateTime"style="width: 5%">Submitted At</th>
                                         <th class="tixId" style="width: 4%">Ticket ID</th>
                                         <th class="branch"style="width: 7%">Branch</th>
-                                        <th class="dateTime"style="width: 5%">Date and Time</th>
                                         <th class="issue"style="width: 7%">Issue</th>
                                         <th class="assignedIT"style="width: 5%">Assigned IT</th>
                                     </tr>
