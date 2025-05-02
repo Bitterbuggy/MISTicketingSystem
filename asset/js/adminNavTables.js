@@ -12,11 +12,11 @@ function populatePendingTickets(tickets) {
     recentTickets.forEach(ticket => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${ticket.ticketId}</td>
-            <td>${ticket.issue}</td>
-            <td>${ticket.branch}</td>
-            <td>${ticket.assignedIT}</td>
             <td>${ticket.dateTime}</td>
+            <td>${ticket.ticketId}</td>
+            <td>${ticket.branch}</td>
+            <td>${ticket.issue}</td>
+            <td>${ticket.assignedIT}</td>
         `;
         tbody.appendChild(row);
     });

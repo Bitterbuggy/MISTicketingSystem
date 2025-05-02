@@ -54,22 +54,22 @@ if ($_SESSION['RoleId'] != 1) {
                 <!-- Ticket Management Navigation -->
                 <div class="container-fluid tixmgmt-nav">
                     <div class="row m-2 text-center align-items-center">
-                        <div class="col-md-4 mt-2 div-mods active" onclick="window.location.href='adminTicketMgmt.php'">
+                        <div class="col-md-4 mt-2 div-mods inactive" onclick="window.location.href='adminTicketMgmt.php'">
                             <span class="mods">Repair Requests</span>
                         </div>
                         <div class="col-md-4 mt-2 div-mods inactive" onclick="window.location.href='adminCompletedTickets.php'">
                             <span class="mods">Completed Tickets</span>
                         </div>
-                        <div class="col-md-4 mt-2 div-mods inactive" onclick="window.location.href='adminTicketArchive.php'">
+                        <div class="col-md-4 mt-2 div-mods active" onclick="window.location.href='adminTicketArchive.php'">
                             <span class="mods">Ticket History Archive</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Table for Repair Requests -->
+                <!-- Table for Ticket Archive -->
                 <div class="table-container">
                     <div class="tb-control">           
-                    <table class="table table-hover" id="tblRepairTickets">
+                    <table class="table table-hover" id="tblTicketArchive">
                         <thead class="thead-dark" style="text-align: center;">
                             <tr>
                                 <th style="width: 4%;">Submitted At</th>
@@ -77,7 +77,6 @@ if ($_SESSION['RoleId'] != 1) {
                                 <th style="width: 3%;">Type of Issue</th>
                                 <th style="width: 6%;">Branch</th>
                                 <th style="width: 5%;">Assigned IT</th>
-                                <th style="width: 3%;">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,10 +85,7 @@ if ($_SESSION['RoleId'] != 1) {
                                 <td id="tixID">1001</td>
                                 <td id="tixType">Hardware</td>
                                 <td>QCPL</td>
-                                <td>-</td>
-                                <td>
-                                <button type="button" class="btn btn-pending" id="tixStatus">Pending</button>
-                                </td>
+                                <td>John Adams</td>
                             </tr>
                             <tr>
                                 <td>Apr 12, 2025, 09:43:15</td>
@@ -97,9 +93,6 @@ if ($_SESSION['RoleId'] != 1) {
                                 <td>Software</td>
                                 <td>QCPL</td>
                                 <td>John Doe</td>
-                                <td>
-                                <button type="button" class="btn btn-ongoing" id="tixStatus">On Going</button>
-                                </td>
                             </tr>
                             <tr>
                                 <td>Apr 12, 2025, 09:43:15</td>
@@ -107,19 +100,13 @@ if ($_SESSION['RoleId'] != 1) {
                                 <td>Software</td>
                                 <td>QCPL</td>
                                 <td>Jane Smith</td>
-                                <td>
-                                <button type="button" class="btn btn-completed" id="tixStatus">Completed</button>
-                                </td>
                             </tr>
                             <tr>
                                 <td>Apr 12, 2025, 09:43:15</td>
                                 <td>1004</td>
                                 <td>Software</td>
                                 <td>QCPL</td>
-                                <td>-</td>
-                                <td>
-                                <button type="button" class="btn btn-cancelled" id="tixStatus">Cancelled</button>
-                                </td>
+                                <td>Jane Adams</td>
                             </tr>
                         </tbody>
                     </table>
@@ -137,6 +124,7 @@ if ($_SESSION['RoleId'] != 1) {
         
     <!-- Custom JS Link/s -->
     <script src="../asset/js/admin-sidebar.js"></script>
+    <script src="../asset/js/adminCalendarPicker.js"></script>
     <script src="../asset/js/adminAllTickets.js"></script>
 </body>
 </html>
