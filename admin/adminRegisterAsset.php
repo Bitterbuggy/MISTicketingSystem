@@ -40,6 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../asset/css/modals.css">
+
 <!-- Register Asset Modal -->
     <div class="modal fade" id="registerAssetModal" tabindex="-1" aria-labelledby="registerAssetModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -51,52 +54,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="modal-body">
-            <div class="mb-3">
-                <label for="branchId" class="form-label">Branch ID</label>
-                <input type="number" class="form-control" name="BranchId" id="branchId" required>
-            </div>
+            <form action="adminRegisterAsset.php" method="POST">
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="branchId" class="form-label">Branch</label>
+                    <input type="text" name="Branch" id="branch" class="form-control rounded-pill" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="assetTypeId" class="form-label">Type</label>
+                    <input type="text" name="AssetType" id="assetType" class="form-control rounded-pill" required>
+                </div>
+                </div>
 
-            <div class="mb-3">
-                <label for="branchName" class="form-label">Branch Name</label>
-                <input type="text" class="form-control" name="BranchName" id="branchName" required>
-            </div>
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="assetName" class="form-label">Brand</label>
+                    <input type="text" name="AssetName" id="assetName" class="form-control rounded-pill" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="serialNumber" class="form-label">Serial Number</label>
+                    <input type="text" name="SerialNumber" id="serialNumber" class="form-control rounded-pill" required>
+                </div>
+                </div>
 
-            <div class="mb-3">
-                <label for="assetName" class="form-label">Asset Name</label>
-                <input type="text" class="form-control" name="AssetName" id="assetName" required>
-            </div>
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="purchasedDate" class="form-label">Purchased Date</label>
+                    <input type="date" name="PurchasedDate" id="purchasedDate" class="form-control rounded-pill" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="assetStatus" class="form-label">Status</label>
+                    <input type="text" name="AssetStatus" id="assetStatus" class="form-control rounded-pill" required>
+                </div>
+                </div>
 
-            <div class="mb-3">
-                <label for="assetTypeId" class="form-label">Asset Type ID</label>
-                <input type="number" class="form-control" name="AssetTypeId" id="assetTypeId" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="serialNumber" class="form-label">Serial Number</label>
-                <input type="text" class="form-control" name="SerialNumber" id="serialNumber" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="purchasedDate" class="form-label">Purchased Date</label>
-                <input type="date" class="form-control" name="PurchasedDate" id="purchasedDate" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="assetStatus" class="form-label">Asset Status</label>
-                <input type="text" class="form-control" name="AssetStatus" id="assetStatus" required>
-            </div>
-
-            <div class="mb-3">
+                <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" name="Description" id="description" rows="3"></textarea>
-            </div>
-            </div>
+                <textarea name="Description" id="description" class="form-control" rows="3"></textarea>
+                </div>
 
-            <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Register Asset</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Register Asset</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
             </div>
-        </form>
+            </div>
         </div>
-    </div>
-    </div>
+        </div>

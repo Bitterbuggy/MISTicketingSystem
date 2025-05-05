@@ -103,6 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="div-mods inactive" onclick="window.location.href='adminEmployeeList.php'">
                             <span class="mods">Employee</span>
                         </div>
+                        <div class="div-mods inactive" data-bs-toggle="modal" data-bs-target="#registerLICModal">
+                        <span class="mods">Register an LIC</span>
+                        </div>
                     </div>
 
                     <!-- Controls Section -->
@@ -178,5 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         </main>
     </div>
+    <?php include 'adminRegisterLIC.php'; ?>
 </body>
 </html>
