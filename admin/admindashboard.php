@@ -36,6 +36,12 @@ if ($_SESSION['RoleId'] != 1) {
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Custom JS Link/s -->
+    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/greetingCard.js"></script>
+    <script src="../asset/js/recentTicket.js"></script>
+    <script src="../asset/js/ticketSummary.js"></script>
+    <script src="../asset/js/adminNavTables.js"></script>
 </head>
 
 <body>
@@ -163,7 +169,7 @@ if ($_SESSION['RoleId'] != 1) {
                         <div class="tab-content" id="nav-tix-content">
                             <!-- Pending Tab -->
                             <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                                <table class="table table-md table-bordered table-striped">
+                                <table class="table table-md table-bordered table-striped table-hover">
                                     <thead class="thead-dark">
                                     <tr>
                                         <th class="dateTime"style="width: 5%">Submitted At</th>
@@ -215,7 +221,7 @@ if ($_SESSION['RoleId'] != 1) {
 
                         <!-- On Going Tab -->
                         <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
-                            <table class="table table-md table-bordered table-striped">
+                            <table class="table table-md table-bordered table-striped table-hover">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="dateTime"style="width: 5%">Submitted At</th>
@@ -233,7 +239,7 @@ if ($_SESSION['RoleId'] != 1) {
 
                         <!-- Completed Tab -->
                         <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                            <table class="table table-md table-bordered table-striped">
+                            <table class="table table-md table-bordered table-striped table-hover">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="dateTime"style="width: 5%">Submitted At</th>
@@ -275,12 +281,7 @@ if ($_SESSION['RoleId'] != 1) {
         </div>
     </div>
 
-    <!-- Custom JS Link/s -->
-    <script src="../asset/js/admin-sidebar.js"></script>
-    <script src="../asset/js/greetingCard.js"></script>
-    <script src="../asset/js/recentTicket.js"></script>
-    <script src="../asset/js/ticketSummary.js"></script>
-    <script src="../asset/js/adminNavTables.js"></script>
+    <!-- External JS Link -->
     <script src="../asset/js/adminCharts.js"></script>
 </body>
 </html>

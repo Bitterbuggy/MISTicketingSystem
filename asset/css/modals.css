@@ -1,0 +1,66 @@
+.modal-dialog .modal-content {
+    border-radius: 1.5rem;
+    background-color: #fafafa;
+    padding: 1rem;
+}
+
+.modal-body select, .modal-body input, .modal-body textarea {
+    background-color: #fafafa;
+    border: 2px solid #0C3C74;
+    font-size: .9rem;
+    border-radius: .5rem;
+}
+
+.modal-body textarea {
+    height: 10rem;
+}
+
+.modal-body label {
+    font-weight: 800;
+    font-size: .9rem;
+    margin-bottom: .2rem;
+}
+
+.modal-body i {
+    font-size: 5rem;
+}
+
+.modal-body .btn {
+    border-radius: 2rem;
+    background-color: #0C3C74;
+    font-size: .9rem;
+    font-weight: 500;
+    color: white;
+    padding: .2rem 1.5rem .2rem;
+}
+.modal-body .btn:hover {
+    color: white;
+    background-color: rgb(12, 60, 116, .8);
+}
+
+.modal-body h4 {
+    margin-bottom: 1rem;
+}
+.modal-body p {
+    margin-bottom: .2rem;
+}
+
+.btn-type {
+    background-color: #007bff; /* Custom background color */
+    color: white; /* Custom text color */
+    border-radius: 50px; /* Make it pill-shaped */
+}
+
+.btn-type:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.btn-status {
+    background-color: #28a745; /* Custom background color */
+    color: white; /* Custom text color */
+    border-radius: 50px; /* Make it pill-shaped */
+}
+
+.btn-status:hover {
+    background-color: #1e7e34; /* Darker shade on hover */
+}

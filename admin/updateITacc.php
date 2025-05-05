@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="layout-container d-flex">
        
  <!-- Include Sidebar -->
- <?php include '../admin/inc/admin-sidebar.php'; ?>
+ <?php include '../admin/inc/adminSidebar.php'; ?>
 
  <!-- Wrapper for Header + Main -->
  <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Email: <input type="email" name="email" value="<?php echo $user['Email']; ?>" required><br>
         Contact No: <input type="text" name="contactno" value="<?php echo $user['Contactno']; ?>" required><br>
         <button type="submit">Update</button>
-        <a href="../admin/ManageIT.php"> Back</a>
+        <a href="../admin/adminStaffMgmt.php"> Back</a>
     </form>
 
         
