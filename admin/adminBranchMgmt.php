@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCPL STS - Dashboard</title>
+    <title>QCPL STS - Branch Management</title>
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
@@ -111,6 +111,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="input-group" style="max-width: 280px;">
                             <input type="text" class="form-control" placeholder="Search" aria-label="Search">
                             <span class="input-group-text control-btn"><i class="fa fa-search"></i></span>
+                        </div>
+                        
+                        <!-- Filter Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
+                            <i class="fa fa-filter me-1"></i>
+                            </button>
+                            <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+                                <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-copyright me-2"></i>Brand</a></li>
+                                <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-toolbox me-2"></i>Type of Issue</a></li>
+                                <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
+                            </ul>
                         </div>
 
                         <!-- Sort Dropdown -->

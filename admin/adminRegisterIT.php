@@ -94,7 +94,7 @@ if (isset($_SESSION['success_message'])): ?>
     <div class="layout-container d-flex">
       
  <!-- Include Sidebar -->
- <?php include '../admin/inc/admin-sidebar.php'; ?>
+ <?php include '../admin/inc/adminSidebar.php'; ?>
 
 
     

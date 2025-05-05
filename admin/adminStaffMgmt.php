@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCPL STS - Dashboard</title>
+    <title>QCPL STS - Staff Management</title>
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
@@ -94,8 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  <div class="d-flex flex-wrap align-items-center justify-content-between mt-2">
                     <!-- Left: Add New Staff Button -->
                     <div style="flex: 0 0 auto;">
-                    <button type="button" class="btn btn-add px-4 rounded-pill" onclick="window.location.href='../admin/registerStaff.php';">
-                        Add New IT Staff
+                    <button type="button" class="btn btn-add px-4 rounded-pill" onclick="window.location.href='../admin/adminRegisterIT.php';">
+                        Register an IT
                     </button>
                     </div>
 
