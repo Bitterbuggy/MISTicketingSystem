@@ -11,7 +11,6 @@ if (isset($_SESSION['success_message'])) {
     unset($_SESSION['success_message']); // Remove the message after displaying
 }
 
-
 //IT Staff table 
 $sql = "SELECT * FROM t_users 
         JOIN t_roles ON t_users.RoleId = t_roles.RoleId
@@ -94,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  <div class="d-flex flex-wrap align-items-center justify-content-between mt-2">
                     <!-- Left: Add New Staff Button -->
                     <div style="flex: 0 0 auto;">
-                    <button type="button" class="btn btn-add px-4 rounded-pill" onclick="window.location.href='../admin/adminRegisterIT.php';">
+                    <button type="button" class="btn btn-add px-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#registerITModal">
                         Register an IT
                     </button>
                     </div>
@@ -163,6 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
+    <?php include '../admin/inc/registerITModal.php'; ?>
     <!-- External JS Files -->
     <script src="../asset/js/adminSidebar.js"></script>
 </body>

@@ -18,149 +18,118 @@ if (isset($_SESSION['success_message'])): ?>
     
 ?>
 
+<?php include 'adminRegisterIT.php'; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCPL STS - Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
+<!-- External CSS Link -->
+<link rel="stylesheet" href="../asset/css/modals.css">
 
-    <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
-    <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
+<!-- Bootstrap JS (include before </body>) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Register IT Modal -->
+    <div class="modal fade" id="registerITModal" tabindex="-1" aria-labelledby="registerITModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <form action="register.php" method="POST">
+            <div class="modal-header">
+            <h5 class="modal-title" id="registerITModalLabel">Register a New IT Staff</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="modal-body">
+            <form action="adminRegisterAsset.php" method="POST">
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="branchId" class="form-label">First Name</label>
+                    <input type="text" name="Branch" id="branch" class="form-control rounded-pill" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="assetTypeId" class="form-label">Last Name</label>
+                    <input type="text" name="AssetType" id="assetType" class="form-control rounded-pill" required>
+                </div>
+                </div>
 
-    <!-- Font Awesome CDN Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="assetName" class="form-label">Email</label>
+                    <input type="text" name="AssetName" id="assetName" class="form-control rounded-pill" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="serialNumber" class="form-label">Contact Number</label>
+                    <input type="text" name="SerialNumber" id="serialNumber" class="form-control rounded-pill" required>
+                </div>
+                </div>
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="purchasedDate" class="form-label">District ID</label>
+                    <input type="number" name="PurchasedDate" id="purchasedDate" class="form-control rounded-pill" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="assetStatus" class="form-label">Branch ID</label>
+                    <input type="number" name="AssetStatus" id="assetStatus" class="form-control rounded-pill" required>
+                </div>
+                </div>
 
-    <style>
-/* The Modal (background) */
-.modal {
-  display: block; /* Show the modal by default if it exists */
-  position: fixed;
-  z-index: 1000;
-  padding-top: 150px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5);
-}
+                <div class="mb-3">
+                  <label for="role" class="form-label">Role</label>
+                  <input type="select" name="role" id="role" class="form-control" rows="3"></input>
+                </div>
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 30px;
-  border: 1px solid #888;
-  width: 400px;
-  border-radius: 10px;
-  position: relative;
-  text-align: center;
-}
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Register IT</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
+<!-- [DRAFT] Updated form with action to register.php
+              <form action="../admin/register.php" method="POST" >
+              <label>First Name:</label>
+              <input type="text" name="first_name" required><br>
+              <label>Last Name:</label>
+              <input type="text" name="last_name" required><br>
+              <label>Email:</label>
+              <input type="email" name="email" required><br>
+              <label>Contact No:</label>
+              <input type="number" name="contactno" required><br>
+              <label>District ID:</label>
+              <input type="number" name="district_id" required><br>
+              <label>Branch ID:</label>
+              <input type="number" name="branch_id" required><br>
+              <!--<label>Password:</label>
+              <input type="password" name="password" required><br>
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-}
-</style>
-
-</head>
-
-<body>
-    <div class="layout-container d-flex">
-      
- <!-- Include Sidebar -->
- <?php include '../admin/inc/adminSidebar.php'; ?>
-
-
-    
-
-     <!-- Wrapper for Header + Main -->
-     <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
-
-<!-- Main Content (separate from header) -->
-<main class="px-4 py-5">
-    <div class="row align-items-stretch">
-        <h2>Welcome Admin, <?php echo $_SESSION['FirstName']; ?>!</h2>
-        <p>You are now logged in as Admin.</p>
-        <br>
-        <div class="card shadow-lg">
-                <div class="card-body">
-                    <div class="text-center mb-5 logo">
-                        <img src="../asset/img/qcpl-logo.png" alt="Logo" class="logo" width="120px">
-                        <p class="p-2 mb-5">QUEZON CITY PUBLIC LIBRARY</p>
-                    </div>
-
-                    <div id="error-message" class="alert alert-danger mt-3" style="display: none;"></div>
-
-                    <!-- Updated form with action to register.php -->
-                    <form action="../admin/register.php" method="POST" >
-                    <label>First Name:</label>
-                    <input type="text" name="first_name" required><br>
-                    <label>Last Name:</label>
-                    <input type="text" name="last_name" required><br>
-                    <label>Email:</label>
-                    <input type="email" name="email" required><br>
-                    <label>Contact No:</label>
-                    <input type="number" name="contactno" required><br>
-                    <label>District ID:</label>
-                    <input type="number" name="district_id" required><br>
-                    <label>Branch ID:</label>
-                    <input type="number" name="branch_id" required><br>
-                    <!--<label>Password:</label>
-                    <input type="password" name="password" required><br>-->
-
-                    <label>Role:</label>
-                    <select name="role_id">
-                       
-                        <option value="3">ITstaff</option>
-                      
+              <label>Role:</label>
+              <select name="role_id">
+                  
+                  <option value="3">ITstaff</option>
+                
 
 
-                    </select><br>
+              </select><br>
 
-                    <div id="admin_fields" style="display:none;">
-                        <label>Position:</label>
-                        <input type="text" name="position"><br>
-                        <label>Department:</label>
-                        <input type="text" name="department"><br>
-                    </div>
+              <div id="admin_fields" style="display:none;">
+                  <label>Position:</label>
+                  <input type="text" name="position"><br>
+                  <label>Department:</label>
+                  <input type="text" name="department"><br>
+              </div>
 
-                    <button type="submit">Register</button>
-                    </form>
+              <button type="submit">Register</button>
+              </form>
 
-                    <a href="../admin/ManageIT.php">Back</a>              
+              <a href="../admin/ManageIT.php">Back</a>              
 
-    <script src="../assets/js/auth/admin/gen_login.js"></script>
-    
+<script src="../assets/js/auth/admin/gen_login.js"></script>
+
 </div>
-
-           
-</body>
+     
+</body> -->
 
 
 

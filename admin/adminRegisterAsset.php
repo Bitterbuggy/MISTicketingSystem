@@ -40,8 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- External CSS Link -->
 <link rel="stylesheet" href="../asset/css/modals.css">
+
+<!-- Bootstrap JS (include before </body>) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Register Asset Modal -->
     <div class="modal fade" id="registerAssetModal" tabindex="-1" aria-labelledby="registerAssetModalLabel" aria-hidden="true">
@@ -54,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="modal-body">
-            <form action="adminRegisterAsset.php" method="POST">
+            <form action="register.php" method="POST">
                 <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="branchId" class="form-label">Branch</label>
@@ -102,3 +105,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         </div>
+    </div>
