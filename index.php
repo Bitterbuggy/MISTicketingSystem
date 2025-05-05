@@ -46,7 +46,6 @@
                     <div class="mb-3">
                         <label class="form-label">Password</label>
                         <div class="input-group">
-                        <!--<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>-->
                         <input type="password" class="form-control custom-input" id="password-input" name="password" placeholder="Enter your password" required>
                             <span class="input-group-text custom-icon">
                                 <i class="fa-solid fa-eye-slash" id="toggle-password" style="cursor: pointer;"></i>

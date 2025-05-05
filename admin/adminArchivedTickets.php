@@ -40,6 +40,8 @@ if ($_SESSION['RoleId'] != 1) {
     <!-- Custom JS Link/s -->
     <script src="../asset/js/adminNavTables.js"></script>
     <script src="../asset/js/adminCharts.js"></script>
+    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/adminAllTickets.js"></script>
 </head>
 
 <body>
@@ -51,25 +53,67 @@ if ($_SESSION['RoleId'] != 1) {
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
             <!-- Main Content -->
             <main class="px-4 py-5">
-                <!-- Ticket Management Navigation -->
+            <div class="col-12">
                 <div class="container-fluid tixmgmt-nav">
-                    <div class="row m-2 text-center align-items-center">
-                        <div class="col-md-4 mt-2 div-mods inactive" onclick="window.location.href='adminTicketMgmt.php'">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2">
+                    <!-- Tabs Section -->
+                    <div class="d-flex flex-wrap gap-2">
+                        <div class="div-mods inactive" onclick="window.location.href='adminTicketMgmt.php'">
                             <span class="mods">Repair Requests</span>
                         </div>
-                        <div class="col-md-4 mt-2 div-mods inactive" onclick="window.location.href='adminCompletedTickets.php'">
+                        <div class="div-mods inactive" onclick="window.location.href='adminCompletedTickets.php'">
                             <span class="mods">Completed Tickets</span>
                         </div>
-                        <div class="col-md-4 mt-2 div-mods active" onclick="window.location.href='adminTicketArchive.php'">
+                        <div class="div-mods active" onclick="window.location.href='adminArchivedTickets.php'">
                             <span class="mods">Ticket History Archive</span>
                         </div>
                     </div>
-                </div>
 
-                <!-- Table for Ticket Archive -->
-                <div class="table-container">
-                    <div class="tb-control">           
-                    <table class="table table-hover" id="tblTicketArchive">
+                    <!-- Controls Section -->
+                    <div class="d-flex flex-wrap flex-lg-nowrap align-items-center gap-2 controls-container">
+                        <!-- Search -->
+                        <div class="input-group" style="max-width: 280px;">
+                            <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+                            <span class="input-group-text control-btn"><i class="fa fa-search"></i></span>
+                        </div>
+
+                        <!-- Date Button -->
+                        <button class="btn btn-outline-secondary control-btn" type="button">
+                            <i class="fa fa-calendar me-1"></i> Select Date
+                        </button>
+
+                        <!-- Filter Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
+                                <i class="fa fa-filter me-1"></i> Filter
+                            </button>
+                            <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-toolbox me-2"></i>Type of Issue</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2"></i>IT Technician</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Sort Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
+                                <i class="fa fa-sort me-1"></i> Sort
+                            </button>
+                            <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-up-short-wide me-2"></i>Descending</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        <!-- Ticket History Archive Table -->
+            <div class="row no-gutters mt-4">
+                <div class="col-12">
+                    <div class="table-responsive"> 
+                        <table class="table table-striped table-hover" id="tblTicketArchive">
                         <thead class="thead-dark" style="text-align: center;">
                             <tr>
                                 <th style="width: 4%;">Submitted At</th>
@@ -121,10 +165,5 @@ if ($_SESSION['RoleId'] != 1) {
             </main>
         </div>
     </div>
-        
-    <!-- Custom JS Link/s -->
-    <script src="../asset/js/admin-sidebar.js"></script>
-    <script src="../asset/js/adminCalendarPicker.js"></script>
-    <script src="../asset/js/adminAllTickets.js"></script>
 </body>
 </html>

@@ -165,8 +165,8 @@
 }
 
 /* Hover effect */
-.sidebar-item:hover, .sidebar-logout {
-  background-color: #b7cbfd;
+.sidebar-item:hover, .sidebar-logout .sidebar-item:hover {
+  background-color: #9ab6fb;
 }
 
 /* --- Logout Button --- */
@@ -189,4 +189,9 @@
   gap: 12px;
   font-weight: 600;
   color: #0038a8;
+}
+
+.js-sidebar-initializing .sidebar-item.active {
+  background: none !important;
+  color: inherit !important;
 }
