@@ -15,10 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rawPassword = bin2hex(random_bytes(4)); // Generates an 8-character secure random password
     $password = password_hash($rawPassword, PASSWORD_DEFAULT);
 
-
-
-
-    
     // Insert into t_users
     $sql = "INSERT INTO t_users (FirstName, LastName, Email, Contactno, DistrictId, BranchId, Password, RoleId)
             VALUES (:firstName, :lastName, :email, :contactno, :districtId, :branchId, :password, :roleId)";
