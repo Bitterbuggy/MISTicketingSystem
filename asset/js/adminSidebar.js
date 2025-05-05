@@ -60,6 +60,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Reports page
+    else if (currentPage === 'adminReports.php') {
+        sidebarItems.forEach(item => {
+            const link = item.querySelector('a');
+            if (link && link.getAttribute('href') === 'adminReports.php') {
+                item.classList.add('active');
+                matched = true;
+            }
+        });
+    }
+
+    // Activity Logs page
+    else if (currentPage === '../auth/adminActivityLogs.php') {
+        sidebarItems.forEach(item => {
+            const link = item.querySelector('a');
+            if (link && link.getAttribute('href') === 'adminActivityLogs.php') {
+                item.classList.add('active');
+                matched = true;
+            }
+        });
+    }
+
     // Dashboard page
     else if (currentPage === 'adminDashboard.php') {
         sidebarItems.forEach(item => {

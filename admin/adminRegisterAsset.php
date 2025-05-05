@@ -6,6 +6,7 @@ include '../Includes/config.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $BranchId = $_POST['BranchId'];
+    $BranchName = $_POST['BranchName'];
     $AssetName = $_POST['AssetName'];
     $AssetTypeId = $_POST['AssetTypeId'];
     $SerialNumber = $_POST['SerialNumber'];
@@ -22,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Bind parameters to the SQL query
     $stmt->bindParam(':BranchId', $BranchId);
+    $stmt->bindParam(':BranchName', $BranchName);
     $stmt->bindParam(':AssetName', $AssetName);
     $stmt->bindParam(':AssetTypeId', $AssetTypeId);
     $stmt->bindParam(':SerialNumber', $SerialNumber);
@@ -52,6 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3">
                 <label for="branchId" class="form-label">Branch ID</label>
                 <input type="number" class="form-control" name="BranchId" id="branchId" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="branchName" class="form-label">Branch Name</label>
+                <input type="text" class="form-control" name="BranchName" id="branchName" required>
             </div>
 
             <div class="mb-3">

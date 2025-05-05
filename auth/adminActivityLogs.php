@@ -39,15 +39,40 @@ $redirectLink = match ($roleId) {
     default => '../home.php',
 };
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Activity Logs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCPL STS - Branch Management</title>
+    <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
+
+    <!-- External CSS Link/s -->
+    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/admin-branch-mgmt.css">
+    <link rel ="stylesheet" href="../asset/css/pagination.css">
+    <link rel ="stylesheet" href="../asset/css/modals.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font Awesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- External JS Files -->
+    <script src="../asset/js/adminSidebar.js"></script>
+
 </head>
-<body class="bg-light">
-    <div class="container mt-5">
+<body>
+    <div class="container">
+        <a href="<?= $redirectLink ?>" class="btn btn-primary mb-4"><i class="fa fa-arrow-left"></i> Back</a>
         <h2 class="mb-4"><?= $roleId == 1 ? "All User Activity Logs" : "$firstName's Activity Logs" ?></h2>
 
         <div class="table-responsive">

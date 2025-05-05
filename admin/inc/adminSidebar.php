@@ -56,6 +56,18 @@
                 <span class="text">Branches</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a href="adminReports.php">
+                <span class="icon"><i class="fa-solid fa-diagram-next"></i></span>
+                <span class="text">Reports</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="../auth/adminActivityLogs.php">
+                <span class="icon"><i class="fa-solid fa-box"></i></span>
+                <span class="text">Activity Logs</span>
+                </a>
+            </li>
             </ul>
         </div>
 
@@ -64,7 +76,7 @@
             <ul class="sidebar-nav p-0">
             <li class="sidebar-item">
                 <a href="../auth/logout.php">
-                <span class="icon"><i class="fa fa-right-from-bracket"></i></span>
+                <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
                 <span class="text">Log Out</span>
                 </a>
             </li>
