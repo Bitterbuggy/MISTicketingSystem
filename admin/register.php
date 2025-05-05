@@ -101,8 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     }
 
-    
-
      // Send email to the user
      $subject = "Your QCPL STS Account Credentials";
      $message = "Hello $firstName $lastName,\n\n".

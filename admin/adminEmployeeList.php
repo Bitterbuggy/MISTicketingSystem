@@ -68,6 +68,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="div-mods active" onclick="window.location.href='adminEmployeeList.php'">
                             <span class="mods">Employee</span>
                         </div>
+                        <div class="div-mods inactive" data-bs-toggle="modal" data-bs-target="#registerLICModal">
+                        <span class="mods">Register an LIC</span>
+                        </div>
                     </div>
 
                     <!-- Controls Section -->
