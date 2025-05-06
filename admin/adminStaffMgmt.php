@@ -93,9 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  <div class="d-flex flex-wrap align-items-center justify-content-between mt-2">
                     <!-- Left: Add New Staff Button -->
                     <div style="flex: 0 0 auto;">
-                    <button type="button" class="btn btn-add px-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#registerITModal">
-                        Register an IT
-                    </button>
+                        <div class="div-mods active" data-bs-toggle="modal" data-bs-target="#registerITModal">
+                            <span class="mods">Register an IT Staff</span>
+                        </div>
                     </div>
 
                     <!-- Right: Table Controls -->
@@ -111,11 +111,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <!-- Sort Dropdown -->
                     <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
-                        <i class="fa-solid fa-sort"></i>
+                            <i class="fa fa-sort me-1"></i>
                         </button>
                         <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                            <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
-                            <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-arrow-up-short-wide me-2"></i>Descending</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-up-short-wide me-2"></i>Descending</a></li>
                         </ul>
                     </div>
                     </div>
@@ -148,8 +148,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <td><?php echo $user['Contactno']; ?></td>
                                             <!-- <td><?php echo $user['RoleName']; ?></td> -->
                                             <td>
-                                                <a href="../admin/updateITacc.php?id=<?php echo $user['UserId']; ?>" class="btn btn-edit btn-sm">Edit</a>
-                                                <a href="deleteITstaff.php?id=<?php echo $user['UserId']; ?>" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-sm">Delete</a>
+                                                <a href="adminUpdateIT.php?id=<?php echo $user['UserId']; ?>" class="btn btn-edit btn-sm">Edit</a>
+                                                <a href="adminDeleteIT.php?id=<?php echo $user['UserId']; ?>" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -162,7 +162,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <?php include '../admin/inc/registerITModal.php'; ?>
+    <!-- Register IT Staff Modal -->
+    <?php include 'adminRegisterIT.php'; ?>
+    <!-- Update IT Staff Modal -->
+    <!--?php include 'adminUpdateIT.php'; ?-->
+    <!-- Delete IT Staff Modal -->
+    <!--?php include 'adminDeleteIT.php'; ?-->
+    
     <!-- External JS Files -->
     <script src="../asset/js/adminSidebar.js"></script>
 </body>

@@ -25,7 +25,38 @@ main {
     margin-right: 0.25rem;
 }
 
-/* ADD NEW STAFF BUTTON */
+.div-mods {
+    border: 3px solid #0060c7;
+    border-radius: 50px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 18px;
+    height: 40px;
+    font-size: 17px;
+    min-width: 160px;
+    max-width: 220px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.mods {
+    text-decoration: none;
+    color: #0060c7;
+}
+
+/* Active Tab */
+.div-mods.active {
+    background-color: #0060c7;
+}
+
+.div-mods.active .mods {
+    color: #fafafa;
+}
+
+/* ADD NEW STAFF BUTTON 
 .btn-add {
     background-color: #0060c7 !important;
     border-radius: 30px !important;
@@ -35,7 +66,7 @@ main {
     color: white !important;
     font-weight: 600 !important;
     border: none !important;
-}
+} */
 
 /* SEARCH BAR */
 .input-group-text.control-btn {
@@ -73,7 +104,6 @@ main {
     color: white !important;
     border-color: #70abe9 !important;
 }
-
 /* DROPDOWN MENU */
 .dropdown-menu {
     border-radius: 12px !important;
