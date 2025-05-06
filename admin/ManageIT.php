@@ -182,14 +182,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 data-bs-target="#editModal<?php echo $user['UserId']; ?>">
                                                 Edit
                                             </button>
-
-                                                <a href="../admin/deleteITstaff.php?id=<?php echo $user['UserId']; ?>" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-sm">Delete</a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <div class="modal fade" id="editModal<?php echo $user['UserId']; ?>" tabindex="-1">
+                                            <div class="modal fade" id="editModal<?php echo $user['UserId']; ?>" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                             <form method="POST" action="updateITacc.php">
@@ -217,6 +210,14 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         </div>
 
+
+                                                <a href="../admin/deleteITstaff.php?id=<?php echo $user['UserId']; ?>" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                           
                     </div>
                 </div>
             </div>
