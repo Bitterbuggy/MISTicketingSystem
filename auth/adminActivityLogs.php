@@ -36,7 +36,7 @@ $redirectLink = match ($roleId) {
     1 => '../admin/admindashboard.php',
     2 => '../branchadmin/bradmindashboard.php',
     3 => '../ITstaff/ITdashboard.php',
-    default => '../home.php',
+    default => '../employee/home.php',
 };
 ?>
 
