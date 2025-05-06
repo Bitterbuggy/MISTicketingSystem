@@ -115,7 +115,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <thead>
                                 <tr>
                                     <th style="width: 4%;">Branch</th>
-                                    <th style="width: 2.5%;">Asset Name</th>
+                                    <th style="width: 2.5%;">Brand</th>
                                     <th style="width: 4%;">Serial Number</th>
                                     <th style="width: 2%;">Purchased Date</th>
                                     <th style="width: 2%;">Status</th>
@@ -132,7 +132,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <tr>
                                             <td><?php echo htmlspecialchars($asset['BranchName']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['AssetName']); ?></td>
-                                            
                                             <td><?php echo htmlspecialchars($asset['SerialNumber']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>

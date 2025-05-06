@@ -272,7 +272,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </html>
 
 
-
      <!-- Main Content Container 
      <div class="main-content" style="margin-left: 260px; padding: 20px;">
         Updated form with action to register.php 

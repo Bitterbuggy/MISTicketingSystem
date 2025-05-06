@@ -4,31 +4,42 @@
 
 <?php
 session_start();
-include '../Includes/config.php'; // Ensure this is included at the top
+include '../Includes/config.php';
 
-if (isset($_SESSION['success_message'])) {
-    echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
-    unset($_SESSION['success_message']); // Remove the message after displaying
+if (isset($_SESSION['UserId'])) {
+    $userId = $_SESSION['UserId'];
+    $stmt = $conn->prepare("INSERT INTO t_activitylogs (UserId, activity_type, activity_time) VALUES (:userId, 'Heartbeat', NOW())");
+    
+    $stmt->execute(['userId' => $userId]);
 }
 
-//IT Staff table 
-$sql = "SELECT * FROM t_users 
-        JOIN t_roles ON t_users.RoleId = t_roles.RoleId
-        WHERE t_users.RoleId=3" ;
+// Show success message if exists
+if (isset($_SESSION['success_message'])) {
+    echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
+    unset($_SESSION['success_message']);
+}
+
+// Fetch all IT staff with last activity
+$sql = "SELECT u.*, r.RoleName,
+               (SELECT MAX(al.activity_time)
+                FROM t_activitylogs al
+                WHERE al.UserId = u.UserId) AS last_activity
+        FROM t_users u
+        JOIN t_roles r ON u.RoleId = r.RoleId
+        WHERE u.RoleId = 3";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Update IT staff
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    $sql = "SELECT * FROM t_users WHERE UserId = :id and RoleId=3";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['id' => $id]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+// Determine online/offline status
+foreach ($users as &$user) {
+    $lastActivity = strtotime($user['last_activity']);
+    $now = time();
+    $user['status'] = ($lastActivity && ($now - $lastActivity) <= 600) ? 'Online' : 'Offline';
 }
+unset($user); // Break reference
 
+// Handle IT staff update POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $firstName = $_POST['first_name'];
@@ -36,7 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $contactno = $_POST['contactno'];
 
-    $sql = "UPDATE t_users SET FirstName = :firstName, LastName = :lastName, Email = :email, Contactno = :contactno WHERE UserId = :id";
+    $sql = "UPDATE t_users 
+            SET FirstName = :firstName, LastName = :lastName, Email = :email, Contactno = :contactno 
+            WHERE UserId = :id AND RoleId = 3";
     $stmt = $conn->prepare($sql);
     $stmt->execute([
         'firstName' => $firstName,
@@ -47,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     $_SESSION['success_message'] = "Successfully updated account!";
-    header("Location: ../admin/adminStaffMgmt.php ");
+    header("Location: ../admin/ManageIT.php");
     exit();
 }
 ?>
@@ -134,7 +147,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Contact No.</th>
-                                        <!-- <th>Role</th> -->
+                                        <th>Role</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -146,7 +160,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <td><?php echo $user['LastName']; ?></td>
                                             <td><?php echo $user['Email']; ?></td>
                                             <td><?php echo $user['Contactno']; ?></td>
-                                            <!-- <td><?php echo $user['RoleName']; ?></td> -->
+                                            <td><?php echo $user['RoleName']; ?></td>
+                                            <td>
+                                            <span class="<?= $user['status'] === 'Online' ? 'text-success' : 'text-muted' ?>">
+                                                <?= $user['status'] ?>
+                                            </span>
+                                            </td>
                                             <td>
                                             <button class="btn btn-edit btn-sm" onclick="openEditModal(<?php echo $user['UserId']; ?>)">Edit</button>
                                             <button class="btn btn-danger btn-sm" onclick="openDeleteModal(<?php echo $user['UserId']; ?>)">Delete</button>

@@ -1,10 +1,20 @@
 <?php
 include '../Includes/config.php'; // Ensure this is included at the top
 
-if (isset($_SESSION['success_message'])) {
-    echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
-    unset($_SESSION['success_message']); // Remove the message after displaying
-}
+//if (isset($_SESSION['success_message'])) {
+    //echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
+    //unset($_SESSION['success_message']); // Remove the message after displaying
+//}
+if (isset($_SESSION['success_message'])): ?>
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p><?php echo $_SESSION['success_message']; ?></p>
+      </div>
+    </div>
+    <?php unset($_SESSION['success_message']); ?>
+    <?php endif; 
+
 ?>
 
 <!-- External CSS Link -->
@@ -12,7 +22,7 @@ if (isset($_SESSION['success_message'])) {
 
 <!-- Register LIC Modal -->
     <div class="modal fade" id="registerLICModal" tabindex="-1" aria-labelledby="registerLICModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
         <form action="register.php" method="POST">
             <div class="modal-header">
@@ -47,11 +57,25 @@ if (isset($_SESSION['success_message'])) {
                 <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="branchID" class="form-label">Branch ID</label>
-                    <input type="number" name="branchID" id="BranchiD" class="form-control rounded-pill" required>
+                    <select name="branch_ID" id="BranchiD" class="form-control rounded-pill" required>
+                    <option value="">----- Select Branch -----</option>
+                        <?php
+                        // This query joins branch with district to get names
+                        $stmt = $conn->query("SELECT b.BranchId, b.BranchName, b.DistrictId, d.DistrictName 
+                                            FROM t_branch b
+                                            JOIN t_district d ON b.DistrictId = d.DistrictId");
+
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<option value="' . $row['BranchId'] . '" data-district="' . $row['DistrictId'] . '">' .
+                                    $row['BranchName'] . ' (' . $row['DistrictName'] . ')' .
+                                '</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="col-md-6">
                     <label for="districtID" class="form-label">District ID</label>
-                    <input type="number" name="districtID" id="DistrictiD" class="form-control rounded-pill" required>
+                    <input type="number" name="district_id" id="district_id" class="form-control rounded-pill" readonly>
                 </div>
                 </div>
 
@@ -60,6 +84,17 @@ if (isset($_SESSION['success_message'])) {
                     <select name="role" id="Role" class="form-control rounded-pill" rows="3">
                         <option value="2">Librarian-in-Charge (LIC)</option>
                     </select>
+                </div>
+
+                <div class="row mb-3" id="admin_fields" style="display:none;">
+                    <div class="col-md-6">
+                        <label for="position" class="form-label">Position</label>
+                        <input type="text" name="position" id="Position" class="form-control rounded-pill">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="department" class="form-label">Department</label>
+                        <input type="text" name="department" id="Department" class="form-control rounded-pill">
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -73,206 +108,41 @@ if (isset($_SESSION['success_message'])) {
         </div>
     </div>
 
-<!-- [DRAFT] Updated form with action to register.php 
-<form action="../admin/register.php" method="POST" >
-<label>First Name:</label>
-<input type="text" name="first_name" required><br>
-<label>Last Name:</label>
-<input type="text" name="last_name" required><br>
-<label>Email:</label>
-<input type="email" name="email" required><br>
-<label>Contact No:</label>
-<input type="number" name="contactno" required><br>
-<label>District ID:</label>
-<input type="number" name="district_id" required><br>
-<label>Branch ID:</label>
-<input type="number" name="branch_id" required><br>
-<label>Password:</label>
-<input type="password" name="password" required><br>
+    <!-- Successful Creation Modal -->
+    <div class="modal" id="successfulCreateModal" tabindex="-1" aria-labelledby="successfulCreateModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <i class="fa-regular fa-check-circle md-icon"></i>
+                <h1>Successfully Added an Account!</h1>
+                <p class="p-success mt-4">
+                    See table for reflected changes.
+                </p>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary">Close</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
 
-<label>Role:</label>
-<select name="role_id">
+<script>
+    const branchSelect = document.querySelector('select[name="branch_id"]');
+    const districtInput = document.getElementById('district_id');
 
-    <option value="2">BranchAdmin</option> 
-    
+    branchSelect.addEventListener('change', function () {
+        const selectedOption = branchSelect.options[branchSelect.selectedIndex];
+        const districtId = selectedOption.getAttribute('data-district');
+        districtInput.value = districtId;
+    });
+</script>
 
-
-</select><br>
-
-<div id="admin_fields" style="display:none;">
-    <label>Position:</label>
-    <input type="text" name="position"><br>
-    <label>Department:</label>
-    <input type="text" name="department"><br>
-</div>
-
-<button type="submit">Register</button>
-<a href="../admin/ManageBranch.php"> Back</a>
-</form>
-
-</div> 
-</div> 
-</div>
-</div -->
-
-<!--script>
-document.querySelector('select[name="role_id"]').addEventListener('change', function () {
-if (this.value == 1) {
-document.getElementById('admin_fields').style.display = 'block';
-} else {
-document.getElementById('admin_fields').style.display = 'none';
-}
-});
-</!--script>
-</body>
-</html> -->
-
-<!-- Main Content Container 
-<div class="main-content" style="margin-left: 260px; padding: 20px;">
-Updated form with action to register.php 
-<form action="../admin/register.php" method="POST" >
-<label>First Name:</label>
-<input type="text" name="first_name" required><br>
-<label>Last Name:</label>
-<input type="text" name="last_name" required><br>
-<label>Email:</label>
-<input type="email" name="email" required><br>
-<label>Contact No:</label>
-<input type="number" name="contactno" required><br>
-<label>District ID:</label>
-<input type="number" name="district_id" required><br>
-<label>Branch ID:</label>
-<input type="number" name="branch_id" required><br>
-<label>Password:</label>
-<input type="password" name="password" required><br>
-
-<label>Role:</label>
-<select name="role_id">
-    <option value="1">Admin</option>
-    <option value="2">BranchAdmin</option> 
-    <option value="3">ITstaff</option>
-    <option value="4"> UserEmp </option>
-
-
-</select><br>
-
-<div id="admin_fields" style="display:none;">
-    <label>Position:</label>
-    <input type="text" name="position"><br>
-    <label>Department:</label>
-    <input type="text" name="department"><br>
-</div>
-
-<button type="submit">Register</button>
-<a href="../admin/ManageBranch.php"> Back</a>
-</form>
-
-</div>-->
-
-
-
-<!--<body>
-<div class="row align-items-center vh-100">
-<div class="col-5 mx-auto">
-<div class="card shadow-lg">
-<div class="card-body">
-<div class="text-center mb-5 logo">
-    <img src="asset/img/qcpl-logo.png" alt="Logo" class="logo" width="120px">
-    <p class="p-2 mb-5">QUEZON CITY PUBLIC LIBRARY</p>
-</div>
-
-<div id="error-message" class="alert alert-danger mt-3" style="display: none;"></div>
-
-Updated form with action to register.php 
-<form action="../admin/register.php" method="POST" >
-<label>First Name:</label>
-<input type="text" name="first_name" required><br>
-<label>Last Name:</label>
-<input type="text" name="last_name" required><br>
-<label>Email:</label>
-<input type="email" name="email" required><br>
-<label>Contact No:</label>
-<input type="number" name="contactno" required><br>
-<label>District ID:</label>
-<input type="number" name="district_id" required><br>
-<label>Branch ID:</label>
-<input type="number" name="branch_id" required><br>
-<label>Password:</label>
-<input type="password" name="password" required><br>
-
-<label>Role:</label>
-<select name="role_id">
-    <option value="1">Admin</option>
-    <option value="2">BranchAdmin</option> 
-    <option value="3">ITstaff</option>
-    <option value="4"> UserEmp </option>
-
-
-</select><br>
-
-<div id="admin_fields" style="display:none;">
-    <label>Position:</label>
-    <input type="text" name="position"><br>
-    <label>Department:</label>
-    <input type="text" name="department"><br>
-</div>
-
-<button type="submit">Register</button>
-</form>
-
-
-
-<script src="../assets/js/auth/admin/gen_login.js"></script>
-</body>
-
-
-
-<body>
-
-<h2>Login</h2>
-<form action="login.php" method="POST">
-<label>Email:</label>
-<input type="email" name="email" required><br>
-<label>Password:</label>
-<input type="password" name="password" required><br>
-<button type="submit">Login</button>
-</form>
-
-<hr>
-
-<h2>Register</h2>
-<form action="register.php" method="POST">
-<label>First Name:</label>
-<input type="text" name="first_name" required><br>
-<label>Last Name:</label>
-<input type="text" name="last_name" required><br>
-<label>Email:</label>
-<input type="email" name="email" required><br>
-<label>Contact No:</label>
-<input type="number" name="contactno" required><br>
-<label>District ID:</label>
-<input type="number" name="district_id" required><br>
-<label>Branch ID:</label>
-<input type="number" name="branch_id" required><br>
-<label>Password:</label>
-<input type="password" name="password" required><br>
-
-<label>Role:</label>
-<select name="role_id">
-<option value="1">Admin</option>
-<option value="2">BranchAdmin</option> 
-<option value="3">ITstaff</option>
-<option value="4"> UserEmp </option>
-
-
-</select><br>
-
-<div id="admin_fields" style="display:none;">
-<label>Position:</label>
-<input type="text" name="position"><br>
-<label>Department:</label>
-<input type="text" name="department"><br>
-</div>
-
-<button type="submit">Register</button>
-</form>-->
+<script>
+    document.querySelector('select[name="role_id"]').addEventListener('change', function () {
+        if (this.value == 1) {
+            document.getElementById('admin_fields').style.display = 'block';
+        } else {
+            document.getElementById('admin_fields').style.display = 'none';
+        }
+    });
+</script>

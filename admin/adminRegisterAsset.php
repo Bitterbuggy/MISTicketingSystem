@@ -1,16 +1,13 @@
 <?php
-session_start();
-$_SESSION['success_message'] = "Successfully added an account!";
 include '../Includes/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $BranchId = $_POST['BranchId'];
-    $BranchName = $_POST['BranchName'];
     $AssetName = $_POST['AssetName'];
     $AssetTypeId = $_POST['AssetTypeId'];
     $SerialNumber = $_POST['SerialNumber'];
-    $PurchasedDate = $_POST['PurchasedDate']; 
+    $PurchasedDate = $_POST['PurchasedDate'];
     $AssetStatus = $_POST['AssetStatus'];
     $Description = $_POST['Description'];
 
@@ -23,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Bind parameters to the SQL query
     $stmt->bindParam(':BranchId', $BranchId);
-    $stmt->bindParam(':BranchName', $BranchName);
     $stmt->bindParam(':AssetName', $AssetName);
     $stmt->bindParam(':AssetTypeId', $AssetTypeId);
     $stmt->bindParam(':SerialNumber', $SerialNumber);
@@ -55,36 +51,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="modal-body">
             <form action="register.php" method="POST">
-                <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="branchId" class="form-label">Branch</label>
-                    <input type="text" name="Branch" id="branch" class="form-control rounded-pill" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="assetTypeId" class="form-label">Type</label>
-                    <input type="text" name="AssetType" id="assetType" class="form-control rounded-pill" required>
-                </div>
+                <div class="mb-3">
+                    <label for="branchId" class="form-label">Branch ID</label>
+                    <select name="branch_ID" id="BranchiD" class="form-control rounded-pill" required>
+                        <option value="">----- Select Branch -----</option>
+                        <?php
+                            // Query only from t_branch
+                            $stmt = $conn->query("SELECT BranchId, BranchName FROM t_branch");
+
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<option value="' . $row['BranchId'] . '">' . $row['BranchName'] . '</option>';
+                            }
+                            ?>
+                    </select> 
                 </div>
 
                 <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="assetName" class="form-label">Brand</label>
-                    <input type="text" name="AssetName" id="assetName" class="form-control rounded-pill" required>
+                    <div class="col-md-6">
+                        <label for="assetName" class="form-label">Asset Name</label>
+                        <input type="text" name="AssetName" id="assetName" class="form-control rounded-pill" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="assetType" class="form-label">Asset Type ID</label>
+                        <input type="text" name="AssetTypeId" id="assetTypeId" class="form-control rounded-pill" required>
+                    </div>
                 </div>
-                <div class="col-md-6">
+                
+                <div class="row mb-3">
+                <div class="col-md-4">
                     <label for="serialNumber" class="form-label">Serial Number</label>
                     <input type="text" name="SerialNumber" id="serialNumber" class="form-control rounded-pill" required>
                 </div>
-                </div>
-
-                <div class="row mb-3">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="purchasedDate" class="form-label">Purchased Date</label>
                     <input type="date" name="PurchasedDate" id="purchasedDate" class="form-control rounded-pill" required>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="assetStatus" class="form-label">Status</label>
-                    <input type="text" name="AssetStatus" id="assetStatus" class="form-control rounded-pill" required>
+                    <select name="AssetStatus" id="assetStatus"  class="form-control rounded-pill" required>
+                        <option value="">-- Select Status --</option>
+                        <option value="available">Available</option>
+                        <option value="in use">In Use</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="disposed">Disposed</option>
+                        <option value="transferred">Transferred</option>
+                        <option value="transfer request">Transfer Request</option>
+                    </select>
                 </div>
                 </div>
 

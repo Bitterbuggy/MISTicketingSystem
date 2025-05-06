@@ -58,7 +58,7 @@ if (isset($_SESSION['success_message'])): ?>
                 <div class="col-md-6">
                     <label for="branchID" class="form-label">Branch ID</label>
                     <select name="branch_ID" id="BranchiD" class="form-control rounded-pill" required>
-                        <option value="">-- Select Branch --</option>
+                        <option value="">----- Select Branch -----</option>
                         <?php
                         // This query joins branch with district to get names
                         $stmt = $conn->query("SELECT b.BranchId, b.BranchName, b.DistrictId, d.DistrictName 
@@ -76,7 +76,7 @@ if (isset($_SESSION['success_message'])): ?>
                 <div class="col-md-6">
                     <!-- Hidden district_id field to be set using JS -->
                     <label for="districtID" class="form-label">District ID</label>
-                    <input type="hidden" name="district_id" id="district_id" class="form-control rounded-pill" required>
+                    <input type="number" name="district_id" id="district_id" class="form-control rounded-pill" readonly>
                 </div>
                 </div>
 
@@ -87,11 +87,41 @@ if (isset($_SESSION['success_message'])): ?>
                   </select>
                 </div>
 
+                <div class="row mb-3" id="admin_fields" style="display:none;">
+                    <div class="col-md-6">
+                        <label for="position" class="form-label">Position</label>
+                        <input type="text" name="position" id="Position" class="form-control rounded-pill">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="department" class="form-label">Department</label>
+                        <input type="text" name="department" id="Department" class="form-control rounded-pill">
+                    </div>
+                </div>
+                
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary">Register IT</button>
                 </div>
             </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    
+    <!-- Successful Creation Modal -->
+    <div class="modal" id="successfulCreateModal" tabindex="-1" aria-labelledby="successfulCreateModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <i class="fa-regular fa-check-circle md-icon"></i>
+                <h1>Successfully Added an Account!</h1>
+                <p class="p-success mt-4">
+                    See table for reflected changes.
+                </p>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary">Close</button>
             </div>
             </div>
         </div>
@@ -109,20 +139,12 @@ if (isset($_SESSION['success_message'])): ?>
     });
 </script>
 
-<!--script>
-document.addEventListener('DOMContentLoaded', function() {
-  var modal = document.getElementById('successModal');
-  var span = document.getElementsByClassName('close')[0];
-
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  // Optional: Close modal when clicking outside the modal content
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-});
-</!--script>-->
+<script>
+    document.querySelector('select[name="role_id"]').addEventListener('change', function () {
+        if (this.value == 1) {
+            document.getElementById('admin_fields').style.display = 'block';
+        } else {
+            document.getElementById('admin_fields').style.display = 'none';
+        }
+    });
+</script>
