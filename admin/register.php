@@ -122,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
  // Set success message in session with email and password
  $_SESSION['success_message'] = "Successfully added an account!<br>Email: $email<br>Temporary Password: $rawPassword";
+  
 
 
     header("Location: " . $_SERVER['HTTP_REFERER']); 

@@ -16,15 +16,16 @@ main {
   margin-right: 12px;
 }
 
+/* WELCOME CARD */
 .welcome-card {
   position: relative;
   border-radius: 15px;
   padding: 22px;
   width: 100%;
-  height: 270px;
+  height: 250px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   background: linear-gradient(to left, rgb(12, 38, 122, 0.9), rgba(23, 61, 192, 0.902));
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.5s, box-shadow 0.3s;
 }
 
 .welcome-card:hover {
@@ -41,13 +42,13 @@ main {
   position: relative;
 }
 
-.card-content h1 {
+.card-content h3 {
   margin: 0;
   color: white;
   font-weight: 400;
 }
 
-.card-content h2 {
+.card-content h1 {
   margin: 5px 0 15px;
   color: white;
   font-weight: 500;
@@ -56,12 +57,12 @@ main {
 .location-tag {
   display: inline-block;
   position: absolute;
-  top: 180px;
+  top: 165px;
   background-color: #a0acd4;
   color: white;
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 15px;
+  font-size: 1rem;
   text-transform: uppercase;
 }
 
@@ -69,11 +70,70 @@ main {
   position: absolute;
   top: 13px;
   bottom: 5px;
-  left: 530px;
+  left: 330px;
   right: 30px;
-  width: 380px;
+  width: 350px;
   height: auto;
   z-index: 1;
+  justify-content: space-between;
+}
+
+/*RECENT TICKET */
+.ticket-container {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background:#0038a8;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s, box-shadow 0.3s;
+}
+
+.ticket-container:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ticket-header {
+  background: #0038a8;
+  color: white;
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.ticket-header h5 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.ticket-body {
+  padding: 1rem;
+  background-color: white;
+  color: #222;
+}
+
+#ticket-id, #ticket-status, #ticket-branch, 
+#ticket-issue, #ticket-date, #ticket-time  {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ticket-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.2rem;
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticket-grid div {
+  flex: 1;
 }
 
 .live-card {
@@ -83,10 +143,12 @@ main {
   border-radius: 15px;
   padding: 15px;
   width: 100%;
-  height: 270px;
-  margin-bottom: 20px;
+  height: 250px;
+  margin-top: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.5s, box-shadow 0.3s;
   align-items: center;
 }
 
@@ -107,135 +169,253 @@ hr {
   border-radius: 5px;
 }
 
-.recent-ticket-card {
-  position: relative;
-  background: #bbd1ff;
-  border-radius: 15px;
-  padding: 15px;
-  width: 100%;
-  height: 270px;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s, box-shadow 0.3s;
+/*TICKET SUMMARY CARDS*/
+#ticket-summary-title {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #0038a8;
+  text-align: left;
 }
 
-.recent-ticket-card:hover {
-  transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
-}
-  
 .ticket-card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    text-align: center;
-    transition: 0.3s ease;
-  }
-  
-  .ticket-card h5 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #555;
-  }
-  
-  .ticket-card .ticket-count {
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0;
-  }
-  
-  /* Optional: color accents per status */
-  .ticket-card.pending {
-    border-top: 5px solid #ffc107;
-  }
-  
-  .ticket-card.ongoing {
-    border-top: 5px solid #17a2b8;
-  }
-  
-  .ticket-card.completed {
-    border-top: 5px solid #28a745;
-  }
-  
-  /* Responsive tweak */
-  @media (max-width: 768px) {
-    .ticket-card {
-      padding: 16px;
-    }
-  }
-  
-/* Tabs container spacing */
-.nav-tabs {
-    margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 12px;
+  height: 250px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.3s ease;
 }
 
-/* Table wrapper for spacing between tabs */
-.ticket-category {
-    margin-bottom: 20px;
+.ticket-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
 
-/* General table styling */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+.ticket-card h5 {
+  margin-bottom: 10px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #222;
 }
 
-.table thead {
-    background-color: #3b5b9f;
-    color: #fff;
+.ticket-card .ticket-count {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0;
 }
 
-.table thead th {
-    padding: 12px;
-    text-align: left;
-    font-size: 0.9rem;
+.ticket-card i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #0060c7;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-.table tbody td {
-    padding: 10px 12px;
-    font-size: 0.875rem;
-    border-top: 1px solid #eee;
+/*ICON ANIMATION*/
+.ticket-card.pending i {
+  animation: pulse 0.6s infinite;
 }
 
-.table tbody tr:hover {
-    background-color: #f8f8f8;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ticket-card.ongoing i {
+  animation: spin 2s linear infinite;
+}
+
+/* Keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ticket-card.completed i {
+  animation: checkmarkTick 2s infinite;
+}
+
+@keyframes checkmarkTick {
+  0% {
+    transform: scale(0) rotate(0deg);  /* Start with small and rotated */
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1) rotate(0deg);  /* Slightly enlarge */
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0) rotate(0deg);  /* Final normal state */
+    opacity: 0;
+  }
+}
+
+.ticket-card.total i {
+  animation: flip 2s infinite;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Icon color by status */
+.ticket-card.pending i { color: #ffc107; }
+.ticket-card.ongoing i { color: #17a2b8; }
+.ticket-card.completed i { color: #0fa100; }
+.ticket-card.total i { color: #0038a8; }
+
+/* Color accents per status */
+.ticket-card.pending {
+  border-top: 7px solid #ffc107;
+}
+
+.ticket-card.ongoing {
+  border-top: 7px solid #17a2b8;
+}
+
+.ticket-card.completed {
+  border-top: 7px solid #0fa100;
+}
+
+.ticket-card.total {
+  border-top: 7px solid #0038a8;
 }
 
 /* Responsive tweak */
 @media (max-width: 768px) {
-    .table thead {
-        display: none;
-    }
+  .ticket-card {
+    padding: 16px;
+  }
+}
 
-    .table, .table tbody, .table tr, .table td {
-        display: block;
-        width: 100%;
-    }
+/* DATAGRID FOR TICKET SUMMARY*/
+/* Tabs Styles */
+.nav-tabs {
+  border-bottom: 2px solid #e9ecef !important;
+  margin-bottom: 0;
+}
 
-    .table tr {
-        margin-bottom: 15px;
-    }
+.nav-item {
+  margin-right: 10px !important;
+}
 
-    .table td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-    }
+.nav-link {
+  padding: 10px 15px !important;
+  font-size: 1rem !important;
+  font-weight: 550 !important;
+  color: #0060c7 !important;
+  border: 1px solid transparent !important;
+  border-radius: 7px 7px 0 0 !important;
+  transition: background-color 0.3s, color 0.3s !important;
+}
 
-    .table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 12px;
-        width: 45%;
-        padding-right: 10px;
-        font-weight: bold;
-        text-align: left;
-    }
+.nav-link:hover {
+  background-color: #e9ecef !important;
+  color: #0060c7 !important;
+}
+
+.nav-link.active {
+  background-color: #c4ddfa !important;
+  color: #004c9c !important;
+  font-weight: 700 !important;
+}
+
+.nav-link.active:hover {
+  background-color: #c4ddfa !important;
+}
+
+.nav-tabs .nav-link {
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* View All Tickets Link */
+.view {
+  align-self: flex-end; 
+  padding-bottom: 7px;
+}
+
+.view a {
+  color: #0060c7;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 450;
+  transition: color 0.3s ease;
+}
+
+/* TABLE */
+.table {
+  width: 100%; 
+  margin-top: 20px; 
+  border-collapse: collapse; 
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.table td {
+  padding: 8px; 
+  text-align: left;
+  border: 1px solid #dee2e6;
+}
+
+.table thead th {
+  background-color: #2577ce; 
+  color: white; 
+  text-align: center;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f2f2f2;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #dee2e6; 
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+/* CHARTS */
+.pie-chart-card {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  align-items: center;
 }
