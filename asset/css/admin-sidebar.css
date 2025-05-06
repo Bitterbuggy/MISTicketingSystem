@@ -117,7 +117,6 @@
   border-radius: 14px;
   background: white;
   transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
   margin-bottom: 0.8rem;
 }
 
@@ -160,10 +159,6 @@
   background-color: #0038a8;
 }
 
-.sidebar-item.active:hover {
-  background-color: #0038a8;
-}
-
 .sidebar-item.active a,
 .sidebar-item.active .icon {
   color: white;
@@ -172,13 +167,11 @@
 /* Hover effect */
 .sidebar-item:hover, .sidebar-logout .sidebar-item:hover {
   background-color: #9ab6fb;
-  background-color: #9ab6fb;
 }
 
 /* --- Logout Button --- */
 .sidebar-logout {
   padding-bottom: 1rem;
-  background-color: #cbdbf9;
   background-color: #cbdbf9;
 }
 
