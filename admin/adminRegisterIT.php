@@ -31,48 +31,50 @@ if (isset($_SESSION['success_message'])): ?>
             </div>
 
             <div class="modal-body">
-            <form action="adminRegisterAsset.php" method="POST">
+            <form action="register.php" method="POST">
                 <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="branchId" class="form-label">First Name</label>
-                    <input type="text" name="Branch" id="branch" class="form-control rounded-pill" required>
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" name="firstName" id="Firstname" class="form-control rounded-pill" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="assetTypeId" class="form-label">Last Name</label>
-                    <input type="text" name="AssetType" id="assetType" class="form-control rounded-pill" required>
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" name="lastName" id="Lastname" class="form-control rounded-pill" required>
                 </div>
                 </div>
 
                 <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="assetName" class="form-label">Email</label>
-                    <input type="text" name="AssetName" id="assetName" class="form-control rounded-pill" required>
+                    <label for="emailAddress" class="form-label">Email</label>
+                    <input type="text" name="emailAddress" id="Emailaddress" class="form-control rounded-pill" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="serialNumber" class="form-label">Contact Number</label>
-                    <input type="text" name="SerialNumber" id="serialNumber" class="form-control rounded-pill" required>
+                    <label for="contactNumber" class="form-label">Contact Number</label>
+                    <input type="text" name="contactNumber" id="Contactnumber" class="form-control rounded-pill" required>
                 </div>
                 </div>
 
                 <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="purchasedDate" class="form-label">District ID</label>
-                    <input type="number" name="PurchasedDate" id="purchasedDate" class="form-control rounded-pill" required>
+                    <label for="districtID" class="form-label">District ID</label>
+                    <input type="number" name="districtID" id="DistrictiD" class="form-control rounded-pill" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="assetStatus" class="form-label">Branch ID</label>
-                    <input type="number" name="AssetStatus" id="assetStatus" class="form-control rounded-pill" required>
+                    <label for="branchID" class="form-label">Branch ID</label>
+                    <input type="number" name="branchID" id="BranchiD" class="form-control rounded-pill" required>
                 </div>
                 </div>
 
                 <div class="mb-3">
                   <label for="role" class="form-label">Role</label>
-                  <input type="select" name="Role" id="role" class="form-control rounded-pill" rows="3"></input>
+                  <select name="Role" id="role" class="form-control rounded-pill" rows="3">
+                      <option value="3">IT Staff</option>
+                  </select>
                 </div>
 
                 <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Register IT</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Register IT</button>
                 </div>
             </form>
             </div>

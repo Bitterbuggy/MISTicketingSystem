@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="modal fade" id="registerAssetModal" tabindex="-1" aria-labelledby="registerAssetModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <form action="adminRegisterAsset.php" method="POST">
+        <form action="register.php" method="POST">
             <div class="modal-header">
             <h5 class="modal-title" id="registerAssetModalLabel">Register a New Asset</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -94,8 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Register Asset</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Register Asset</button>
                 </div>
             </form>
             </div>

@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row no-gutters mt-3">
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
+                        <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>Staff ID</th>
@@ -148,8 +148,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <td><?php echo $user['Contactno']; ?></td>
                                             <!-- <td><?php echo $user['RoleName']; ?></td> -->
                                             <td>
-                                                <a href="adminUpdateIT.php?id=<?php echo $user['UserId']; ?>" class="btn btn-edit btn-sm">Edit</a>
-                                                <a href="adminDeleteIT.php?id=<?php echo $user['UserId']; ?>" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-sm">Delete</a>
+                                            <button class="btn btn-edit btn-sm" onclick="openEditModal(<?php echo $user['UserId']; ?>)">Edit</button>
+                                            <button class="btn btn-danger btn-sm" onclick="openDeleteModal(<?php echo $user['UserId']; ?>)">Delete</button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -161,15 +161,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </main>
         </div>
     </div>
-
+    
     <!-- Register IT Staff Modal -->
     <?php include 'adminRegisterIT.php'; ?>
     <!-- Update IT Staff Modal -->
-    <!--?php include 'adminUpdateIT.php'; ?-->
+    <?php include 'adminUpdateIT.php'; ?>
     <!-- Delete IT Staff Modal -->
-    <!--?php include 'adminDeleteIT.php'; ?-->
-    
+    <?php include 'adminDeleteIT.php'; ?>
+
     <!-- External JS Files -->
     <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/adminfetchModal.js"></script>
 </body>
 </html>

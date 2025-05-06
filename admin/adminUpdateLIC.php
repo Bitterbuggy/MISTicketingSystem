@@ -1,5 +1,4 @@
 <?php
-session_start();
 include '../Includes/config.php'; // Ensure this is included at the top
 
 if (isset($_SESSION['success_message'])) {
@@ -47,57 +46,98 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCPL STS - Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
+<!-- Update LIC Modal -->
+<div class="modal fade" id="updateLICModal" tabindex="-1" aria-labelledby="updateLICModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <form action="register.php" method="POST">
+            <div class="modal-header">
+            <h5 class="modal-title" id="updateLICModalLabel">Update Information</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-    <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
-    <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
+            <div class="modal-body">
+            <form action="adminUpdateIT.php" method="POST">
+                <input type="hidden" name="id" value="<?php echo $user['UserId']; ?>">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <input type="text" name="first_name" class="form-control rounded-pill" value="<?php echo $user['FirstName']; ?>" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" name="last_name" class="form-control rounded-pill" value="<?php echo $user['LastName']; ?>" required>
+                </div>
+                </div>
 
-    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control rounded-pill" value="<?php echo $user['Email']; ?>" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Contact No</label>
+                    <input type="text" name="contactno" class="form-control rounded-pill" value="<?php echo $user['Contactno']; ?>" required>
+                </div>
+                </div>
 
-    <!-- Font Awesome CDN Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+        <!-- Update Confirmation Modal -->
+        <div class="modal" id="updateConfirmationModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <i class="fa-solid fa-circle-question md-icon"></i>
+                    <h1>Confirm Update</h1>
+                    <h3>Are you sure you want to update the information?</h3>
+                    <p class="p-warning mt-4">Once updated, the account information will be changed.</p>
 
-<body>
-    <div class="layout-container d-flex">
-     
- <!-- Include Sidebar -->
- <?php include '../admin/inc/adminSidebar.php'; ?>
+                    <div class="modal-footer">
+                    <div class="d-flex justify-content-around">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Confirm</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
- <!-- Wrapper for Header + Main -->
- <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
+    <!-- Successful Update Modal -->
+    <div class="modal" id="successfulUpdateModal" tabindex="-1" aria-labelledby="successfulUpdateModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <i class="fa-regular fa-check-circle md-icon"></i>
+                    <h1>Information Updated!</h1>
+                    <p class="p-success mt-4">
+                        See table for reflected changes.
+                    </p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Main Content (separate from header) -->
-<main class="px-4 py-5">
-    <div class="row align-items-stretch">
-       
-        <form method="POST">
-        <input type="hidden" name="id" value="<?php echo $user['UserId']; ?>">
-        First Name: <input type="text" name="first_name" value="<?php echo $user['FirstName']; ?>" required><br>
-        Last Name: <input type="text" name="last_name" value="<?php echo $user['LastName']; ?>" required><br>
-        Email: <input type="email" name="email" value="<?php echo $user['Email']; ?>" required><br>
-        Contact No: <input type="text" name="contactno" value="<?php echo $user['Contactno']; ?>" required><br>
-        <button type="submit">Update</button>
-        <a href="../admin/adminBranchMgmt.php"> Back</a>
-    </form>
-
-        
-        
-     </div>
-
-           
-</body>
+<!--[DRAFT]form method="POST">
+<input type="hidden" name="id" value="<!?php echo $user['UserId']; ?>">
+First Name: <input type="text" name="first_name" value="<!?php echo $user['FirstName']; ?>" required><br>
+Last Name: <input type="text" name="last_name" value="<!?php echo $user['LastName']; ?>" required><br>
+Email: <input type="email" name="email" value="<!?php echo $user['Email']; ?>" required><br>
+Contact No: <input type="text" name="contactno" value="<!?php echo $user['Contactno']; ?>" required><br>
+<button type="submit">Update</button>
+<a href="../admin/adminBranchMgmt.php"> Back</a>
+</!-->
