@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: ../ITstaff/ITdashboard.php');
             exit();
         } elseif ($user['RoleId'] == 4) {
-            header('Location: ../home.php');
+            header('Location: ../employee/home.php');
             exit();
         }
     } else {

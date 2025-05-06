@@ -3,7 +3,7 @@
 include '../Includes/config.php';
 include '../Includes/check_session.php';
 if ($_SESSION['RoleId'] != 1) {
-    header('Location: home.php');
+    header('Location: ../employee/home.php');
     exit();
 }
 include '../Includes/get-location.php';

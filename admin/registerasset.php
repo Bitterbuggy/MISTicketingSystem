@@ -1,6 +1,7 @@
 <?php
 session_start();
-$_SESSION['success_message'] = "Successfully added an account!";
+
+    
 include '../Includes/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -61,6 +62,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+/* The Modal (background) */
+.modal {
+  display: block; /* Show the modal by default if it exists */
+  position: fixed;
+  z-index: 1000;
+  padding-top: 150px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 400px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+</style>
 </head>
 
 <body style="background-color: #f3f2f7;">
@@ -80,8 +126,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 <h2>Register a New Asset</h2>
                 <form action="registerasset.php" method="POST">
-                    <label for="branchId">Branch ID:</label>
-                    <input type="number" name="BranchId" id="branchId" required><br><br>
+                    <select name="BranchId" required>
+                    <option value="">-- Select Branch --</option>
+<?php
+// Query only from t_branch
+$stmt = $conn->query("SELECT BranchId, BranchName FROM t_branch");
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo '<option value="' . $row['BranchId'] . '">' . $row['BranchName'] . '</option>';
+}
+?>
+</select><br><br>
 
                     <label for="assetName">Asset Name:</label>
                     <input type="text" name="AssetName" id="assetName" required><br><br>
@@ -96,7 +151,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="date" name="PurchasedDate" id="purchasedDate" required><br><br>
 
                     <label for="assetStatus">Asset Status:</label>
-                    <input type="text" name="AssetStatus" id="assetStatus" required><br><br>
+                    <select name="AssetStatus" id="assetStatus" required>
+                        <option value="">-- Select Status --</option>
+                        <option value="available">Available</option>
+                        <option value="in use">In Use</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="disposed">Disposed</option>
+                        <option value="transferred">Transferred</option>
+                        <option value="transfer request">Transfer Request</option>
+                    </select>
+                    <br><br>
+
 
                     <label for="description">Description:</label>
                     <textarea name="Description" id="description"></textarea><br><br>
@@ -108,5 +173,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     </main>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('successModal');
+  var span = document.getElementsByClassName('close')[0];
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Optional: Close modal when clicking outside the modal content
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
+</script>
 </body>
 </html>

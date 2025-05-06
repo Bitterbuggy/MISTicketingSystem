@@ -4,25 +4,13 @@ include '../Includes/config.php';
 
 
 // Fetch the assets with branch name
-$sql = "SELECT 
-            t_branch.BranchName,
-            t_asset.AssetName,
-            t_assettype.AssetTypeName,
-            t_asset.SerialNumber,
-            t_asset.PurchasedDate,
-            t_asset.AssetStatus,
-            t_asset.Description
-        FROM 
-            t_asset
-        JOIN 
-            t_branch ON t_asset.BranchId = t_branch.BranchId
-        JOIN
-            t_assettype ON t_asset.AssetTypeId = t_assettype.AssetTypeId";
+$sql = "SELECT * FROM t_asset JOIN t_branch ON t_asset.BranchId = t_branch.BranchId;";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 
   
@@ -79,14 +67,14 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </style>
 </head>
 
-<body style="background-color: #f3f2f7;">
-    <div class="d-flex">
-        <!-- Include Sidebar -->
-        <?php include '../admin/inc/admin-sidebar.php'; ?>
+<body>
+    <div class="layout-container d-flex">
+    
+            <!-- Include Sidebar -->
+            <?php include '../admin/inc/admin-sidebar.php'; ?>
 
-         <!-- Wrapper for Header + Main -->
-         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
-
+             <!-- Wrapper for Header + Main -->
+        <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
 <!-- Main Content (separate from header) -->
 <main class="px-4 py-5">
             <div class="main-content" style="margin-left: 260px; padding: 20px;">
@@ -105,7 +93,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <th>Branch Name</th>
                             <th>Asset Name</th>
-                            <th>Asset Type Name</th>
+                            <!--<th>Asset Type Name</th>-->
                             <th>Serial Number</th>
                             <th>Purchased Date</th>
                             <th>Asset Status</th>
@@ -113,17 +101,24 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($assets as $asset): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($asset['BranchName']); ?></td>
-                                <td><?php echo htmlspecialchars($asset['AssetName']); ?></td>
-                                <td><?php echo htmlspecialchars($asset['AssetTypeName']); ?></td>
-                                <td><?php echo htmlspecialchars($asset['SerialNumber']); ?></td>
-                                <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
-                                <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>
-                                <td><?php echo htmlspecialchars($asset['Description']); ?></td>
-                            </tr>
-                        <?php endforeach; ?>
+                    <?php if (empty($assets)): ?>
+    <tr>
+        <td colspan="7">No assets found.</td>
+    </tr>
+<?php else: ?>
+    <?php foreach ($assets as $asset): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($asset['BranchName']); ?></td>
+            <td><?php echo htmlspecialchars($asset['AssetName']); ?></td>
+            
+            <td><?php echo htmlspecialchars($asset['SerialNumber']); ?></td>
+            <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
+            <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>
+            <td><?php echo htmlspecialchars($asset['Description']); ?></td>
+        </tr>
+    <?php endforeach; ?>
+<?php endif; ?>
+
                     </tbody>
                 </table>
             </div>

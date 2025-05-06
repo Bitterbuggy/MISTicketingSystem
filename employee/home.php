@@ -1,5 +1,5 @@
 <?php
-include 'Includes/check_session.php';
+include '../Includes/check_session.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,8 +11,8 @@ include 'Includes/check_session.php';
 
 <h2>Welcome, <?php echo $_SESSION['FirstName']; ?>!</h2>
 <p>You are logged in as a regular user.</p>
-<a href="auth/logout.php">Logout</a>
-<a href="submit_ticket.php">Ticket</a>
+<a href="../auth/logout.php">Logout</a>
+<a href="../submit_ticket.php">Ticket</a>
 
 </body>
 </html>

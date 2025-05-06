@@ -127,10 +127,25 @@ if (isset($_SESSION['success_message'])): ?>
                     <input type="email" name="email" required><br>
                     <label>Contact No:</label>
                     <input type="number" name="contactno" required><br>
-                    <label>District ID:</label>
-                    <input type="number" name="district_id" required><br>
-                    <label>Branch ID:</label>
-                    <input type="number" name="branch_id" required><br>
+                    <select name="branch_id" required>
+    <option value="">-- Select Branch --</option>
+    <?php
+    // This query joins branch with district to get names
+    $stmt = $conn->query("SELECT b.BranchId, b.BranchName, b.DistrictId, d.DistrictName 
+                          FROM t_branch b
+                          JOIN t_district d ON b.DistrictId = d.DistrictId");
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo '<option value="' . $row['BranchId'] . '" data-district="' . $row['DistrictId'] . '">' .
+                $row['BranchName'] . ' (' . $row['DistrictName'] . ')' .
+             '</option>';
+    }
+    ?>
+</select>
+
+<!-- Hidden district_id field to be set using JS -->
+<input type="hidden" name="district_id" id="district_id">
+
                     <!--<label>Password:</label>
                     <input type="password" name="password" required><br>-->
 
@@ -215,6 +230,16 @@ if (isset($_SESSION['success_message'])): ?>
 </form>-->
 
 
+<script>
+    const branchSelect = document.querySelector('select[name="branch_id"]');
+    const districtInput = document.getElementById('district_id');
+
+    branchSelect.addEventListener('change', function () {
+        const selectedOption = branchSelect.options[branchSelect.selectedIndex];
+        const districtId = selectedOption.getAttribute('data-district');
+        districtInput.value = districtId;
+    });
+</script>
 
 <script>
     document.querySelector('select[name="role_id"]').addEventListener('change', function () {

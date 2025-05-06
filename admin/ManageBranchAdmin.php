@@ -2,10 +2,20 @@
 session_start();
 include '../Includes/config.php'; // Ensure this is included at the top
 
-if (isset($_SESSION['success_message'])) {
-    echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
-    unset($_SESSION['success_message']); // Remove the message after displaying
-}
+//if (isset($_SESSION['success_message'])) {
+    //echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
+    //unset($_SESSION['success_message']); // Remove the message after displaying
+//}
+if (isset($_SESSION['success_message'])): ?>
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p><?php echo $_SESSION['success_message']; ?></p>
+      </div>
+    </div>
+    <?php unset($_SESSION['success_message']); ?>
+    <?php endif; 
+
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +43,48 @@ if (isset($_SESSION['success_message'])) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
+        /* The Modal (background) */
+.modal {
+  display: block; /* Show the modal by default if it exists */
+  position: fixed;
+  z-index: 1000;
+  padding-top: 150px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 400px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
         /* Table Styling */
         table {
             width: 100%;
@@ -133,12 +185,25 @@ if (isset($_SESSION['success_message'])) {
                     <input type="email" name="email" required><br>
                     <label>Contact No:</label>
                     <input type="number" name="contactno" required><br>
-                    <label>District ID:</label>
-                    <input type="number" name="district_id" required><br>
-                    <label>Branch ID:</label>
-                    <input type="number" name="branch_id" required><br>
-                    <label>Password:</label>
-                    <input type="password" name="password" required><br>
+                    <select name="branch_id" required>
+    <option value="">-- Select Branch --</option>
+    <?php
+    // This query joins branch with district to get names
+    $stmt = $conn->query("SELECT b.BranchId, b.BranchName, b.DistrictId, d.DistrictName 
+                          FROM t_branch b
+                          JOIN t_district d ON b.DistrictId = d.DistrictId");
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo '<option value="' . $row['BranchId'] . '" data-district="' . $row['DistrictId'] . '">' .
+                $row['BranchName'] . ' (' . $row['DistrictName'] . ')' .
+             '</option>';
+    }
+    ?>
+</select>
+
+<!-- Hidden district_id field to be set using JS -->
+<input type="hidden" name="district_id" id="district_id">
+
 
                     <label>Role:</label>
                     <select name="role_id">
@@ -166,6 +231,17 @@ if (isset($_SESSION['success_message'])) {
     </div>
 
     <script>
+    const branchSelect = document.querySelector('select[name="branch_id"]');
+    const districtInput = document.getElementById('district_id');
+
+    branchSelect.addEventListener('change', function () {
+        const selectedOption = branchSelect.options[branchSelect.selectedIndex];
+        const districtId = selectedOption.getAttribute('data-district');
+        districtInput.value = districtId;
+    });
+</script>
+
+<script>
     document.querySelector('select[name="role_id"]').addEventListener('change', function () {
         if (this.value == 1) {
             document.getElementById('admin_fields').style.display = 'block';
@@ -173,6 +249,24 @@ if (isset($_SESSION['success_message'])) {
             document.getElementById('admin_fields').style.display = 'none';
         }
     });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('successModal');
+  var span = document.getElementsByClassName('close')[0];
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Optional: Close modal when clicking outside the modal content
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
 </script>
 </body>
 </html>
