@@ -6,20 +6,7 @@
 include '../Includes/config.php';
 
 // Fetch the assets with branch name
-$sql = "SELECT 
-            t_branch.BranchName,
-            t_asset.AssetName,
-            t_assettype.AssetTypeName,
-            t_asset.SerialNumber,
-            t_asset.PurchasedDate,
-            t_asset.AssetStatus,
-            t_asset.Description
-        FROM 
-            t_asset
-        JOIN 
-            t_branch ON t_asset.BranchId = t_branch.BranchId
-        JOIN
-            t_assettype ON t_asset.AssetTypeId = t_assettype.AssetTypeId";
+$sql = "SELECT * FROM t_asset JOIN t_branch ON t_asset.BranchId = t_branch.BranchId;";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
@@ -128,26 +115,31 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <thead>
                                 <tr>
                                     <th style="width: 4%;">Branch</th>
-                                    <th style="width: 2.5%;">Brand</th>
-                                    <th style="width: 2.5%;">Type</th>
+                                    <th style="width: 2.5%;">Asset Name</th>
                                     <th style="width: 4%;">Serial Number</th>
                                     <th style="width: 2%;">Purchased Date</th>
-                                    <!-- <th>Status</th>
-                                    <th>Description</th> -->
+                                    <th style="width: 2%;">Status</th>
+                                    <th style="width: 2%;">Description</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($assets as $asset): ?>
+                                <?php if (empty($assets)): ?>
                                     <tr>
-                                        <td><?php echo htmlspecialchars($asset['BranchName']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['AssetName']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['AssetTypeName']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['SerialNumber']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
-                                        <!-- <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['Description']); ?></td> -->
+                                    <td colspan="7">No assets found.</td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php else: ?>
+                                    <?php foreach ($assets as $asset): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($asset['BranchName']); ?></td>
+                                            <td><?php echo htmlspecialchars($asset['AssetName']); ?></td>
+                                            
+                                            <td><?php echo htmlspecialchars($asset['SerialNumber']); ?></td>
+                                            <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
+                                            <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>
+                                            <td><?php echo htmlspecialchars($asset['Description']); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>

@@ -56,12 +56,27 @@ if (isset($_SESSION['success_message'])): ?>
 
                 <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="districtID" class="form-label">District ID</label>
-                    <input type="number" name="districtID" id="DistrictiD" class="form-control rounded-pill" required>
+                    <label for="branchID" class="form-label">Branch ID</label>
+                    <select name="branch_ID" id="BranchiD" class="form-control rounded-pill" required>
+                        <option value="">-- Select Branch --</option>
+                        <?php
+                        // This query joins branch with district to get names
+                        $stmt = $conn->query("SELECT b.BranchId, b.BranchName, b.DistrictId, d.DistrictName 
+                                            FROM t_branch b
+                                            JOIN t_district d ON b.DistrictId = d.DistrictId");
+
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<option value="' . $row['BranchId'] . '" data-district="' . $row['DistrictId'] . '">' .
+                                    $row['BranchName'] . ' (' . $row['DistrictName'] . ')' .
+                                '</option>';
+                        }
+                        ?>
+                    </select> 
                 </div>
                 <div class="col-md-6">
-                    <label for="branchID" class="form-label">Branch ID</label>
-                    <input type="number" name="branchID" id="BranchiD" class="form-control rounded-pill" required>
+                    <!-- Hidden district_id field to be set using JS -->
+                    <label for="districtID" class="form-label">District ID</label>
+                    <input type="hidden" name="district_id" id="district_id" class="form-control rounded-pill" required>
                 </div>
                 </div>
 
@@ -83,113 +98,18 @@ if (isset($_SESSION['success_message'])): ?>
         </div>
     </div>
 
-<!-- [DRAFT] Updated form with action to register.php
-              <form action="../admin/register.php" method="POST" >
-              <label>First Name:</label>
-              <input type="text" name="first_name" required><br>
-              <label>Last Name:</label>
-              <input type="text" name="last_name" required><br>
-              <label>Email:</label>
-              <input type="email" name="email" required><br>
-              <label>Contact No:</label>
-              <input type="number" name="contactno" required><br>
-              <label>District ID:</label>
-              <input type="number" name="district_id" required><br>
-              <label>Branch ID:</label>
-              <input type="number" name="branch_id" required><br>
-              <label>Password:</label>
-              <input type="password" name="password" required><br>
+<script>
+    const branchSelect = document.querySelector('select[name="branch_id"]');
+    const districtInput = document.getElementById('district_id');
 
-              <label>Role:</label>
-              <select name="role_id">
-                  
-                  <option value="3">ITstaff</option>
-                
-
-
-              </select><br>
-
-              <div id="admin_fields" style="display:none;">
-                  <label>Position:</label>
-                  <input type="text" name="position"><br>
-                  <label>Department:</label>
-                  <input type="text" name="department"><br>
-              </div>
-
-              <button type="submit">Register</button>
-              </form>
-
-              <a href="../admin/ManageIT.php">Back</a>              
-
-<script src="../assets/js/auth/admin/gen_login.js"></script>
-
-</div>
-     
-</body> -->
-
-
-
-<!--<body>
-
-<h2>Login</h2>
-<form action="login.php" method="POST">
-    <label>Email:</label>
-    <input type="email" name="email" required><br>
-    <label>Password:</label>
-    <input type="password" name="password" required><br>
-    <button type="submit">Login</button>
-</form>
-
-<hr>
-
-<h2>Register</h2>
-<form action="register.php" method="POST">
-    <label>First Name:</label>
-    <input type="text" name="first_name" required><br>
-    <label>Last Name:</label>
-    <input type="text" name="last_name" required><br>
-    <label>Email:</label>
-    <input type="email" name="email" required><br>
-    <label>Contact No:</label>
-    <input type="number" name="contactno" required><br>
-    <label>District ID:</label>
-    <input type="number" name="district_id" required><br>
-    <label>Branch ID:</label>
-    <input type="number" name="branch_id" required><br>
-    <label>Password:</label>
-    <input type="password" name="password" required><br>
-
-    <label>Role:</label>
-    <select name="role_id">
-        <option value="1">Admin</option>
-        <option value="2">BranchAdmin</option> 
-        <option value="3">ITstaff</option>
-        <option value="4"> UserEmp </option>
-
-
-    </select><br>
-
-    <div id="admin_fields" style="display:none;">
-        <label>Position:</label>
-        <input type="text" name="position"><br>
-        <label>Department:</label>
-        <input type="text" name="department"><br>
-    </div>
-
-    <button type="submit">Register</button>
-</form>-->
-
-<!--<script>
-    document.querySelector('select[name="role_id"]').addEventListener('change', function () {
-        if (this.value == 1) {
-            document.getElementById('admin_fields').style.display = 'block';
-        } else {
-            document.getElementById('admin_fields').style.display = 'none';
-        }
+    branchSelect.addEventListener('change', function () {
+        const selectedOption = branchSelect.options[branchSelect.selectedIndex];
+        const districtId = selectedOption.getAttribute('data-district');
+        districtInput.value = districtId;
     });
 </script>
 
-<script>
+<!--script>
 document.addEventListener('DOMContentLoaded', function() {
   var modal = document.getElementById('successModal');
   var span = document.getElementsByClassName('close')[0];
@@ -205,8 +125,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
-</script>
-
-
-</body>
-</html> -->
+</!--script>-->
