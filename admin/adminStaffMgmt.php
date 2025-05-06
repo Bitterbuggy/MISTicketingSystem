@@ -78,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
     <link rel="stylesheet" href="../asset/css/admin-staff-mgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
-    <link rel ="stylesheet" href="../asset/css/modals.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -103,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Main Content -->
         <main class="px-4 py-5">
             <div class="col-12">
-                 <div class="d-flex flex-wrap align-items-center justify-content-between mt-2">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mt-2">
                     <!-- Left: Add New Staff Button -->
                     <div style="flex: 0 0 auto;">
                         <div class="div-mods active" data-bs-toggle="modal" data-bs-target="#registerITModal">

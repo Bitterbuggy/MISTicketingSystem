@@ -65,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
     <link rel ="stylesheet" href="../asset/css/admin-branch-mgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
-    <link rel ="stylesheet" href="../asset/css/modals.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -1,3 +1,7 @@
+<script>
+  var pageTitle = "Activity Logs";
+</script>
+
 <?php
 session_start();
 include '../Includes/config.php';
@@ -33,7 +37,7 @@ $logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Redirect link based on role
 $redirectLink = match ($roleId) {
-    1 => '../admin/admindashboard.php',
+    1 => '../admin/adminDashboard.php',
     2 => '../branchadmin/bradmindashboard.php',
     3 => '../ITstaff/ITdashboard.php',
     default => '../employee/home.php',
@@ -45,14 +49,14 @@ $redirectLink = match ($roleId) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCPL STS - Branch Management</title>
+    <title>QCPL STS - Activity Logs</title>
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
-    <link rel ="stylesheet" href="../asset/css/admin-branch-mgmt.css">
+    <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
+    <link rel="stylesheet" href="../asset/css/admin-activity-mgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
-    <link rel ="stylesheet" href="../asset/css/modals.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -66,10 +70,55 @@ $redirectLink = match ($roleId) {
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- External JS Files -->
+    <!-- External JS Link/s -->
     <script src="../asset/js/adminSidebar.js"></script>
-
 </head>
+
+<body>
+    <div class="layout-container d-flex">
+        <!-- Sidebar and Header -->
+        <?php include '../admin/inc/adminSidebar.php'; ?>
+
+        <!-- Wrapper for Header + Main -->
+        <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
+        <!-- Main Content -->
+        <main class="px-4 py-5">
+        <div class="col-12">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mt-2">
+                    <!-- Left: Add New Staff Button -->
+                    <div style="flex: 0 0 auto;">
+                        <button class="btn btn-back" onclick="window.location.href = '<?php echo $redirectLink; ?>'">
+                        <i class="fa-solid fa-arrow-left"></i>Back</button>
+                    </div>
+
+                    <!-- Right: Table Controls -->
+                    <div class="d-flex flex-wrap align-items-center gap-3" style="flex: 1 1 auto; justify-content: flex-end;">
+                    <!-- Search Bar -->
+                    <div class="input-group" style="max-width: 380px;">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+                    <span class="input-group-text control-btn" id="search-icon">
+                        <i class="fa fa-search"></i>
+                    </span>
+                    </div>
+                    
+                    <!-- Date Button -->
+                    <button class="btn btn-outline-secondary control-btn" type="button">
+                        <i class="fa fa-calendar me-1"></i> Select Date
+                    </button>
+
+                    <!-- Filter Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
+                            <i class="fa fa-filter me-1"></i>
+                        </button>
+                        <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple me-2"></i>Activity</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2"></i>Role</a></li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+
 <body>
     <div class="container">
         <a href="<?= $redirectLink ?>" class="btn btn-primary mb-4"><i class="fa fa-arrow-left"></i> Back</a>
