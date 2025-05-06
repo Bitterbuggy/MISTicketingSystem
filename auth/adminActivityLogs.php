@@ -17,9 +17,10 @@ $firstName = $_SESSION['FirstName'];
 
 if ($roleId == 1) {
     // Admin sees all logs
-    $sql = "SELECT al.id, u.FirstName, al.activity_type, al.activity_time 
+    $sql = "SELECT al.id, u.FirstName, r.RoleName, al.activity_type, al.activity_time 
             FROM t_activitylogs al
             JOIN t_users u ON al.UserId = u.UserId
+            JOIN t_roles r ON u.RoleId = r.RoleId
             ORDER BY al.activity_time DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -88,7 +89,7 @@ $redirectLink = match ($roleId) {
                     <!-- Left: Add New Staff Button -->
                     <div style="flex: 0 0 auto;">
                         <button class="btn btn-back" onclick="window.location.href = '<?php echo $redirectLink; ?>'">
-                        <i class="fa-solid fa-arrow-left"></i>Back</button>
+                        <i class="fa-solid fa-arrow-left me-1"></i>Back</button>
                     </div>
 
                     <!-- Right: Table Controls -->
@@ -116,44 +117,72 @@ $redirectLink = match ($roleId) {
                             <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2"></i>Role</a></li>
                         </ul>
                     </div>
+
+                    <!-- Sort Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-sort"></i>
+                        </button>
+                        <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+                            <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
+                            <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-arrow-up-short-wide me-2"></i>Descending</a></li>
+                        </ul>
+                    </div>
                 </div>
                 </div>
 
-<body>
-    <div class="container">
-        <a href="<?= $redirectLink ?>" class="btn btn-primary mb-4"><i class="fa fa-arrow-left"></i> Back</a>
-        <h2 class="mb-4"><?= $roleId == 1 ? "All User Activity Logs" : "$firstName's Activity Logs" ?></h2>
-
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <?php if ($roleId == 1): ?>
-                            <th>User</th>
-                        <?php endif; ?>
-                        <th>Activity</th>
-                        <th>Timestamp</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (count($logs) > 0): ?>
-                        <?php foreach ($logs as $log): ?>
+        <!-- Table for displaying activity logs -->
+        <div class="row no-gutters mt-4">
+                <div class="col-12">
+                    <div class="row no-gutters">
+                        <div class="col-6">
+                            <h2 class="mb-4"><?= $roleId == 1 ? "All User Activity" : "$firstName's Activity Logs" ?></h2>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex flex-wrap align-items-center justify-content-end">
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#downloadReportModal">
+                                    <i class="fa-solid fa-download me-1"></i> Download Report
+                                </button>
+                            </div>
+                        </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
                             <tr>
                                 <?php if ($roleId == 1): ?>
-                                    <td><?= htmlspecialchars($log['FirstName']) ?></td>
+                                    <th style="width: 3%">User</th>
                                 <?php endif; ?>
-                                <td><?= htmlspecialchars($log['activity_type']) ?></td>
-                                <td><?= htmlspecialchars($log['activity_time']) ?></td>
+                                <th style="width: 3%">Role</th>
+                                <th style="width: 3%">Activity</th>
+                                <th style="width: 3%">Timestamp</th>
                             </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr><td colspan="<?= $roleId == 1 ? 3 : 2 ?>" class="text-center">No activity logs found.</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+                            </thead>
+                            <tbody>
+                                <?php if (count($logs) > 0): ?>
+                                    <?php foreach ($logs as $log): ?>
+                                        <tr>
+                                            <?php if ($roleId == 1): ?>
+                                                <td><?= htmlspecialchars($log['FirstName']) ?></td>
+                                            <?php endif; ?>
+                                            <td><?= htmlspecialchars($log['RoleName']) ?></td>
+                                            <td><?= htmlspecialchars($log['activity_type']) ?></td>
+                                            <td><?= htmlspecialchars($log['activity_time']) ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr><td colspan="<?= $roleId == 1 ? 3 : 2 ?>" class="text-center">No activity logs found.</td></tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <a href="<?= $redirectLink ?>" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </main>
     </div>
+    </div>
+
+    <!-- Download Report Modal -->
+    <?php include '../admin/inc/adminDownloadReport.php'; ?>
 </body>
 </html>

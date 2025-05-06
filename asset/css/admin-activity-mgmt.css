@@ -27,29 +27,31 @@ main {
 
 /* BACK BUTTON */
 .btn-back {
-    background-color: #fafafa !important;
-    border-radius: 12px !important;
+    background-color: #b6d6f9 !important;
+    border-radius: 15px !important;
     font-size: 17px !important;
     width: 90px !important;
-    font-weight: 500 !important;
-    height: 2.4rem !important;
+    font-weight: 600 !important;
+    height: 2.5rem !important;
     color: #0060c7 !important;
     border: none !important;
 }
 
-/* PRINT BUTTON */
+/* DOWNLOAD BUTTON */
 .btn-primary {
     background-color: #0060c7 !important;
     border-radius: 25px !important;
     font-size: 17px !important;
-    width: 160px !important;
+    width: 230px !important;
     font-weight: 600 !important;
     height: 2.4rem !important;
     color: white !important;
 } 
 
-.btn i{
-    margin-right: 5px !important;
+h2 {
+    font-weight: 800 !important;
+    color: #0060c7 !important;
+    font-size: 2rem !important;
 }
 
 /* SEARCH BAR */
@@ -102,4 +104,39 @@ main {
 .dropdown-item:hover {
     background-color: #0060c7 !important;
     color: white !important;
+}
+
+/* TABLE */
+.table {
+    width: 100%; 
+    margin-top: 1px;
+    border-collapse: collapse; 
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.table td {
+    padding: 8px; 
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+.table thead th {
+    background-color: #2577ce; 
+    color: white; 
+    text-align: center;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #dee2e6; 
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
 }
