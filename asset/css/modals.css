@@ -23,7 +23,7 @@
     color: #0060c7;
 }
 
-.modal-body input, .modal-body textarea {
+.modal-body select, .modal-body input, .modal-body textarea {
     background-color: #fafafa;
     border: 2px solid #014fa3;
     font-size: 1rem;
@@ -64,4 +64,16 @@
 .btn-secondary {
     background-color: #e9f2ff !important;
     color: #0060c7 !important;
+}
+
+.modal-body i {
+    font-size: 5rem;
+}
+
+.modal-body h4 {
+    margin-bottom: 1rem;
+}
+
+.modal-body p {
+    margin-bottom: .2rem;
 }

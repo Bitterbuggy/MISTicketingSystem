@@ -1,5 +1,4 @@
 <?php
-session_start();
 include '../Includes/config.php'; // Ensure this is included at the top
 
 //if (isset($_SESSION['success_message'])) {
@@ -18,13 +17,8 @@ if (isset($_SESSION['success_message'])): ?>
     
 ?>
 
-<?php include 'adminRegisterIT.php'; ?>
-
 <!-- External CSS Link -->
 <link rel="stylesheet" href="../asset/css/modals.css">
-
-<!-- Bootstrap JS (include before </body>) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Register IT Modal -->
     <div class="modal fade" id="registerITModal" tabindex="-1" aria-labelledby="registerITModalLabel" aria-hidden="true">
@@ -73,7 +67,7 @@ if (isset($_SESSION['success_message'])): ?>
 
                 <div class="mb-3">
                   <label for="role" class="form-label">Role</label>
-                  <input type="select" name="role" id="role" class="form-control" rows="3"></input>
+                  <input type="select" name="Role" id="role" class="form-control rounded-pill" rows="3"></input>
                 </div>
 
                 <div class="modal-footer">
@@ -101,7 +95,7 @@ if (isset($_SESSION['success_message'])): ?>
               <input type="number" name="district_id" required><br>
               <label>Branch ID:</label>
               <input type="number" name="branch_id" required><br>
-              <!--<label>Password:</label>
+              <label>Password:</label>
               <input type="password" name="password" required><br>
 
               <label>Role:</label>
@@ -183,9 +177,7 @@ if (isset($_SESSION['success_message'])): ?>
     <button type="submit">Register</button>
 </form>-->
 
-
-
-<script>
+<!--<script>
     document.querySelector('select[name="role_id"]').addEventListener('change', function () {
         if (this.value == 1) {
             document.getElementById('admin_fields').style.display = 'block';
@@ -215,4 +207,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </body>
-</html>
+</html> -->

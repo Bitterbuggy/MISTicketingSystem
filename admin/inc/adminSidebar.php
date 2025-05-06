@@ -57,15 +57,9 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="adminReports.php">
-                <span class="icon"><i class="fa-solid fa-diagram-next"></i></span>
-                <span class="text">Reports</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
                 <a href="../auth/adminActivityLogs.php">
-                <span class="icon"><i class="fa-solid fa-box"></i></span>
-                <span class="text">Activity Logs</span>
+                <span class="icon"><i class="fa-solid fa-diagram-next"></i></span>
+                <span class="text">History</span>
                 </a>
             </li>
             </ul>

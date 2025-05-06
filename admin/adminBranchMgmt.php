@@ -181,5 +181,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         </main>
     </div>
+
+    <!-- Register LIC Modal -->
+    <?php include 'adminRegisterLIC.php'; ?>
 </body>
 </html>

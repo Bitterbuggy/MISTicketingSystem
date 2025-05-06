@@ -43,9 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- External CSS Link -->
 <link rel="stylesheet" href="../asset/css/modals.css">
 
-<!-- Bootstrap JS (include before </body>) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <!-- Register Asset Modal -->
     <div class="modal fade" id="registerAssetModal" tabindex="-1" aria-labelledby="registerAssetModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
