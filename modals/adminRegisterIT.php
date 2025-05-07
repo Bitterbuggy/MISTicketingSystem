@@ -81,10 +81,10 @@ if (isset($_SESSION['success_message'])): ?>
                 </div>
 
                 <div class="mb-3">
-                  <label for="role" class="form-label">Role</label>
-                  <select name="Role" id="role" class="form-control rounded-pill" rows="3">
-                      <option value="3">IT Staff</option>
-                  </select>
+                <label for="role" class="form-label">Role</label>
+                <select name="Role" id="role" class="form-control rounded-pill" rows="3">
+                    <option value="3">IT Staff</option>
+                </select>
                 </div>
 
                 <div class="row mb-3" id="admin_fields" style="display:none;">

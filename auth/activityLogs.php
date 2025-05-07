@@ -142,9 +142,11 @@ $redirectLink = match ($roleId) {
                         </div>
                         <div class="col-6">
                             <div class="d-flex flex-wrap align-items-center justify-content-end">
-                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#downloadReportModal">
-                                    <i class="fa-solid fa-download me-1"></i> Download Report
-                                </button>
+                                <?php if ($roleId == 1 && $roleId == 3): ?>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#downloadReportModal">
+                                        <i class="fa-solid fa-download me-1"></i> Download Report
+                                    </button>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="table-responsive">

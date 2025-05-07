@@ -1,10 +1,10 @@
 // recentTickets.js
 
 function fetchRecentTickets() {
-    fetch('recent-tickets.php') // Change this to your actual API route
+    fetch('adminTicketMgmt.php') // Change this to your actual API route
       .then(response => response.json())
       .then(data => {
-        const recentTicketsContainer = document.getElementById('recent-tickets-container');
+        const recentTicketsContainer = document.getElementById('ticket-container');
         recentTicketsContainer.innerHTML = '';
   
         data.forEach(ticket => {

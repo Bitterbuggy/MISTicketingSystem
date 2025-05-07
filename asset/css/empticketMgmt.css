@@ -120,51 +120,6 @@ main {
     color: white !important;
 }
 
-/* DATAGRID FOR TICKET SUMMARY*/
-/* Tabs Styles */
-.nav-tabs {
-    border-bottom: 2px solid #e9ecef !important;
-    margin-bottom: 0;
-}
-
-.nav-item {
-    margin-right: 10px !important;
-}
-
-.nav-link {
-    padding: 10px 15px !important;
-    font-size: 1rem !important;
-    font-weight: 550 !important;
-    color: #0060c7 !important;
-    border: 1px solid transparent !important;
-    border-radius: 7px 7px 0 0 !important;
-    transition: background-color 0.3s, color 0.3s !important;
-}
-
-.nav-link:hover {
-    background-color: #e9ecef !important;
-    color: #0060c7 !important;
-}
-
-.nav-link.active {
-    background-color: #c4ddfa !important;
-    color: #004c9c !important;
-    font-weight: 700 !important;
-}
-
-.nav-link.active:hover {
-    background-color: #c4ddfa !important;
-}
-
-.nav-tabs .nav-link {
-    transition: all 0.3s ease;
-}
-
-.nav-tabs .nav-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
 /* TABLE */
 .table {
     width: 100%; 
@@ -236,3 +191,100 @@ main {
     color: white !important;
     font-weight: 650 !important;
 }
+
+/* DATAGRID FOR TICKET SUMMARY*/
+/* Tabs Styles */
+.nav-tabs {
+    border-bottom: 2px solid #e9ecef !important;
+    margin-bottom: 0;
+}
+
+.nav-item {
+    margin-right: 10px !important;
+  }
+  
+  .nav-link {
+    padding: 10px 15px !important;
+    font-size: 1rem !important;
+    font-weight: 550 !important;
+    color: #0060c7 !important;
+    border: 1px solid transparent !important;
+    border-radius: 7px 7px 0 0 !important;
+    transition: background-color 0.3s, color 0.3s !important;
+  }
+  
+  .nav-link:hover {
+    background-color: #e9ecef !important;
+    color: #0060c7 !important;
+  }
+  
+  .nav-link.active {
+    background-color: #c4ddfa !important;
+    color: #004c9c !important;
+    font-weight: 700 !important;
+}
+  
+  .nav-link.active:hover {
+    background-color: #c4ddfa !important;
+  }
+  
+  .nav-tabs .nav-link {
+    transition: all 0.3s ease;
+  }
+  
+  .nav-tabs .nav-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+
+/* SUBMIT A TICKET BUTTON */
+.btn-submit-tix {
+    background-color: #0038a8 !important;
+    border-radius: 30px !important;
+    font-size: 20px !important;
+    width: 250px !important;
+    height: 2.45rem !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border: none !important;
+} 
+
+/* TABLE */
+.table {
+    width: 100%; 
+    margin-top: 20px; 
+    border-collapse: collapse; 
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  .table td {
+    padding: 8px; 
+    text-align: left;
+    border: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    background-color: #2577ce; 
+    color: white; 
+    text-align: center;
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-bordered th, .table-bordered td {
+    border: 1px solid #dee2e6; 
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+  

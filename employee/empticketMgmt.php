@@ -6,7 +6,7 @@
 
 include '../Includes/config.php';
 include '../Includes/check_session.php';
-if ($_SESSION['RoleId'] != 1) {
+if ($_SESSION['RoleId'] != 4) {
     header('Location: home.php');
     exit();
 }
@@ -22,7 +22,7 @@ if ($_SESSION['RoleId'] != 1) {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
-    <link rel ="stylesheet" href="../asset/css/admin-ticket-mgmt.css">
+    <link rel ="stylesheet" href="../asset/css/empticketMgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
 
     <!-- Bootstrap CSS -->
@@ -54,13 +54,13 @@ if ($_SESSION['RoleId'] != 1) {
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2">
                     <!-- Tabs Section -->
                     <div class="d-flex flex-wrap gap-2">
-                        <div class="div-mods active" onclick="window.location.href='adminTicketMgmt.php'">
+                        <div class="div-mods active" onclick="window.location.href='empticketMgmt.php'">
                             <span class="mods">Repair Requests</span>
                         </div>
-                        <div class="div-mods inactive" onclick="window.location.href='adminCompletedTickets.php'">
+                        <div class="div-mods inactive" onclick="window.location.href='empCompletedTickets.php'">
                             <span class="mods">Completed Tickets</span>
                         </div>
-                        <div class="div-mods inactive" onclick="window.location.href='adminArchivedTickets.php'">
+                        <div class="div-mods inactive" onclick="window.location.href='empArchivedTickets.php'">
                             <span class="mods">Ticket History Archive</span>
                         </div>
                     </div>
@@ -86,7 +86,6 @@ if ($_SESSION['RoleId'] != 1) {
                             <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple me-2"></i>Status</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-dot me-2"></i>Type of Issue</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-circle me-2"></i>IT Technician</a></li>
                             </ul>
                         </div>
@@ -106,7 +105,6 @@ if ($_SESSION['RoleId'] != 1) {
                 </div>
             </div>
 
-        <!-- Repair Requests Table -->
             <div class="row no-gutters mt-4">
             <!-- Tabs Header -->
             <div class="d-flex justify-content-between align-items-center mb-1">
@@ -121,6 +119,11 @@ if ($_SESSION['RoleId'] != 1) {
                         <a class="nav-link" id="alltix-tab" data-bs-toggle="tab" href="#alltix" role="tab" aria-controls="alltix" aria-selected="false">All Tickets</a>
                     </li>
                 </ul>
+            
+            <!-- Submit Ticket Button -->
+            <button type="submit" class="btn btn-submit-tix" data-bs-toggle="modal" data-bs-target="#submitTicketModal">
+                Submit a Ticket
+            </button>
             </div>
 
             <!-- All Repair Tickets Submitted Table -->
@@ -130,7 +133,7 @@ if ($_SESSION['RoleId'] != 1) {
                 <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                     <table class="table table-striped table-hover mt-3" id="tblRepairTickets">
                         <thead class="thead-dark">
-                            <tr>
+                        <tr>
                                 <th style="width: 4%;">Submitted At</th>
                                 <th style="width: 3%;">Ticket ID</th>
                                 <th style="width: 3%;">Type of Issue</th>
@@ -146,7 +149,7 @@ if ($_SESSION['RoleId'] != 1) {
                                 <td>QCPL</td>
                                 <td>-</td>
                             </tr>
-                            <!-- Rows will be populated by JavaScript -->
+                            <!-- Rows will be populated by here -->
                         </tbody>
                     </table>
                 </div>
@@ -172,7 +175,7 @@ if ($_SESSION['RoleId'] != 1) {
                             <td>John Doe</td>
                             </tr>
                         <tr>
-                            <!-- Rows will be populated by JavaScript -->
+                            <!-- Rows will be populated here -->
                         </tbody>
                     </table>
                 </div>
@@ -229,14 +232,14 @@ if ($_SESSION['RoleId'] != 1) {
                                 <button type="button" class="btn btn-cancelled" id="tixStatus">Cancelled</button>
                                 </td>
                             </tr>
-                            <!-- Rows will be populated by JavaScript -->
+                            <!-- Rows will be populated by here -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-            <!-- Pagination -->
+        <!-- Pagination -->
             <div class="pagination-container">
                 <ul class="pagination" id="pagination">
                     <!-- Pagination -->
@@ -249,5 +252,7 @@ if ($_SESSION['RoleId'] != 1) {
 
     <!-- View Ticket Modal -->
     <?php include '../modals/viewTicketInfo.php'; ?>
+    <!-- Submit Ticket Modal -->
+    <?php include '../modals/submitTicket.php'; ?>
 </body>
 </html>
