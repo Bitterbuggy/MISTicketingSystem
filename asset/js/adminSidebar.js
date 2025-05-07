@@ -5,10 +5,10 @@ document.getElementById('sidebarCollapse')?.addEventListener('click', function (
 });
 
 // Active sidebar highlighter
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const sidebarItems = document.querySelectorAll('.sidebar-item');
-    const currentPage = window.location.pathname.split('/').pop().split('?')[0];
-    let matched = false; // 👈 flag to prevent double highlights
+    const currentPage = window.location.pathname.split('/').pop().split('?')[0]; // Get the file name only
+    let matched = false;
 
     // Remove active from all
     sidebarItems.forEach(item => item.classList.remove('active'));
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (ticketsPages.includes(currentPage)) {
         sidebarItems.forEach(item => {
             const link = item.querySelector('a');
-            if (link && link.getAttribute('href') === 'adminTicketMgmt.php') {
+            if (link && link.getAttribute('href').endsWith('adminTicketMgmt.php')) {
                 item.classList.add('active');
                 matched = true;
             }
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (assetPages.includes(currentPage)) {
         sidebarItems.forEach(item => {
             const link = item.querySelector('a');
-            if (link && link.getAttribute('href') === 'adminAssetMgmt.php') {
+            if (link && link.getAttribute('href').endsWith('adminAssetMgmt.php')) {
                 item.classList.add('active');
                 matched = true;
             }
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     else if (currentPage === 'adminStaffMgmt.php') {
         sidebarItems.forEach(item => {
             const link = item.querySelector('a');
-            if (link && link.getAttribute('href') === 'adminStaffMgmt.php') {
+            if (link && link.getAttribute('href').endsWith('adminStaffMgmt.php')) {
                 item.classList.add('active');
                 matched = true;
             }
@@ -53,35 +53,36 @@ document.addEventListener('DOMContentLoaded', function() {
     if (branchPages.includes(currentPage)) {
         sidebarItems.forEach(item => {
             const link = item.querySelector('a');
-            if (link && link.getAttribute('href') === 'adminBranchMgmt.php') {
+            if (link && link.getAttribute('href').endsWith('adminBranchMgmt.php')) {
                 item.classList.add('active');
                 matched = true;
             }
         });
     }
 
-    // Activity Logs page
-    else if (currentPage === '../auth/adminActivityLogs.php') {
+    // Activity Logs
+    else if (currentPage === 'adminActivityLogs.php') {
         sidebarItems.forEach(item => {
             const link = item.querySelector('a');
-            if (link && link.getAttribute('href') === 'adminActivityLogs.php') {
+            if (link && link.getAttribute('href').endsWith('adminActivityLogs.php')) {
                 item.classList.add('active');
                 matched = true;
             }
         });
     }
 
-    // Dashboard page
-    else if (currentPage === 'adminDashboard.php') {
+    // Dashboard
+    else if (currentPage === 'admindashboard.php') {
         sidebarItems.forEach(item => {
-            if (item.classList.contains('default')) {
+            const link = item.querySelector('a');
+            if (link && link.getAttribute('href').endsWith('admindashboard.php')) {
                 item.classList.add('active');
                 matched = true;
             }
         });
     }
 
-    // Fallback to dashboard only if no match
+    // Fallback
     if (!matched) {
         sidebarItems.forEach(item => {
             if (item.classList.contains('default')) {
@@ -92,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.documentElement.classList.remove('js-sidebar-initializing');
 });
-
 
 // Set page title
 document.addEventListener("DOMContentLoaded", function() {

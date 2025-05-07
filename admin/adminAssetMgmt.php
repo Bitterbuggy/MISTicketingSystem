@@ -90,7 +90,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
                     <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-copyright me-2"></i>Brand</a></li>
                     <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-toolbox me-2"></i>Type of Issue</a></li>
-                    <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
+                    <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-location-dot me-2"></i>Branch</a></li>
                 </ul>
             </div>
             
@@ -100,8 +100,8 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <i class="fa-solid fa-sort"></i>
                 </button>
                 <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                    <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
-                    <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-arrow-up-short-wide me-2"></i>Descending</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-up me-2"></i>Ascending</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-down me-2"></i>Descending</a></li>
                 </ul>
             </div>
             </div>
@@ -119,6 +119,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <th style="width: 2.5%;">Brand</th>
                                     <th style="width: 3%;">Serial Number</th>
                                     <th style="width: 3%;">Property Number</th>
+                                    <th style="width: 3%;">Acquisition</th>
                                     <th style="width: 2%;">Purchased Date</th>
                                     <th style="width: 2%;">Status</th>
                                     <th style="width: 2%;">Description</th>
@@ -127,7 +128,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tbody>
                                 <?php if (empty($assets)): ?>
                                     <tr>
-                                    <td colspan="7">No assets found.</td>
+                                    <td colspan="8">No assets found.</td>
                                     </tr>
                                 <?php else: ?>
                                     <?php foreach ($assets as $asset): ?>
@@ -136,6 +137,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <td><?php echo htmlspecialchars($asset['AssetName']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['SerialNumber']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['PropertyNumber']); ?></td>
+                                            <td><?php echo htmlspecialchars($asset['Acquisition']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['Description']); ?></td>

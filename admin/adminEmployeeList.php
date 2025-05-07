@@ -45,9 +45,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- External JS Files -->
-    <script src="../asset/js/adminSidebar.js"></script>
 </head>
 
 <body>
@@ -133,11 +130,15 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     </main>
 </div>
+    <!-- Register LIC Modal -->
+    <?php include 'adminRegisterLIC.php'; ?>
+    <!-- Update LIC Modal -->
+    <?php include 'adminUpdateLIC.php'; ?>
+    <!-- Delete LIC Modal -->
+    <?php include 'adminDeleteLIC.php'; ?>
 
-    <a href="../admin/adminBranchMgmt.php"> Back</a>
-        
-     </div>
-
-           
+    <!-- External JS Files -->
+    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/adminfetchModal.js"></script>
 </body>
 </html>

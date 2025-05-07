@@ -85,9 +85,9 @@ if ($_SESSION['RoleId'] != 1) {
                             </button>
                             <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple me-2"></i>Status</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-toolbox me-2"></i>Type of Issue</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-dot me-2"></i>Type of Issue</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2"></i>IT Technician</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-circle me-2"></i>IT Technician</a></li>
                             </ul>
                         </div>
 
@@ -97,8 +97,8 @@ if ($_SESSION['RoleId'] != 1) {
                                 <i class="fa fa-sort me-1"></i>
                             </button>
                             <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-up-short-wide me-2"></i>Descending</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-up me-2"></i>Ascending</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-down me-2"></i>Descending</a></li>
                             </ul>
                         </div>
                     </div>
@@ -117,7 +117,7 @@ if ($_SESSION['RoleId'] != 1) {
                                     <th style="width: 3%;">Ticket ID</th>
                                     <th style="width: 3%;">Type of Issue</th>
                                     <th style="width: 6%;">Branch</th>
-                                    <th style="width: 5%;">Assigned IT</th>
+                                    <th style="width: 5%;">IT Technician</th>
                                     <th style="width: 3%;">Status</th>
                                 </tr>
                             </thead>

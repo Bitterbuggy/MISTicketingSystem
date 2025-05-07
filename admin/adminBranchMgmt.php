@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
                                 <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-copyright me-2"></i>Brand</a></li>
                                 <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-toolbox me-2"></i>Type of Issue</a></li>
-                                <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
+                                <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-location-dot me-2"></i>Branch</a></li>
                             </ul>
                         </div>
 
@@ -131,8 +131,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <i class="fa fa-sort me-1"></i>
                             </button>
                             <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-up-short-wide me-2"></i>Descending</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-up me-2"></i>Ascending</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-down me-2"></i>Descending</a></li>
                             </ul>
                         </div>
                     </div>
@@ -146,14 +146,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <table class="table table-striped table-hover" id="tblLIC">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>LIC ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Contact No.</th>
-                                    <th>Branch</th>
-                                    <th>Role</th>
-                                    <th>Actions</th>
+                                    <th style="width:2%">LIC ID</th>
+                                    <th style="width:2%">First Name</th>
+                                    <th style="width:2%">Last Name</th>
+                                    <th style="width:3%">Email</th>
+                                    <th style="width:2%">Contact No.</th>
+                                    <th style="width:4%">Branch</th>
+                                    <!--th>Role</!--th>-->
+                                    <th style="width:2%">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <td><?php echo $user['Email']; ?></td>
                                         <td><?php echo $user['Contactno']; ?></td>
                                         <td><?php echo $user['BranchName']; ?></td>
-                                        <td><?php echo $user['RoleName']; ?></td>
+                                        <!--td><?php echo $user['RoleName']; ?></!--td>-->
                                         <td>
                                         <button class="btn btn-edit btn-sm" onclick="openEditModal2(<?php echo $user['UserId']; ?>)">Edit</button>
                                         <button class="btn btn-danger btn-sm" onclick="openDeleteModal(<?php echo $user['UserId']; ?>)">Delete</button>
