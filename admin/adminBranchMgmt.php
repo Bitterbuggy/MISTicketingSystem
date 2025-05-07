@@ -14,6 +14,7 @@ if (isset($_SESSION['success_message'])) {
 //IT staff table 
 $sql = "SELECT * FROM t_users 
         JOIN t_roles ON t_users.RoleId = t_roles.RoleId 
+        JOIN t_branch ON t_users.BranchId = t_branch.BranchId
         WHERE t_users.RoleId = 2";
 
 $stmt = $conn->prepare($sql);
@@ -150,7 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Contact No.</th>
-                                    <!-- <th>Role</th> -->
+                                    <th>Branch</th>
+                                    <th>Role</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -162,7 +164,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <td><?php echo $user['LastName']; ?></td>
                                         <td><?php echo $user['Email']; ?></td>
                                         <td><?php echo $user['Contactno']; ?></td>
-                                        <!-- <td><?php echo $user['RoleName']; ?></td> -->
+                                        <td><?php echo $user['BranchName']; ?></td>
+                                        <td><?php echo $user['RoleName']; ?></td>
                                         <td>
                                         <button class="btn btn-edit btn-sm" onclick="openEditModal2(<?php echo $user['UserId']; ?>)">Edit</button>
                                         <button class="btn btn-danger btn-sm" onclick="openDeleteModal(<?php echo $user['UserId']; ?>)">Delete</button>

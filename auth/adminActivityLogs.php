@@ -17,10 +17,11 @@ $firstName = $_SESSION['FirstName'];
 
 if ($roleId == 1) {
     // Admin sees all logs
-    $sql = "SELECT al.id, u.FirstName, r.RoleName, al.activity_type, al.activity_time 
+    $sql = "SELECT al.id, u.FirstName, r.RoleName, b.BranchName, al.activity_type, al.activity_time 
             FROM t_activitylogs al
             JOIN t_users u ON al.UserId = u.UserId
             JOIN t_roles r ON u.RoleId = r.RoleId
+            JOIN t_branch b ON u.BranchId = b.BranchId
             ORDER BY al.activity_time DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -153,6 +154,7 @@ $redirectLink = match ($roleId) {
                                     <th style="width: 3%">User</th>
                                 <?php endif; ?>
                                 <th style="width: 3%">Role</th>
+                                <th style = "width: 3%">Branch</th>
                                 <th style="width: 3%">Activity</th>
                                 <th style="width: 3%">Timestamp</th>
                             </tr>
@@ -165,6 +167,7 @@ $redirectLink = match ($roleId) {
                                                 <td><?= htmlspecialchars($log['FirstName']) ?></td>
                                             <?php endif; ?>
                                             <td><?= htmlspecialchars($log['RoleName']) ?></td>
+                                            <td><?= htmlspecialchars($log['BranchName']) ?></td>
                                             <td><?= htmlspecialchars($log['activity_type']) ?></td>
                                             <td><?= htmlspecialchars($log['activity_time']) ?></td>
                                         </tr>
@@ -183,6 +186,6 @@ $redirectLink = match ($roleId) {
     </div>
 
     <!-- Download Report Modal -->
-    <?php include '../admin/inc/adminDownloadReport.php'; ?>
+    <!?php include '../admin/inc/adminDownloadReport.php'; ?>
 </body>
 </html>

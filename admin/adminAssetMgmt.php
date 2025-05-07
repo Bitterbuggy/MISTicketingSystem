@@ -6,7 +6,9 @@
 include '../Includes/config.php';
 
 // Fetch the assets with branch name
-$sql = "SELECT * FROM t_asset JOIN t_branch ON t_asset.BranchId = t_branch.BranchId;";
+$sql = "SELECT * FROM t_asset 
+        JOIN t_branch 
+        ON t_asset.BranchId = t_branch.BranchId;";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
@@ -115,7 +117,8 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <tr>
                                     <th style="width: 4%;">Branch</th>
                                     <th style="width: 2.5%;">Brand</th>
-                                    <th style="width: 4%;">Serial Number</th>
+                                    <th style="width: 3%;">Serial Number</th>
+                                    <th style="width: 3%;">Property Number</th>
                                     <th style="width: 2%;">Purchased Date</th>
                                     <th style="width: 2%;">Status</th>
                                     <th style="width: 2%;">Description</th>
@@ -132,6 +135,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <td><?php echo htmlspecialchars($asset['BranchName']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['AssetName']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['SerialNumber']); ?></td>
+                                            <td><?php echo htmlspecialchars($asset['PropertyNumber']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['Description']); ?></td>
