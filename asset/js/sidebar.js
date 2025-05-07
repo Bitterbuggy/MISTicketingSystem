@@ -61,10 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Activity Logs
-    else if (currentPage === 'adminActivityLogs.php') {
+    else if (currentPage === 'activityLogs.php') {
         sidebarItems.forEach(item => {
             const link = item.querySelector('a');
-            if (link && link.getAttribute('href').endsWith('adminActivityLogs.php')) {
+            if (link && link.getAttribute('href').endsWith('activityLogs.php')) {
                 item.classList.add('active');
                 matched = true;
             }

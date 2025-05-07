@@ -6,7 +6,6 @@ if ($_SESSION['RoleId'] != 2) {
     header('Location: ../employee/home.php');
     exit();
 }
-include '../Includes/get-location.php';
 
 ?>
 
@@ -19,7 +18,7 @@ include '../Includes/get-location.php';
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
 
     <!-- Bootstrap CSS -->
@@ -33,12 +32,15 @@ include '../Includes/get-location.php';
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- External JS Link/s -->
+    <script src="../asset/js/sidebar.js"></script>
 </head>
 
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../branchadmin/inc/LIC-sidebar.php'; ?>
+        <?php include '../admin/inc/sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">

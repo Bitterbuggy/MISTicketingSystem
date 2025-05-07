@@ -21,7 +21,7 @@ if ($_SESSION['RoleId'] != 1) {
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
 
     <!-- Bootstrap CSS -->
@@ -37,7 +37,7 @@ if ($_SESSION['RoleId'] != 1) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Custom JS Link/s -->
-    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/greetingCard.js"></script>
     <script src="../asset/js/recentTicket.js"></script>
     <script src="../asset/js/ticketSummary.js"></script>
@@ -47,7 +47,7 @@ if ($_SESSION['RoleId'] != 1) {
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../admin/inc/adminSidebar.php'; ?>
+        <?php include '../admin/inc/sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
