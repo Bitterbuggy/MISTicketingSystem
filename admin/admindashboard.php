@@ -36,7 +36,7 @@ if ($_SESSION['RoleId'] != 1) {
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Custom JS Link/s -->
+    <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/greetingCard.js"></script>
     <script src="../asset/js/recentTicket.js"></script>
@@ -68,7 +68,7 @@ if ($_SESSION['RoleId'] != 1) {
                             <img src="../asset/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
                         </div>
                     </div>
- 
+
                     <!-- Recent Ticket Card -->
                     <div class="col-md-4 mb-3">
                         <div class="ticket-container">

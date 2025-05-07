@@ -21,6 +21,8 @@ $branches = $conn->query("SELECT BranchId FROM t_branch")->fetchAll(PDO::FETCH_A
 $districts = $conn->query("SELECT DistrictId FROM t_branch")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<link rel="stylesheet" href="asset/css/modals.css">
+
 <form action="create_ticket.php" method="POST">
     <label for="EmployeeId">Employee ID:</label>
     <select name="EmployeeId" required>
