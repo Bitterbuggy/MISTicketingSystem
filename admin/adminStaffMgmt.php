@@ -127,8 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class="fa fa-sort me-1"></i>
                         </button>
                         <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-up-short-wide me-2"></i>Descending</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-up me-2"></i>Ascending</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-down me-2"></i>Descending</a></li>
                         </ul>
                     </div>
                     </div>
@@ -142,15 +142,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Staff ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Contact No.</th>
-                                        <th>Branch</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
+                                        <th style="width:2%">IT ID</th>
+                                        <th style="width:2%">First Name</th>
+                                        <th style="width:2%">Last Name</th>
+                                        <th style="width:2%">Email</th>
+                                        <th style="width:2%">Contact No.</th>
+                                        <th style="width:2%">Branch</th>
+                                        <!--th>Role</!--th>-->
+                                        <th style="width:2%">Status</th>
+                                        <th style="width:2%">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <td><?php echo $user['Email']; ?></td>
                                             <td><?php echo $user['Contactno']; ?></td>
                                             <td><?php echo $user['BranchName']; ?></td>
-                                            <td><?php echo $user['RoleName']; ?></td>
+                                            <!--td><?php echo $user['RoleName']; ?></!--td>-->
                                             <td>
                                             <span class="<?= $user['status'] === 'Online' ? 'text-success' : 'text-muted' ?>">
                                                 <?= $user['status'] ?>

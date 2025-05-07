@@ -39,7 +39,7 @@ $logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Redirect link based on role
 $redirectLink = match ($roleId) {
-    1 => '../admin/adminDashboard.php',
+    1 => '../admin/admindashboard.php',
     2 => '../branchadmin/bradmindashboard.php',
     3 => '../ITstaff/ITdashboard.php',
     default => '../employee/home.php',
@@ -114,8 +114,9 @@ $redirectLink = match ($roleId) {
                             <i class="fa fa-filter me-1"></i>
                         </button>
                         <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-circle me-2"></i>Role</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-dot me-2"></i>Branch</a></li>
                             <li><a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple me-2"></i>Activity</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2"></i>Role</a></li>
                         </ul>
                     </div>
 
