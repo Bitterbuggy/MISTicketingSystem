@@ -24,7 +24,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel="stylesheet" href="../asset/css/admin-asset-mgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
 
@@ -38,13 +38,13 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- External JS Link/s -->
-    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/sidebar.js"></script>
 </head>
 
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../admin/inc/adminSidebar.php'; ?>
+        <?php include '../admin/inc/sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -152,6 +152,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
         </div>
     </div>
-    <?php include 'adminRegisterAsset.php'; ?>
+    <?php include '../modals/adminRegisterAsset.php'; ?>
 </body>
 </html>

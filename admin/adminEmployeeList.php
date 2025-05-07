@@ -29,7 +29,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel="stylesheet" href="../asset/css/admin-branch-mgmt.css">
     <link rel="stylesheet" href="../asset/css/pagination.css">
     <link rel="stylesheet" href="../asset/css/modals.css">
@@ -50,7 +50,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../admin/inc/adminSidebar.php'; ?>
+        <?php include '../admin/inc/sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -131,14 +131,14 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </main>
 </div>
     <!-- Register LIC Modal -->
-    <?php include 'adminRegisterLIC.php'; ?>
+    <?php include '../modals/adminRegisterLIC.php'; ?>
     <!-- Update LIC Modal -->
-    <?php include 'adminUpdateLIC.php'; ?>
+    <?php include '../modals/adminUpdateLIC.php'; ?>
     <!-- Delete LIC Modal -->
-    <?php include 'adminDeleteLIC.php'; ?>
+    <?php include '../modals/adminDeleteLIC.php'; ?>
 
     <!-- External JS Files -->
-    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/adminfetchModal.js"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ $userId = $_SESSION['UserId'];
 $roleId = $_SESSION['RoleId'];
 $firstName = $_SESSION['FirstName'];
 
-if ($roleId == 1) {
+if ($isAdmin = $roleId == 1) {
     // Admin sees all logs
     $sql = "SELECT al.id, u.FirstName, r.RoleName, b.BranchName, al.activity_type, al.activity_time 
             FROM t_activitylogs al
@@ -26,7 +26,7 @@ if ($roleId == 1) {
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 } else {
-    // Other users (IT staff, regular users, etc.) see their own logs
+    // Other users (IT Staff, LIC, and Employee) see their own logs
     $sql = "SELECT al.id, al.activity_type, al.activity_time 
             FROM t_activitylogs al
             WHERE al.UserId = :UserId
@@ -55,7 +55,7 @@ $redirectLink = match ($roleId) {
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
     <link rel="stylesheet" href="../asset/css/admin-activity-mgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
@@ -73,13 +73,13 @@ $redirectLink = match ($roleId) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- External JS Link/s -->
-    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/sidebar.js"></script>
 </head>
 
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../admin/inc/adminSidebar.php'; ?>
+        <?php include '../admin/inc/sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -126,8 +126,8 @@ $redirectLink = match ($roleId) {
                         <i class="fa-solid fa-sort"></i>
                         </button>
                         <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                            <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
-                            <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-arrow-up-short-wide me-2"></i>Descending</a></li>
+                            <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-sort-alpha-up me-2"></i>Ascending</a></li>
+                            <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-sort-alpha-down me-2"></i>Descending</a></li>
                         </ul>
                     </div>
                 </div>
@@ -147,15 +147,15 @@ $redirectLink = match ($roleId) {
                                 </button>
                             </div>
                         </div>
-                    <div class="table-responsive">
+                        <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="table-dark">
                             <tr>
                                 <?php if ($roleId == 1): ?>
                                     <th style="width: 3%">User</th>
+                                    <th style="width: 3%">Role</th>
+                                    <th style="width: 3%">Branch</th>
                                 <?php endif; ?>
-                                <th style="width: 3%">Role</th>
-                                <th style = "width: 3%">Branch</th>
                                 <th style="width: 3%">Activity</th>
                                 <th style="width: 3%">Timestamp</th>
                             </tr>
@@ -166,15 +166,17 @@ $redirectLink = match ($roleId) {
                                         <tr>
                                             <?php if ($roleId == 1): ?>
                                                 <td><?= htmlspecialchars($log['FirstName']) ?></td>
+                                                <td><?= htmlspecialchars($log['RoleName']) ?></td>
+                                                <td><?= htmlspecialchars($log['BranchName']) ?></td>
                                             <?php endif; ?>
-                                            <td><?= htmlspecialchars($log['RoleName']) ?></td>
-                                            <td><?= htmlspecialchars($log['BranchName']) ?></td>
                                             <td><?= htmlspecialchars($log['activity_type']) ?></td>
                                             <td><?= htmlspecialchars($log['activity_time']) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                    <tr><td colspan="<?= $roleId == 1 ? 3 : 2 ?>" class="text-center">No activity logs found.</td></tr>
+                                    <tr>
+                                        <td colspan="<?= $roleId == 1 ? 5 : 2 ?>" class="text-center">No activity logs found.</td>
+                                    </tr>
                                 <?php endif; ?>
                             </tbody>
                         </table>
@@ -187,6 +189,6 @@ $redirectLink = match ($roleId) {
     </div>
 
     <!-- Download Report Modal -->
-    <!?php include '../admin/inc/adminDownloadReport.php'; ?>
+    <!?php include '../admin/modals/adminDownloadReport.php'; ?>
 </body>
 </html>

@@ -21,7 +21,7 @@ if ($_SESSION['RoleId'] != 1) {
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel ="stylesheet" href="../asset/css/admin-ticket-mgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
 
@@ -36,14 +36,14 @@ if ($_SESSION['RoleId'] != 1) {
 
     <!-- Custom JS Link/s -->
     <script src="../asset/js/adminNavTables.js"></script>
-    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/adminAllTickets.js"></script>
 </head>
 
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../admin/inc/adminSidebar.php'; ?>
+        <?php include '../admin/inc/sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -180,6 +180,6 @@ if ($_SESSION['RoleId'] != 1) {
     <!-- End of Main Content -->
 
     <!-- View Ticket Modal -->
-    <?php include '../admin/view/adminViewTicketModal.php'; ?>
+    <?php include '../modals/viewTicketInfo.php'; ?>
 </body>
 </html>

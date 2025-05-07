@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
     <link rel="stylesheet" href="../asset/css/admin-staff-mgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../admin/inc/adminSidebar.php'; ?>
+        <?php include '../admin/inc/sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -184,14 +184,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     
     <!-- Register IT Staff Modal -->
-    <?php include 'adminRegisterIT.php'; ?>
+    <?php include '../modals/adminRegisterIT.php'; ?>
     <!-- Update IT Staff Modal -->
-    <?php include 'adminUpdateIT.php'; ?>
+    <?php include '../modals/adminUpdateIT.php'; ?>
     <!-- Delete IT Staff Modal -->
-    <?php include 'adminDeleteIT.php'; ?>
+    <?php include '../modals/adminDeleteIT.php'; ?>
 
     <!-- External JS Files -->
-    <script src="../asset/js/adminSidebar.js"></script>
+    <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/adminfetchModal.js"></script>
 </body>
 </html>
