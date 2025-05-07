@@ -11,8 +11,10 @@ if (isset($_SESSION['success_message'])) {
     unset($_SESSION['success_message']); // Remove the message after displaying
 }
 
-//IT staff table 
-$sql = "SELECT * FROM t_users WHERE RoleId=4 " ;
+//Employee table 
+$sql = "SELECT * FROM t_users 
+        JOIN t_branch ON t_users.BranchId = t_branch.BranchId 
+        WHERE RoleId=4 " ;
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -107,6 +109,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Contact No.</th>
+                            <th>Branch</th>
                             <!-- <th>Role</th> -->                         
                         </tr>
                         </thead>
@@ -118,7 +121,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?php echo $user['LastName']; ?></td>
                                     <td><?php echo $user['Email']; ?></td>
                                     <td><?php echo $user['Contactno']; ?></td>
-                                    <!-- <td><?php echo $user['RoleId']; ?></td>-->       
+                                    <td><?php echo $user['BranchName']; ?></td>
+                                    <!--td><?php echo $user['RoleId']; ?></!--td>-->  
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

@@ -20,12 +20,13 @@ if (isset($_SESSION['success_message'])) {
 }
 
 // Fetch all IT staff with last activity
-$sql = "SELECT u.*, r.RoleName,
+$sql = "SELECT u.*, r.RoleName, b.BranchName,
                (SELECT MAX(al.activity_time)
                 FROM t_activitylogs al
                 WHERE al.UserId = u.UserId) AS last_activity
         FROM t_users u
         JOIN t_roles r ON u.RoleId = r.RoleId
+        JOIN t_branch b ON u.BranchId = b.BranchId
         WHERE u.RoleId = 3";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
@@ -60,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     $_SESSION['success_message'] = "Successfully updated account!";
-    header("Location: ../admin/ManageIT.php");
+    header("Location: ../admin/ad,ominStaffMgmt.php");
     exit();
 }
 ?>
@@ -146,6 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Contact No.</th>
+                                        <th>Branch</th>
                                         <th>Role</th>
                                         <th>Status</th>
                                         <th>Actions</th>
@@ -159,6 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <td><?php echo $user['LastName']; ?></td>
                                             <td><?php echo $user['Email']; ?></td>
                                             <td><?php echo $user['Contactno']; ?></td>
+                                            <td><?php echo $user['BranchName']; ?></td>
                                             <td><?php echo $user['RoleName']; ?></td>
                                             <td>
                                             <span class="<?= $user['status'] === 'Online' ? 'text-success' : 'text-muted' ?>">
