@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteUserId'])) {
     $stmt->execute(['id' => $id]);
 
     $_SESSION['deletion_success'] = true;
-    header("Location: adminStaffMgmt.php"); // not ../admin/ if already in /admin
+    header("Location: ../admin/adminStaffMgmt.php"); // not ../admin/ if already in /admin
     exit();
 }
 ?>
@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
 <!-- Confirm Delete Modal -->
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form action="adminDeleteIT.php" method="POST" class="modal-content md-cont p-3">
+    <form action="../modals/adminDeleteIT.php" method="POST" class="modal-content md-cont p-3">
       <div class="modal-body text-center">
         <i class="fa-solid fa-trash md-icon"></i>
         <h2 class="modal-title">Confirm Deletion</h2>

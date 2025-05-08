@@ -13,8 +13,8 @@ $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //update IT staff
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateUserId'])) {
+        $id = $_POST['updateUserId'];
 
     $sql = "SELECT * FROM t_users WHERE UserId = :id and RoleId=3";
     $stmt = $conn->prepare($sql);
@@ -55,14 +55,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="modal fade" id="updateITModal" tabindex="-1" aria-labelledby="updateITModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <form action="register.php" method="POST">
+        <form action="../modals/adminUpdateIT.php" method="POST">
             <div class="modal-header">
             <h5 class="modal-title" id="updateITModalLabel">Update Information</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-            <form action="adminUpdateIT.php" method="POST">
+            
                 <input type="hidden" name="id" value="<?php echo $user['UserId']; ?>">
 
                 <div class="row mb-3">
