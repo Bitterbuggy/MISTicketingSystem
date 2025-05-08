@@ -147,13 +147,13 @@ $roleId = $_SESSION['RoleId'];
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/employee/empticketMgmt.php">
+                            <a href="/employee/empTicketMgmt.php">
                                 <span class="icon"><i class="fa fa-ticket"></i></span>
                                 <span class="text">Tickets</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/employee/assetMgmt.php">
+                            <a href="/employee/empAssetMgmt.php">
                                 <span class="icon"><i class="fa fa-toolbox"></i></span>
                                 <span class="text">Branch Assets</span>
                             </a>

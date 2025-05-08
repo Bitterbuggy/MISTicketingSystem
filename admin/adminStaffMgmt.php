@@ -76,8 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
-    <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
-    <link rel="stylesheet" href="../asset/css/admin-staff-mgmt.css">
+    <link rel="stylesheet" href="../asset/css/div_mods.css">
+    <link rel="stylesheet" href="../asset/css/tbl_charts.css">
+    <link rel="stylesheet" href="../asset/css/tbl-controls.css">
+    <link rel="stylesheet" href="../asset/css/buttons.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
 
     <!-- Bootstrap CSS -->

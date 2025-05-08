@@ -56,8 +56,9 @@ $redirectLink = match ($roleId) {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
-    <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
-    <link rel="stylesheet" href="../asset/css/admin-activity-mgmt.css">
+    <link rel="stylesheet" href="../asset/css/tbl_charts.css">
+    <link rel="stylesheet" href="../asset/css/tbl-controls.css">
+    <link rel="stylesheet" href="../asset/css/buttons.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
 
     <!-- Bootstrap CSS -->
@@ -143,7 +144,7 @@ $redirectLink = match ($roleId) {
                         <div class="col-6">
                             <div class="d-flex flex-wrap align-items-center justify-content-end">
                                 <?php if ($roleId == 1 && $roleId == 3): ?>
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#downloadReportModal">
+                                    <button class="btn btn-download" type="button" data-bs-toggle="modal" data-bs-target="#downloadReportModal">
                                         <i class="fa-solid fa-download me-1"></i> Download Report
                                     </button>
                                 <?php endif; ?>
