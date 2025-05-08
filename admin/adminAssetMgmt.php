@@ -2,6 +2,9 @@
   var pageTitle = "Asset Management";
 </script>
 
+
+
+
 <?php
 include '../Includes/config.php';
 
@@ -13,7 +16,16 @@ $sql = "SELECT * FROM t_asset
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
+
+<?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+  <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+    ✅ New asset registered successfully!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="en">

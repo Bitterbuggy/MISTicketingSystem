@@ -26,7 +26,7 @@ $roleId = $_SESSION['RoleId'];
     <div class="layout-container d-flex">
         <div id="sidebar" class="sidebar d-flex flex-column">
             <div class="sidebar-header text-center py-3">
-                <img src="../../asset/img/qcpl-sts-logo.png" alt="QCPL STS Logo" class="logo-img">
+                <img src="../asset/img/qcpl-sts-logo.png" alt="QCPL STS Logo" class="logo-img">
                 <div class="sidebar-title mt-2">QCPL-STS</div>
             </div>
 
@@ -36,37 +36,37 @@ $roleId = $_SESSION['RoleId'];
                     <!-- Admin -->
                     <?php if ($roleId == 1): ?>
                         <li class="sidebar-item default">
-                            <a href="/admin/admindashboard.php">
+                            <a href="../admin/admindashboard.php">
                                 <span class="icon"><i class="fa fa-house"></i></span>
                                 <span class="text">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/admin/adminTicketMgmt.php">
+                            <a href="../admin/adminTicketMgmt.php">
                                 <span class="icon"><i class="fa fa-ticket"></i></span>
                                 <span class="text">Tickets</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/admin/adminAssetMgmt.php">
+                            <a href="../admin/adminAssetMgmt.php">
                                 <span class="icon"><i class="fa fa-toolbox"></i></span>
                                 <span class="text">Assets</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/admin/adminStaffMgmt.php">
+                            <a href="../admin/adminStaffMgmt.php">
                                 <span class="icon"><i class="fa fa-id-card-clip"></i></span>
                                 <span class="text">IT Staff</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/admin/adminBranchMgmt.php">
+                            <a href="../admin/adminBranchMgmt.php">
                                 <span class="icon"><i class="fa fa-book-open"></i></span>
                                 <span class="text">Branches</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/auth/activityLogs.php">
+                            <a href="../auth/activityLogs.php">
                                 <span class="icon"><i class="fa-solid fa-boxes-packing"></i></span>
                                 <span class="text">History</span>
                             </a>
@@ -75,13 +75,13 @@ $roleId = $_SESSION['RoleId'];
                     <!-- IT Staff -->
                     <?php elseif ($roleId == 3): ?>
                         <li class="sidebar-item default">
-                            <a href="/ITstaff/ITdashboard.php">
+                            <a href="../ITstaff/ITdashboard.php">
                                 <span class="icon"><i class="fa fa-house"></i></span>
                                 <span class="text">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/ITstaff/ITticketMgmt.php">
+                            <a href="../ITstaff/ITticketMgmt.php">
                                 <span class="icon"><i class="fa fa-ticket"></i></span>
                                 <span class="text">Tickets</span>
                             </a>
