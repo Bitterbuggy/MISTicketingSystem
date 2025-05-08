@@ -109,6 +109,7 @@ $redirectLink = match ($roleId) {
                         <i class="fa fa-calendar me-1"></i> Select Date
                     </button>
 
+                    <?php if ($roleId == 1 || $roleId == 3) { ?>
                     <!-- Filter Dropdown -->
                     <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
@@ -120,6 +121,7 @@ $redirectLink = match ($roleId) {
                             <li><a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple me-2"></i>Activity</a></li>
                         </ul>
                     </div>
+                    <?php } ?>
 
                     <!-- Sort Dropdown -->
                     <div class="dropdown">

@@ -94,7 +94,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
                     <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-copyright me-2"></i>Brand</a></li>
                     <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-toolbox me-2"></i>Type of Issue</a></li>
-                    <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-location-dot me-2"></i>Branch</a></li>
                 </ul>
             </div>
             
