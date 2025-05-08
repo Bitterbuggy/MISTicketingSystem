@@ -237,54 +237,14 @@ main {
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
   }
 
-/* SUBMIT A TICKET BUTTON */
-.btn-submit-tix {
-    background-color: #0038a8 !important;
+/* SUBMIT A TICKET */
+.btn-submit {
+    background-color: #0060c7 !important;
     border-radius: 30px !important;
-    font-size: 20px !important;
-    width: 250px !important;
+    font-size: 17px !important;
+    width: 280px !important;
     height: 2.45rem !important;
     color: white !important;
     font-weight: 600 !important;
     border: none !important;
 } 
-
-/* TABLE */
-.table {
-    width: 100%; 
-    margin-top: 20px; 
-    border-collapse: collapse; 
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  }
-  
-  .table td {
-    padding: 8px; 
-    text-align: left;
-    border: 1px solid #dee2e6;
-  }
-  
-  .table thead th {
-    background-color: #2577ce; 
-    color: white; 
-    text-align: center;
-  }
-  
-  .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f2f2f2;
-  }
-  
-  .table-bordered {
-    border: 1px solid #dee2e6;
-  }
-  
-  .table-bordered th, .table-bordered td {
-    border: 1px solid #dee2e6; 
-  }
-  
-  .table-hover tbody tr:hover {
-    background-color: #f2f2f2;
-    cursor: pointer;
-  }
-  

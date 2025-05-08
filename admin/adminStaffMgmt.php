@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     $_SESSION['success_message'] = "Successfully updated account!";
-    header("Location: ../admin/ad,ominStaffMgmt.php");
+    header("Location: ../admin/adminStaffMgmt.php");
     exit();
 }
 ?>

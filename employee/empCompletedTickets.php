@@ -84,8 +84,7 @@ if ($_SESSION['RoleId'] != 4) {
                                 <i class="fa fa-filter me-1"></i>
                             </button>
                             <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple me-2"></i>Status</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-dot me-2"></i>Type of Issue</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-2"></i>Type of Issue</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-circle me-2"></i>IT Technician</a></li>
                             </ul>
                         </div>
