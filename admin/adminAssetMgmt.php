@@ -168,7 +168,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
         </div>
     </div>
-    <?php include '../modals/adminRegisterAsset.php'; ?>
+    <?php include '../modals/RegisterAsset.php'; ?>
 
     <script>
   document.getElementById('searchInput').addEventListener('keyup', function () {

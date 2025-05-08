@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 Edit
                                             </button>
                                             <div class="modal fade" id="editModal<?php echo $user['UserId']; ?>" tabindex="-1">
-                        //Update modal
+                        // Update IT Modal
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                             <form method="POST" action="../modals/adminUpdateIT.php">
