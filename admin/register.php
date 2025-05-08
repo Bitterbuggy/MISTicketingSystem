@@ -15,10 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rawPassword = bin2hex(random_bytes(4)); // Generates an 8-character secure random password
     $password = password_hash($rawPassword, PASSWORD_DEFAULT);
 
-
-
-
-    
     // Insert into t_users
     $sql = "INSERT INTO t_users (FirstName, LastName, Email, Contactno, DistrictId, BranchId, Password, RoleId)
             VALUES (:firstName, :lastName, :email, :contactno, :districtId, :branchId, :password, :roleId)";
@@ -105,8 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     }
 
-    
-
      // Send email to the user
      $subject = "Your QCPL STS Account Credentials";
      $message = "Hello $firstName $lastName,\n\n".
@@ -122,7 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
  // Set success message in session with email and password
  $_SESSION['success_message'] = "Successfully added an account!<br>Email: $email<br>Temporary Password: $rawPassword";
-  
 
 
     header("Location: " . $_SERVER['HTTP_REFERER']); 

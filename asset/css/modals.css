@@ -12,7 +12,7 @@
 }
 
 .modal-dialog .modal-content {
-    border-radius: 1.5rem;
+    border-radius: 1.2rem;
     background-color: #fafafa;
     padding: 1rem;
 }
@@ -27,7 +27,7 @@
     background-color: #fafafa;
     border: 2px solid #014fa3;
     font-size: 1rem;
-    border-radius: .3rem;
+    border-radius: 20px !important;
 }
 
 .modal-body textarea {
@@ -67,15 +67,20 @@
 }
 
 .modal-body i {
-    font-size: 5rem;
+    font-size: 3rem;
+    color: #0060c7;
+    margin-bottom: 1rem;
 }
 
-.modal-body h4 {
+.modal-body h2 {
+    font-size: 2rem;
+    color: #0060c7;
     margin-bottom: 1rem;
 }
 
 .modal-body p {
+    font-size: 1.2rem;
     margin-bottom: .2rem;
+    color: #1e2a36;
+    font-weight: 500;
 }
-
-  

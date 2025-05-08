@@ -7,7 +7,7 @@
 include '../Includes/config.php';
 include '../Includes/check_session.php';
 if ($_SESSION['RoleId'] != 1) {
-    header('Location: home.php');
+    header('Location: ../employee/home.php');
     exit();
 }
 ?>
@@ -21,7 +21,7 @@ if ($_SESSION['RoleId'] != 1) {
     <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
 
     <!-- External CSS Link/s -->
-    <link rel ="stylesheet" href="../asset/css/admin-sidebar.css">
+    <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
 
     <!-- Bootstrap CSS -->
@@ -36,9 +36,9 @@ if ($_SESSION['RoleId'] != 1) {
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Custom JS Link/s -->
-    <script src="../asset/js/admin-sidebar.js"></script>
-    <script src="../asset/js/greeting-card.js"></script>
+    <!-- External JS Link/s -->
+    <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/greetingCard.js"></script>
     <script src="../asset/js/recentTicket.js"></script>
     <script src="../asset/js/ticketSummary.js"></script>
     <script src="../asset/js/adminNavTables.js"></script>
@@ -47,7 +47,7 @@ if ($_SESSION['RoleId'] != 1) {
 <body>
     <div class="layout-container d-flex">
         <!-- Sidebar and Header -->
-        <?php include '../admin/inc/admin-sidebar.php'; ?>
+        <?php include '../admin/inc/sidebar.php'; ?>
 
         <!-- Wrapper for Header + Main -->
         <div class="main-wrapper w-100" style="margin-left: 80px; margin-top: 30px;">
@@ -68,7 +68,7 @@ if ($_SESSION['RoleId'] != 1) {
                             <img src="../asset/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
                         </div>
                     </div>
- 
+
                     <!-- Recent Ticket Card -->
                     <div class="col-md-4 mb-3">
                         <div class="ticket-container">
@@ -162,7 +162,7 @@ if ($_SESSION['RoleId'] != 1) {
                             </ul>
 
                         <!-- View All Tickets Link -->
-                        <p class="view m-0"><a href="tickets.php">View All Tickets <i class="fa-solid fa-chevron-right"></i></a></p>
+                        <p class="view m-0"><a href="adminTicketMgmt.php">View All Tickets <i class="fa-solid fa-chevron-right"></i></a></p>
                         </div>
 
                         <!-- Tab Content Container -->

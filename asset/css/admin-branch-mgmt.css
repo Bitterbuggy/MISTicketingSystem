@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #f3f2f7 !important;
+  background-color: #f3f2f7;
   overflow-x: hidden;
 }
 
@@ -16,16 +16,14 @@ main {
   margin-right: 12px;
 }
 
-/* SEARCH, FILTER, SORT, AND ADD BUTTON*/
-.gap-2 {
-    gap: 0.5rem;
+/* NAVIGATION BAR */
+.branchmgmt-nav {
+    margin: auto;
+    text-align: center;
 }
 
-.me-1 { /* ICON */
-    margin-right: 0.25rem;
-}
-
-.div-mods {
+/* Tabs */
+.branchmgmt-nav .div-mods {
     border: 3px solid #0060c7;
     border-radius: 50px;
     font-weight: 600;
@@ -56,17 +54,14 @@ main {
     color: #fafafa;
 }
 
-/* ADD NEW STAFF BUTTON 
-.btn-add {
-    background-color: #0060c7 !important;
-    border-radius: 30px !important;
-    font-size: 17px !important;
-    width: 280px !important;
-    height: 2.45rem !important;
-    color: white !important;
-    font-weight: 600 !important;
-    border: none !important;
-} */
+/* Inactive Tab */
+.div-mods.inactive {
+    background-color: white;
+}
+
+.div-mods.inactive:hover {
+    background-color: #e9ecef;
+}
 
 /* SEARCH BAR */
 .input-group-text.control-btn {
@@ -75,14 +70,16 @@ main {
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
     border-right: none !important;
+    background-color: #3086e1 !important;
+    color: white !important;
 }
 
 .form-control {
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  border-top-left-radius: 12px !important;
-  border-bottom-left-radius: 12px !important;
-  height: 40px; /* match height */
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+    height: 40px;
 }
 
 /* FILTER AND SORT BUTTONS */
@@ -92,11 +89,13 @@ main {
     display: flex !important;
     align-items: center !important;
     gap: 6px !important;
-    margin-left: 0 !important;
-    transition: all 0.2s ease !important;
     background-color: #3086e1 !important;
     border-color: #3086e1 !important;
     color: white !important;
+    transition: all 0.2s ease !important;
+    padding: 6px 12px !important;
+    font-size: 15px !important;
+    white-space: nowrap;
 }
 
 .control-btn:hover, .btn-primary:hover {
@@ -104,6 +103,7 @@ main {
     color: white !important;
     border-color: #70abe9 !important;
 }
+
 /* DROPDOWN MENU */
 .dropdown-menu {
     border-radius: 12px !important;
@@ -122,7 +122,8 @@ main {
 
 /* TABLE */
 .table {
-    width: 100%;
+    width: 100%; 
+    margin-top: 10px;
     border-collapse: collapse; 
     border-radius: 8px;
     overflow: hidden;
@@ -139,10 +140,6 @@ main {
     background-color: #2577ce; 
     color: white; 
     text-align: center;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f2f2f2;
 }
 
 .table-bordered {
@@ -172,4 +169,41 @@ main {
 
 .btn-danger {
     background-color: #ff0000 !important;;
+}
+
+/* TICKET STATUS BUTTONS */
+.btn-pending {
+    background-color: #ffc107 !important;
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
+}
+
+.btn-ongoing {
+    background-color: #17a2b8 !important;
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
+}
+
+.btn-completed {
+    background-color: #0fa100 !important;
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
+}
+
+.btn-cancelled {
+    background-color: #cf1127 !important;
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
 }
