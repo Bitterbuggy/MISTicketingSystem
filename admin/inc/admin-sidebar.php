@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="adminAssetMgmt.php">
+                <a href="../admin/manageasset.php">
                 <span class="icon"><i class="fa fa-toolbox"></i></span>
                 <span class="text">Assets</span>
                 </a>
@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="../auth/adminActivityLogs.php">
+                <a href="../auth/ActivityLogs.php">
                 <span class="icon"><i class="fa-solid fa-diagram-next"></i></span>
                 <span class="text">History</span>
                 </a>
