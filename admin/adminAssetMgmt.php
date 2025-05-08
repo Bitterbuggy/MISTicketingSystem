@@ -53,7 +53,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col-12">
             <div class="container-fluid assetmgmt-nav">
             <div class="d-flex flex-wrap align-items-center justify-content-between mt-2">
-            <!-- Left: Add New Asset Button -->
+            <!-- Left: Asset Management -->
             <!-- Tabs Section -->
             <div class="d-flex flex-wrap gap-2">
                 <div class="div-mods active" onclick="window.location.href='adminAssetMgmt.php'">

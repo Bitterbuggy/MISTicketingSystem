@@ -33,8 +33,6 @@ include '../Includes/check_session.php';
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/greetingCard.js"></script>
-    <script src="../asset/js/recentTicket.js"></script>
-    <script src="../asset/js/ticketSummary.js"></script>
     <script src="../asset/js/adminNavTables.js"></script>
 </head>
 
@@ -116,7 +114,7 @@ include '../Includes/check_session.php';
 <h2>Welcome, <!?php echo $_SESSION['FirstName']; ?>!</h2>
 <p>You are logged in as a regular user.</p>
 <a href="../auth/logout.php">Logout</a>
-<a href="../submit_ticket.php">Ticket</a>
+<a href="../submitTicket.php">Ticket</a>
 
 </body>
 </html>-->

@@ -105,6 +105,7 @@ if (isset($_SESSION['success_message'])): ?>
             </form>
             </div>
             </div>
+        </form>
         </div>
         </div>
     </div>
