@@ -24,65 +24,60 @@ if (isset($_SESSION['success_message'])): ?>
     <div class="modal fade" id="registerITModal" tabindex="-1" aria-labelledby="registerITModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <form action="register.php" method="POST">
+        <form action="../admin/register.php" method="POST">
             <div class="modal-header">
             <h5 class="modal-title" id="registerITModalLabel">Register a New IT Staff</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-            <form action="register.php" method="POST">
                 <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="firstName" class="form-label">First Name</label>
-                    <input type="text" name="firstName" id="Firstname" class="form-control rounded-pill" required>
+                    <input type="text" name="first_name" id="Firstname" class="form-control rounded-pill" required>
                 </div>
                 <div class="col-md-6">
                     <label for="lastName" class="form-label">Last Name</label>
-                    <input type="text" name="lastName" id="Lastname" class="form-control rounded-pill" required>
+                    <input type="text" name="last_name" id="Lastname" class="form-control rounded-pill" required>
                 </div>
                 </div>
 
                 <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="emailAddress" class="form-label">Email</label>
-                    <input type="text" name="emailAddress" id="Emailaddress" class="form-control rounded-pill" required>
+                    <input type="text" name="email" id="Emailaddress" class="form-control rounded-pill" required>
                 </div>
                 <div class="col-md-6">
                     <label for="contactNumber" class="form-label">Contact Number</label>
-                    <input type="text" name="contactNumber" id="Contactnumber" class="form-control rounded-pill" required>
+                    <input type="number" name="contactno" id="Contactnumber" class="form-control rounded-pill" required>
                 </div>
                 </div>
 
                 <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="branchID" class="form-label">Branch ID</label>
-                    <select name="branch_ID" id="BranchiD" class="form-control rounded-pill" required>
+                    <select name="branch_id" id="BranchiD" class="form-control rounded-pill" required>
                         <option value="">----- Select Branch -----</option>
-                        <?php
-                        // This query joins branch with district to get names
-                        $stmt = $conn->query("SELECT b.BranchId, b.BranchName, b.DistrictId, d.DistrictName 
-                                            FROM t_branch b
-                                            JOIN t_district d ON b.DistrictId = d.DistrictId");
-
-                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            echo '<option value="' . $row['BranchId'] . '" data-district="' . $row['DistrictId'] . '">' .
+                        <option value="">-- Select Branch --</option>
+                            <?php
+                            $stmt = $conn->query("SELECT b.BranchId, b.BranchName, b.DistrictId, d.DistrictName 
+                                                    FROM t_branch b
+                                                    JOIN t_district d ON b.DistrictId = d.DistrictId");
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<option value="' . $row['BranchId'] . '" data-district="' . $row['DistrictId'] . '">' .
                                     $row['BranchName'] . ' (' . $row['DistrictName'] . ')' .
-                                '</option>';
-                        }
-                        ?>
+                                    '</option>';
+                            }
+                            ?>
                     </select> 
+                    <input type="hidden" name="district_id" id="district_id">
                 </div>
-                <div class="col-md-6">
-                    <!-- Hidden district_id field to be set using JS -->
-                    <label for="districtID" class="form-label">District ID</label>
-                    <input type="number" name="district_id" id="district_id" class="form-control rounded-pill" readonly>
-                </div>
+               
                 </div>
 
                 <div class="mb-3">
                 <label for="role" class="form-label">Role</label>
-                <select name="Role" id="role" class="form-control rounded-pill" rows="3">
+                <select name="role_id" id="role" class="form-control rounded-pill" rows="3">
                     <option value="3">IT Staff</option>
                 </select>
                 </div>
@@ -129,15 +124,43 @@ if (isset($_SESSION['success_message'])): ?>
         </div>
     </div>
 
-<script>
-    const branchSelect = document.querySelector('select[name="branch_id"]');
-    const districtInput = document.getElementById('district_id');
+    <script>
+  const branchSelect = document.querySelector('select[name="branch_id"]');
+  const districtInput = document.getElementById('district_id');
 
+  if (branchSelect) {
     branchSelect.addEventListener('change', function () {
-        const selectedOption = branchSelect.options[branchSelect.selectedIndex];
-        const districtId = selectedOption.getAttribute('data-district');
-        districtInput.value = districtId;
+      const selectedOption = branchSelect.options[branchSelect.selectedIndex];
+      const districtId = selectedOption.getAttribute('data-district');
+      districtInput.value = districtId;
     });
+  }
+
+  document.querySelector('select[name="role_id"]').addEventListener('change', function () {
+    if (this.value == "1") {
+      document.getElementById('admin_fields').style.display = 'block';
+    } else {
+      document.getElementById('admin_fields').style.display = 'none';
+    }
+  });
+
+  // Modal closing
+  document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('successModal');
+    var span = document.querySelector('.modal .close');
+
+    if (span) {
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  });
 </script>
 
 <script>

@@ -83,7 +83,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="d-flex flex-wrap align-items-center gap-3" style="flex: 1 1 auto; justify-content: flex-end;">
             <!-- Search Bar -->
             <div class="input-group" style="max-width: 300px;">
-            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
             <span class="input-group-text control-btn" id="search-icon">
                 <i class="fa fa-search"></i>
             </span>
@@ -124,7 +124,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="row no-gutters mt-4">
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
+                        <table id="assetTable" class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th style="width: 4%;">Branch</th>
@@ -165,5 +165,19 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
     <?php include '../modals/adminRegisterAsset.php'; ?>
+
+    <script>
+  document.getElementById('searchInput').addEventListener('keyup', function () {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#assetTable tbody tr');
+
+    rows.forEach(row => {
+      const cells = Array.from(row.getElementsByTagName('td'));
+      const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+      row.style.display = match ? '' : 'none';
+    });
+  });
+</script>
 </body>
+
 </html>

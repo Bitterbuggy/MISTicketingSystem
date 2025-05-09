@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="d-flex flex-wrap flex-lg-nowrap align-items-center gap-2">
                         <!-- Search -->
                         <div class="input-group" style="max-width: 280px;">
-                            <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
                             <span class="input-group-text control-btn"><i class="fa fa-search"></i></span>
                         </div>
                         
@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row no-gutters mt-4">
                 <div class="col-12">
                     <div class="table-responsive"> 
-                        <table class="table table-striped table-hover" id="tblLIC">
+                        <table id="licTable" class="table table-striped table-hover" id="tblLIC">
                             <thead class="thead-dark">
                                 <tr>
                                     <th style="width:2%">LIC ID</th>
@@ -191,5 +191,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- External JS Files -->
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/adminfetchModal.js"></script>
+
+    <script>
+  document.getElementById('searchInput').addEventListener('keyup', function () {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#licTable tbody tr');
+
+    rows.forEach(row => {
+      const cells = Array.from(row.getElementsByTagName('td'));
+      const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+      row.style.display = match ? '' : 'none';
+    });
+  });
+</script>
 </body>
 </html>
