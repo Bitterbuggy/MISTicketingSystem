@@ -172,7 +172,7 @@ $roleId = $_SESSION['RoleId'];
             <div class="sidebar-logout">
                 <ul class="sidebar-nav p-0">
                     <li class="sidebar-item">
-                        <a href="/auth/logout.php">
+                        <a href="../auth/logout.php">
                             <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
                             <span class="text">Log Out</span>
                         </a>
