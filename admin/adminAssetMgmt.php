@@ -37,7 +37,11 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
-    <link rel="stylesheet" href="../asset/css/admin-asset-mgmt.css">
+    <link rel="stylesheet" href="../asset/css/div_mods.css">
+    <link rel="stylesheet" href="../asset/css/navtabs.css">
+    <link rel="stylesheet" href="../asset/css/tbl_charts.css">
+    <link rel="stylesheet" href="../asset/css/tbl-controls.css">
+    <link rel="stylesheet" href="../asset/css/buttons.css">    
     <link rel ="stylesheet" href="../asset/css/pagination.css">
 
     <!-- Bootstrap CSS -->
@@ -74,7 +78,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="div-mods inactive" onclick="window.location.href='adminTransferRequestsList.php'">
                     <span class="mods">Transfer Requests</span>
                 </div>
-                <div class="div-mods inactive" data-bs-toggle="modal" data-bs-target="#registerAssetModal">
+                <div class="div-mods action" data-bs-toggle="modal" data-bs-target="#registerAssetModal">
                     <span class="mods">Register an Asset</span>
                 </div>
             </div>
@@ -164,7 +168,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
         </div>
     </div>
-    <?php include '../modals/adminRegisterAsset.php'; ?>
+    <?php include '../modals/RegisterAsset.php'; ?>
 
     <script>
   document.getElementById('searchInput').addEventListener('keyup', function () {
