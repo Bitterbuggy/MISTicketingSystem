@@ -237,16 +237,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="../asset/js/adminfetchModal.js"></script>
     
     <script>
-  document.getElementById('searchInput').addEventListener('keyup', function () {
-    const filter = this.value.toLowerCase();
-    const rows = document.querySelectorAll('#staffTable tbody tr');
+    document.getElementById('searchInput').addEventListener('keyup', function () {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#staffTable tbody tr');
 
-    rows.forEach(row => {
-      const cells = Array.from(row.getElementsByTagName('td'));
-      const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
-      row.style.display = match ? '' : 'none';
+        rows.forEach(row => {
+        const cells = Array.from(row.getElementsByTagName('td'));
+        const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+        row.style.display = match ? '' : 'none';
+        });
     });
-  });
-</script>
+    </script>
 </body>
 </html>
