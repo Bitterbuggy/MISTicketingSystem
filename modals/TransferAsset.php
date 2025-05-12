@@ -89,13 +89,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-4">
                     <label for="assetStatus" class="form-label">Status</label>
                     <select name="AssetStatus" id="assetStatus"  class="form-control rounded-pill" required>
-                        <option value="">-- Select Status --</option>
+                        <option value="" default>-- Select Status --</option>
                         <option value="available">Available</option>
                         <option value="in use">In Use</option>
                         <option value="maintenance">Maintenance</option>
                         <option value="disposed">Disposed</option>
                         <option value="transferred">Transferred</option>
-                        <option value="transfer request">Transfer Request</option>
                     </select>
                 </div>
                 </div>

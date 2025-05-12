@@ -111,7 +111,7 @@ if ($_SESSION['RoleId'] != 1) {
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- Ticket Summary Cards -->
                 <div class="row no-gutters mt-3 align-items-center">
                     <h3 class="fw-bold mb-3" id="ticket-summary-title">Ticket Summary</h3>
@@ -286,6 +286,8 @@ if ($_SESSION['RoleId'] != 1) {
         </div>
     </div>
 
+    <!-- View Ticket Info Modal -->
+    <?php include '../modals/viewTicketInfo.php'; ?>
     <!-- External JS Link -->
     <script src="../asset/js/adminCharts.js"></script>
 </body>
