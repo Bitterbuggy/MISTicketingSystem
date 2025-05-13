@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!-- External CSS Link/s -->
 <link rel="stylesheet" href="../asset/css/modals.css">
 <link rel="stylesheet" href="../asset/css/buttons.css">
@@ -17,7 +21,7 @@
 
             <!-- Modal body -->
             <div class="modal-body" id="viewTicketModalBody">
-                <form id="view-ticket-form">
+                < id="view-ticket-form">
                     <div class="col-12">
                         <div class="col-6">
                         <div class="row">
@@ -116,6 +120,12 @@
                             </textarea>
                         </div>
                     </div>
+                    
+                    <!--?php if(strtolower($ticket['Status'])=="pending") { ?>-->
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-accept">Approve</button>
+                    </div>
+                    <!--?php endif; ?-->
                 </form>
             </div>
         </div>

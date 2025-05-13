@@ -3,7 +3,7 @@
 .btn-status {
     border-radius: 30px !important;
     font-size: 15px !important;
-    width: 70%;
+    width: 100%;
     color: white !important;
     font-weight: 650 !important;
     pointer-events: none;
@@ -21,7 +21,7 @@
     background-color: #0fa100 !important;
 }
 
-.btn-cancelled {
+.btn-cancelled, .btn-rejected {
     background-color: #cf1127 !important;
 }
 
@@ -60,7 +60,7 @@
 }
 
 /* SUBMIT A TICKET */
-.btn-submit {
+.btn-submit, .btn-accept {
     background-color: #0060c7 !important;
     border-radius: 30px !important;
     font-size: 17px !important;
