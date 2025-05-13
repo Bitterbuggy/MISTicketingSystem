@@ -168,7 +168,7 @@ if ($_SESSION['RoleId'] != 2) {
                             </ul>
 
                         <!-- View All Tickets Link -->
-                        <p class="view m-0"><a href="adminTicketMgmt.php">View All Tickets <i class="fa-solid fa-chevron-right"></i></a></p>
+                        <p class="view m-0"><a href="licTicketMgmt.php">View All Tickets <i class="fa-solid fa-chevron-right"></i></a></p>
                         </div>
 
                         <!-- Tab Content Container -->

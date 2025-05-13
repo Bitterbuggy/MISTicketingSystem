@@ -60,11 +60,14 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <!-- Left: Asset Management -->
             <!-- Tabs Section -->
             <div class="d-flex flex-wrap gap-2">
-                <div class="div-mods active" onclick="window.location.href='empAssetMgmt.php'">
+                <div class="div-mods active" onclick="window.location.href='licAssetMgmt.php'">
                     <span class="mods">All Assets</span>
                 </div>
-                <div class="div-mods inactive" onclick="window.location.href='empTransferRequestsList.php'">
+                <div class="div-mods inactive" onclick="window.location.href='licTransferRequestsList.php'">
                     <span class="mods">Transfer Requests</span>
+                </div>
+                <div class="div-mods action" data-bs-toggle="modal" data-bs-target="#registerAssetModal">
+                    <span class="mods">Register an Asset</span>
                 </div>
             </div>
 
@@ -152,5 +155,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
         </div>
     </div>
+    <?php include '../modals/RegisterAsset.php'; ?>
 </body>
 </html>
