@@ -6,10 +6,18 @@
 
 include '../Includes/config.php';
 include '../Includes/check_session.php';
+
+//Ticket table 
+
+
 if ($_SESSION['RoleId'] != 1) {
     header('Location: ../employee/home.php');
     exit();
 }
+
+
+
+
 ?>
 
 <!DOCTYPE html>
