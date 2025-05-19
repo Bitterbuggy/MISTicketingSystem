@@ -33,7 +33,7 @@ $districts = $conn->query("SELECT DistrictId FROM t_branch")->fetchAll(PDO::FETC
 
 <!-- Submit Ticket Modal -->
 <div class="modal fade" id="submitTicketModal" tabindex="-1" aria-labelledby="submitTicketModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
     <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="submitTicketModalLabel">Submit A Ticket</h5>
@@ -42,29 +42,44 @@ $districts = $conn->query("SELECT DistrictId FROM t_branch")->fetchAll(PDO::FETC
 
     <div class="modal-body">
         <form action="../employee/create_ticket.php" method="POST">
-            <label for="EmployeeId">Employee ID:</label>
-            <select name="EmployeeId" required>
-                <option value="">-- Select Employee --</option>
-                <?php foreach ($employees as $emp): ?>
-                    <option value="<?= htmlspecialchars($emp['EmployeeId']) ?>"><?= htmlspecialchars($emp['EmployeeId']) ?></option>
-                <?php endforeach; ?>
-            </select><br><br>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="TicketId" class="form-label">Ticket ID:</label>
+                    <input type="text" name="TicketId" id="TicketId" class="form-control rounded-pill" readonly>
+                </div>
 
-            <label for="BranchId">Branch:</label>
-            <select name="BranchId" required>
-                <option value="">-- Select Branch --</option>
-                <?php foreach ($branches as $branch): ?>
-                    <option value="<?= $branch['BranchId'] ?>"><?= $branch['BranchId'] ?> - <?= $branch['BranchName'] ?? 'Unnamed' ?></option>
-                <?php endforeach; ?>
-            </select><br><br>
+                <div class="col-md-6">
+                    <label for="EmployeeId" class="form-label">Employee</label>
+                    <select name="EmployeeId" id="EmployeeId" class="form-select rounded-pill" required>
+                        <option value=""></option>
+                        <?php foreach ($employees as $emp): ?>
+                            <option value="<?= htmlspecialchars($emp['EmployeeId']) ?>"><?= htmlspecialchars($emp['EmployeeId']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="BranchId" class="form-label">Branch:</label>
+                    <select name="BranchId" id="BranchId" class="form-select rounded-pill" required>
+                        <option value="">-- Select Branch --</option>
+                        <?php foreach ($branches as $branch): ?>
+                            <option value="<?= $branch['BranchId'] ?>"><?= $branch['BranchId'] ?> - <?= $branch['BranchName'] ?? 'Unnamed' ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-            <label for="DistrictId">District:</label>
-            <select name="DistrictId" required>
-                <option value="">-- Select District --</option>
-                <?php foreach ($districts as $district): ?>
-                    <option value="<?= $district['DistrictId'] ?>"><?= $district['DistrictId'] ?> - <?= $district['BranchName'] ?? 'Unnamed' ?></option>
-                <?php endforeach; ?>
-            </select><br><br>
+                <div class="col-md-6">
+                    <label for="DistrictId" class="form-label">District:</label>
+                    <select name="DistrictId" id="DistrictId" class="form-select rounded-pill" required>
+                        <option value="">-- Select District --</option>
+                        <?php foreach ($districts as $district): ?>
+                            <option value="<?= $district['DistrictId'] ?>"><?= $district['DistrictId'] ?> - <?= $district['BranchName'] ?? 'Unnamed' ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
 
             <label for="AssetId">Asset:</label>
             <select name="AssetId" required>
