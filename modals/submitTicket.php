@@ -1,6 +1,6 @@
 <?php
-include 'Includes/config.php';
-include 'Includes/check_session.php';
+include '../Includes/config.php';
+include '../Includes/check_session.php';
 
 // Fetch Issue Types
 $issues = $conn->query("SELECT * FROM t_issuedtype")->fetchAll(PDO::FETCH_ASSOC);
@@ -31,18 +31,16 @@ $districts = $conn->query("SELECT DistrictId FROM t_branch")->fetchAll(PDO::FETC
 <!-- Bootstrap JS (required for modal to function) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-
 <!-- Submit Ticket Modal -->
 <div class="modal fade" id="submitTicketModal" tabindex="-1" aria-labelledby="submitTicketModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg"> <!-- Large modal -->
+    <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-header">
         <h5 class="modal-title" id="submitTicketModalLabel">Submit A Ticket</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+    </div>
 
-      <div class="modal-body">
-        <!-- Original PHP Form -->
+    <div class="modal-body">
         <form action="../employee/create_ticket.php" method="POST">
             <label for="EmployeeId">Employee ID:</label>
             <select name="EmployeeId" required>
@@ -95,15 +93,15 @@ $districts = $conn->query("SELECT DistrictId FROM t_branch")->fetchAll(PDO::FETC
             </select><br><br>
 
             <label for="Description">Description:</label><br>
-            <textarea name="Description" rows="4" cols="50" placeholder="Describe the issue..."></textarea><br><br>
+            <textarea name="Description" placeholder="Describe the issue..."></textarea>
 
-           
-
-            <button type="submit" class="btn btn-success">Submit Ticket</button>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-submit">Submit Ticket</button>
+            </div>
         </form>
-      </div>
     </div>
-  </div>
+    </div>
+    </div>
 </div>
 
 
