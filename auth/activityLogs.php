@@ -40,7 +40,7 @@ $logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Redirect link based on role
 $redirectLink = match ($roleId) {
     1 => '../admin/admindashboard.php',
-    2 => '../branchadmin/bradmindashboard.php',
+    2 => '../branchadmin/licDashboard.php',
     3 => '../ITstaff/ITdashboard.php',
     default => '../employee/home.php',
 };

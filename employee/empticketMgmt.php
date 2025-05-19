@@ -254,6 +254,8 @@ if ($_SESSION['RoleId'] != 4) {
         </div>
     </div>
     <!-- Submit Ticket Modal -->
-    <?php include 'submitTicket.php'; ?>
+    <?php include '../modals/submitTicket.php'; ?>
+    <!-- View Ticket Modal -->
+    <?php include '../modals/viewTicketInfo.php'; ?>
 </body>
 </html>

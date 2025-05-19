@@ -36,23 +36,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!-- External CSS Link -->
+<!-- External CSS Link/s -->
 <link rel="stylesheet" href="../asset/css/modals.css">
+<link rel="stylesheet" href="../asset/css/buttons.css">
+
+<!-- External JS Link/s -->
+<script src="../asset/js/buttons.js"></script>
+
 
 <!-- Transfer Asset Modal -->
     <div class="modal fade" id="transferAssetModal" tabindex="-1" aria-labelledby="transferAssetModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <form action="register.php" method="POST">
+        <form action="#" method="POST">
             <div class="modal-header">
             <h5 class="modal-title" id="transferAssetModalLabel">Request to Transfer an Asset</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-            <form action="register.php" method="POST">
+            <form action="#" method="POST">
                 <div class="mb-3">
-                    <label for="branchId" class="form-label">Branch ID</label>
+                    <label for="branchId" class="form-label">Branch</label>
                     <select name="branch_ID" id="BranchiD" class="form-control rounded-pill" required>
                         <option value="">----- Select Branch -----</option>
                         <?php
@@ -89,13 +94,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-4">
                     <label for="assetStatus" class="form-label">Status</label>
                     <select name="AssetStatus" id="assetStatus"  class="form-control rounded-pill" required>
-                        <option value="">-- Select Status --</option>
+                        <option value="" default>-- Select Status --</option>
                         <option value="available">Available</option>
                         <option value="in use">In Use</option>
                         <option value="maintenance">Maintenance</option>
                         <option value="disposed">Disposed</option>
                         <option value="transferred">Transferred</option>
-                        <option value="transfer request">Transfer Request</option>
                     </select>
                 </div>
                 </div>
