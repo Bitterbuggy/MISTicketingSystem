@@ -77,16 +77,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="email" name="email" class="form-control rounded-pill" value="<?php echo $user['Email']; ?>" required>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Contact No</label>
-                    <input type="text" name="contactno" class="form-control rounded-pill" value="<?php echo $user['Contactno']; ?>" required>
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control rounded-pill" required>
                 </div>
                 </div>
 
                 <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="branchID" class="form-label">Branch</label>
-                    <input type="text" name="branch_id" id="BranchiD" class="form-control rounded-pill" readonly>                    </input>
-                    <input type="hidden" name="district_id" id="district_id">
+                    <label class="form-label">Contact No</label>
+                    <input type="text" name="contactno" class="form-control rounded-pill" value="<?php echo $user['Contactno']; ?>" required>
                 </div>
                 <div class="col-md-6">
                     <label for="role" class="form-label">Role</label>
