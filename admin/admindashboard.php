@@ -166,6 +166,21 @@ if ($_SESSION['RoleId'] != 1) {
                                 </li>
                             </ul>
 
+                            
+                        <!-- Branch Filter -->
+                        <form method="POST" action="" class="d-flex align-items-center mb-3">
+                            <select name="filter_branch" class="form-select me-2" style="width: 200px;" onchange="this.form.submit()">
+                                <option value="">All Branches</option>
+                                <?php
+                                $stmt = $conn->query("SELECT BranchId, BranchName FROM t_branch");
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    $selected = (isset($_POST['filter_branch']) && $_POST['filter_branch'] == $row['BranchId']) ? 'selected' : '';
+                                    echo "<option value='{$row['BranchId']}' $selected>{$row['BranchName']}</option>";
+                                }
+                                ?>
+                            </select>
+                        </form>
+
                         <!-- View All Tickets Link -->
                         <p class="view m-0"><a href="adminTicketMgmt.php">View All Tickets <i class="fa-solid fa-chevron-right"></i></a></p>
                         </div>

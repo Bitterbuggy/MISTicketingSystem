@@ -194,7 +194,7 @@ $redirectLink = match ($roleId) {
     </div>
 
     <!-- Download Report Modal -->
-    <!?php include '../admin/modals/adminDownloadReport.php'; ?>
+    <!?php include '../admin/modals/DownloadReport.php'; ?>
 
     <script>
   document.getElementById('searchInput').addEventListener('keyup', function () {

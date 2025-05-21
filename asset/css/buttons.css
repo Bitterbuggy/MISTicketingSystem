@@ -17,6 +17,10 @@
     background-color: #17a2b8 !important;
 }
 
+.btn-approved {
+    background-color: #0038a8 !important;
+}
+
 .btn-completed {
     background-color: #0fa100 !important;
 }

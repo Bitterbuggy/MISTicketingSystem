@@ -56,8 +56,8 @@
                     <a href="auth/forgot-password.php" class="link-fp">Forgot Password?</a>
                     </div>
 
-                    <div class="text-center mt-3">
-                    <small style="font-size: 15px;">Don’t have an account? <a href="auth/login_error.php" class="link">Request one here</a>.</small>
+                    <div class="text-center mt-4">
+                    <small style="font-size: 15px;">Don’t have an account? <a href="auth/login_error.php" class="link">Request here</a>.</small>
                     </div>
                 </form>
             </div>

@@ -11,6 +11,19 @@ if ($_SESSION['RoleId'] != 2) {
     exit();
 }
 
+$filterBranch = isset($_POST['filter_branch']) ? $_POST['filter_branch'] : '';
+
+$query = "SELECT * FROM t_tickets";
+if (!empty($filterBranch)) {
+    $query .= " WHERE BranchId = :branchId";
+}
+
+$stmt = $conn->prepare($query);
+if (!empty($filterBranch)) {
+    $stmt->bindParam(':branchId', $filterBranch);
+}
+$stmt->execute();
+
 ?>
 
 <!DOCTYPE html>
@@ -166,9 +179,11 @@ if ($_SESSION['RoleId'] != 2) {
                                 <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
                                 </li>
                             </ul>
-
-                        <!-- View All Tickets Link -->
-                        <p class="view m-0"><a href="licTicketMgmt.php">View All Tickets <i class="fa-solid fa-chevron-right"></i></a></p>
+                            
+                            <!-- View All Tickets Link -->
+                            <p class="view m-0">
+                                <a href="licTicketMgmt.php">View All Tickets <i class="fa-solid fa-chevron-right"></i></a>
+                            </p>
                         </div>
 
                         <!-- Tab Content Container -->
@@ -186,40 +201,15 @@ if ($_SESSION['RoleId'] != 2) {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
                                     <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000001</td>
-                                        <td>Branch 1</td>
-                                        <td>Issue 1</td>
-                                        <td>IT 1</td>
+                                        <td><?php echo $row['SubmittedAt']; ?></td>
+                                        <td><?php echo $row['TicketId']; ?></td>
+                                        <td><?php echo $row['BranchName']; ?></td>
+                                        <td><?php echo $row['Issue']; ?></td>
+                                        <td><?php echo $row['AssignedIT']; ?></td>
                                     </tr>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000002</td>
-                                        <td>Branch 2</td>
-                                        <td>Issue 2</td>
-                                        <td>IT 2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000003</td>
-                                        <td>Branch 3</td>
-                                        <td>Issue 3</td>
-                                        <td>IT 3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000004</td>
-                                        <td>Branch 4</td>
-                                        <td>Issue 4</td>                                     
-                                        <td>IT 4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000005</td>
-                                        <td>Branch 5</td>
-                                        <td>Issue 5</td>
-                                        <td>IT 5</td>
+                                    <?php endwhile; ?>
                                     </tr>
                                 </tbody>
                             </table>

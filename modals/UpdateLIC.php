@@ -7,13 +7,13 @@ if (isset($_SESSION['success_message'])) {
 }
 
 
-//IT staff table 
+//LIC table 
 $sql = "SELECT * FROM t_users WHERE RoleId=2" ;
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//update IT staff
+//LIC staff
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     $_SESSION['success_message'] = "Successfully updated account!";
-    header("Location: ../admin/ManageIT.php ");
+    header("Location: ../admin/adminBranchMgmt.php ");
     exit();
 }
 ?>
@@ -79,6 +79,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-6">
                     <label class="form-label">Contact No</label>
                     <input type="text" name="contactno" class="form-control rounded-pill" value="<?php echo $user['Contactno']; ?>" required>
+                </div>
+                </div>
+
+                <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="branchID" class="form-label">Branch</label>
+                    <input type="text" name="branch_id" id="BranchiD" class="form-control rounded-pill" readonly>                    </input>
+                    <input type="hidden" name="district_id" id="district_id">
+                </div>
+                <div class="col-md-6">
+                    <label for="role" class="form-label">Role</label>
+                    <select name="role_id" id="role" class="form-select rounded-pill" rows="3">
+                        <option value="" default></option>
+                        <!--?php 
+                        $stmt = $conn->query("SELECT r.RoleName 
+                                                    FROM t_roles 
+                                                    WHERE RoleId == 2");
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<option value="' . $row['RoleId'] . '">' . $row['RoleName'] . '</option>';
+                        }
+                        ?>-->
+                    </select>
                 </div>
                 </div>
 
@@ -131,13 +153,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
-
-<!--[DRAFT]form method="POST">
-<input type="hidden" name="id" value="<!?php echo $user['UserId']; ?>">
-First Name: <input type="text" name="first_name" value="<!?php echo $user['FirstName']; ?>" required><br>
-Last Name: <input type="text" name="last_name" value="<!?php echo $user['LastName']; ?>" required><br>
-Email: <input type="email" name="email" value="<!?php echo $user['Email']; ?>" required><br>
-Contact No: <input type="text" name="contactno" value="<!?php echo $user['Contactno']; ?>" required><br>
-<button type="submit">Update</button>
-<a href="../admin/adminBranchMgmt.php"> Back</a>
-</!-->

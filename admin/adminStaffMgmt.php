@@ -226,15 +226,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     
     <!-- Register IT Staff Modal -->
-    <?php include '../modals/adminRegisterIT.php'; ?>
+    <?php include '../modals/RegisterIT.php'; ?>
     <!-- Update IT Staff Modal -->
-    <?php include '../modals/adminUpdateIT.php'; ?>
+    <?php include '../modals/UpdateIT.php'; ?>
     <!-- Delete IT Staff Modal -->
-    <?php include '../modals/adminDeleteIT.php'; ?>
+    <?php include '../modals/DeleteIT.php'; ?>
 
     <!-- External JS Files -->
     <script src="../asset/js/sidebar.js"></script>
-    <script src="../asset/js/adminfetchModal.js"></script>
+    <script src="../asset/js/fetchModal.js"></script>
     
     <script>
     document.getElementById('searchInput').addEventListener('keyup', function () {

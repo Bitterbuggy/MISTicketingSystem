@@ -1,6 +1,5 @@
 <?php
 include '../Includes/config.php';
-include '../Includes/check_session.php';
 
 // Fetch Issue Types
 $issues = $conn->query("SELECT * FROM t_issuedtype")->fetchAll(PDO::FETCH_ASSOC);

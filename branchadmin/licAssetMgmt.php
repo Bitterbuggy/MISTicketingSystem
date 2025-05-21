@@ -66,9 +66,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="div-mods inactive" onclick="window.location.href='licTransferRequestsList.php'">
                     <span class="mods">Transfer Requests</span>
                 </div>
-                <div class="div-mods action" data-bs-toggle="modal" data-bs-target="#registerAssetModal">
-                    <span class="mods">Register an Asset</span>
-                </div>
             </div>
 
             <!-- Right: Table Controls -->
@@ -122,10 +119,10 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <th style="width: 3%;">Brand</th>
                                     <th style="width: 3%;">Serial Number</th>
                                     <th style="width: 3%;">Property Number</th>
-                                    <th style="width: 3%;">Acquisition</th>
+                                    <th style="width: 2%;">Acquisition</th>
                                     <th style="width: 2%;">Purchased Date</th>
                                     <th style="width: 2%;">Status</th>
-                                    <th style="width: 2%;">Description</th>
+                                    <th style="width: 2%;">Tool</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -143,7 +140,20 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <td><?php echo htmlspecialchars($asset['Acquisition']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
                                             <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>
-                                            <td><?php echo htmlspecialchars($asset['Description']); ?></td>
+                                            <td>
+                                            <!-- Edit Button -->
+                                            <button 
+                                                class="btn btn-edit btn-sm" 
+                                                onclick="openUpdateModal3(<?php echo $user['AssetId']; ?>)">
+                                                Edit
+                                            </button>
+                                            <!-- Delete Button -->
+                                            <button 
+                                                class="btn btn-danger btn-sm" 
+                                                onclick="openDeleteModal2(<?php echo $user['AssetId']; ?>)">
+                                                Delete
+                                            </button>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
@@ -155,6 +165,5 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
         </div>
     </div>
-    <?php include '../modals/RegisterAsset.php'; ?>
 </body>
 </html>

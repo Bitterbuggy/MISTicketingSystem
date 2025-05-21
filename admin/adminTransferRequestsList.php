@@ -78,6 +78,9 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="div-mods active" onclick="window.location.href='adminRegisterAsset.php'">
                     <span class="mods">Transfer Requests</span>
                 </div>
+                <div class="div-mods action" data-bs-toggle="modal" data-bs-target="#transferAssetModal">
+                    <span class="mods">Transfer an Asset</span>
+                </div>
             </div>
 
             <!-- Right: Table Controls -->
@@ -121,34 +124,40 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         </div>
 
-        <!-- Table for displaying assets -->
+        <!-- Table for displaying transfer requests -->
             <div class="row no-gutters mt-4">
                 <div class="col-12">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
-                            <thead>
+                        <thead>
                                 <tr>
-                                    <th style="width: 4%;">Branch</th>
-                                    <th style="width: 2.5%;">Brand</th>
-                                    <th style="width: 2.5%;">Type</th>
-                                    <th style="width: 4%;">Serial Number</th>
-                                    <th style="width: 2%;">Purchased Date</th>
-                                    <th>Status</th>
-                                    <th>Description</th>
+                                    <th style="width: 1%;">Request ID</th>
+                                    <th style="width: 2%;">Brand</th>
+                                    <th style="width: 3%;">Receiving Branch</th>
+                                    <th style="width: 1%;">Requested Date</th>
+                                    <th style="width: 2%;">Requested By</th>
+                                    <th style="width: 2%;">Approved By</th>
+                                    <th style="width: 2%;">Status</th>                               
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($assets as $asset): ?>
+                                <?php if (empty($assets)): ?>
                                     <tr>
-                                        <td><?php echo htmlspecialchars($asset['BranchName']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['AssetName']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['AssetTypeName']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['SerialNumber']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['PurchasedDate']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['AssetStatus']); ?></td>
-                                        <td><?php echo htmlspecialchars($asset['Description']); ?></td>
+                                    <td colspan="8">No transfer requests found.</td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php else: ?>
+                                    <?php foreach ($assets as $asset): ?>
+                                        <tr>
+                                            <td>0</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -157,5 +166,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
         </div>
     </div>
+    <?php include '../modals/TransferAsset.php'; ?>
 </body>
 </html>
