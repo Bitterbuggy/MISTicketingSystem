@@ -55,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- Update Asset -->
 <div class="modal fade" id="updateAssetModal" tabindex="-1" aria-labelledby="updateAssetModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <form action="../modals/UpdateAsset.php" method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateAssetModalLabel">Update Asset</h5>
+                    <h5 class="modal-title" id="updateAssetModalLabel">Update Asset Information</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Update Asset</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>

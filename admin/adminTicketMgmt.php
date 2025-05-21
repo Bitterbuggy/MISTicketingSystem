@@ -1,5 +1,5 @@
 <script>
-  var pageTitle = "Ticket Management";
+    var pageTitle = "Ticket Management";
 </script>
 
 <?php
@@ -14,9 +14,6 @@ if ($_SESSION['RoleId'] != 1) {
     header('Location: ../employee/home.php');
     exit();
 }
-
-
-
 
 ?>
 

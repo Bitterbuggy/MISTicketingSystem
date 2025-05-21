@@ -1,28 +1,15 @@
 <script>
-  var pageTitle = "Dashboard";
+    var pageTitle = "Dashboard";
 </script>
 
 <?php
 
 include '../Includes/config.php';
 include '../Includes/check_session.php';
-if ($_SESSION['RoleId'] != 2) {
+if ($_SESSION['RoleId'] == 2) {
     header('Location: ../employee/home.php');
     exit();
 }
-
-$filterBranch = isset($_POST['filter_branch']) ? $_POST['filter_branch'] : '';
-
-$query = "SELECT * FROM t_tickets";
-if (!empty($filterBranch)) {
-    $query .= " WHERE BranchId = :branchId";
-}
-
-$stmt = $conn->prepare($query);
-if (!empty($filterBranch)) {
-    $stmt->bindParam(':branchId', $filterBranch);
-}
-$stmt->execute();
 
 ?>
 
@@ -201,16 +188,7 @@ $stmt->execute();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
-                                    <tr>
-                                        <td><?php echo $row['SubmittedAt']; ?></td>
-                                        <td><?php echo $row['TicketId']; ?></td>
-                                        <td><?php echo $row['BranchName']; ?></td>
-                                        <td><?php echo $row['Issue']; ?></td>
-                                        <td><?php echo $row['AssignedIT']; ?></td>
-                                    </tr>
-                                    <?php endwhile; ?>
-                                    </tr>
+                                    <!-- Rows will be populated here -->
                                 </tbody>
                             </table>
                         </div>
@@ -228,7 +206,7 @@ $stmt->execute();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Rows will be populated by JavaScript -->
+                                    <!-- Rows will be populated here -->
                                 </tbody>
                             </table>
                         </div>
@@ -246,7 +224,7 @@ $stmt->execute();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Rows will be populated by JavaScript -->
+                                    <!-- Rows will be populated here -->
                                 </tbody>
                             </table>
                         </div>

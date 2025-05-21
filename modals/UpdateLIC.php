@@ -48,11 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Update LIC Modal -->
 <div class="modal fade" id="updateLICModal" tabindex="-1" aria-labelledby="updateLICModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
         <form action="register.php" method="POST">
             <div class="modal-header">
-            <h5 class="modal-title" id="updateLICModalLabel">Update Information</h5>
+            <h5 class="modal-title" id="updateLICModalLabel">Update LIC Information</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
             </div>

@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="modal-content">
         <form action="../modals/adminUpdateIT.php" method="POST">
             <div class="modal-header">
-            <h5 class="modal-title" id="updateITModalLabel">Update Information</h5>
+            <h5 class="modal-title" id="updateITModalLabel">Update IT Information</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
