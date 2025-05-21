@@ -287,6 +287,7 @@ if ($_SESSION['RoleId'] != 1) {
     <!-- External JS Link -->
     <script src="../asset/js/adminCharts.js"></script>
 
+    <!-- Filter by Branch Live Search -->
     <script>
     document.getElementById('branchSearchInput').addEventListener('keyup', function () {
         const filter = this.value.toLowerCase();

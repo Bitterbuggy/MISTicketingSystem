@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="modal-content">
             <form action="../modals/RegisterAsset.php" method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="registerAssetModalLabel">Register a New Asset</h5>
+                    <h5 class="modal-title" id="registerAssetModalLabel">Register an Asset</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 

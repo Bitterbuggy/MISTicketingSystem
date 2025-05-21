@@ -26,7 +26,7 @@ if (isset($_SESSION['success_message'])): ?>
         <div class="modal-content">
         <form action="../admin/register.php" method="POST">
             <div class="modal-header">
-            <h5 class="modal-title" id="registerITModalLabel">Register a New IT Staff</h5>
+            <h5 class="modal-title" id="registerITModalLabel">Register an IT Staff</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 

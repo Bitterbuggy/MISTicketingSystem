@@ -136,7 +136,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <th style="width: 3%;">Serial Number</th>
                                     <th style="width: 3%;">Property Number</th>
                                     <th style="width: 2%;">Acquisition</th>
-                                    <th style="width: 2%;">Purchased Date</th>
+                                    <th style="width: 2%;">Date Acquired</th>
                                     <th style="width: 2%;">Status</th>
                                     <th style="width: 2%;">Tool</th>
                                 </tr>

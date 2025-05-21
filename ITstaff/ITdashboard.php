@@ -87,10 +87,10 @@ include '../Includes/get-location.php';
                     </div>
                 </div>
             </nav>
-           
+        
 
-             <!-- Main Content Container -->
-             <div class="main-content" style="margin-left: 260px; padding: 20px;">
+            <!-- Main Content Container -->
+            <div class="main-content" style="margin-left: 260px; padding: 20px;">
                 <h2>Welcome Admin, <?php echo $_SESSION['FirstName']; ?>!</h2>
                 <p>You are now logged in as an IT.</p>
                 <br>

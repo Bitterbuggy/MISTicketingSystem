@@ -194,19 +194,19 @@ $redirectLink = match ($roleId) {
     </div>
 
     <!-- Download Report Modal -->
-    <?php include '../admin/modals/DownloadReport.php'; ?>
+    <!?php include '../admin/modals/DownloadReport.php'; ?>
 
     <script>
-  document.getElementById('searchInput').addEventListener('keyup', function () {
+    document.getElementById('searchInput').addEventListener('keyup', function () {
     const filter = this.value.toLowerCase();
     const rows = document.querySelectorAll('#logsTable tbody tr');
 
     rows.forEach(row => {
-      const cells = Array.from(row.getElementsByTagName('td'));
-      const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
-      row.style.display = match ? '' : 'none';
+        const cells = Array.from(row.getElementsByTagName('td'));
+        const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+        row.style.display = match ? '' : 'none';
     });
-  });
+    });
 </script>
 </body>
 </html>
