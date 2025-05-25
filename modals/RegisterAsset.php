@@ -103,8 +103,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="PurchasedDate" class="form-label">Purchased Date</label>
-                            <input type="date" name="PurchasedDate" id="PurchasedDate" class="form-control rounded-pill" required>
+                            <label for="Acquisition" class="form-label">Acquisition</label>
+                            <select name="Acquisition" id="Acquisition" class="form-select rounded-pill" required>
+                                <option value="" default></option>
+                                <option value="Donation">Donation</option>
+                                <option value="QCG">QCG</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -117,12 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="text" name="PropertyNumber" id="PropertyNumber" class="form-control rounded-pill" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="Acquisition" class="form-label">Acquisition</label>
-                            <select name="Acquisition" id="Acquisition" class="form-select rounded-pill" required>
-                                <option value="" default></option>
-                                <option value="Donation">Donation</option>
-                                <option value="QCG">QCG</option>
-                            </select>
+                            <label for="PurchasedDate" class="form-label">Purchased Date</label>
+                            <input type="date" name="PurchasedDate" id="PurchasedDate" class="form-control rounded-pill" required>
                         </div>
                     </div>
                     <div class="mb-3">

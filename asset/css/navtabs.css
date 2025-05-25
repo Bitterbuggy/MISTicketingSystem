@@ -48,7 +48,7 @@
 }
 
 #branchSearchInput {
-    border-radius: 8px;
+    border-radius: 8px !important;
 }
 
 .branch-filter .filter-btn, .branch-filter .filter-btn:hover {

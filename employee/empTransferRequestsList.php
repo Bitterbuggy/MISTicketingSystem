@@ -66,9 +66,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="div-mods active" onclick="window.location.href='empTransferRequestsList.php'">
                     <span class="mods">Transfer Requests</span>
                 </div>
-                <div class="div-mods action" data-bs-toggle="modal" data-bs-target="#transferAssetModal">
-                    <span class="mods">Transfer an Asset</span>
-                </div>
             </div>
 
             <!-- Right: Table Controls -->
@@ -155,6 +152,5 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
         </div>
     </div>
-    <?php include '../modals/TransferAsset.php'; ?>
 </body>
 </html>

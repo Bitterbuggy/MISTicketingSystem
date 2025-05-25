@@ -178,7 +178,7 @@ if ($_SESSION['RoleId'] != 1) {
                             <ul class="dropdown-menu px-2" id="branchDropdown">
                                 <!-- Search input inside dropdown -->
                                 <li class="mb-2">
-                                <input type="text" class="form-control form-control-sm" id="branchSearchInput" placeholder="Search Branch...">
+                                <input type="text" class="form-control" id="branchSearchInput" placeholder="Search Branch...">
                                 </li>
 
                                 <!-- Generated branch list -->
