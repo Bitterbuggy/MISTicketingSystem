@@ -127,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="mb-3">
                         <label for="Description" class="form-label">Description</label>
-                        <textarea name="Description" id="Description" class="form-control" rows="3"></textarea>
+                        <textarea name="Description" id="Description" class="form-control" rows="3" placeholder="Describe the specifications (RAM, ROM, Processor, OS, etc...)"></textarea>
                     </div>
                 </div>
 

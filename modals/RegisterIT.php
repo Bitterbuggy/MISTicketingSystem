@@ -113,64 +113,47 @@ if (isset($_SESSION['success_message'])): ?>
     </div>
 
     
-    <!-- Successful Creation Modal -->
-    <div class="modal" id="successfulCreateModal" tabindex="-1" aria-labelledby="successfulCreateModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <i class="fa-regular fa-check-circle md-icon"></i>
-                <h1>Successfully Added an Account!</h1>
-                <p class="p-success mt-4">
-                    See table for reflected changes.
-                </p>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary">Close</button>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
 
     <script>
-  const branchSelect = document.querySelector('select[name="branch_id"]');
-  const districtInput = document.getElementById('district_id');
+    const branchSelect = document.querySelector('select[name="branch_id"]');
+    const districtInput = document.getElementById('district_id');
 
-  if (branchSelect) {
+    if (branchSelect) {
     branchSelect.addEventListener('change', function () {
-      const selectedOption = branchSelect.options[branchSelect.selectedIndex];
-      const districtId = selectedOption.getAttribute('data-district');
-      districtInput.value = districtId;
+        const selectedOption = branchSelect.options[branchSelect.selectedIndex];
+        const districtId = selectedOption.getAttribute('data-district');
+        districtInput.value = districtId;
     });
-  }
-
-  document.querySelector('select[name="role_id"]').addEventListener('change', function () {
-    if (this.value == "1") {
-      document.getElementById('admin_fields').style.display = 'block';
-    } else {
-      document.getElementById('admin_fields').style.display = 'none';
     }
-  });
 
-  // Modal closing
-  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('select[name="role_id"]').addEventListener('change', function () {
+    if (this.value == "1") {
+        document.getElementById('admin_fields').style.display = 'block';
+    } else {
+        document.getElementById('admin_fields').style.display = 'none';
+    }
+    });
+
+    // Modal closing
+    document.addEventListener('DOMContentLoaded', function() {
     var modal = document.getElementById('successModal');
     var span = document.querySelector('.modal .close');
 
     if (span) {
-      span.onclick = function () {
+        span.onclick = function () {
         modal.style.display = "none";
-      }
+        }
     }
 
     window.onclick = function (event) {
-      if (event.target == modal) {
+        if (event.target == modal) {
         modal.style.display = "none";
-      }
+        }
     }
-  });
-</script>
+    });
+    </script>
 
-<script>
+    <script>
     document.querySelector('select[name="role_id"]').addEventListener('change', function () {
         if (this.value == 1) {
             document.getElementById('admin_fields').style.display = 'block';
@@ -178,4 +161,4 @@ if (isset($_SESSION['success_message'])): ?>
             document.getElementById('admin_fields').style.display = 'none';
         }
     });
-</script>
+    </script>

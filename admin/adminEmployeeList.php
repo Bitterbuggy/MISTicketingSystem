@@ -1,5 +1,5 @@
 <script>
-  var pageTitle = "Branch Management";
+    var pageTitle = "Branch Management";
 </script>
 
 <?php
@@ -19,6 +19,34 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+<?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Show the modal
+            var myModal = new bootstrap.Modal(document.getElementById('successfulRegistrationModal'));
+            myModal.show();
+
+            // Remove the 'success' parameter from the URL
+            const url = new URL(window.location);
+            url.searchParams.delete('success');
+            window.history.replaceState({}, document.title, url);
+        });
+    </script>
+<?php endif; ?>
+
+<?php if (isset($_GET['success']) && $_GET['success'] == 2): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var myModal = new bootstrap.Modal(document.getElementById('successfulUpdateModal'));
+            myModal.show();
+
+            const url = new URL(window.location);
+            url.searchParams.delete('success');
+            window.history.replaceState({}, document.title, url);
+        });
+    </script>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +73,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Font Awesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- External JS Files -->
+    <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/fetchModal.js"></script>
 </head>
 
 <body>
@@ -124,9 +153,19 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?php echo $user['BranchName']; ?></td>
                                     <!--td><?php echo $user['RoleId']; ?></!--td>-->
                                     <td>
-                                        <button class="btn btn-edit btn-sm" onclick="openEditModal3(<?php echo $user['UserId']; ?>)">Edit</button>
-                                        <button class="btn btn-danger btn-sm" onclick="openDeleteModal(<?php echo $user['UserId']; ?>)">Delete</button>
-                                    </td>  
+                                        <!-- Edit Button -->
+                                        <button 
+                                            class="btn btn-edit btn-sm" 
+                                            onclick="openEditModal3(<?php echo $user['UserId']; ?>)">
+                                            Edit
+                                        </button>
+                                        <!-- Delete Button -->
+                                        <button 
+                                            class="btn btn-danger btn-sm" 
+                                            onclick="openDeleteModal(<?php echo $user['UserId']; ?>)">
+                                            Delete
+                                        </button>
+                                    </td> 
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -139,11 +178,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
     <?php include '../modals/RegisterEmployee.php'; ?>
     <?php include '../modals/UpdateEmp.php'; ?>
-    <?php include '../modals/DeleteLIC.php'; ?>
-    
-    <!-- External JS Files -->
-    <script src="../asset/js/sidebar.js"></script>
-    <script src="../asset/js/fetchModal.js"></script>
+    <?php include '../modals/confirmationModal.php'; ?>
 
     <script>
     document.getElementById('searchInput').addEventListener('keyup', function () {

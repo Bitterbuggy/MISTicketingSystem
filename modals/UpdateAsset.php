@@ -1,7 +1,30 @@
 <?php
 include '../Includes/config.php';
 
+if (isset($_SESSION['success_message'])) {
+    echo "<div class='alert alert-success'>" . $_SESSION['success_message'] . "</div>";
+    unset($_SESSION['success_message']); // Remove the message after displaying
+}
+
+// Asset table
+$sql = "SELECT * FROM t_asset 
+        JOIN t_branch ON t_asset.BranchId = t_branch.BranchId;";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Update Asset
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateAssetId'])) {
+    $id = $_POST['updateAssetId'];
+
+$sql = "SELECT * FROM t_asset WHERE AssetId = :id";
+$stmt = $conn->prepare($sql);
+$stmt->execute(['id' => $id]);
+$assets = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $AssetId = $_POST['AssetId'];
     $BranchId = $_POST['BranchId'];
     $AssetName = $_POST['AssetName'];
     $AssetTypeId = $_POST['AssetTypeId'];
@@ -12,42 +35,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Acquisition = $_POST['Acquisition'];
     $Description = $_POST['Description'];
 
-    $sql = "INSERT INTO t_asset (
-                BranchId, AssetName, AssetTypeId, SerialNumber,
-                PropertyNumber, PurchasedDate, AssetStatus,
-                Acquisition, Description
-            ) VALUES (
-                :BranchId, :AssetName, :AssetTypeId, :SerialNumber,
-                :PropertyNumber, :PurchasedDate, :AssetStatus,
-                :Acquisition, :Description
-            )";
-
+    $sql = "UPDATE t_asset SET 
+                BranchId = :BranchId, 
+                AssetName = :AssetName, 
+                AssetTypeId = :AssetTypeId, 
+                SerialNumber = :SerialNumber, 
+                PropertyNumber = :PropertyNumber, 
+                PurchasedDate = :PurchasedDate, 
+                AssetStatus = :AssetStatus, 
+                Acquisition = :Acquisition, 
+                Description = :Description 
+            WHERE AssetId = :AssetId";
     $stmt = $conn->prepare($sql);
+    $stmt->execute([
+        'AssetId' => $AssetId,
+        'BranchId' => $BranchId,
+        'AssetName' => $AssetName,
+        'AssetTypeId' => $AssetTypeId,
+        'SerialNumber' => $SerialNumber,
+        'PropertyNumber' => $PropertyNumber,
+        'PurchasedDate' => $PurchasedDate,
+        'AssetStatus' => $AssetStatus,
+        'Acquisition' => $Acquisition,
+        'Description' => $Description
+    ]);
 
-    $stmt->bindParam(':BranchId', $BranchId);
-    $stmt->bindParam(':AssetName', $AssetName);
-    $stmt->bindParam(':AssetTypeId', $AssetTypeId);
-    $stmt->bindParam(':SerialNumber', $SerialNumber);
-    $stmt->bindParam(':PropertyNumber', $PropertyNumber);
-    $stmt->bindParam(':PurchasedDate', $PurchasedDate);
-    $stmt->bindParam(':AssetStatus', $AssetStatus);
-    $stmt->bindParam(':Acquisition', $Acquisition);
-    $stmt->bindParam(':Description', $Description);
-
-    if ($stmt->execute()) {
-        // Redirect based on RoleId
-        if (isset($_SESSION['RoleId']) && $_SESSION['RoleId'] == 2) {
-            header("Location: ../lic/licAssetMgmt.php?success=1");
-        } else {
-            // Default to admin
-            header("Location: ../admin/adminAssetMgmt.php?success=1");
-        }
-        exit();
-    } else {
-        echo "Error: Unable to update asset.<br>";
-        print_r($stmt->errorInfo());
-    }
-    
+    $_SESSION['update_success'] = true;
+    header("Location: ../admin/adminAssetMgmt.php ");
+    exit();
 }
 ?>
 
@@ -57,17 +72,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="modal fade" id="updateAssetModal" tabindex="-1" aria-labelledby="updateAssetModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <form action="../modals/UpdateAsset.php" method="POST">
+            <form method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="updateAssetModalLabel">Update Asset Information</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body">
-                    <div class="mb-3">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="AssetId" class="form-label">Asset ID</label>
+                            <input type="text" name="AssetId" id="AssetId" class="form-control rounded-pill" read-only>
+                        </div>
+                        <div class="col-md-6">
                         <label for="BranchId" class="form-label">Branch</label>
                         <input type="text" name="BranchId" id="BranchId" class="form-control rounded-pill" read-only>
                         </input>
+                        </div>
                     </div>
 
                     <div class="row mb-3">
@@ -99,8 +119,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="text" name="PropertyNumber" id="PropertyNumber" class="form-control rounded-pill" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="PurchasedDate" class="form-label">Purchased Date</label>
-                            <input type="date" name="PurchasedDate" id="PurchasedDate" class="form-control rounded-pill" required>
+                            <label for="Acquisition" class="form-label">Acquisition</label>
+                            <select name="Acquisition" id="Acquisition" class="form-select rounded-pill" required>
+                                <option value="" default></option>
+                                <option value="Donation">Donation</option>
+                                <option value="QCG">QCG</option>
+                            </select>
                         </div>
                     </div>
 
@@ -118,12 +142,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="Acquisition" class="form-label">Acquisition</label>
-                            <select name="Acquisition" id="Acquisition" class="form-select rounded-pill" required>
-                                <option value="" default></option>
-                                <option value="Donation">Donation</option>
-                                <option value="QCG">QCG</option>
-                            </select>
+                            <label for="PurchasedDate" class="form-label">Purchased Date</label>
+                            <input type="date" name="PurchasedDate" id="PurchasedDate" class="form-control rounded-pill" required>
                         </div>
                     </div>
 

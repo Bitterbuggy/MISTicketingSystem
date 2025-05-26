@@ -112,24 +112,6 @@ if (isset($_SESSION['success_message'])): ?>
         </div>
     </div>
 
-    <!-- Successful Creation Modal -->
-    <div class="modal" id="successfulCreateModal" tabindex="-1" aria-labelledby="successfulCreateModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <i class="fa-regular fa-check-circle md-icon"></i>
-                <h1>Successfully Added an Account!</h1>
-                <p class="p-success mt-4">
-                    See table for reflected changes.
-                </p>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary">Close</button>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-
     <script>
     const branchSelect = document.querySelector('select[name="branch_id"]');
     const districtInput = document.getElementById('district_id');

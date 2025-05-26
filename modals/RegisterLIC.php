@@ -8,10 +8,10 @@ include '../Includes/config.php'; // Ensure this is included at the top
 
 if (isset($_SESSION['success_message'])): ?>
     <div id="successModal" class="modal">
-      <div class="modal-content">
+    <div class="modal-content">
         <span class="close">&times;</span>
         <p><?php echo $_SESSION['success_message']; ?></p>
-      </div>
+    </div>
     </div>
     <?php unset($_SESSION['success_message']); ?>
     <?php endif; 
@@ -106,24 +106,6 @@ if (isset($_SESSION['success_message'])): ?>
                 <button type="submit" class="btn btn-primary">Register LIC</button>
                 </div>
             </form>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <!-- Successful Creation Modal -->
-    <div class="modal" id="successfulCreateModal" tabindex="-1" aria-labelledby="successfulCreateModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <i class="fa-regular fa-check-circle md-icon"></i>
-                <h1>Successfully Added an Account!</h1>
-                <p class="p-success mt-4">
-                    See table for reflected changes.
-                </p>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary">Close</button>
             </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ if (isset($_SESSION['success_message'])) {
     unset($_SESSION['success_message']); // Remove the message after displaying
 }
 
-//IT staff table 
+//LIC staff table 
 $sql = "SELECT * FROM t_users 
         JOIN t_roles ON t_users.RoleId = t_roles.RoleId 
         JOIN t_branch ON t_users.BranchId = t_branch.BranchId
@@ -21,7 +21,7 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//update IT staff
+//update LIC staff
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -169,9 +169,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <td><?php echo $user['BranchName']; ?></td>
                                         <!--td><?php echo $user['RoleName']; ?></!--td>-->
                                         <td>
-                                        <button class="btn btn-edit btn-sm" onclick="openEditModal2(<?php echo $user['UserId']; ?>)">Edit</button>
-                                        <button class="btn btn-danger btn-sm" onclick="openDeleteModal(<?php echo $user['UserId']; ?>)">Delete</button>
-                                        </td>
+                                            <!-- Edit Button -->
+                                            <button 
+                                                class="btn btn-edit btn-sm" 
+                                                onclick="openEditModal2(<?php echo $user['UserId']; ?>)">
+                                                Edit
+                                            </button>
+                                            <!-- Delete Button -->
+                                            <button 
+                                                class="btn btn-danger btn-sm" 
+                                                onclick="openDeleteModal(<?php echo $user['UserId']; ?>)">
+                                                Delete
+                                            </button>
+                                            </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -188,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Update LIC Modal -->
     <?php include '../modals/UpdateLIC.php'; ?>
     <!-- Delete LIC Modal -->
-    <?php include '../modals/DeleteLIC.php'; ?>
+    <?php include '../modals/confirmationModal.php'; ?>
 
     <!-- External JS Files -->
     <script src="../asset/js/sidebar.js"></script>

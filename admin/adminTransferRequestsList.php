@@ -104,7 +104,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <i class="fa fa-filter me-1"></i>
                 </button>
                 <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                    <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-copyright me-2"></i>Brand</a></li>
                     <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-toolbox me-2"></i>Type of Issue</a></li>
                     <li><a class="dropdown-item py-2 px-3" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
                 </ul>
@@ -132,11 +131,11 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <thead>
                                 <tr>
                                     <th style="width: 1%;">Request ID</th>
-                                    <th style="width: 2%;">Brand</th>
+                                    <th style="width: 2%;">Asset Name</th>
+                                    <th style="width: 3%;">Dispatching Branch</th>
                                     <th style="width: 3%;">Receiving Branch</th>
                                     <th style="width: 1%;">Requested Date</th>
                                     <th style="width: 2%;">Requested By</th>
-                                    <th style="width: 2%;">Approved By</th>
                                     <th style="width: 2%;">Status</th>                               
                                 </tr>
                             </thead>

@@ -27,14 +27,14 @@ function openEditModal4(assetId) {
 }
 
 function openDeleteModal(userId) {
-    const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'));
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmAccModal'));
     document.getElementById('deleteUserId').value = userId;
     deleteModal.show();
 }
 
 function openDeleteModal2(assetId) {
-    const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'));
-    document.getElementById('deleteAssetId').value = userId;
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmAssetModal'));
+    document.getElementById('deleteAssetId').value = assetId;
     deleteModal.show();
 }
 

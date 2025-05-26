@@ -1,12 +1,10 @@
 <script>
-  var pageTitle = "IT Staff Management";
+    var pageTitle = "IT Staff Management";
 </script>
 
 <?php
 session_start();
 include '../Includes/config.php';
-
-
 
 if (isset($_SESSION['UserId'])) {
     $userId = $_SESSION['UserId'];
@@ -178,8 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <!-- Edit Button -->
                                             <button 
                                                 class="btn btn-edit btn-sm" 
-                                                data-bs-toggle="modal" 
-                                                data-bs-target="#updateITModal<?php echo $user['UserId']; ?>">
+                                                onclick="openEditModal(<?php echo $user['UserId']; ?>)">
                                                 Edit
                                             </button>
                                             <!-- Delete Button -->
@@ -189,58 +186,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 Delete
                                             </button>
                                             </td>
-                                            <div class="modal fade" id="updateITModal<?php echo $user['UserId']; ?>" tabindex="-1">
-                                            <!-- Update IT Modal -->
-                                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                <div class="modal-content">
-                                                <form action="../modals/adminUpdateIT.php" method="POST">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Update IT Information</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <input type="hidden" name="id" value="<?php echo $user['UserId']; ?>">
-                                                        <div class="row mb-3">
-                                                            <div class="col-md-6">
-                                                                <label class="form-label">First Name</label>
-                                                                <input type="text" name="first_name" class="form-control rounded-pill" value="<?php echo $user['FirstName']; ?>" required>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="form-label">Last Name</label>
-                                                                <input type="text" name="last_name" class="form-control rounded-pill" value="<?php echo $user['LastName']; ?>" required>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row mb-3">
-                                                        <div class="col-md-6">
-                                                            <label class="form-label">Email</label>
-                                                            <input type="email" name="email" class="form-control rounded-pill" value="<?php echo $user['Email']; ?>" required>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-label">Password</label>
-                                                            <input type="password" name="password" class="form-control rounded-pill" required>
-                                                        </div>
-                                                        </div>
-
-                                                        <div class="row mb-3">
-                                                        <div class="col-md-6">
-                                                            <label class="form-label">Contact No</label>
-                                                            <input type="text" name="contactno" class="form-control rounded-pill" value="<?php echo $user['Contactno']; ?>" required>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-label">Branch</label>
-                                                            <input type="text" name="branch" class="form-control rounded-pill" value="<?php echo $user['BranchName']; ?>" required>
-                                                        </div>
-                                                        </div>
-
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="submit" class="btn btn-primary">Save</button>
-                                                    </div>
-                                                </form>
-                                                </div>
-                                            </div>
-                                            </div>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -257,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Update IT Staff Modal -->
     <?php include '../modals/UpdateIT.php'; ?>
     <!-- Delete IT Staff Modal -->
-    <?php include '../modals/DeleteIT.php'; ?>
+    <?php include '../modals/confirmationModal.php'; ?>
 
     <!-- External JS Files -->
     <script src="../asset/js/sidebar.js"></script>
