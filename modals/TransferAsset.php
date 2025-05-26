@@ -63,13 +63,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="col-md-6">
                         <label for="assetName" class="form-label">Asset</label>
-                        <input type="text" name="AssetName" id="assetName" class="form-select rounded-pill" required>
+                        <select name="AssetName" id="assetName" class="form-select rounded-pill" required>
+                            <option value="" default></option>
+                            <?php
+                            // Query only from t_asset
+                            $stmt = $conn->query("SELECT AssetId, AssetName FROM t_asset");
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<option value="' . $row['AssetId'] . '">' . $row['AssetName'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                     <label for="branchId" class="form-label">Dispatching Branch</label>
-                    <input type="text" name="branch_ID" id="BranchiD" class="form-control rounded-pill" readonly></input> 
+                    <select name="branch_ID" id="BranchiD" class="form-control rounded-pill">
+                        <option value="" default></option>
+                        <?php
+                        // Query only from t_branch
+                        $stmt = $conn->query("SELECT BranchId, BranchName FROM t_branch");
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<option value="' . $row['BranchId'] . '">' . $row['BranchName'] . '</option>';
+                        }
+                        ?>
+                    </select> 
                     </div>
                     <div class="col-md-6">
                     <label for="branchId" class="form-label">Receiving Branch</label>

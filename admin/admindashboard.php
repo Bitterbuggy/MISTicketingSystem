@@ -112,48 +112,73 @@ if ($_SESSION['RoleId'] != 1) {
                 </div>
                 
                 <!-- Ticket Summary Cards -->
-                <div class="row no-gutters mt-3 align-items-center">
+                <div class="container-fluid mt-4">
                     <h3 class="fw-bold mb-3" id="ticket-summary-title">Ticket Summary</h3>
-
-                    <!-- Pending -->
-                    <div class="col-md-3 mb-3">
-                        <div class="ticket-card pending h-100">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <h5>Pending</h5>
-                        <p class="ticket-count">12</p>
+                    <div class="row" style="height: 395px;">
+                    <!-- Left: Summary Cards -->
+                    <div class="col-lg-4 d-flex flex-column justify-content-between h-100">
+                        <div class="row g-3 h-100">
+                        <!-- Cards Row 1 -->
+                        <div class="col-6 d-flex">
+                            <div class="ticket-card pending w-100 h-100 text-center p-3">
+                            <i class="fa-solid fa-triangle-exclamation fa-2x mb-2"></i>
+                            <h5>Pending</h5>
+                            <p class="ticket-count fs-4">12</p>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <div class="ticket-card ongoing w-100 h-100 text-center p-3">
+                            <i class="fa-solid fa-sync-alt fa-spin fa-2x mb-2"></i>
+                            <h5>On Going</h5>
+                            <p class="ticket-count fs-4">8</p>
+                            </div>
+                        </div>
+                        <!-- Cards Row 2 -->
+                        <div class="col-6 d-flex mt-4">
+                            <div class="ticket-card completed w-100 h-100 text-center p-3">
+                            <i class="fa-solid fa-circle-check fa-2x mb-2"></i>
+                            <h5>Completed</h5>
+                            <p class="ticket-count fs-4">25</p>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex mt-4">
+                            <div class="ticket-card total w-100 h-100 text-center p-3">
+                            <i class="fa-solid fa-clipboard fa-2x mb-2"></i>
+                            <h5>Total</h5>
+                            <p class="ticket-count fs-4">45</p>
+                            </div>
+                        </div>
                         </div>
                     </div>
 
-                    <!-- On Going -->
-                    <div class="col-md-3 mb-3">
-                        <div class="ticket-card ongoing h-100">
-                        <i class="fa-solid fa-sync-alt fa-spin"></i>
-                        <h5>On Going</h5>
-                        <p class="ticket-count">8</p>
+                    <!-- Right: Charts -->
+                    <div class="col-lg-8">
+                        <div class="row h-100">
+                        <!-- Column 1: Donut Chart Spanning Two Rows -->
+                        <div class="col-md-6 d-flex flex-column">
+                            <div class="chart-card flex-fill p-3 mb-3">
+                            <canvas id="branchMostTicketChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Stacked Bar Charts -->
+                        <div class="col-md-6">
+                            <!-- Row 1: Main Branch Top Issues -->
+                            <div class="chart-card p-3 mb-3">
+                            <canvas id="mainBranchIssueChart"></canvas>
+                            </div>
+                            <!-- Row 2: Other Branches Top Issues -->
+                            <div class="chart-card p-3 mb-3">
+                            <canvas id="otherBranchIssueChart"></canvas>
+                            </div>
+                        </div>
                         </div>
                     </div>
-
-                    <!-- Completed -->
-                    <div class="col-md-3 mb-3">
-                        <div class="ticket-card completed h-100">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <h5>Completed</h5>
-                        <p class="ticket-count">25</p>
-                        </div>
                     </div>
-
-                    <!-- Total -->
-                    <div class="col-md-3 mb-3">
-                        <div class="ticket-card total h-100">
-                        <i class="fa-solid fa-clipboard"></i>
-                        <h5>Total</h5>
-                        <p class="ticket-count">41</p>
-                        </div>
                     </div>
 
                         <!-- Tabs for Ticket Summary -->
-                        <div class="d-flex justify-content-between align-items-center mb-1 flex-wrap">
-
+                        <div class="d-flex justify-content-between align-items-center mb-1 mt-4 flex-wrap">
                         <!-- Ticket Status Tabs -->
                         <ul class="nav nav-tabs mt-2" id="nav-tix" role="tablist">
                             <li class="nav-item">
@@ -257,25 +282,6 @@ if ($_SESSION['RoleId'] != 1) {
                         </div>
                     </div>
                 </div>
-                
-                <!-- Charts Container -->
-                <div class="row no-gutters mt-3 align-items-center">
-                    <div class="col-md-4 mb-3">
-                        <div class="chart-card">
-                            <canvas id="branchMostTicketChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="chart-card">
-                            <canvas id="mostSoftwareIssueChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="chart-card">
-                            <canvas id="mostHardwareIssueChart"></canvas>
-                        </div>
-                    </div>
-            </div>
         </div>
         </div>
             </main>
