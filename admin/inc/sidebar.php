@@ -108,31 +108,31 @@ $roleId = $_SESSION['RoleId'];
                     <!-- Branch Admin / LIC -->
                     <?php elseif ($roleId == 2): ?>
                         <li class="sidebar-item default">
-                            <a href="/branchadmin/bradmindashboard.php">
+                            <a href="../branchadmin/bradmindashboard.php">
                                 <span class="icon"><i class="fa fa-house"></i></span>
                                 <span class="text">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/branchadmin/bradminTicketMgmt.php">
+                            <a href="../branchadmin/bradminTicketMgmt.php">
                                 <span class="icon"><i class="fa fa-ticket"></i></span>
                                 <span class="text">Tickets</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/branchadmin/bradminAssetMgmt.php">
+                            <a href="../branchadmin/bradminAssetMgmt.php">
                                 <span class="icon"><i class="fa fa-toolbox"></i></span>
                                 <span class="text">Assets</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/branchadmin/bradminEmployeeMgmt.php">
+                            <a href="../branchadmin/licRegisterEmployee.php">
                                 <span class="icon"><i class="fa fa-users"></i></span>
                                 <span class="text">Employees</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/auth/activityLogs.php">
+                            <a href="../auth/activityLogs.php">
                                 <span class="icon"><i class="fa-solid fa-boxes-packing"></i></span>
                                 <span class="text">History</span>
                             </a>
@@ -141,25 +141,25 @@ $roleId = $_SESSION['RoleId'];
                     <!-- Regular Employee -->
                     <?php else: ?>
                         <li class="sidebar-item default">
-                            <a href="/employee/home.php">
+                            <a href="../employee/home.php">
                                 <span class="icon"><i class="fa fa-house"></i></span>
                                 <span class="text">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/employee/empticketMgmt.php">
+                            <a href="../employee/empticketMgmt.php">
                                 <span class="icon"><i class="fa fa-ticket"></i></span>
                                 <span class="text">Tickets</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/employee/assetMgmt.php">
+                            <a href="../employee/empAssetMgmt.php">
                                 <span class="icon"><i class="fa fa-toolbox"></i></span>
                                 <span class="text">Branch Assets</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/auth/activityLogs.php">
+                            <a href="../auth/activityLogs.php">
                                 <span class="icon"><i class="fa-solid fa-boxes-packing"></i></span>
                                 <span class="text">History</span>
                             </a>

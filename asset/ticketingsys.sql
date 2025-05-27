@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2025 at 03:42 AM
+-- Generation Time: May 26, 2025 at 09:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,15 +53,237 @@ INSERT INTO `t_activitylogs` (`id`, `UserId`, `activity_type`, `activity_time`) 
 (12, 3, 'login', '2025-04-13 21:47:34'),
 (13, 3, 'logout', '2025-04-13 23:00:45'),
 (14, 3, 'login', '2025-04-20 22:13:35'),
-(15, 44, 'login', '2025-04-20 22:30:02'),
-(16, 44, 'logout', '2025-04-20 22:30:06'),
-(17, 44, 'login', '2025-04-20 23:12:03'),
-(18, 44, 'logout', '2025-04-20 23:12:05'),
-(19, 44, 'login', '2025-04-20 23:13:17'),
-(20, 44, 'logout', '2025-04-20 23:13:19'),
-(21, 44, 'login', '2025-04-20 23:13:34'),
-(22, 44, 'logout', '2025-04-20 23:15:47'),
-(23, 3, 'login', '2025-04-20 23:15:51');
+(23, 3, 'login', '2025-04-20 23:15:51'),
+(24, 3, 'login', '2025-04-21 20:45:33'),
+(25, 3, 'login', '2025-04-21 21:11:29'),
+(26, 3, 'login', '2025-04-21 21:13:00'),
+(27, 3, 'login', '2025-04-27 23:16:34'),
+(28, 3, 'login', '2025-04-27 23:45:00'),
+(29, 3, 'logout', '2025-04-28 00:59:18'),
+(30, 3, 'login', '2025-04-28 00:59:20'),
+(31, 3, 'logout', '2025-04-28 01:00:03'),
+(32, 3, 'login', '2025-04-28 01:02:03'),
+(33, 3, 'login', '2025-04-28 17:28:33'),
+(34, 3, 'logout', '2025-04-29 06:48:37'),
+(36, 3, 'login', '2025-04-29 08:19:38'),
+(37, 3, 'logout', '2025-04-29 08:31:04'),
+(38, 47, 'login', '2025-04-29 08:31:22'),
+(39, 47, 'login', '2025-04-29 08:33:03'),
+(40, 47, 'logout', '2025-04-29 08:56:43'),
+(41, 19, 'login', '2025-04-29 08:57:01'),
+(42, 19, 'logout', '2025-04-29 10:00:27'),
+(43, 3, 'login', '2025-04-29 10:00:32'),
+(44, 3, 'login', '2025-04-29 13:36:31'),
+(45, 3, 'logout', '2025-04-29 13:36:41'),
+(46, 47, 'login', '2025-04-29 14:25:56'),
+(47, 3, 'login', '2025-05-02 01:16:04'),
+(48, 3, 'logout', '2025-05-02 01:35:10'),
+(49, 3, 'login', '2025-05-02 01:35:32'),
+(50, 47, 'login', '2025-05-02 01:37:33'),
+(51, 3, 'logout', '2025-05-02 01:39:25'),
+(52, 47, 'login', '2025-05-02 01:39:47'),
+(53, 47, 'logout', '2025-05-02 01:40:05'),
+(54, 3, 'login', '2025-05-02 01:40:10'),
+(55, 3, 'logout', '2025-05-02 01:42:12'),
+(56, 3, 'login', '2025-05-02 01:42:15'),
+(57, 47, 'logout', '2025-05-02 01:42:47'),
+(58, 47, 'login', '2025-05-02 01:43:09'),
+(59, 3, '', '2025-05-02 01:43:39'),
+(60, 3, '', '2025-05-02 01:44:05'),
+(61, 3, '', '2025-05-02 01:44:06'),
+(62, 3, 'Heartbeat', '2025-05-02 01:48:53'),
+(63, 3, 'login', '2025-05-05 18:06:57'),
+(64, 3, 'Heartbeat', '2025-05-05 18:07:48'),
+(65, 3, 'logout', '2025-05-05 18:07:55'),
+(66, 47, 'login', '2025-05-05 18:12:15'),
+(67, 47, 'logout', '2025-05-05 18:12:47'),
+(68, 19, 'login', '2025-05-05 18:14:58'),
+(69, 19, 'logout', '2025-05-05 18:15:40'),
+(70, 3, 'login', '2025-05-05 18:15:43'),
+(71, 3, 'Heartbeat', '2025-05-05 18:18:04'),
+(72, 3, 'logout', '2025-05-05 20:20:17'),
+(73, 19, 'login', '2025-05-05 20:20:47'),
+(74, 19, 'logout', '2025-05-06 00:26:12'),
+(75, 3, 'login', '2025-05-06 00:26:14'),
+(76, 3, 'login', '2025-05-06 07:42:36'),
+(77, 3, 'Heartbeat', '2025-05-06 07:42:47'),
+(78, 3, 'logout', '2025-05-06 08:03:52'),
+(79, 48, 'login', '2025-05-06 08:04:52'),
+(80, 48, 'logout', '2025-05-06 08:14:34'),
+(81, 50, 'login', '2025-05-06 08:14:59'),
+(82, 50, 'logout', '2025-05-06 08:22:55'),
+(83, 3, 'login', '2025-05-06 08:23:12'),
+(84, 3, 'Heartbeat', '2025-05-06 08:23:16'),
+(85, 3, 'Heartbeat', '2025-05-06 09:05:49'),
+(86, 3, 'logout', '2025-05-06 09:13:08'),
+(87, 48, 'login', '2025-05-06 09:13:43'),
+(88, 48, 'logout', '2025-05-06 09:25:19'),
+(89, 19, 'login', '2025-05-06 09:26:12'),
+(90, 19, 'logout', '2025-05-06 09:27:39'),
+(91, 3, 'login', '2025-05-06 09:27:48'),
+(92, 3, 'Heartbeat', '2025-05-06 09:27:55'),
+(93, 3, 'logout', '2025-05-06 10:23:01'),
+(94, 3, 'login', '2025-05-06 10:23:11'),
+(95, 3, 'login', '2025-05-06 14:35:52'),
+(96, 3, 'login', '2025-05-06 14:38:35'),
+(97, 3, 'logout', '2025-05-06 14:49:29'),
+(98, 19, 'login', '2025-05-06 14:51:15'),
+(99, 3, 'login', '2025-05-06 14:52:38'),
+(100, 3, 'logout', '2025-05-06 16:23:50'),
+(101, 3, 'login', '2025-05-06 16:23:55'),
+(102, 3, 'logout', '2025-05-06 16:26:42'),
+(103, 3, 'login', '2025-05-06 16:27:24'),
+(104, 3, 'logout', '2025-05-06 16:37:16'),
+(105, 19, 'login', '2025-05-06 16:38:32'),
+(106, 3, 'login', '2025-05-06 16:43:47'),
+(107, 3, 'login', '2025-05-08 14:15:30'),
+(108, 3, 'login', '2025-05-08 15:22:58'),
+(109, 3, 'login', '2025-05-08 15:22:59'),
+(110, 3, 'Heartbeat', '2025-05-08 16:30:43'),
+(111, 3, 'Heartbeat', '2025-05-08 16:31:17'),
+(112, 3, 'Heartbeat', '2025-05-08 16:31:21'),
+(113, 3, 'Heartbeat', '2025-05-08 16:31:46'),
+(114, 3, 'Heartbeat', '2025-05-08 16:39:21'),
+(115, 3, 'login', '2025-05-08 18:04:34'),
+(116, 3, 'Heartbeat', '2025-05-08 18:04:37'),
+(117, 3, 'Heartbeat', '2025-05-08 18:07:13'),
+(118, 3, 'Heartbeat', '2025-05-08 18:14:23'),
+(119, 3, 'Heartbeat', '2025-05-08 18:14:37'),
+(120, 3, 'Heartbeat', '2025-05-08 18:14:55'),
+(121, 3, 'Heartbeat', '2025-05-08 18:15:07'),
+(122, 3, 'Heartbeat', '2025-05-08 18:16:22'),
+(123, 3, 'Heartbeat', '2025-05-08 18:16:44'),
+(124, 3, 'Heartbeat', '2025-05-08 18:19:55'),
+(125, 3, 'Heartbeat', '2025-05-08 18:20:44'),
+(126, 3, 'Heartbeat', '2025-05-08 18:22:48'),
+(127, 3, 'Heartbeat', '2025-05-08 18:28:12'),
+(128, 3, 'Heartbeat', '2025-05-08 18:29:21'),
+(129, 3, 'Heartbeat', '2025-05-08 18:37:30'),
+(130, 3, 'Heartbeat', '2025-05-08 18:49:37'),
+(131, 3, 'Heartbeat', '2025-05-08 18:50:54'),
+(132, 3, 'Heartbeat', '2025-05-08 18:51:47'),
+(133, 3, 'Heartbeat', '2025-05-08 19:01:22'),
+(134, 3, 'Heartbeat', '2025-05-08 19:01:56'),
+(135, 3, 'Heartbeat', '2025-05-08 19:01:57'),
+(136, 3, 'Heartbeat', '2025-05-08 19:02:05'),
+(137, 3, 'Heartbeat', '2025-05-08 19:04:45'),
+(138, 3, 'Heartbeat', '2025-05-08 19:04:55'),
+(139, 3, 'Heartbeat', '2025-05-08 19:06:17'),
+(140, 3, 'Heartbeat', '2025-05-08 19:10:32'),
+(141, 3, 'Heartbeat', '2025-05-08 19:13:35'),
+(142, 3, 'Heartbeat', '2025-05-08 19:14:32'),
+(143, 3, 'Heartbeat', '2025-05-08 19:16:00'),
+(144, 3, 'Heartbeat', '2025-05-08 19:17:30'),
+(145, 3, 'Heartbeat', '2025-05-08 19:18:30'),
+(146, 3, 'Heartbeat', '2025-05-08 19:18:45'),
+(147, 3, 'Heartbeat', '2025-05-08 19:23:51'),
+(148, 3, 'Heartbeat', '2025-05-08 19:25:12'),
+(149, 3, 'Heartbeat', '2025-05-08 19:26:19'),
+(150, 3, 'Heartbeat', '2025-05-08 19:32:43'),
+(151, 3, 'Heartbeat', '2025-05-08 19:32:54'),
+(152, 3, 'Heartbeat', '2025-05-08 19:33:23'),
+(153, 3, 'Heartbeat', '2025-05-08 19:33:24'),
+(154, 3, 'Heartbeat', '2025-05-08 19:40:17'),
+(155, 3, 'Heartbeat', '2025-05-08 19:40:54'),
+(156, 3, 'Heartbeat', '2025-05-08 19:41:23'),
+(157, 3, 'Heartbeat', '2025-05-08 19:41:33'),
+(158, 3, 'Heartbeat', '2025-05-08 19:42:32'),
+(159, 3, 'Heartbeat', '2025-05-08 19:44:47'),
+(160, 3, 'Heartbeat', '2025-05-08 19:47:33'),
+(161, 3, 'Heartbeat', '2025-05-08 19:48:55'),
+(162, 3, 'Heartbeat', '2025-05-08 19:48:57'),
+(163, 3, 'Heartbeat', '2025-05-08 19:49:01'),
+(164, 3, 'Heartbeat', '2025-05-08 19:52:06'),
+(165, 3, 'Heartbeat', '2025-05-08 19:52:21'),
+(166, 3, 'Heartbeat', '2025-05-08 19:56:36'),
+(167, 3, 'Heartbeat', '2025-05-08 19:58:54'),
+(168, 3, 'Heartbeat', '2025-05-08 19:59:31'),
+(169, 3, 'Heartbeat', '2025-05-08 19:59:31'),
+(170, 3, 'Heartbeat', '2025-05-08 19:59:46'),
+(171, 3, 'Heartbeat', '2025-05-08 20:01:57'),
+(172, 3, 'Heartbeat', '2025-05-08 20:02:04'),
+(173, 3, 'Heartbeat', '2025-05-08 20:06:31'),
+(174, 3, 'Heartbeat', '2025-05-08 20:12:37'),
+(175, 3, 'Heartbeat', '2025-05-08 20:14:59'),
+(176, 3, 'Heartbeat', '2025-05-08 20:19:57'),
+(177, 3, 'Heartbeat', '2025-05-08 20:24:36'),
+(178, 3, 'login', '2025-05-08 20:26:03'),
+(179, 3, 'logout', '2025-05-08 20:27:45'),
+(180, 3, 'login', '2025-05-12 23:23:51'),
+(181, 3, 'Heartbeat', '2025-05-12 23:24:07'),
+(182, 3, 'Heartbeat', '2025-05-12 23:32:24'),
+(183, 3, 'logout', '2025-05-12 23:36:36'),
+(184, 3, 'login', '2025-05-12 23:54:52'),
+(185, 3, 'Heartbeat', '2025-05-12 23:54:56'),
+(186, 3, 'Heartbeat', '2025-05-12 23:56:00'),
+(187, 3, 'Heartbeat', '2025-05-12 23:57:24'),
+(188, 3, 'logout', '2025-05-13 00:01:02'),
+(189, 63, 'login', '2025-05-13 00:01:33'),
+(190, 3, 'login', '2025-05-13 00:11:53'),
+(191, 3, 'logout', '2025-05-13 00:18:42'),
+(192, 3, 'login', '2025-05-13 00:21:10'),
+(193, 3, 'logout', '2025-05-13 00:24:06'),
+(194, 3, 'login', '2025-05-13 00:38:39'),
+(195, 3, 'Heartbeat', '2025-05-13 00:46:36'),
+(196, 3, 'logout', '2025-05-13 01:59:21'),
+(197, 17, 'login', '2025-05-13 08:53:05'),
+(198, 17, 'logout', '2025-05-13 08:53:28'),
+(199, 3, 'login', '2025-05-13 08:53:35'),
+(200, 3, 'Heartbeat', '2025-05-13 08:54:22'),
+(201, 3, 'Heartbeat', '2025-05-13 08:54:34'),
+(202, 3, 'Heartbeat', '2025-05-13 08:55:16'),
+(203, 3, 'Heartbeat', '2025-05-13 08:55:25'),
+(204, 3, 'logout', '2025-05-13 09:08:41'),
+(205, 3, 'login', '2025-05-13 09:41:39'),
+(206, 3, 'Heartbeat', '2025-05-13 09:41:43'),
+(207, 3, 'Heartbeat', '2025-05-13 09:43:39'),
+(208, 3, 'logout', '2025-05-13 09:43:57'),
+(209, 65, 'login', '2025-05-13 09:44:15'),
+(210, 65, 'logout', '2025-05-13 09:44:24'),
+(211, 3, 'login', '2025-05-13 09:46:27'),
+(212, 3, 'Heartbeat', '2025-05-13 09:53:08'),
+(213, 3, 'logout', '2025-05-13 09:54:00'),
+(214, 3, 'login', '2025-05-13 09:58:43'),
+(215, 3, 'Heartbeat', '2025-05-13 09:58:50'),
+(216, 3, 'logout', '2025-05-13 10:04:15'),
+(217, 15, 'login', '2025-05-13 10:04:21'),
+(218, 15, 'logout', '2025-05-13 14:24:38'),
+(219, 19, 'login', '2025-05-13 14:25:04'),
+(220, 19, 'logout', '2025-05-13 14:46:41'),
+(221, 3, 'login', '2025-05-13 14:46:46'),
+(222, 3, 'Heartbeat', '2025-05-13 16:32:36'),
+(223, 3, 'logout', '2025-05-13 16:45:55'),
+(224, 3, 'login', '2025-05-13 16:54:42'),
+(225, 3, 'Heartbeat', '2025-05-13 16:58:43'),
+(226, 3, 'Heartbeat', '2025-05-13 16:58:56'),
+(227, 3, 'Heartbeat', '2025-05-13 17:01:30'),
+(228, 3, 'Heartbeat', '2025-05-13 17:03:23'),
+(229, 3, 'Heartbeat', '2025-05-13 17:06:04'),
+(230, 3, 'logout', '2025-05-13 17:09:51'),
+(231, 3, 'login', '2025-05-13 17:25:45'),
+(232, 3, 'login', '2025-05-21 22:46:43'),
+(233, 3, 'login', '2025-05-24 05:10:42'),
+(234, 3, 'Heartbeat', '2025-05-24 05:10:48'),
+(235, 3, 'Heartbeat', '2025-05-24 05:23:37'),
+(236, 3, 'Heartbeat', '2025-05-24 06:10:42'),
+(237, 3, 'login', '2025-05-25 18:05:55'),
+(238, 3, 'logout', '2025-05-25 18:08:39'),
+(239, 19, 'login', '2025-05-25 18:09:43'),
+(240, 19, 'logout', '2025-05-25 18:15:13'),
+(241, 3, 'login', '2025-05-25 18:15:15'),
+(242, 3, 'Heartbeat', '2025-05-25 18:15:19'),
+(243, 3, 'logout', '2025-05-25 18:16:10'),
+(244, 19, 'login', '2025-05-25 18:16:36'),
+(245, 19, 'logout', '2025-05-25 21:13:13'),
+(246, 3, 'login', '2025-05-25 21:13:15'),
+(247, 3, 'logout', '2025-05-25 21:15:19'),
+(248, 19, 'login', '2025-05-25 21:15:41'),
+(249, 19, 'logout', '2025-05-25 23:28:15'),
+(250, 3, 'login', '2025-05-26 10:30:55'),
+(251, 3, 'logout', '2025-05-26 10:44:06'),
+(252, 19, 'login', '2025-05-26 10:44:29'),
+(253, 19, 'logout', '2025-05-26 11:05:37'),
+(254, 3, 'login', '2025-05-26 11:05:39');
 
 -- --------------------------------------------------------
 
@@ -98,8 +320,21 @@ CREATE TABLE `t_asset` (
   `SerialNumber` varchar(55) DEFAULT NULL,
   `PurchasedDate` date DEFAULT NULL,
   `AssetStatus` enum('Available','In Use','Maintenance','Disposed','Transferred','Transfer Request') DEFAULT 'In Use',
-  `Description` text DEFAULT NULL
+  `Description` text DEFAULT NULL,
+  `PropertyNumber` varchar(30) DEFAULT NULL,
+  `Acquisition` enum('Donation','QCG') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `t_asset`
+--
+
+INSERT INTO `t_asset` (`AssetId`, `BranchId`, `AssetName`, `AssetTypeId`, `SerialNumber`, `PurchasedDate`, `AssetStatus`, `Description`, `PropertyNumber`, `Acquisition`) VALUES
+(1, 25, 'Hp Laptop', 123456, 'DL123456', '2025-05-04', 'In Use', 'Testing', 'HP-LAPTOP-2023-0001', 'Donation'),
+(2, 6, 'Dell Latitude 7430', 1, 'DL7430-2023-9987', '2024-07-23', 'In Use', 'Black', 'PUP-ITD-DELL7430-0001', 'QCG'),
+(3, 7, 'Epson EcoTank L3210', 3, 'EP-L3210-2022-0012', '2024-08-21', 'In Use', 'High-efficiency color inkjet printer', 'QCG-ITD-DELL7430-0002', 'QCG'),
+(4, 11, 'Dell Latitude 7435', 1, 'SN-DL7435-00129', '2025-02-10', 'In Use', 'Intel i7, 16GB RAM, 512GB SSD, Windows 11 Pro', 'QCG-DELL7435-0025', 'QCG'),
+(5, 17, 'Epson EcoTank L3215', 4, 'EP-L3215-2022-0012', '2025-04-14', 'Maintenance', 'High-efficiency color inkjet printer', 'QCG-EPSON-3215-0012', 'QCG');
 
 -- --------------------------------------------------------
 
@@ -159,6 +394,27 @@ CREATE TABLE `t_assettype` (
   `AssetTypeId` int(11) NOT NULL,
   `AssetTypeName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `t_assettype`
+--
+
+INSERT INTO `t_assettype` (`AssetTypeId`, `AssetTypeName`) VALUES
+(1, 'Laptop'),
+(2, 'Desktop Computer'),
+(3, 'Monitor'),
+(4, 'Printer'),
+(5, 'Projector'),
+(6, 'Server'),
+(7, 'Networking Equipment'),
+(8, 'Mobile Phone'),
+(9, 'Tablet'),
+(10, 'Software License'),
+(11, 'External Storage Device'),
+(12, 'Office Furniture'),
+(13, 'Air Conditioner'),
+(14, 'CCTV Camera'),
+(15, 'Scanner');
 
 -- --------------------------------------------------------
 
@@ -232,7 +488,10 @@ CREATE TABLE `t_branchadmin` (
 INSERT INTO `t_branchadmin` (`BranchAdminId`, `UserId`, `Position`, `Department`) VALUES
 ('branchadmin_67e25600a2f6f', 8, '', ''),
 ('branchadmin_67e2622bb1caa', 14, '', ''),
-('branchadmin_67e2628ad853f', 15, '', '');
+('branchadmin_67e2628ad853f', 15, '', ''),
+('branchadmin_681a0b0c80fac', 50, '', ''),
+('branchadmin_681a7fcf1ef3c', 61, '', ''),
+('branchadmin_6822e0a1b6968', 64, '', '');
 
 -- --------------------------------------------------------
 
@@ -297,6 +556,25 @@ CREATE TABLE `t_issuedsubtype` (
   `SubtypeName` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `t_issuedsubtype`
+--
+
+INSERT INTO `t_issuedsubtype` (`SubtypeId`, `IssueId`, `SubtypeName`) VALUES
+(1, 1, 'Keyboard'),
+(2, 1, 'Mouse'),
+(3, 1, 'Monitor'),
+(4, 1, 'Printer'),
+(5, 1, 'System Unit'),
+(6, 2, 'System Error'),
+(7, 2, 'Installation Issue'),
+(8, 2, 'Application Crash'),
+(9, 2, 'License Expiration'),
+(10, 3, 'No Internet'),
+(11, 3, 'Slow Connection'),
+(12, 3, 'VPN Issue'),
+(13, 3, 'Network Cable Problem');
+
 -- --------------------------------------------------------
 
 --
@@ -307,6 +585,15 @@ CREATE TABLE `t_issuedtype` (
   `IssueId` int(11) NOT NULL,
   `IssueType` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `t_issuedtype`
+--
+
+INSERT INTO `t_issuedtype` (`IssueId`, `IssueType`) VALUES
+(1, 'Hardware'),
+(2, 'Software'),
+(3, 'Network');
 
 -- --------------------------------------------------------
 
@@ -328,14 +615,13 @@ CREATE TABLE `t_itstaff` (
 INSERT INTO `t_itstaff` (`ITstaffId`, `UserId`, `Position`, `Department`) VALUES
 ('itstaff_67e258517c98b', 12, '', ''),
 ('itstaff_67e264a751378', 17, '', ''),
-('itstaff_67e4064c87240', 20, '', ''),
 ('itstaff_67e42413ad043', 33, '', ''),
 ('itstaff_67ec447925949', 34, '', ''),
-('itstaff_67ec46b7e54d0', 35, '', ''),
-('itstaff_67f56f6c640cf', 37, '', ''),
 ('itstaff_67f57291dcd77', 38, '', ''),
-('itstaff_67f82156eb472', 39, '', ''),
-('itstaff_67f82c53c8d38', 44, '', '');
+('itstaff_6810d3d8b4975', 47, '', ''),
+('itstaff_681a088065f75', 48, '', ''),
+('itstaff_6822d1303bd75', 63, '', ''),
+('itstaff_68235a8d44e6f', 65, '', '');
 
 -- --------------------------------------------------------
 
@@ -377,24 +663,70 @@ INSERT INTO `t_roles` (`RoleId`, `RoleName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t_ticketissues`
+--
+
+CREATE TABLE `t_ticketissues` (
+  `TicketIssueId` int(11) NOT NULL,
+  `TicketId` varchar(250) NOT NULL,
+  `IssueId` int(11) NOT NULL,
+  `SubtypeId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `t_ticketissues`
+--
+
+INSERT INTO `t_ticketissues` (`TicketIssueId`, `TicketId`, `IssueId`, `SubtypeId`) VALUES
+(2, '25-UP Y-250526-employee_67e267733e5-060338', 2, 9),
+(3, '25-UP Y-250526-employee_67e267733e5-060338', 1, 3),
+(4, '25-UP Y-250526-employee_67e267733e5-061736', 3, 12),
+(5, '25-UP Y-250526-employee_67e267733e5-061736', 2, 8),
+(6, '25-UP Y-250526-employee_67e267733e5-061736', 1, 2),
+(7, '25-UP Y-250526-employee_67e267733e5-174451', 1, 4);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `t_tickets`
 --
 
 CREATE TABLE `t_tickets` (
-  `TicketsId` int(11) NOT NULL,
+  `TicketId` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `EmployeeId` varchar(20) NOT NULL,
   `BranchId` int(11) NOT NULL,
   `DistrictId` int(11) NOT NULL,
   `AssignedITstaffId` varchar(30) DEFAULT NULL,
   `AssetId` int(11) NOT NULL,
-  `IssueId` int(11) NOT NULL,
-  `SubtypeId` int(11) NOT NULL,
   `Description` text DEFAULT NULL,
   `TicketStatus` enum('Pending','Completed','Ongoing','Cancelled') DEFAULT 'Pending',
   `Priority` enum('Low','Medium','High') DEFAULT 'Low',
   `TimeSubmitted` timestamp NOT NULL DEFAULT current_timestamp(),
   `TimeResolved` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `t_tickets`
+--
+
+INSERT INTO `t_tickets` (`TicketId`, `EmployeeId`, `BranchId`, `DistrictId`, `AssignedITstaffId`, `AssetId`, `Description`, `TicketStatus`, `Priority`, `TimeSubmitted`, `TimeResolved`) VALUES
+('10', 'employee_67e26713d38', 25, 30, NULL, 1, 'black', 'Pending', 'Low', '2025-05-25 23:34:42', NULL),
+('12', 'employee_67e267733e5', 25, 25, NULL, 1, 'black', 'Pending', 'Low', '2025-05-26 01:05:08', NULL),
+('13', 'employee_67e267733e5', 25, 25, NULL, 5, 'try', 'Pending', 'Low', '2025-05-26 02:07:40', NULL),
+('14', 'employee_67e267733e5', 25, 25, NULL, 3, 'platnm', 'Pending', 'Low', '2025-05-26 02:10:43', NULL),
+('25-UP Y-250526-employee_67e267733e5-043456', 'employee_67e267733e5', 25, 25, NULL, 1, 'blackvv', 'Pending', 'Low', '2025-05-26 02:34:56', NULL),
+('25-UP Y-250526-employee_67e267733e5-045601', 'employee_67e267733e5', 25, 25, NULL, 2, 'Array', 'Pending', 'Low', '2025-05-26 02:56:01', NULL),
+('25-UP Y-250526-employee_67e267733e5-052558', 'employee_67e267733e5', 25, 25, NULL, 1, 'Array', 'Pending', 'Low', '2025-05-26 03:25:58', NULL),
+('25-UP Y-250526-employee_67e267733e5-054345', 'employee_67e267733e5', 25, 25, NULL, 3, 'Array', 'Pending', 'Low', '2025-05-26 03:43:45', NULL),
+('25-UP Y-250526-employee_67e267733e5-054541', 'employee_67e267733e5', 25, 25, NULL, 3, 'xcvb', 'Pending', 'Low', '2025-05-26 03:45:41', NULL),
+('25-UP Y-250526-employee_67e267733e5-060338', 'employee_67e267733e5', 25, 25, NULL, 1, 'l1\nmm', 'Pending', 'Low', '2025-05-26 04:03:38', NULL),
+('25-UP Y-250526-employee_67e267733e5-061736', 'employee_67e267733e5', 25, 25, NULL, 4, '222dfgh\nkjado\nchange', 'Pending', 'Low', '2025-05-26 04:17:36', NULL),
+('25-UP Y-250526-employee_67e267733e5-174451', 'employee_67e267733e5', 25, 25, NULL, 5, 'testing oink', 'Pending', 'Low', '2025-05-26 15:44:51', NULL),
+('25-UPC-20250526-employee_67e267733e5-042855', 'employee_67e267733e5', 25, 25, NULL, 3, '..', 'Pending', 'Low', '2025-05-26 02:28:55', NULL),
+('6', 'employee_67e267733e5', 25, 25, NULL, 1, 'testing', 'Pending', 'High', '2025-05-06 04:15:32', NULL),
+('7', 'employee_67e267733e5', 10, 10, NULL, 3, 'Blank print', 'Pending', 'High', '2025-05-06 14:27:23', NULL),
+('8', 'employee_67e267733e5', 25, 25, NULL, 3, 'hhhhhhh', 'Pending', 'High', '2025-05-06 19:52:02', NULL),
+('9', 'employee_67e267733e5', 25, 25, NULL, 3, 'scanner issue ', 'Pending', 'High', '2025-05-06 21:39:40', NULL);
 
 --
 -- Triggers `t_tickets`
@@ -442,7 +774,7 @@ CREATE TABLE `t_users` (
   `FirstName` varchar(30) NOT NULL,
   `LastName` varchar(45) NOT NULL,
   `Email` varchar(70) NOT NULL,
-  `Contactno` int(11) NOT NULL,
+  `Contactno` varchar(11) DEFAULT NULL,
   `DistrictId` int(11) NOT NULL,
   `BranchId` int(11) NOT NULL,
   `Password` varchar(255) DEFAULT NULL,
@@ -454,27 +786,29 @@ CREATE TABLE `t_users` (
 --
 
 INSERT INTO `t_users` (`UserId`, `FirstName`, `LastName`, `Email`, `Contactno`, `DistrictId`, `BranchId`, `Password`, `RoleId`) VALUES
-(3, 'Admin', 'Admin', 'Admin@mail.com', 2147483647, 1, 1, '$2y$10$cd1FcVDTwR/Q8PM5FX3J3ughe3huyJMDVWjkNJpTCXk45FJzJHmhC', 1),
-(4, 'Admin', 'Admin', 'Admin@mail.com', 2147483647, 4, 4, '$2y$10$5tj.MmZUTemTxquLCKJwgOUM1e4aj6QKHlM6ond/gl3FLSXrCqpg2', 1),
-(6, 'LIC', 'LIC', 'Lic@mail.com', 2147483647, 4, 4, '$2y$10$BQNKDVqJPPFziojmDWRMguqTIC37xo2n/SkxEwDRYJqj0vVxh0bAe', 2),
-(7, 'LIC', 'LIC', 'Lic@mail.com', 2147483647, 4, 4, '$2y$10$NQ6Zjk8CvuSkXBFA/P0zhuukjKy.AX9h/oqUsGCnqLIPiUl9jGxZ2', 2),
-(8, 'LIC', 'LIC', 'Lic@mail.com', 2147483647, 4, 4, '$2y$10$gzve6w4uX1TwEHF/eHuvH.ytYxt3IzJk8Vu1jKih77urGjG1wjU6.', 2),
-(11, 'IT', 'staff', 'ITstaff@mail.com', 2147483647, 10, 10, '$2y$10$TTygKQQfMRpeSrXgLbb3MOR84O/laPX3cti8/YGRhd9cDhVM3YlWe', 3),
-(12, 'IT', 'staff', 'ITstaff@mail.com', 2147483647, 10, 10, '$2y$10$IikVPLRwrfqfMnl6BbQw5.pi4kCO1KKQpIvXPuUMyt.5kU9ZnU9T6', 3),
-(13, 'employeesample', 'sample', 'Employee@mail.com', 2147483647, 19, 19, '$2y$10$a5rVr1wRAfu8jpByHnKuJORaqOLgd1o2y3xNXuvGN1qcb6PUDpkEy', 4),
-(14, 'Ash', 'LIC', 'Lic@mail.com', 2147483647, 5, 5, '$2y$10$LFZ9vjbbZbwQ0jVrWzsgZOyGxNVWeZg43iPsVCpqRGFgGlvZ1S24q', 2),
-(15, 'Ash', 'LIC', 'LicAsh@mail.com', 2147483647, 5, 5, '$2y$10$82gGKhomqPGfWCzJNRVV8.amrv8IllSR16A.TZGM8Tb3lCAg9D4da', 2),
-(17, 'Hyas', 'ITstaff', 'ITstaff1@mail.com', 2147483647, 21, 21, '$2y$10$3GHnYvY7BenxeTGZARU6pOknwPtuxuKC84aOOJlYq2hvGxA9hi3Ja', 3),
-(18, 'Ashley', 'delaCruz', 'Aldehalseymeows@mail.com', 2147483647, 25, 25, '$2y$10$Pa.0/DSMaqWmywbpBpHZyuQfDll8fV6YdIg0pGq9NczDjU7MpEJVy', 4),
-(19, 'Ashley1', 'delaCruz', 'Aldehalseymeows1@mail.com', 2147483647, 25, 25, '$2y$10$9aTohvc0RjffZtHOppFGdOGe4yqjjZpKeHvB3fwOKfOmwnnbqjiUS', 4),
-(20, 'Mika ', 'Garcia', 'MikaGarcia@mail.com', 2147483647, 29, 29, '$2y$10$VW0PC9IFBAjaPj/.Xm7ZV.C6gqmQ34HuxDXGdQDyCtQgiIkgpTTk6', 3),
-(33, 'Ria', 'Santos', 'RiaSantos@mail.com', 2147483647, 25, 20, '$2y$10$xvQKc2S8sQFPGAgHuS0equYMsM9JOU98uWZnnE/l1fzfrA5qaE9Pq', 3),
-(34, 'Eziell', 'Villamor', 'ITstaff3@mail.com', 2147483647, 27, 22, '$2y$10$xeKLz5a9M341Yf9Z8NCqEOmx/jBcnpoNFcoD7DzpykQ.UWHTEsG7y', 3),
-(35, 'Jhulius', 'dela Cruz', 'Jhuliusdella@mail.com', 2147483647, 24, 19, '$2y$10$Ucp.k.rgwgjxlL6NxXkbV.oRsh2bTW.c6Cn5TXN5YuxQSXhEeik9a', 3),
-(37, 'Asha Rae', 'Garcia', 'ashleydelacruzasc01@gmail.com', 2147483647, 28, 23, '$2y$10$H2/lm5vTOS.p7MyVgDNciejTocNT5tRisaXqJdydRBrr7DxErKk6.', 3),
-(38, 'Jhulius Kae', 'delaCruz', 'jhuliusdelacruzjdc10@gmail.com', 2147483647, 28, 23, '$2y$10$7AVUBbtSRL1RXcbxHOBlnu/l/Y742cyvBHMKgh2A1BaAhn4tyLal6', 3),
-(39, 'Rico', 'Pajarillo', 'pajarillorico@gmail.com', 2147483647, 21, 16, '$2y$10$3V0ihIqbtKRyae0D0wrIXeLxboEWdKuiXYzJr4DZnU70hlgszXKNm', 3),
-(44, 'Fal', 'dawnas', 'halseyaldecruz@gmail.com', 2147483647, 21, 16, '$2y$10$gFLGZCLjOn5NuH13r/vHrenJe0Xp8/HvrcpovRFCojhBrSJKe1TZS', 3);
+(3, 'Admin', 'Admin', 'Admin@mail.com', '2147483647', 1, 1, '$2y$10$cd1FcVDTwR/Q8PM5FX3J3ughe3huyJMDVWjkNJpTCXk45FJzJHmhC', 1),
+(4, 'Admin', 'Admin', 'Admin@mail.com', '2147483647', 4, 4, '$2y$10$5tj.MmZUTemTxquLCKJwgOUM1e4aj6QKHlM6ond/gl3FLSXrCqpg2', 1),
+(6, 'LIC', 'LIC', 'Lic@mail.com', '2147483647', 4, 4, '$2y$10$BQNKDVqJPPFziojmDWRMguqTIC37xo2n/SkxEwDRYJqj0vVxh0bAe', 2),
+(7, 'LIC', 'LIC', 'Lic@mail.com', '2147483647', 4, 4, '$2y$10$NQ6Zjk8CvuSkXBFA/P0zhuukjKy.AX9h/oqUsGCnqLIPiUl9jGxZ2', 2),
+(8, 'LIC', 'LIC', 'Lic@mail.com', '2147483647', 4, 4, '$2y$10$gzve6w4uX1TwEHF/eHuvH.ytYxt3IzJk8Vu1jKih77urGjG1wjU6.', 2),
+(11, 'IT', 'staff', 'ITstaff@mail.com', '2147483647', 10, 10, '$2y$10$TTygKQQfMRpeSrXgLbb3MOR84O/laPX3cti8/YGRhd9cDhVM3YlWe', 3),
+(12, 'IT', 'staff', 'ITstaff@mail.com', '2147483647', 10, 10, '$2y$10$IikVPLRwrfqfMnl6BbQw5.pi4kCO1KKQpIvXPuUMyt.5kU9ZnU9T6', 3),
+(13, 'employeesample', 'sample', 'Employee@mail.com', '2147483647', 19, 19, '$2y$10$a5rVr1wRAfu8jpByHnKuJORaqOLgd1o2y3xNXuvGN1qcb6PUDpkEy', 4),
+(14, 'Ash', 'LIC', 'Lic@mail.com', '2147483647', 5, 5, '$2y$10$LFZ9vjbbZbwQ0jVrWzsgZOyGxNVWeZg43iPsVCpqRGFgGlvZ1S24q', 2),
+(15, 'Ash', 'LIC', 'LicAsh@mail.com', '2147483647', 5, 5, '$2y$10$82gGKhomqPGfWCzJNRVV8.amrv8IllSR16A.TZGM8Tb3lCAg9D4da', 2),
+(17, 'Hyas', 'ITstaff', 'ITstaff1@mail.com', '2147483647', 21, 21, '$2y$10$3GHnYvY7BenxeTGZARU6pOknwPtuxuKC84aOOJlYq2hvGxA9hi3Ja', 3),
+(18, 'Ashley', 'delaCruz', 'Aldehalseymeows@mail.com', '2147483647', 30, 25, '$2y$10$Pa.0/DSMaqWmywbpBpHZyuQfDll8fV6YdIg0pGq9NczDjU7MpEJVy', 4),
+(19, 'Ashley1', 'delaCruz', 'Aldehalseymeows1@mail.com', '2147483647', 25, 25, '$2y$10$9aTohvc0RjffZtHOppFGdOGe4yqjjZpKeHvB3fwOKfOmwnnbqjiUS', 4),
+(33, 'Ria', 'Santos', 'RiaSantos@mail.com', '09337548800', 25, 20, '$2y$10$xvQKc2S8sQFPGAgHuS0equYMsM9JOU98uWZnnE/l1fzfrA5qaE9Pq', 3),
+(34, 'Eziell', 'Villamor', 'ITstaff3@mail.com', '2147483647', 27, 22, '$2y$10$xeKLz5a9M341Yf9Z8NCqEOmx/jBcnpoNFcoD7DzpykQ.UWHTEsG7y', 3),
+(38, 'Jhulius Kae', 'delaCruz', 'jhuliusdelacruzjdc10@gmail.com', '2147483647', 28, 23, '$2y$10$7AVUBbtSRL1RXcbxHOBlnu/l/Y742cyvBHMKgh2A1BaAhn4tyLal6', 3),
+(47, 'Fal', 'dawnas', 'halseyaldecruz@gmail.com', '2147483647', 28, 23, '$2y$10$Vn61mAvXVVYDyiTRi8dFh.kINkawgLrnUFeFmLqtv1L4xTP0lcjs.', 3),
+(48, 'Leanne', 'Delamar', 'leannedelamar@gmail.com', '09469417070', 32, 27, '$2y$10$Q.PxylkdRNMI7Ep1/bAFF.JjCKhlzMSEpeNDa3xHONO4ST29mez1S', 3),
+(50, 'Gary', 'Mesahon', 'grayv@gmail.com', '09469318080', 4, 4, '$2y$10$FmDHNpMwD3fdoRRHv79xvOvkUiNidDiZBooUGldXk.FxuseNm946.', 2),
+(61, 'Fal', 'dawnas', 'halseyaldecruz1@gmail.com', '00946941672', 11, 11, '$2y$10$VcY3J1fM4gyE2BR/ug.hdeJTdZbqbeMONTEJ0jxunzy9G0YMyY6au', 2),
+(63, 'Caren', 'Pajarillo', 'pajarillorico@gmail.com', '09378276634', 29, 24, '$2y$10$Ea.Ks1EapIdEJ7AOwjFajO1NQzQpeQ5Hil8uNu6qgKRmzZZHRMzme', 3),
+(64, 'Sally ', 'Matula', 'Ashleydelacruzasc01@gmail.com', '09424687671', 37, 32, '$2y$10$wrG4plM0TFuAFiLn0ssDr.0a/aG3qhFju1lux0fwJZdp9t5iw7jti', 2),
+(65, 'hyas', 'Castro', 'hsalayay@gmail.com', '09876725431', 38, 33, '$2y$10$EAMTbDkggPyVfmY2VT4zNOcM8acUZIN8WZBRx53nrbe3vtEO/qr06', 3);
 
 --
 -- Indexes for dumped tables
@@ -485,7 +819,7 @@ INSERT INTO `t_users` (`UserId`, `FirstName`, `LastName`, `Email`, `Contactno`, 
 --
 ALTER TABLE `t_activitylogs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `UserId` (`UserId`);
+  ADD KEY `t_activitylogs_ibfk_1` (`UserId`);
 
 --
 -- Indexes for table `t_admin`
@@ -570,17 +904,24 @@ ALTER TABLE `t_roles`
   ADD PRIMARY KEY (`RoleId`);
 
 --
+-- Indexes for table `t_ticketissues`
+--
+ALTER TABLE `t_ticketissues`
+  ADD PRIMARY KEY (`TicketIssueId`),
+  ADD KEY `fk_ticketissues_ticketid` (`TicketId`),
+  ADD KEY `fk_ticketissues_issueid` (`IssueId`),
+  ADD KEY `fk_ticketissues_subtypeid` (`SubtypeId`);
+
+--
 -- Indexes for table `t_tickets`
 --
 ALTER TABLE `t_tickets`
-  ADD PRIMARY KEY (`TicketsId`),
+  ADD PRIMARY KEY (`TicketId`),
   ADD KEY `EmployeeId` (`EmployeeId`),
   ADD KEY `BranchId` (`BranchId`),
   ADD KEY `DistrictId` (`DistrictId`),
   ADD KEY `AssignedITstaffId` (`AssignedITstaffId`),
-  ADD KEY `AssetId` (`AssetId`),
-  ADD KEY `IssueId` (`IssueId`),
-  ADD KEY `SubtypeId` (`SubtypeId`);
+  ADD KEY `AssetId` (`AssetId`);
 
 --
 -- Indexes for table `t_useremp`
@@ -606,13 +947,13 @@ ALTER TABLE `t_users`
 -- AUTO_INCREMENT for table `t_activitylogs`
 --
 ALTER TABLE `t_activitylogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- AUTO_INCREMENT for table `t_asset`
 --
 ALTER TABLE `t_asset`
-  MODIFY `AssetId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AssetId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `t_assettransfer`
@@ -624,7 +965,7 @@ ALTER TABLE `t_assettransfer`
 -- AUTO_INCREMENT for table `t_assettype`
 --
 ALTER TABLE `t_assettype`
-  MODIFY `AssetTypeId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AssetTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `t_branch`
@@ -642,13 +983,13 @@ ALTER TABLE `t_district`
 -- AUTO_INCREMENT for table `t_issuedsubtype`
 --
 ALTER TABLE `t_issuedsubtype`
-  MODIFY `SubtypeId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SubtypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `t_issuedtype`
 --
 ALTER TABLE `t_issuedtype`
-  MODIFY `IssueId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IssueId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `t_notifs`
@@ -663,16 +1004,16 @@ ALTER TABLE `t_roles`
   MODIFY `RoleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `t_tickets`
+-- AUTO_INCREMENT for table `t_ticketissues`
 --
-ALTER TABLE `t_tickets`
-  MODIFY `TicketsId` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `t_ticketissues`
+  MODIFY `TicketIssueId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `t_users`
 --
 ALTER TABLE `t_users`
-  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- Constraints for dumped tables
@@ -682,7 +1023,7 @@ ALTER TABLE `t_users`
 -- Constraints for table `t_activitylogs`
 --
 ALTER TABLE `t_activitylogs`
-  ADD CONSTRAINT `t_activitylogs_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `t_users` (`UserId`);
+  ADD CONSTRAINT `t_activitylogs_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `t_users` (`UserId`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `t_admin`
@@ -725,6 +1066,14 @@ ALTER TABLE `t_notifs`
   ADD CONSTRAINT `t_notifs_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `t_users` (`UserId`);
 
 --
+-- Constraints for table `t_ticketissues`
+--
+ALTER TABLE `t_ticketissues`
+  ADD CONSTRAINT `fk_ticketissues_issueid` FOREIGN KEY (`IssueId`) REFERENCES `t_issuedtype` (`IssueId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_ticketissues_subtypeid` FOREIGN KEY (`SubtypeId`) REFERENCES `t_issuedsubtype` (`SubtypeId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_ticketissues_ticketid` FOREIGN KEY (`TicketId`) REFERENCES `t_tickets` (`TicketId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `t_tickets`
 --
 ALTER TABLE `t_tickets`
@@ -732,9 +1081,7 @@ ALTER TABLE `t_tickets`
   ADD CONSTRAINT `t_tickets_ibfk_2` FOREIGN KEY (`BranchId`) REFERENCES `t_branch` (`BranchId`) ON DELETE CASCADE,
   ADD CONSTRAINT `t_tickets_ibfk_3` FOREIGN KEY (`DistrictId`) REFERENCES `t_district` (`DistrictId`) ON DELETE CASCADE,
   ADD CONSTRAINT `t_tickets_ibfk_4` FOREIGN KEY (`AssignedITstaffId`) REFERENCES `t_itstaff` (`ITstaffId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `t_tickets_ibfk_5` FOREIGN KEY (`AssetId`) REFERENCES `t_asset` (`AssetId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `t_tickets_ibfk_6` FOREIGN KEY (`IssueId`) REFERENCES `t_issuedtype` (`IssueId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `t_tickets_ibfk_7` FOREIGN KEY (`SubtypeId`) REFERENCES `t_issuedsubtype` (`SubtypeId`) ON DELETE CASCADE;
+  ADD CONSTRAINT `t_tickets_ibfk_5` FOREIGN KEY (`AssetId`) REFERENCES `t_asset` (`AssetId`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `t_useremp`

@@ -16,7 +16,7 @@ $stmt = $conn->prepare(query: $sql);
 $stmt->execute();
 $tickets =$stmt->fetchAll(mode: PDO::FETCH_ASSOC);
 
-if ($_SESSION['RoleId'] != 1) {
+if ($_SESSION['RoleId'] != 3) {
     header('Location: ../employee/home.php');
     exit();
 }

@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit" class="btn btn-primary w-100 mt-3">Send OTP</button>
                 </form>
                 <div class="text-center mt-3">
-                    <a href="index.php" class="links">Back to Login</a>
+                    <a href="../index.php" class="links">Back to Login</a>
                 </div>
             </div>
         </div>

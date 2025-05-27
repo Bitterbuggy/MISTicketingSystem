@@ -54,9 +54,7 @@ if ($_SESSION['RoleId'] != 2) {
                             <div class="card-content">
                                 <h2 id="greeting"></h2>
                                 <h1 class="fw-bold"><?php echo $_SESSION['FirstName']; ?></h1>
-                                <div class="location-tag">
-                                    <i class="fa-solid fa-location-dot"></i> <?php echo $location; ?>
-                                </div>
+                               
                             </div>
                             <img src="../asset/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
                         </div>
@@ -268,7 +266,7 @@ if ($_SESSION['RoleId'] != 2) {
         </div>
     </div>
 
-<script src="../asset/js/greeting-card.js"></script>
+<script src="../asset/js/greetingCard.js"></script>
 <script src="../asset/js/branchMostTicketChart.js"></script>
 <script src="../asset/js/mostIssueChart.js"></script>
 </body>

@@ -1,11 +1,30 @@
-<script>
-  var pageTitle = "Dashboard";
-</script>
-
 <?php
 
 include '../Includes/config.php';
 include '../Includes/check_session.php';
+
+$sql = "SELECT
+  t_tickets.TicketId,
+  MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
+  t_branch.BranchName,
+  GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
+  t_tickets.AssignedITstaffId,
+  t_tickets.TicketStatus
+FROM t_ticketissues
+JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
+
+JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
+JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
+GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, t_tickets.TicketStatus
+ORDER BY TimeSubmitted ASC";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
 if ($_SESSION['RoleId'] != 1) {
     header('Location: ../employee/home.php');
     exit();
@@ -169,54 +188,42 @@ if ($_SESSION['RoleId'] != 1) {
                         <div class="tab-content" id="nav-tix-content">
                             <!-- Pending Tab -->
                             <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                                <table class="table table-md table-bordered table-striped table-hover">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th class="dateTime"style="width: 5%">Submitted At</th>
-                                        <th class="tixId" style="width: 4%">Ticket ID</th>
-                                        <th class="branch"style="width: 7%">Branch</th>
-                                        <th class="issue"style="width: 7%">Issue</th>
-                                        <th class="assignedIT"style="width: 5%">Assigned IT</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000001</td>
-                                        <td>Branch 1</td>
-                                        <td>Issue 1</td>
-                                        <td>IT 1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000002</td>
-                                        <td>Branch 2</td>
-                                        <td>Issue 2</td>
-                                        <td>IT 2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000003</td>
-                                        <td>Branch 3</td>
-                                        <td>Issue 3</td>
-                                        <td>IT 3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000004</td>
-                                        <td>Branch 4</td>
-                                        <td>Issue 4</td>                                     
-                                        <td>IT 4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Apr 24, 2025, 10:00:00</td>
-                                        <td>000005</td>
-                                        <td>Branch 5</td>
-                                        <td>Issue 5</td>
-                                        <td>IT 5</td>
-                                    </tr>
-                                </tbody>
+                                <table class="table table-md table-bordered table-striped table-hover mt-3">
+                        <div class="table-responsive">
+                            <table id="TicketTable" class="table table-striped table-bordered table-hover" id="tblTickets">
+                                <thead class="thead-dark">
+    <tr>
+        <th>Ticket Id</th>
+        <th>Submitted At </th>
+        <th>Branch</th>
+        <th>Issue</th>
+        <th>Assigned IT</th>
+        <th>Status</th>
+        <th>Action</th> <!-- New Column -->
+    </tr>
+</thead>
+<tbody>
+    <?php foreach ($tickets as $ticket) : ?>
+        <tr>
+            <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+            <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
+            <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
+            <td><?= htmlspecialchars($ticket['Issues']) ?></td>
+            <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+            <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+            <td>
+               <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
+
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+
                             </table>
+                       
+                        </tbody>
+                        </div>
+                    </table>
                         </div>
 
                         <!-- On Going Tab -->
