@@ -1,23 +1,40 @@
 <?php
-include '../Includes/config.php';
+session_start();
+require_once '../Includes/config.php';
 
-// Fetch Issue Types
+$loggedInEmployeeId = $_SESSION['UserId'] ?? null;
+
+if (!$loggedInEmployeeId) {
+    // redirect to login or show error
+    exit('User not logged in');
+}
+
+// Fetch employee info with district and branch
+$stmt = $conn->prepare("
+    SELECT 
+        ue.EmployeeId,
+        u.UserId,
+        u.FirstName,
+        u.LastName,
+        u.Email,
+        u.ContactNo,
+        u.DistrictId,
+        u.BranchId,
+        d.DistrictName,
+        b.BranchName
+    FROM t_users u
+    INNER JOIN t_useremp ue ON u.UserId = ue.UserId
+    LEFT JOIN t_district d ON u.DistrictId = d.DistrictId
+    LEFT JOIN t_branch b ON u.BranchId = b.BranchId
+    WHERE u.UserId = ?
+");
+$stmt->execute([$loggedInEmployeeId]);
+$employee = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Fetch other dropdown data for form (issue types, subtypes, assets)
 $issues = $conn->query("SELECT * FROM t_issuedtype")->fetchAll(PDO::FETCH_ASSOC);
-
-// Fetch Subtypes
 $subtypes = $conn->query("SELECT * FROM t_issuedsubtype")->fetchAll(PDO::FETCH_ASSOC);
-
-// Optional: Fetch Assets (if you have an assets table)
 $assets = $conn->query("SELECT * FROM t_asset")->fetchAll(PDO::FETCH_ASSOC);
-
-// Optional: Fetch Employee IDs from t_useremp
-$employees = $conn->query("SELECT EmployeeId FROM t_useremp")->fetchAll(PDO::FETCH_ASSOC);
-
-// Optional: Fetch Employee IDs from t_useremp
-$branches = $conn->query("SELECT BranchId FROM t_branch")->fetchAll(PDO::FETCH_ASSOC);
-
-// Optional: Fetch Employee IDs from t_useremp
-$districts = $conn->query("SELECT DistrictId FROM t_branch")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!-- Bootstrap CSS (required) -->
@@ -30,160 +47,142 @@ $districts = $conn->query("SELECT DistrictId FROM t_branch")->fetchAll(PDO::FETC
 <!-- Bootstrap JS (required for modal to function) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Submit Ticket Modal -->
+
+<!--Submit Ticket Modal-->
 <div class="modal fade" id="submitTicketModal" tabindex="-1" aria-labelledby="submitTicketModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="submitTicketModalLabel">Submit A Ticket</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="submitTicketModalLabel">Submit Ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>    
+            </div>
+
+            <div class="modal-body">
+                <form action="../employee/create_ticket.php" method="POST">
+                    
+                    <!-- Employee Info -->
+                    <input type="hidden" name="EmployeeId" value="<?= htmlspecialchars($employee['EmployeeId']) ?>">
+                    <input type="hidden" name="BranchId" value="<?= htmlspecialchars($employee['BranchId']) ?>">
+                    <input type="hidden" name="DistrictId" value="<?= htmlspecialchars($employee['DistrictId']) ?>">
+
+                    <div class="mb-3">
+                        <label class="form-label">Employee</label>
+                        <p class="form-control"><?= htmlspecialchars($employee['FirstName'] . ' ' . $employee['LastName']) ?></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Branch</label>
+                        <p class="form-control"><?= htmlspecialchars($employee['BranchName']) ?></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">District</label>
+                        <p class="form-control"><?= htmlspecialchars($employee['DistrictName']) ?></p>
+                    </div>
+
+                   <!-- Asset -->
+    <div class="mb-3">
+        <label for="AssetId" class="form-label">Asset</label>
+        <select name="AssetId" class="form-select" required>
+            <option value="">-- Select Asset --</option>
+            <?php foreach ($assets as $a): ?>
+                <option value="<?= $a['AssetId'] ?>">
+                    <?= $a['AssetId'] ?> - <?= htmlspecialchars($a['AssetName'] ?? 'Unnamed') ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
     </div>
 
-    <div class="modal-body">
-        <form action="../employee/create_ticket.php" method="POST">
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="TicketId" class="form-label">Ticket ID:</label>
-                    <input type="text" name="TicketId" id="TicketId" class="form-control rounded-pill" readonly>
-                </div>
+    <!-- Container for multiple issues -->
+    <div id="issuesContainer">
+        <div class="issue-entry mb-3 border p-3 rounded">
 
-                <div class="col-md-6">
-                <label for="AssetId" class="form-label">Asset:</label>
-                <select name="AssetId" id="AssetId" class="form-select rounded-pill" required>
-                    <option value="">-- Select Asset --</option>
-                    <?php foreach ($assets as $a): ?>
-                        <option value="<?= $a['AssetId'] ?>"><?= $a['AssetId'] ?> - <?= $a['AssetName'] ?? 'Unnamed' ?></option>
+            <!-- Issue Type -->
+            <div class="mb-3">
+                <label class="form-label">Issue Type</label>
+                <select name="IssueId[]" class="form-select" required>
+                    <option value="">-- Select Issue --</option>
+                    <?php foreach ($issues as $issue): ?>
+                        <option value="<?= $issue['IssueId'] ?>"><?= htmlspecialchars($issue['IssueType']) ?></option>
                     <?php endforeach; ?>
                 </select>
-                </div>
-
-                <!-- HIDDEN INPUT TO DISPLAY -->
-                    <label for="EmployeeId" class="form-label" hidden>Employee</label>
-                    <select name="EmployeeId" id="EmployeeId" class="form-select rounded-pill" required hidden>
-                        <option value=""></option>
-                        <?php foreach ($employees as $emp): ?>
-                            <option value="<?= htmlspecialchars($emp['EmployeeId']) ?>"><?= htmlspecialchars($emp['EmployeeId']) ?></option>
-                        <?php endforeach; ?>
-                    </select>
-
-                    <label for="BranchId" class="form-label" hidden>Branch:</label>
-                    <select name="BranchId" id="BranchId" class="form-select rounded-pill" hidden required>
-                        <option value="">-- Select Branch --</option>
-                        <?php foreach ($branches as $branch): ?>
-                            <option value="<?= $branch['BranchId'] ?>"><?= $branch['BranchId'] ?> - <?= $branch['BranchName'] ?? 'Unnamed' ?></option>
-                        <?php endforeach; ?>
-                    </select>
-
-                    <label for="DistrictId" class="form-label" hidden>District:</label>
-                    <select name="DistrictId" id="DistrictId" class="form-select rounded-pill" hidden required>
-                        <option value="">-- Select District --</option>
-                        <?php foreach ($districts as $district): ?>
-                            <option value="<?= $district['DistrictId'] ?>"><?= $district['DistrictId'] ?> - <?= $district['BranchName'] ?? 'Unnamed' ?></option>
-                        <?php endforeach; ?>
-                    </select>
             </div>
-            
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="IssueId" class="form-label">Issue Type:</label>
-                    <select name="IssueId" class="form-select rounded-pill" required>
-                        <option value="">-- Select Issue --</option>
-                        <?php foreach ($issues as $issue): ?>
-                            <option value="<?= $issue['IssueId'] ?>"><?= htmlspecialchars($issue['IssueType']) ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
 
-                <div class="col-md-6">
-                <label for="SubtypeId" class="form-label">Issue Subtype:</label>
-                <select name="SubtypeId" class="form-select rounded-pill" required>
+            <!-- Issue Subtype -->
+            <div class="mb-3">
+                <label class="form-label">Issue Subtype</label>
+                <select name="SubtypeId[]" class="form-select" required>
                     <option value="">-- Select Subtype --</option>
                     <?php foreach ($subtypes as $sub): ?>
-                        <option value="<?= $sub['SubtypeId'] ?>">
-                            <?= htmlspecialchars($sub['SubtypeName']) ?>
-                        </option>
+                        <option value="<?= $sub['SubtypeId'] ?>"><?= htmlspecialchars($sub['SubtypeName']) ?></option>
                     <?php endforeach; ?>
                 </select>
-                </div>
             </div>
 
+            <!-- Description -->
             <div class="mb-3">
-                <label for="Description" class="form-label">Description:</label><br>
-                <textarea name="Description" class="form-control rounded-pill" rows="4" cols="50" placeholder="Describe the issue..."></textarea>
+                <label class="form-label">Description</label>
+                <textarea name="Description[]" class="form-control" rows="3" placeholder="Describe the issue..." required></textarea>
             </div>
-            
-            <div class="modal-footer">
-            <button type="submit" class="btn btn-submit">Submit Ticket</button>
+
+            <button type="button" class="btn btn-danger remove-issue-btn">Remove Issue</button>
+
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary mb-3" id="addIssueBtn">+ Add Another Issue</button>
+
+    <!-- Submit Button -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-submit">Submit Ticket</button>
+    </div>
+
+
+                </form>
             </div>
-        </form>
-    </div>
-    </div>
+        </div>
     </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const issuesContainer = document.getElementById('issuesContainer');
+    const addIssueBtn = document.getElementById('addIssueBtn');
 
+    addIssueBtn.addEventListener('click', function() {
+        // Clone the first issue-entry div
+        const firstIssue = issuesContainer.querySelector('.issue-entry');
+        const newIssue = firstIssue.cloneNode(true);
 
-<!--form action="create_ticket.php" method="POST">
-    <label for="EmployeeId">Employee ID:</label>
-    <select name="EmployeeId" required>
-        <option value="">-- Select Employee --</option>
-        <?php foreach ($employees as $emp): ?>
-            <option value="<?= htmlspecialchars($emp['EmployeeId']) ?>"><?= htmlspecialchars($emp['EmployeeId']) ?></option>
-        <?php endforeach; ?>
-    </select><br><br>
+        // Clear the values in the cloned fields
+        newIssue.querySelectorAll('select, textarea').forEach(input => {
+            input.value = '';
+        });
 
+        issuesContainer.appendChild(newIssue);
+        attachRemoveListeners(); // Re-attach listeners for new buttons
+    });
 
-<label for="BranchId">Branch:</label>
-<select name="BranchId" required>
-    <option value="">-- Select Branch --</option>
-    <?php foreach ($branches as $branch): ?>
-        <option value="<?= $branch['BranchId'] ?>"><?= $branch['BranchId'] ?> - <?= $branch['BranchName'] ?? 'Unnamed' ?></option>
-    <?php endforeach; ?>
-</select><br><br>
+    function attachRemoveListeners() {
+        const removeButtons = document.querySelectorAll('.remove-issue-btn');
+        removeButtons.forEach(btn => {
+            btn.removeEventListener('click', removeIssue);
+            btn.addEventListener('click', removeIssue);
+        });
+    }
 
-<label for="DistrictId">District:</label>
-<select name="DistrictId" required>
-    <option value="">-- Select District --</option>
-    <?php foreach ($districts as $district): ?>
-        <option value="<?= $district['DistrictId'] ?>"><?= $district['DistrictId'] ?> - <?= $district['BranchName'] ?? 'Unnamed' ?></option>
-    <?php endforeach; ?>
-</select><br><br>
+    function removeIssue(event) {
+        const btn = event.target;
+        const issueEntry = btn.closest('.issue-entry');
+        // Only remove if more than one issue-entry exists
+        if (issuesContainer.children.length > 1) {
+            issueEntry.remove();
+        } else {
+            alert('At least one issue entry is required.');
+        }
+    }
 
-    <label for="AssetId">Asset:</label>
-    <select name="AssetId" required>
-        <option value="">-- Select Asset --</option>
-        <?php foreach ($assets as $a): ?>
-            <option value="<?= $a['AssetId'] ?>"><?= $a['AssetId'] ?> - <?= $a['AssetName'] ?? 'Unnamed' ?></option>
-        <?php endforeach; ?>
-    </select><br><br>
-
-    <label for="IssueId">Issue Type:</label>
-    <select name="IssueId" required>
-        <option value="">-- Select Issue --</option>
-        <?php foreach ($issues as $issue): ?>
-            <option value="<?= $issue['IssueId'] ?>"><?= htmlspecialchars($issue['IssueType']) ?></option>
-        <?php endforeach; ?>
-    </select><br><br>
-
-    <label for="SubtypeId">Issue Subtype:</label>
-    <select name="SubtypeId" required>
-        <option value="">-- Select Subtype --</option>
-        <?php foreach ($subtypes as $sub): ?>
-            <option value="<?= $sub['SubtypeId'] ?>">
-                <?= htmlspecialchars($sub['SubtypeName']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br><br>
-
-    <label for="Description">Description:</label><br>
-    <textarea name="Description" rows="4" cols="50" placeholder="Describe the issue..."></textarea><br><br>
-
-    <label for="Priority">Priority:</label>
-    <select name="Priority">
-        <option value="Low" selected>Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-    </select><br><br>
-
-    <button type="submit">Submit Ticket</button>
-</!--form>-->
+    attachRemoveListeners(); // Initial call
+});
+</script>

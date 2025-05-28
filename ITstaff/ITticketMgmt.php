@@ -1,5 +1,5 @@
 <script>
-    var pageTitle = "Ticket Management";
+  var pageTitle = "Ticket Management";
 </script>
 
 <?php
@@ -16,10 +16,13 @@ $stmt = $conn->prepare(query: $sql);
 $stmt->execute();
 $tickets =$stmt->fetchAll(mode: PDO::FETCH_ASSOC);
 
-if ($_SESSION['RoleId'] != 1) {
+if ($_SESSION['RoleId'] != 3) {
     header('Location: ../employee/home.php');
     exit();
 }
+
+
+
 
 ?>
 
@@ -33,11 +36,7 @@ if ($_SESSION['RoleId'] != 1) {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
-    <link rel="stylesheet" href="../asset/css/div_mods.css">
-    <link rel="stylesheet" href="../asset/css/navtabs.css">
-    <link rel="stylesheet" href="../asset/css/tbl_charts.css">
-    <link rel="stylesheet" href="../asset/css/tbl-controls.css">
-    <link rel="stylesheet" href="../asset/css/buttons.css">
+    <link rel ="stylesheet" href="../asset/css/admin-ticket-mgmt.css">
     <link rel ="stylesheet" href="../asset/css/pagination.css">
 
     <!-- Bootstrap CSS -->
@@ -139,37 +138,42 @@ if ($_SESSION['RoleId'] != 1) {
             </div>
 
             <!-- All Repair Tickets Submitted Table -->
+            <!-- Tabs Content -->
             <div class="tab-content" id="nav-tix-content">
                 <!-- Pending Tab Pane -->
-                <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">                        <div class="table-responsive">
-                    <table id="TicketTable" class="table table-striped table-bordered table-hover" id="tblTickets">
-                        <thead class="thead-dark">
-                            <tr>
-                            <th style="width: 3%;">Ticket ID</th>
-                            <th style="width: 4%;">Submitted At</th>
-                            <th style="width: 6%;">Branch</th>
-                            <th style="width: 3%;">Issue</th>
-                            <th style="width: 5%;">Assigned IT</th>
-                            <th style="width: 5%;">Status</th>
-                            </tr>
+                <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                     <table class="table table-md table-bordered table-striped table-hover mt-3">
+                        <div class="table-responsive">
+                            <table id="TicketTable" class="table table-striped table-bordered table-hover" id="tblTickets">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Ticket Id</th>
+                                        <th>Submitted At </th>
+                                        <th>Branch</th>
+                                        <th>Issue</th>
+                                        <th>Assigned IT</th>
+                                        <th>Status</th>
+                                    </tr>
 
-                        </thead>
-                        <tbody>
-                            <?php foreach ($tickets as $ticket) : ?>
-                                <tr>
-                                    <td> <?php echo $ticket['TicketId']; ?></td>
-                                    <td> <?php echo $ticket['TimeSubmitted']; ?></td>
-                                    <td> <?php echo $ticket['BranchName']; ?></td>
-                                    <td> <?php echo $ticket['IssueType']; ?></td>
-                                    <td> <?php echo $ticket['AssignedITstaffId']; ?></td>
-                                    <td> <?php echo $ticket['TicketStatus']; ?></td>
-                                </tr>
-                            <?php endforeach; ?>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($tickets as $ticket) : ?>
+                                        <tr>
+                                            <td> <?php echo $ticket['TicketId']; ?></td>
+                                             <td> <?php echo $ticket['TimeSubmitted']; ?></td>
+                                              <td> <?php echo $ticket['BranchName']; ?></td>
+                                               <td> <?php echo $ticket['IssueType']; ?></td>
+                                                <td> <?php echo $ticket['AssignedITstaffId']; ?></td>
+                                                 <td> <?php echo $ticket['TicketStatus']; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                       
                         </tbody>
+                        </div>
                     </table>
-                </tbody>
                 </div>
-            </div>
 
                 <!-- Ongoing Tab Pane -->
                 <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
@@ -200,28 +204,37 @@ if ($_SESSION['RoleId'] != 1) {
                 <!-- All Tickets Tab Pane -->
                 <div class="tab-pane fade" id="alltix" role="tabpanel" aria-labelledby="alltix-tab">
                     <table class="table table-md table-bordered table-striped table-hover mt-3">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th class="dateTime" style="width: 5%">Submitted At</th>
-                                <th class="tixId" style="width: 4%">Ticket ID</th>
-                                <th class="branch" style="width: 7%">Branch</th>
-                                <th class="issue" style="width: 7%">Issue</th>
-                                <th class="assignedIT" style="width: 5%">Assigned IT</th>
-                                <th class="status" style="width: 5%">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Apr 12, 2025, 09:43:15</td>
-                            <td>1001</td>
-                            <td>Hardware</td>
-                            <td>QCPL</td>
-                            <td>-</td>
-                            <td><button type="button" class="btn btn-status">Pending</button></td>
-                        </tr>
-                            <!-- Rows will be populated by JavaScript -->
+                        <div class="table-responsive">
+                            <table id="TicketTable" class="table table-striped table-bordered table-hover" id="tblTickets">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Ticket Id</th>
+                                        <th>Submitted At </th>
+                                        <th>Branch</th>
+                                        <th>Issue</th>
+                                        <th>Assigned IT</th>
+                                        <th>Status</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($tickets as $ticket) : ?>
+                                        <tr>
+                                            <td> <?php echo $ticket['TicketId']; ?></td>
+                                             <td> <?php echo $ticket['TimeSubmitted']; ?></td>
+                                              <td> <?php echo $ticket['BranchName']; ?></td>
+                                               <td> <?php echo $ticket['IssueType']; ?></td>
+                                                <td> <?php echo $ticket['AssignedITstaffId']; ?></td>
+                                                 <td> <?php echo $ticket['TicketStatus']; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                       
                         </tbody>
+                        </div>
                     </table>
+                    
                 </div>
             </div>
         </div>

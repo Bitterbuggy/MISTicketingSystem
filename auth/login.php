@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../Includes/config.php'; // Siguraduhin ang tamang path
+include '../Includes/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $logSql = "INSERT INTO t_activitylogs (UserId, activity_type) VALUES (:UserId, 'login')";
         $logStmt = $conn->prepare($logSql);
         $logStmt->execute(['UserId' => $user['UserId']]);
-
 
         // Redirect based on role
         if ($user['RoleId'] == 1) {

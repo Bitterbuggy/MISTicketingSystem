@@ -108,19 +108,19 @@ if (isset($_POST['request_account'])) {
                 <form method="POST">
                     <div class="mb-3" id="user_email">
                         <label for="user_email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control custom-input" name="user_email" required>
+                        <input type="email" class="form-control custom-input" name="user_email" placeholder="Enter your email address" required>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="contact_no" class="form-label">Contact Number</label>
-                            <input type="text" class="form-control custom-input" name="contact_no" required>
+                            <input type="text" class="form-control custom-input" name="contact_no" placeholder="Enter your contact number"required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="account_type" class="form-label">Account Type</label>
                             <select class="form-select custom-input" name="account_type" required>
-                                <option value="" default></option>
+                                <option value="-- Select Type --" default></option>
                                 <option value="employee">Employee</option>
                                 <option value="branchadmin">Branch Admin</option>
                                 <option value="it">IT</option>
@@ -131,7 +131,7 @@ if (isset($_POST['request_account'])) {
                     <div class="mb-2">
                         <label for="branch_id" class="form-label">Branch</label>
                         <select class="form-select custom-input" name="branch_id" required>
-                            <option value="" default></option>
+                            <option value="-- Select Branch --" default></option>
                             <?php
                             $stmt = $conn->query("SELECT b.BranchId, b.BranchName, d.DistrictName 
                                                 FROM t_branch b

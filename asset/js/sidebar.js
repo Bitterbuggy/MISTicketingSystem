@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const pageMap = {
         dashboard: ['admindashboard.php', 'ITdashboard.php', 'licDashboard.php', 'home.php'],
         tickets: ['adminTicketMgmt.php', 'adminCompletedTickets.php', 'adminArchivedTickets.php',
-                    'ITticketMgmt.php', 'licTicketMgmt.php', 'licCompletedTickets.php', 
-                    'licArchivedTickets.php', 'empTicketMgmt.php', 'empCompletedTickets.php',
-                    'empArchivedTickets.php'],
+                    'ITticketMgmt.php', 'ITcompletedTickets.php', 'ITarchivedTickets.php', 
+                    'licTicketMgmt.php', 'licCompletedTickets.php', 'licArchivedTickets.php', 
+                    'empTicketMgmt.php', 'empCompletedTickets.php', 'empArchivedTickets.php'],
         assets: ['adminAssetMgmt.php', 'adminTransferRequestsList.php',
                     'ITassetMgmt.php', 'ITtransferRequestsList.php', 'licAssetMgmt.php',
-                    'licTransferRequestsList.php', 'empAssetMgmt.php'],
+                    'licTransferRequestsList.php', 'empAssetMgmt.php', 'empTransferRequestsList.php'],
         staff: ['adminStaffMgmt.php'],
         branches: ['adminBranchMgmt.php', 'adminEmployeeList.php', 'ITbranchMgmt.php', 'ITEmployeeList.php'],
         employees: ['licEmployeeMgmt.php'], // for LIC

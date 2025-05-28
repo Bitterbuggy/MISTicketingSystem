@@ -33,7 +33,7 @@
                 <h2 class="mb-2"><span class="dot"></span> Log In</h2>
                 <p class="text-muted">Welcome back! Please enter your credentials:</p>
 
-                <form action="auth/login.php" method="POST" id="login-form">
+                <form action="../auth/login.php" method="POST" id="login-form">
                     <div class="mb-2">
                         <label class="form-label">Email Address</label>
                         <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Enter your email address" required>
@@ -64,16 +64,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.querySelector('select[name="role_id"]').addEventListener('change', function () {
-        if (this.value == 1) {
-            document.getElementById('admin_fields').style.display = 'block';
-        } else {
-            document.getElementById('admin_fields').style.display = 'none';
-        }
-    });
-</script>
 
 <script>
     document.getElementById("toggle-password").addEventListener("click", function() {

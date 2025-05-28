@@ -2,12 +2,11 @@
 
 include '../Includes/config.php';
 include '../Includes/check_session.php';
+
 if ($_SESSION['RoleId'] != 3) {
-    header('Location: ../employee/home.php');
+    header('Location: ../auth/login_error.php');
     exit();
 }
-
-include '../Includes/get-location.php';
 
 ?>
 

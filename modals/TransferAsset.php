@@ -58,10 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form action="#" method="POST">
                 <div class="row mb-3">
                     <div class="col-md-6">
-                    <label for="requestID" class="form-label">Request ID</label>
-                    <input type="text" name="request_ID" id="requestID" class="form-control rounded-pill" readonly>
-                    </div>
-                    <div class="col-md-6">
                         <label for="assetName" class="form-label">Asset</label>
                         <select name="AssetName" id="assetName" class="form-select rounded-pill" required>
                             <option value="" default></option>

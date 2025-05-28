@@ -1,5 +1,5 @@
 <script>
-  var pageTitle = "Asset Management";
+    var pageTitle = "Asset Management";
 </script>
 
 <?php

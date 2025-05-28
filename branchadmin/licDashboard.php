@@ -6,8 +6,9 @@
 
 include '../Includes/config.php';
 include '../Includes/check_session.php';
-if ($_SESSION['RoleId'] == 2) {
-    header('Location: ../employee/home.php');
+
+if ($_SESSION['RoleId'] != 2) {
+    header('Location: ../auth/login_error.php');
     exit();
 }
 
