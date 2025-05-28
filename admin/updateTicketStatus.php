@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         if ($success) {
-            header("Location: ITdashboard.php?id=" . urlencode($ticketId) . "&updated=1");
+            header("Location: admindashboard.php?id=" . urlencode($ticketId) . "&updated=1");
             exit;
         } else {
             echo "Failed to update ticket status.";

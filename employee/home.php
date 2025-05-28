@@ -16,7 +16,6 @@ include '../Includes/check_session.php';
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
-        <link rel="stylesheet" href="../asset/css/admin-dashboard.css">
     <link rel="stylesheet" href="../asset/css/greeting.css">
     <link rel="stylesheet" href="../asset/css/ticket-cards.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
@@ -106,8 +105,6 @@ include '../Includes/check_session.php';
                         </div>
                     </div>
                 </div>
-                <a href="../modals/submitTicket.php" class="btn btn-outline-secondary control-btn mb-3">
-                    <i class="fa fa-sign-out-alt"></i> Logout
             </main>
         </div>
     </div>

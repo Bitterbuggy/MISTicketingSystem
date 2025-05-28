@@ -41,7 +41,7 @@ if (isset($_SESSION['UserId']) && isset($_SESSION['RoleId'])) {
     echo "<p>No active session. Please log in.</p>";
 }
 
-if ($_SESSION['RoleId'] != 3) {
+if ($_SESSION['RoleId'] != 1) {
     header('Location: ../employee/home.php');
     exit();
 }
