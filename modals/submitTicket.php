@@ -146,6 +146,7 @@ $assets = $conn->query("SELECT * FROM t_asset")->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <script>
+   
 document.addEventListener('DOMContentLoaded', function() {
     const issuesContainer = document.getElementById('issuesContainer');
     const addIssueBtn = document.getElementById('addIssueBtn');

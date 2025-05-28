@@ -6,6 +6,8 @@ $ticketId = $_GET['id'] ?? null;
 
 if ($ticketId) $ticketId = $_GET['id'] ?? null;
 
+
+
 if ($ticketId) {
     $sql = "SELECT 
                 t_tickets.TicketId, 
@@ -29,6 +31,8 @@ if ($ticketId) {
 }
 
 ?>
+
+
 
 <?php if (!empty($ticketDetails)): ?>
     <?php $first = $ticketDetails[0]; ?>
@@ -56,7 +60,8 @@ if ($ticketId) {
         <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
     </form>
 
-
+  
+ 
 <?php else: ?>
     <p>Ticket not found.</p>
 <?php endif; ?>

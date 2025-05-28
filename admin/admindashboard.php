@@ -1,5 +1,5 @@
 <script>
-    var pageTitle = "Dashboard";
+  var pageTitle = "Dashboard";
 </script>
 
 <?php
@@ -24,6 +24,29 @@ $sql = "SELECT
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$sql = "SELECT
+  t_tickets.TicketId,
+  MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
+  t_branch.BranchName,
+  GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
+  t_tickets.AssignedITstaffId,
+  t_tickets.TicketStatus
+FROM t_ticketissues
+JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
+
+JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
+JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
+GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, t_tickets.TicketStatus
+ORDER BY TimeSubmitted ASC";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 
 if ($_SESSION['RoleId'] != 1) {
     header('Location: ..auth/login_error.php');
@@ -248,37 +271,43 @@ if ($_SESSION['RoleId'] != 1) {
                         <div class="tab-content" id="nav-tix-content">
                             <!-- Pending Tab -->
                             <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                                <div class="table-responsive">
-                                    <table id="TicketTable" class="table table-md table-bordered table-striped table-hover">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th style="width: 4%">Ticket ID</th>
-                                                <th style="width: 5%">Submitted At</th>
-                                                <th style="width: 7%">Branch</th>
-                                                <th style="width: 7%">Issue</th>
-                                                <th style="width: 5%">Assigned IT</th>
-                                                <th style="width: 5%">Status</th>
-                                                <th style="width: 5%">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($tickets as $ticket) : ?>
-                                                <tr>
-                                                    <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
-                                                    <td>
-                                                        <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-primary">View</a>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                <table class="table table-md table-bordered table-striped table-hover mt-3">
+                        <div class="table-responsive">
+                            <table id="TicketTable" class="table table-striped table-bordered table-hover" id="tblTickets">
+                                <thead class="thead-dark">
+    <tr>
+        <th>Ticket Id</th>
+        <th>Submitted At </th>
+        <th>Branch</th>
+        <th>Issue</th>
+        <th>Assigned IT</th>
+        <th>Status</th>
+        <th>Action</th> <!-- New Column -->
+    </tr>
+</thead>
+<tbody>
+    <?php foreach ($tickets as $ticket) : ?>
+        <tr>
+            <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+            <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
+            <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
+            <td><?= htmlspecialchars($ticket['Issues']) ?></td>
+            <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+            <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+            <td>
+               <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
+
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+
+                            </table>
+                       
+                        </tbody>
+                        </div>
+                    </table>
+                        </div>
 
                         <!-- On Going Tab -->
                         <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
