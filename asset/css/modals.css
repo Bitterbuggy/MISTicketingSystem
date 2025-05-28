@@ -84,3 +84,16 @@
     color: #1e2a36;
     font-weight: 500;
 }
+
+#submitTicketModal .form-select,
+#submitTicketModal .form-control {
+  border-radius: 12px;
+}
+
+#submitTicketModal .modal-content {
+  border-radius: 16px;
+}
+
+#submitTicketModal strong {
+  white-space: nowrap;
+}

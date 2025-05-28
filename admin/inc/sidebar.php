@@ -147,7 +147,7 @@ $roleId = $_SESSION['RoleId'];
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/employee/empticketMgmt.php">
+                            <a href="../employee/empticketMgmt.php">
                                 <span class="icon"><i class="fa fa-ticket"></i></span>
                                 <span class="text">Tickets</span>
                             </a>

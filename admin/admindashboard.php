@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <script>
     var pageTitle = "Dashboard";
 </script>
@@ -197,126 +196,131 @@ if ($_SESSION['RoleId'] != 1) {
                     </div>
                     </div>
 
-                        <!-- Tabs for Ticket Summary -->
-                        <div class="d-flex justify-content-between align-items-center mb-1 mt-4 flex-wrap">
-                        <!-- Ticket Status Tabs -->
-                        <ul class="nav nav-tabs mt-2" id="nav-tix" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
+                    <!-- Tabs for Ticket Summary -->
+                    <div class="d-flex justify-content-between align-items-center mb-1 mt-4 flex-wrap">
+                    <!-- Ticket Status Tabs -->
+                    <ul class="nav nav-tabs mt-2" id="nav-tix" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="ongoing-tab" data-bs-toggle="tab" href="#ongoing" role="tab" aria-controls="ongoing" aria-selected="false">On Going</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
+                        </li>
+                    </ul>
+
+                    <!-- Filter and View Link Container -->
+                    <div class="d-flex align-items-center gap-3 ms-auto mt-2 mt-md-0">
+                        <!-- Branch Filter Dropdown -->
+                        <div class="dropdown branch-filter me-2">
+                        <button class="btn btn-outline-primary dropdown-toggle rounded-pill filter-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-filter"></i>
+                            <span>Filter by Branch</span>
+                        </button>
+                        <ul class="dropdown-menu px-2" id="branchDropdown">
+                            <!-- Search input inside dropdown -->
+                            <li class="mb-2">
+                            <input type="text" class="form-control" id="branchSearchInput" placeholder="Search Branch...">
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="ongoing-tab" data-bs-toggle="tab" href="#ongoing" role="tab" aria-controls="ongoing" aria-selected="false">On Going</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
-                            </li>
+
+                            <!-- Generated branch list -->
+                            <?php
+                                include '../Includes/config.php';
+                                $stmt = $conn->query("SELECT BranchId, BranchName FROM t_branch");
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    echo '<li><a class="dropdown-item" href="?branch=' . $row['BranchId'] . '">' . htmlspecialchars($row['BranchName']) . '</a></li>';
+                                }
+                            ?>
                         </ul>
-
-                        <!-- Filter and View Link Container -->
-                        <div class="d-flex align-items-center gap-3 ms-auto mt-2 mt-md-0">
-                            <!-- Branch Filter Dropdown -->
-                            <div class="dropdown branch-filter me-2">
-                            <button class="btn btn-outline-primary dropdown-toggle rounded-pill filter-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-filter"></i>
-                                <span>Filter by Branch</span>
-                            </button>
-                            <ul class="dropdown-menu px-2" id="branchDropdown">
-                                <!-- Search input inside dropdown -->
-                                <li class="mb-2">
-                                <input type="text" class="form-control" id="branchSearchInput" placeholder="Search Branch...">
-                                </li>
-
-                                <!-- Generated branch list -->
-                                <?php
-                                    include '../Includes/config.php';
-                                    $stmt = $conn->query("SELECT BranchId, BranchName FROM t_branch");
-                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                        echo '<li><a class="dropdown-item" href="?branch=' . $row['BranchId'] . '">' . htmlspecialchars($row['BranchName']) . '</a></li>';
-                                    }
-                                ?>
-                            </ul>
-                            </div>
-
-                            <!-- View All Tickets Link -->
-                            <button class="btn btn-outline-primary rounded-pill view-tix-btn" onclick="location.href='adminTicketMgmt.php'">
-                                <span>View All Tickets</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
                         </div>
 
-                        <!-- Tab Content Container -->
-                        <div class="tab-content" id="nav-tix-content">
-                            <!-- Pending Tab -->
-                            <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                                <div class="table-responsive">
-                                    <table id="TicketTable" class="table table-md table-bordered table-striped table-hover">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th style="width: 4%">Ticket ID</th>
-                                                <th style="width: 5%">Submitted At</th>
-                                                <th style="width: 7%">Branch</th>
-                                                <th style="width: 7%">Issue</th>
-                                                <th style="width: 5%">Assigned IT</th>
-                                                <th style="width: 5%">Status</th>
-                                                <th style="width: 5%">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($tickets as $ticket) : ?>
-                                                <tr>
-                                                    <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
-                                                    <td>
-                                                        <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-primary">View</a>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                        <!-- On Going Tab -->
-                        <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
-                            <table class="table table-md table-bordered table-striped table-hover" id="ongoingTixtbl">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th class="dateTime"style="width: 5%">Submitted At</th>
-                                        <th class="tixId" style="width: 4%">Ticket ID</th>
-                                        <th class="branch"style="width: 7%">Branch</th>
-                                        <th class="issue"style="width: 7%">Issue</th>
-                                        <th class="assignedIT"style="width: 5%">Assigned IT</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Rows will be populated here -->
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- Completed Tab -->
-                        <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                            <table class="table table-md table-bordered table-striped table-hover" id="completedTixtbl">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th class="dateTime"style="width: 5%">Submitted At</th>
-                                        <th class="tixId" style="width: 4%">Ticket ID</th>
-                                        <th class="branch"style="width: 7%">Branch</th>
-                                        <th class="issue"style="width: 7%">Issue</th>
-                                        <th class="assignedIT"style="width: 5%">Assigned IT</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Rows will be populated here -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <!-- View All Tickets Link -->
+                        <button class="btn btn-outline-primary rounded-pill view-tix-btn" onclick="location.href='adminTicketMgmt.php'">
+                            <span>View All Tickets</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
                     </div>
+                    </div>
+
+                    <!-- Tab Content Container -->
+                    <div class="tab-content" id="nav-tix-content">
+                        <!-- Pending Tab -->
+                        <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                            <div class="table-responsive">
+                                <table id="TicketTable" class="table table-md table-bordered table-striped table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="width: 4%">Ticket ID</th>
+                                            <th style="width: 5%">Submitted At</th>
+                                            <th style="width: 7%">Branch</th>
+                                            <th style="width: 7%">Issue</th>
+                                            <th style="width: 5%">Assigned IT</th>
+                                            <th style="width: 5%">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($tickets as $ticket) : ?>
+                                            <tr class="ticket-row"
+                                                data-ticket-id="<?= htmlspecialchars($ticket['TicketId']) ?>"
+                                                data-submitted-at="<?= htmlspecialchars($ticket['TimeSubmitted']) ?>"
+                                                data-branch="<?= htmlspecialchars($ticket['BranchName']) ?>"
+                                                data-issue="<?= htmlspecialchars($ticket['Issues']) ?>"
+                                                data-assigned="<?= htmlspecialchars($ticket['AssignedITstaffId']) ?>"
+                                                data-status="<?= htmlspecialchars($ticket['TicketStatus']) ?>"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#viewTicketModal"
+                                                style="cursor: pointer;">
+                                            <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+                                            <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
+                                            <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
+                                            <td><?= htmlspecialchars($ticket['Issues']) ?></td>
+                                            <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+                                            <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    <!-- On Going Tab -->
+                    <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
+                        <table class="table table-md table-bordered table-striped table-hover" id="ongoingTixtbl">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="dateTime"style="width: 5%">Submitted At</th>
+                                    <th class="tixId" style="width: 4%">Ticket ID</th>
+                                    <th class="branch"style="width: 7%">Branch</th>
+                                    <th class="issue"style="width: 7%">Issue</th>
+                                    <th class="assignedIT"style="width: 5%">Assigned IT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rows will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Completed Tab -->
+                    <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                        <table class="table table-md table-bordered table-striped table-hover" id="completedTixtbl">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="dateTime"style="width: 5%">Submitted At</th>
+                                    <th class="tixId" style="width: 4%">Ticket ID</th>
+                                    <th class="branch"style="width: 7%">Branch</th>
+                                    <th class="issue"style="width: 7%">Issue</th>
+                                    <th class="assignedIT"style="width: 5%">Assigned IT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rows will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 </div>
         </div>
         </div>
@@ -342,5 +346,23 @@ if ($_SESSION['RoleId'] != 1) {
         });
     });
     </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ticketRows = document.querySelectorAll('.ticket-row');
+
+        ticketRows.forEach(row => {
+            row.addEventListener('click', function () {
+                document.getElementById('modalTicketId').textContent = this.dataset.ticketId;
+                document.getElementById('modalSubmittedAt').textContent = this.dataset.submittedAt;
+                document.getElementById('modalBranch').textContent = this.dataset.branch;
+                document.getElementById('modalIssue').textContent = this.dataset.issue;
+                document.getElementById('modalAssigned').textContent = this.dataset.assigned;
+                document.getElementById('modalStatus').textContent = this.dataset.status;
+            });
+        });
+    });
+    </script>
+
 </body>
 </html>
