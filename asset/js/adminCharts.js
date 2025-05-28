@@ -48,40 +48,39 @@ options: {
         }
     }
 }
-// Donut Chart: Branches with Most Tickets
-const donutCtx = document.getElementById('branchMostTicketChart').getContext('2d');
-new Chart(donutCtx, {
-type: 'doughnut',
+});
+
+// Bar Chart 1: Top Issues in Main Branch
+const mainBranchCtx = document.getElementById('mainBranchIssueChart').getContext('2d');
+new Chart(mainBranchCtx, {
+type: 'bar',
 data: {
-    labels: ['Main Branch', 'Branch A', 'Branch B', 'Branch C'],
+    labels: ['Printer', 'Software Bug', 'Network', 'Email'],
     datasets: [{
-    data: [30, 15, 25, 10],
-    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545'],
-    borderRadius: 5,
-    hoverOffset: 8
+    label: 'Tickets',
+    data: [10, 20, 5, 8],
+    backgroundColor: '#007bff',
+    borderRadius: 4
     }]
 },
-
 options: {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+    y: {
+        beginAtZero: true,
+        ticks: {
+        stepSize: 5
+        }
+    }
+    },
     plugins: {
     legend: {
-        position: 'bottom',
-        padding: {
-            top: 18,
-            bottom: 5,
-            left: 0,
-            right: 0
-        },
-        font: {
-            size: 12,
-            family: "Inter"
-        }
+        display: false
     },
     title: {
         display: true,
-        text: "Branches with Most Tickets",
+        text: "Top Issues in Main Branch",
         position: 'top',
         align: 'center',
         font: {
@@ -90,7 +89,7 @@ options: {
             weight: 'bold'
         },
         padding: {
-            top: 5,
+            top: 0,
             bottom: 12,
             left: 0,
             right: 0
@@ -100,46 +99,55 @@ options: {
 }
 });
 
-// Chart 2: Software Issues
-const ctx2 = document.getElementById('mostSoftwareIssueChart').getContext('2d');
-const gradient2 = [
-    createGradient(ctx2, '#00c6ff', '#0072ff'),  // Light to deep blue
-    createGradient(ctx2, '#f7971e', '#ffd200'),  // Orange to yellow
-    createGradient(ctx2, '#43cea2', '#185a9d')   // Green to blue
-];
-
-new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-        labels: ['OS Errors', 'App Crashes', 'Licensing'],
-        datasets: [{
-            data: [12, 5, 3],
-            backgroundColor: gradient2,
-            borderWidth: 0,
-            borderRadius: 10
-        }]
+// Bar Chart 2: Top Issues in Other Branches
+const otherBranchCtx = document.getElementById('otherBranchIssueChart').getContext('2d');
+new Chart(otherBranchCtx, {
+type: 'bar',
+data: {
+    labels: ['Hardware', 'Software', 'Connectivity'],
+    datasets: [{
+    label: 'Tickets',
+    data: [6, 9, 4],
+    backgroundColor: '#28a745',
+    borderRadius: 4
+    }]
+},
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+    y: {
+        beginAtZero: true,
+        ticks: {
+        stepSize: 2
+        }
+    }
     },
-    options: getOptions('Top Software Issues')
-});
-
-// Chart 3: Hardware Issues
-const ctx3 = document.getElementById('mostHardwareIssueChart').getContext('2d');
-const gradient3 = [
-    createGradient(ctx3, '#ff6a00', '#ee0979'),  // Orange to pink
-    createGradient(ctx3, '#2193b0', '#6dd5ed'),  // Blue gradient
-    createGradient(ctx3, '#a1c4fd', '#c2e9fb')   // Soft blue tones
-];
-
-new Chart(ctx3, {
-    type: 'doughnut',
-    data: {
-        labels: ['Monitors', 'CPUs', 'Printers'],
-        datasets: [{
-            data: [9, 7, 4],
-            backgroundColor: gradient3,
-            borderWidth: 0,
-            borderRadius: 10
-        }]
+    plugins: {
+    legend: {
+        display: false
     },
-    options: getOptions('Top Hardware Issues')
+    title: {
+        display: true,
+        text: "Top Issues in Sattelite Offices",
+        position: 'top',
+        align: 'center',
+        font: {
+            size: 20,
+            family: 'Inter',
+            weight: 'bold'
+        },
+        padding: {
+            top: 0,
+            bottom: 12,
+            left: 0,
+            right: 0
+            }
+        }
+    }
+}
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> b42f08613885de1e096c345224fd2ef1747a8b12
