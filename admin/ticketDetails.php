@@ -11,6 +11,8 @@ $ticketId = $_GET['id'] ?? null;
 
 if ($ticketId) $ticketId = $_GET['id'] ?? null;
 
+
+
 if ($ticketId) {
     $sql = "SELECT 
                 t_tickets.TicketId, 
@@ -39,7 +41,7 @@ if (isset($_SESSION['UserId']) && isset($_SESSION['RoleId'])) {
     echo "<p>No active session. Please log in.</p>";
 }
 
-if ($_SESSION['RoleId'] != 3) {
+if ($_SESSION['RoleId'] != 1) {
     header('Location: ../employee/home.php');
     exit();
 }
@@ -78,7 +80,8 @@ $loggedInRoleId = $_SESSION['RoleId'];
         <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
     </form>
 
-
+  
+ 
 <?php else: ?>
     <p>Ticket not found.</p>
 <?php endif; ?>

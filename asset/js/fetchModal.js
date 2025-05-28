@@ -37,4 +37,3 @@ function openDeleteModal2(assetId) {
     document.getElementById('deleteAssetId').value = assetId;
     deleteModal.show();
 }
-
