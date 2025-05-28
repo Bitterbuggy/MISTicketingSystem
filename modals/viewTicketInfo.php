@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!-- External CSS Link/s -->
 <link rel="stylesheet" href="../asset/css/modals.css">
 <link rel="stylesheet" href="../asset/css/buttons.css">
@@ -12,11 +16,24 @@
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title" id="viewTicketModalLabel">Ticket Information</h4>
-	@@ -21,27 +28,96 @@
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="viewTicketModalBody">
+                < id="view-ticket-form">
+                    <div class="col-12">
+                        <div class="col-6">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="view-ticket-id">Ticket ID</label>
+                                    <input type="text" class="form-control" id="view-ticket-id" name="view-ticket-id" readonly>
                                 </div>
                             </div>  
                         </div>
                         </div>
+
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-3">
@@ -38,6 +55,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12">
                         <div class="row">
                             <div class="col-4">
@@ -53,6 +71,7 @@
                                     <input type="text" class="form-control" id="view-ticket-branch" name="view-ticket-branch" readonly>
                                 </div>
                             </div>
+
                             <div class="col-2">
                                 <div class="form-group">
                                     <label for="view-ticket-district">District</label>
@@ -61,6 +80,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12">
                         <div class="col-6">
                             <div class="form-group">
@@ -68,6 +88,7 @@
                                 <input type="text" class="form-control" id="view-ticket-requester" name="view-ticket-requester" readonly>
                             </div>
                         </div>
+
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="view-requester-email">Email</label>
@@ -75,6 +96,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12">
                         <div class="col-6">
                             <div class="form-group">
@@ -89,6 +111,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12">
                         <div class="form-group">
                             <label for="view-ticket-description">Description</label>
@@ -97,6 +120,12 @@
                             </textarea>
                         </div>
                     </div>
+                    
+                    <!--?php if(strtolower($ticket['Status'])=="pending") { ?>-->
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-accept">Approve</button>
+                    </div>
+                    <!--?php endif; ?-->
                 </form>
             </div>
         </div>

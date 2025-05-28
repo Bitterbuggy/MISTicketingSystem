@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="../ITstaff/ITticketMgmt.php">
+                <a href="tickets.php">
                 <span class="icon"><i class="fa fa-ticket"></i></span>
                 <span class="text">Tickets</span>
                 </a>

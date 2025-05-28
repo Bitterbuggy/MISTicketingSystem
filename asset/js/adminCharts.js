@@ -11,7 +11,6 @@ data: {
     hoverOffset: 8
     }]
 },
-
 options: {
     responsive: true,
     maintainAspectRatio: false,
@@ -129,6 +128,7 @@ options: {
     },
     title: {
         display: true,
+        text: "Top Issues in Main Branch",
         text: "Top Issues in Sattelite Offices",
         position: 'top',
         align: 'center',
@@ -146,8 +146,4 @@ options: {
         }
     }
 }
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> b42f08613885de1e096c345224fd2ef1747a8b12

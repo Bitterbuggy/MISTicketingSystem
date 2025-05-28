@@ -3,8 +3,6 @@
     var pageTitle = "Dashboard";
 </script>
 
-=======
->>>>>>> b42f08613885de1e096c345224fd2ef1747a8b12
 <?php
 
 include '../Includes/config.php';
@@ -29,7 +27,7 @@ $stmt->execute();
 $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SESSION['RoleId'] != 1) {
-    header('Location: ..auth/login_error.php');
+    header('Location: ../employee/home.php');
     exit();
 }
 ?>
@@ -251,7 +249,6 @@ if ($_SESSION['RoleId'] != 1) {
                         <div class="tab-content" id="nav-tix-content">
                             <!-- Pending Tab -->
                             <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-<<<<<<< HEAD
                                 <div class="table-responsive">
                                     <table id="TicketTable" class="table table-md table-bordered table-striped table-hover">
                                         <thead class="thead-dark">
@@ -283,45 +280,6 @@ if ($_SESSION['RoleId'] != 1) {
                                     </table>
                                 </div>
                             </div>
-=======
-                                <table class="table table-md table-bordered table-striped table-hover mt-3">
-                        <div class="table-responsive">
-                            <table id="TicketTable" class="table table-striped table-bordered table-hover" id="tblTickets">
-                                <thead class="thead-dark">
-    <tr>
-        <th>Ticket Id</th>
-        <th>Submitted At </th>
-        <th>Branch</th>
-        <th>Issue</th>
-        <th>Assigned IT</th>
-        <th>Status</th>
-        <th>Action</th> <!-- New Column -->
-    </tr>
-</thead>
-<tbody>
-    <?php foreach ($tickets as $ticket) : ?>
-        <tr>
-            <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
-            <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
-            <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
-            <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-            <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
-            <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
-            <td>
-               <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
-
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</tbody>
-
-                            </table>
-                       
-                        </tbody>
-                        </div>
-                    </table>
-                        </div>
->>>>>>> b42f08613885de1e096c345224fd2ef1747a8b12
 
                         <!-- On Going Tab -->
                         <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
@@ -370,6 +328,7 @@ if ($_SESSION['RoleId'] != 1) {
     <?php include '../modals/viewTicketInfo.php'; ?>
     <!-- External JS Link -->
     <script src="../asset/js/adminCharts.js"></script>
+
     <!-- Filter by Branch Live Search -->
     <script>
     document.getElementById('branchSearchInput').addEventListener('keyup', function () {
