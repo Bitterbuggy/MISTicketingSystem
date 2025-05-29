@@ -1,54 +1,57 @@
 // Donut Chart: Branches with Most Tickets
 const donutCtx = document.getElementById('branchMostTicketChart').getContext('2d');
-new Chart(donutCtx, {
-type: 'doughnut',
-data: {
-    labels: ['Main Branch', 'Branch A', 'Branch B', 'Branch C'],
-    datasets: [{
-    data: [30, 15, 25, 10],
-    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545'],
-    borderRadius: 5,
-    hoverOffset: 8
-    }]
-},
 
-options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-    legend: {
-        position: 'bottom',
-        padding: {
-            top: 18,
-            bottom: 5,
-            left: 0,
-            right: 0
-        },
-        font: {
-            size: 12,
-            family: "Inter"
-        }
-    },
-    title: {
-        display: true,
-        text: "Branches with Most Tickets",
-        position: 'top',
-        align: 'center',
-        font: {
-            size: 20,
-            family: 'Inter',
-            weight: 'bold'
-        },
-        padding: {
-            top: 5,
-            bottom: 12,
-            left: 0,
-            right: 0
+fetch('getBranchTicketData.php')
+  .then(response => response.json())
+  .then(chartData => {
+    new Chart(donutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: chartData.labels,
+        datasets: [{
+          data: chartData.data,
+          backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#6f42c1', '#17a2b8'], // Add more if needed
+          borderRadius: 5,
+          hoverOffset: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            padding: {
+              top: 18,
+              bottom: 5
+            },
+            labels: {
+              font: {
+                size: 12,
+                family: "Inter"
+              }
             }
+          },
+          title: {
+            display: true,
+            text: "Branches with Most Tickets",
+            font: {
+              size: 20,
+              family: 'Inter',
+              weight: 'bold'
+            },
+            padding: {
+              top: 5,
+              bottom: 12
+            }
+          }
         }
-    }
-}
-});
+      }
+    });
+  })
+  .catch(error => {
+    console.error('Error loading donut chart data:', error);
+  });
 
 // Bar Chart 1: Top Issues in Main Branch
 const mainBranchCtx = document.getElementById('mainBranchIssueChart').getContext('2d');
