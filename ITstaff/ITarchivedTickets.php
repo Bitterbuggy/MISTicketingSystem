@@ -6,7 +6,7 @@
 
 include '../Includes/config.php';
 include '../Includes/check_session.php';
-if ($_SESSION['RoleId'] != 1) {
+if ($_SESSION['RoleId'] != 3) {
     header('Location: ../employee/home.php');
     exit();
 }
@@ -61,13 +61,13 @@ if ($_SESSION['RoleId'] != 1) {
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2">
                     <!-- Tabs Section -->
                     <div class="d-flex flex-wrap gap-2">
-                        <div class="div-mods inactive" onclick="window.location.href='adminTicketMgmt.php'">
+                        <div class="div-mods inactive" onclick="window.location.href='ITticketMgmt.php'">
                             <span class="mods">Repair Requests</span>
                         </div>
-                        <div class="div-mods inactive" onclick="window.location.href='adminCompletedTickets.php'">
+                        <div class="div-mods inactive" onclick="window.location.href='ITcompletedTickets.php'">
                             <span class="mods">Completed Tickets</span>
                         </div>
-                        <div class="div-mods active" onclick="window.location.href='adminArchivedTickets.php'">
+                        <div class="div-mods active" onclick="window.location.href='ITarchivedTickets.php'">
                             <span class="mods">Ticket History Archive</span>
                         </div>
                     </div>
