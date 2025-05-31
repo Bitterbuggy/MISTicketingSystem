@@ -13,12 +13,15 @@ $sql = "SELECT
             t_branch.BranchName,
             GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
             t_tickets.AssignedITstaffId,
-            t_tickets.TicketStatus
+            t_tickets.TicketStatus,
+            t_tickets.TimeResolved,
+            t_tickets.Resolution
         FROM t_ticketissues
         JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
         JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
         JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
-        GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, t_tickets.TicketStatus
+        GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, t_tickets.TicketStatus,  t_tickets.TimeResolved,
+            t_tickets.Resolution
         ORDER BY TimeSubmitted ASC";
 
 
@@ -388,23 +391,47 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
         </table>
     </div>
 </div>
-                        <!-- Completed Tab -->
-                        <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                            <table class="table table-md table-bordered table-striped table-hover">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th class="dateTime"style="width: 5%">Submitted At</th>
-                                        <th class="tixId" style="width: 4%">Ticket ID</th>
-                                        <th class="branch"style="width: 7%">Branch</th>
-                                        <th class="issue"style="width: 7%">Issue</th>
-                                        <th class="assignedIT"style="width: 5%">Assigned IT</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Rows will be populated by JavaScript -->
-                                </tbody>
-                            </table>
-                        </div>
+                        
+                        <!-- Completed Tab -->  
+                       <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+    <div class="table-responsive mt-3">
+        <table id="TicketTableCompleted" class="table table-striped table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Ticket Id</th>
+                    <th>Submitted At</th>
+                    <th>Branch</th>
+                    <th>Issue</th>
+                    <th>Assigned IT</th>
+                    <th>Status</th>
+                    <th>Resolved At</th>
+                    <th>Resolution</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($tickets as $ticket) : ?>
+                    <?php if ($ticket['TicketStatus'] === 'Completed') : ?>
+                        <tr>
+                            <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+                            <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
+                            <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
+                            <td><?= htmlspecialchars($ticket['Issues']) ?></td>
+                            <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+                            <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+                            <td><?= htmlspecialchars($ticket['TimeResolved']) ?></td>
+                            <td><?= nl2br(htmlspecialchars($ticket['Resolution'])) ?></td>
+                            <td>
+                                <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-info">View</a>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
                     </div>
                 </div>
         </div>
