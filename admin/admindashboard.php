@@ -69,8 +69,8 @@ if ($_SESSION['RoleId'] != 1) {
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
     <link rel="stylesheet" href="../asset/css/greeting.css">
     <link rel="stylesheet" href="../asset/css/ticket-cards.css">
-    <link rel="stylesheet" href="../asset/css/nav_tabs.css">
-    <link rel="stylesheet" href="../asset/css/tbl-charts.css">
+    <link rel="stylesheet" href="../asset/css/navtabs.css">
+    <link rel="stylesheet" href="../asset/css/tbl_charts.css">
     <link rel="stylesheet" href="../asset/css/tbl-controls.css">
     
     <!-- Bootstrap CSS -->
