@@ -53,9 +53,8 @@ foreach ($tickets as $ticket) {
             break;
     }
 }
-
-$totalCount = count($tickets);
 $totalCount = $pendingCount + $ongoingCount + $completedCount;
+
 
 if ($_SESSION['RoleId'] != 3) {
     header('Location: ../auth/login_error.php');
@@ -92,6 +91,7 @@ if ($_SESSION['RoleId'] != 3) {
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+   
 </head>
 
 <body>
@@ -119,8 +119,7 @@ if ($_SESSION['RoleId'] != 3) {
                         </div>
                     </div>
 
-<?php
-
+                   <?php
 try {
     $recentQuery = "
         SELECT
