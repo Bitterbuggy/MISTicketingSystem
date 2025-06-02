@@ -12,12 +12,15 @@ $sql = "SELECT
             t_branch.BranchName,
             GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
             t_tickets.AssignedITstaffId,
-            t_tickets.TicketStatus
+            t_tickets.TicketStatus,
+            t_tickets.TimeResolved,
+            t_tickets.Resolution
         FROM t_ticketissues
         JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
         JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
         JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
-        GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, t_tickets.TicketStatus
+        GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, 
+                t_tickets.TicketStatus,  t_tickets.TimeResolved, t_tickets.Resolution
         ORDER BY TimeSubmitted ASC";
 
 $stmt = $conn->prepare($sql);
@@ -387,6 +390,8 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                         <th>Issue</th>
                                         <th>Assigned IT</th>
                                         <th>Status</th>
+                                        <th>Resolved At</th>
+                                        <th>Resolution</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -400,6 +405,8 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                                 <td><?= htmlspecialchars($ticket['Issues']) ?></td>
                                                 <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
                                                 <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+                                                <td><?= htmlspecialchars($ticket['TimeResolved']) ?></td>
+                                                <td><?= nl2br(htmlspecialchars($ticket['Resolution'])) ?></td>
                                                 <td>
                                                     <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
                                                 </td>

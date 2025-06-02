@@ -76,12 +76,17 @@ $loggedInRoleId = $_SESSION['RoleId'];
     <form action="updateTicketStatus.php" method="POST">
         <input type="hidden" name="ticket_id" value="<?php echo htmlspecialchars($first['TicketId']); ?>">
         <input type="hidden" name="assigned_it_staff_id" value="<?php echo htmlspecialchars($first['AssignedITstaffId']); ?>">
-        <button type="submit" name="action" value="accept" class="btn btn-success">Accept</button>
-        <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
+        <!-- Buttons to appear when the status is Pending or Ongoing -->
+        <?php if (strtolower($first['TicketStatus']) === 'pending'): ?>
+            <button type="submit" name="action" value="accept" class="btn btn-success">Accept</button>
+            <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
+    <?php elseif (strtolower($first['TicketStatus']) === 'ongoing'): ?>
+            <label for="completion_message"><strong>Completion Message:</strong></label><br>
+            <textarea name="completion_message" id="completion_message" rows="4" cols="50" required placeholder="Describe what was done to fix the issue..."></textarea><br><br>
+            <button type="submit" name="action" value="complete" class="btn btn-primary">Complete</button>
+    <?php endif; ?>
     </form>
 
-  
- 
 <?php else: ?>
     <p>Ticket not found.</p>
 <?php endif; ?>

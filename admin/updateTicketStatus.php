@@ -7,29 +7,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? null;
     $userId = $_SESSION['UserId'] ?? null; // Assuming user ID is stored in session
 
-    if ($ticketId && in_array($action, ['accept', 'reject']) && $userId ) {
-        // Use only allowed ENUM values
+    if (!$ticketId || !$action || !$userId) {
+        echo "Invalid request.";
+        exit;
+    }
+
+    if ($action === 'accept' || $action === 'reject') {
+        // Accept or reject: update status and assign IT staff
         $newStatus = ($action === 'accept') ? 'Ongoing' : 'Cancelled';
 
         $sql = "UPDATE t_tickets 
-                SET TicketStatus = :status , AssignedITstaffId = :userId
+                SET TicketStatus = :status, AssignedITstaffId = :userId
                 WHERE TicketId = :ticketId";
         $stmt = $conn->prepare($sql);
         $success = $stmt->execute([
             'status' => $newStatus,
-            'userId' => $userId, // Assuming IT staff ID is stored in session
+            'userId' => $userId,
             'ticketId' => $ticketId
         ]);
 
         if ($success) {
-            header("Location: admindashboard.php?id=" . urlencode($ticketId) . "&updated=1");
+            $message = ($action === 'accept') 
+                ? "Ticket successfully accepted and assigned for fixing." 
+                : "Ticket has been rejected/cancelled.";
+            header("Location: admindashboard.php?msg=" . urlencode($message));
             exit;
-        } else {
-            echo "Failed to update ticket status.";
         }
-    } else {
-        echo "Invalid request.";
-    }
+
+    } elseif ($action === 'complete') {
+        // Complete: update status, resolution, and time resolved
+        $completionMessage = $_POST['completion_message'] ?? '';
+
+        if (trim($completionMessage) === '') {
+            echo "Completion message is required.";
+            exit;
+        }
+
+        $sql = "UPDATE t_tickets 
+                SET TicketStatus = 'Completed', 
+                    Resolution = :resolution, 
+                    TimeResolved = NOW()
+                WHERE TicketId = :ticketId AND AssignedITstaffId = :userId";
+        $stmt = $conn->prepare($sql);
+        $success = $stmt->execute([
+            'resolution' => $completionMessage,
+            'ticketId' => $ticketId,
+            'userId' => $userId
+        ]);
+
+        if ($success) {
+            $message = "Ticket is completed and marked as fixed.";
+            header("Location: admindashboard.php?msg=" . urlencode($message));
+            exit;
+            }
+        } else {
+            echo "Unknown action.";
+            exit;
+        }
+    echo "Failed to update ticket.";
 } else {
     echo "Access denied.";
 }
