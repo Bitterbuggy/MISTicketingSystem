@@ -69,7 +69,7 @@ if ($_SESSION['RoleId'] != 4) {
                                     <span id="location">Quezon City, Philippines</span>
                                 </div>
                             </div>
-                            <img src="../asset/img/LIC-emp_dashboard.png" alt="QCPL STS Welcome Card" class="card-image">
+                            <img src="../asset/img/dashboard-welcome-card.png" alt="QCPL STS Welcome Card" class="card-image">
                         </div>
                     </div>
 
