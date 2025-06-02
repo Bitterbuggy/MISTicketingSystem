@@ -1,53 +1,213 @@
-/* Notification Badge Styles */
-#notification-badge {
+/* Notification icon container */
+.notification-icon, .profile-icon {
+position: relative;
+display: inline-block;
+cursor: pointer;
+font-size: 22px;
+color: #0038a8;
+}
+
+/* Notification badge */
+.notif-badge {
     position: absolute;
-    top: -5px;
-    right: 15px;
-    background-color: red;
+    top: -8px;
+    right: -8px;
+    background: #dc3545;
     color: white;
-    font-size: 10px;
-    padding: 0;
-    width: 20px;
-    height: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
     border-radius: 50%;
-    display: none;
-    /* Hidden by default */
-    text-align: center;
-    line-height: 20px;
-    box-sizing: border-box;
-    overflow: hidden;
-    z-index: 1000;
-    /* Ensure it stays above other elements */
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Delete Button Styles */
-.delete-btn {
+/* Dropdown container */
+.notification-dropdown {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #dc3545;
-    /* Bootstrap danger color */
-    font-size: 1rem;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 400px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
 }
 
-.delete-btn:hover {
-    color: #a71d2a;
-    /* Darker red */
+/* Show dropdown */
+.notification-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-/* Adjustments for Read and Unread Notifications */
-.dropdown-item.unread {
-    background-color: #e9ecef;
+/* Hide dropdown initially */
+.hidden {
+    display: none;
 }
 
-.dropdown-item.read {
-    background-color: #ffffff;
-}
-
-/* Optional: Hover Effects */
-.dropdown-item:hover {
+/* Notification header */
+.notif-header {
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
     background-color: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+.notif-header h5 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0038a8;
+}
+
+.filter-buttons {
+    gap: 8px;
+}
+
+.filter-btn {
+    padding: 4px 12px !important;
+    font-size: 14.5px !important;
+    border-radius: 20px !important;
+    transition: all 0.2s;
+    border: 1px solid #dee2e6;
+    background: white;
+    color: #6c757d;
+}
+
+/* Individual styling for All button */
+#all-filter {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    color: #495057;
+    font-weight: 500;
+}
+
+#all-filter:hover {
+    background-color: #dee2e6;
+    border-color: #6c757d;
+    color: #212529;
+}
+
+#all-filter.active {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+/* Individual styling for Unread button */
+#unread-filter {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    color: #856404;
+    font-weight: 500;
+}
+
+#unread-filter:hover {
+    background-color: #ffecb5;
+    border-color: #ffb300;
+    color: #533f03;
+}
+
+#unread-filter.active {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+.filter-btn.active {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+}
+
+/* Scrollable list */
+.notif-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Notification item */
+.notif-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f1f3f4;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.notif-item:last-child {
+    border-bottom: none;
+}
+
+.notif-item:hover {
+    background-color: #f8f9fa;
+}
+
+.notif-item.unread {
+    background-color: #f0f8ff;
+    border-left: 3px solid #0d6efd;
+}
+
+.notif-item.unread::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #0d6efd;
+    border-radius: 50%;
+}
+
+/* Notification content */
+.notif-content h6 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #212529;
+}
+
+.notif-content p {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #575f66;
+    line-height: 1.4;
+}
+
+.notif-time {
+    font-size: 11px;
+    color: #adb5bd;
+}
+
+/* Empty state */
+.empty-notifications {
+    padding: 40px 20px;
+    text-align: center;
+    color: #6c757d;
+}
+
+.empty-notifications i {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .notification-dropdown {
+        width: 280px;
+        right: -20px;
+    }
 }

@@ -63,6 +63,7 @@ if ($_SESSION['RoleId'] != 1) {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/greeting.css">
     <link rel="stylesheet" href="../asset/css/ticket-cards.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
@@ -426,6 +427,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
 
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
     <script src="../asset/js/adminCharts.js"></script>
     <script src="../asset/js/greetingCard.js"></script>
     <script src="../asset/js/recentTicket.js"></script>

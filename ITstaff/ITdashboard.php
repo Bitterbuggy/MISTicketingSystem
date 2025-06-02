@@ -6,21 +6,33 @@
 include '../Includes/config.php';
 include '../Includes/check_session.php';
 
+$userId = $_SESSION['UserId']; // Current logged-in IT staff ID
+
 $sql = "SELECT
             t_tickets.TicketId,
             MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
             t_branch.BranchName,
             GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
             t_tickets.AssignedITstaffId,
-            t_tickets.TicketStatus
+            t_tickets.TicketStatus,
+            t_tickets.TimeResolved,
+            t_tickets.Resolution
         FROM t_ticketissues
         JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
         JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
         JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
-        GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, t_tickets.TicketStatus
+        WHERE 
+            t_tickets.TicketStatus = 'pending'
+            OR (t_tickets.TicketStatus = 'ongoing' AND t_tickets.AssignedITstaffId = :userId)
+            OR t_tickets.TicketStatus = 'completed'
+            AND t_tickets.AssignedITstaffId = :userId
+        GROUP BY 
+            t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, 
+            t_tickets.TicketStatus, t_tickets.TimeResolved, t_tickets.Resolution
         ORDER BY TimeSubmitted ASC";
 
 $stmt = $conn->prepare($sql);
+$stmt->bindParam(':userId', $userId);
 $stmt->execute();
 $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -43,6 +55,7 @@ foreach ($tickets as $ticket) {
 }
 
 $totalCount = count($tickets);
+$totalCount = $pendingCount + $ongoingCount + $completedCount;
 
 if ($_SESSION['RoleId'] != 3) {
     header('Location: ../auth/login_error.php');
@@ -60,6 +73,7 @@ if ($_SESSION['RoleId'] != 3) {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/greeting.css">
     <link rel="stylesheet" href="../asset/css/ticket-cards.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
@@ -357,7 +371,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                 </thead>
                                 <tbody>
                                     <?php foreach ($tickets as $ticket) : ?>
-                                        <?php if ($ticket['TicketStatus'] == 'Ongoing') : ?>
+                                        <?php if ($ticket['TicketStatus'] === 'Ongoing' && $ticket['AssignedITstaffId'] == $userId) : ?>
                                             <tr>
                                                 <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
                                                 <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
@@ -388,12 +402,14 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                         <th>Issue</th>
                                         <th>Assigned IT</th>
                                         <th>Status</th>
+                                        <th>Resolved At</th>
+                                        <th>Resolution</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($tickets as $ticket) : ?>
-                                        <?php if ($ticket['TicketStatus'] == 'Completed') : ?>
+                                        <?php if ($ticket['TicketStatus'] === 'Completed' && $ticket['AssignedITstaffId'] == $userId) : ?>
                                             <tr>
                                                 <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
                                                 <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
@@ -401,6 +417,8 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                                 <td><?= htmlspecialchars($ticket['Issues']) ?></td>
                                                 <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
                                                 <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+                                                <td><?= htmlspecialchars($ticket['TimeResolved']) ?></td>
+                                                <td><?= nl2br(htmlspecialchars($ticket['Resolution'])) ?></td>
                                                 <td>
                                                     <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
                                                 </td>
@@ -420,6 +438,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
 
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
     <script src="../asset/js/adminCharts.js"></script>
     <script src="../asset/js/greetingCard.js"></script>
     <script src="../asset/js/recentTicket.js"></script>

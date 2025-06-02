@@ -11,8 +11,47 @@ $roleId = $_SESSION['RoleId'];
         <h3 class="mt-0" id="page-title"></h3>
         <div class="header-right d-flex align-items-center">
             <!-- Notification Icon -->
-            <div class="notification-icon">
-                <i class="fa-solid fa-bell"></i>
+            <div class="notification-icon me-3">
+                <i class="fa-solid fa-bell" id="notifToggle"></i>
+                <span id="notification-badge" class="notif-badge"></span>
+
+                <!-- Notification Dropdown -->
+                <div id="notification-dropdown" class="notification-dropdown hidden">
+                    <div class="notif-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>Notifications</h5>
+                            <div class="filter-buttons d-flex">
+                                <button class="btn filter-btn active" id="all-filter" data-filter="all">All</button>
+                                <button class="btn filter-btn" id="unread-filter" data-filter="unread">Unread</button>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="notif-list">
+                            <!-- Empty State Message (Hidden by default) -->
+                            <div id="empty-state" class="empty-notifications" style="display: none;">
+                                <i class="fa-solid fa-bell-slash"></i>
+                                <p id="empty-message">No unread notifications</p>
+                            </div>
+                            
+                            <!-- Unread Notifications -->
+                            <div class="notif-item unread notification-all notification-unread">
+                                <div class="notif-content">
+                                    <h6 class="fw-bold" id="notification-title">New Message</h6>
+                                    <p id="notification-message">You have received a new message from John Doe</p>
+                                    <span class="notif-time">2 minutes ago</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Read Notifications -->
+                            <div class="notif-item notification-all">
+                                <div class="notif-content">
+                                    <h6 class="fw-bold" id="notification-title">Profile Updated</h6>
+                                    <p id="notification-message">Your profile information has been successfully updated</p>
+                                    <span class="notif-time">2 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+                </div>
             </div>
             <!-- User Profile -->
             <div class="profile-icon">

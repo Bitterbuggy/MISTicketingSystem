@@ -21,6 +21,7 @@ if ($_SESSION['RoleId'] != 4) {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/greeting.css">
     <link rel="stylesheet" href="../asset/css/ticket-cards.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
@@ -41,6 +42,7 @@ if ($_SESSION['RoleId'] != 4) {
 
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
     <script src="../asset/js/greetingCard.js"></script>
     <script src="../asset/js/recentTicket.js"></script>
     <script src="../asset/js/ticketSummary.js"></script>
@@ -113,5 +115,7 @@ if ($_SESSION['RoleId'] != 4) {
             </main>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
