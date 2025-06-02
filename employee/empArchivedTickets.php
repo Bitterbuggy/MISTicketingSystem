@@ -60,7 +60,7 @@ if ($_SESSION['RoleId'] != 4) {
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2">
                     <!-- Tabs Section -->
                     <div class="d-flex flex-wrap gap-2">
-                        <div class="div-mods inactive" onclick="window.location.href='empTicketMgmt.php'">
+                        <div class="div-mods inactive" onclick="window.location.href='empticketMgmt.php'">
                             <span class="mods">Repair Requests</span>
                         </div>
                         <div class="div-mods inactive" onclick="window.location.href='empCompletedTickets.php'">

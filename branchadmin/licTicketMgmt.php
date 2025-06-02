@@ -39,7 +39,7 @@ if ($_SESSION['RoleId'] != 2) {
     <!-- Font Awesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Custom JS Link/s -->
+    <!-- External JS Link/s -->
     <script src="../asset/js/adminNavTables.js"></script>
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
