@@ -289,31 +289,17 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
 
                         <!-- Filter and View Link Container -->
                         <div class="d-flex align-items-center gap-3 ms-auto mt-2 mt-md-0">
-                            <!-- Branch Filter Dropdown -->
-                            <div class="dropdown branch-filter me-2">
-                            <button class="btn btn-outline-primary dropdown-toggle rounded-pill filter-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-filter"></i>
-                                <span>Filter by Branch</span>
-                            </button>
-                            <ul class="dropdown-menu px-2" id="branchDropdown">
-                                <!-- Search input inside dropdown -->
-                                <li class="mb-2">
-                                <input type="text" class="form-control" id="branchSearchInput" placeholder="Search Branch...">
-                                </li>
+                             <!-- Search Bar -->
+                    <div class="input-group" style="max-width: 380px;">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
 
-                                <!-- Generated branch list -->
-                                <?php
-                                    include '../Includes/config.php';
-                                    $stmt = $conn->query("SELECT BranchId, BranchName FROM t_branch");
-                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                        echo '<li><a class="dropdown-item" href="?branch=' . $row['BranchId'] . '">' . htmlspecialchars($row['BranchName']) . '</a></li>';
-                                    }
-                                ?>
-                            </ul>
-                            </div>
+                    <span class="input-group-text control-btn" id="search-icon">
+                        <i class="fa fa-search"></i>
+                    </span>
+                    </div>
 
                             <!-- View All Tickets Link -->
-                            <button class="btn btn-outline-primary rounded-pill view-tix-btn" onclick="location.href='adminTicketMgmt.php'">
+                            <button class="btn btn-outline-primary rounded-pill view-tix-btn" onclick="location.href='ITticketMgmt.php'">
                                 <span>View All Tickets</span>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </button>
@@ -332,7 +318,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                     <th>Submitted At</th>
                     <th>Branch</th>
                     <th>Issue</th>
-                    <th>Assigned IT</th>
+                   
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -345,7 +331,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                             <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
                             <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                             <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                            <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+                           
                             <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
                             <td>
                                 <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
@@ -373,7 +359,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                     <th>Submitted At</th>
                     <th>Branch</th>
                     <th>Issue</th>
-                    <th>Assigned IT</th>
+                  
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -386,7 +372,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                 <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
                 <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                 <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+           
                 <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
                 <td>
                     <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
@@ -410,7 +396,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                     <th>Submitted At</th>
                     <th>Branch</th>
                     <th>Issue</th>
-                    <th>Assigned IT</th>
+               
                     <th>Status</th>
                     <th>Resolved At</th>
                     <th>Resolution</th>
@@ -425,7 +411,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                 <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
                 <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                 <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+              
                 <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
                 <td><?= htmlspecialchars($ticket['TimeResolved']) ?></td>
                 <td><?= nl2br(htmlspecialchars($ticket['Resolution'])) ?></td>
@@ -530,6 +516,23 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+  document.getElementById('searchInput').addEventListener('keyup', function () {
+    const filter = this.value.toLowerCase();
+
+    // 
+    const tableIds = ['TicketTablePending','TicketTableOngoing', 'TicketTableCompleted'];
+
+    tableIds.forEach(tableId => {
+      const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+      rows.forEach(row => {
+        const cells = Array.from(row.getElementsByTagName('td'));
+        const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+        row.style.display = match ? '' : 'none';
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
