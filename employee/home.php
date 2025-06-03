@@ -83,7 +83,6 @@ if ($_SESSION['RoleId'] != 4) {
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
     <script src="../asset/js/greetingCard.js"></script>
-    <script src="../asset/js/recentTicket.js"></script>
     <script src="../asset/js/ticketSummary.js"></script>
     <script src="../asset/js/adminNavTables.js"></script>
 
