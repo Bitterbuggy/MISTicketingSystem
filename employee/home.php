@@ -105,9 +105,14 @@ if ($_SESSION['RoleId'] != 4) {
                             <div class="card-content">
                                 <h3 id="greeting"></h3>
                                 <h1 class="fw-bold"><?php echo $_SESSION['FirstName']; ?></h1>
-                                <div class="location-tag">
+                                <div class="location-tag-client">
                                     <i class="fa-solid fa-location-dot"></i>
                                     <span id="location">Quezon City, Philippines</span>
+                                </div>
+                                <div class="submit-ticket-wrapper d-flex justify-content-start align-items-end" style="height: 50%;">
+                                    <button type="button" class="btn btn-dashboard" data-bs-toggle="modal" data-bs-target="#submitTicketModal">
+                                        Submit a Ticket
+                                    </button>
                                 </div>
                             </div>
                             <img src="../asset/img/LIC-emp_dashboard.png" alt="QCPL STS Welcome Card" class="card-image">
@@ -423,6 +428,9 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
             </div>
         </div>
     </div>
+
+    <!-- Submit Ticket Modal -->
+    <?php include '../modals/submitTicket.php'; ?>
 
     <!-- View Ticket Info Modal -->
     <?php include '../modals/viewTicketInfo.php'; ?>

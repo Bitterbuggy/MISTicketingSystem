@@ -325,16 +325,25 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                 <tbody>
                                     <?php foreach ($tickets as $ticket) : ?>
                                         <?php if ($ticket['TicketStatus'] == 'Pending') : ?>
-                                            <tr>
-                                                <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
-                                                <td>
-                                                    <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
-                                                </td>
+                                            <tr class="ticket-row"
+                                                data-ticket-id="<?= htmlspecialchars($ticket['TicketId']) ?>"
+                                                data-submitted-at="<?= htmlspecialchars($ticket['TimeSubmitted']) ?>"
+                                                data-branch="<?= htmlspecialchars($ticket['BranchName']) ?>"
+                                                data-issue="<?= htmlspecialchars($ticket['Issues']) ?>"
+                                                data-assigned="<?= htmlspecialchars($ticket['AssignedITstaffId']) ?>"
+                                                data-status="<?= htmlspecialchars($ticket['TicketStatus']) ?>"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#viewTicketModal"
+                                                style="cursor: pointer;">
+                                                    <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['Issues']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+                                                    <td>
+                                                        <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
+                                                    </td>
                                             </tr>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
