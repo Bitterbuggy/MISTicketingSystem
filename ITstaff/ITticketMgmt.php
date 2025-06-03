@@ -7,55 +7,14 @@
 include '../Includes/config.php';
 include '../Includes/check_session.php';
 
-$userId = $_SESSION['UserId']; // Current logged-in IT staff ID
-
-$sql = "SELECT
-            t_tickets.TicketId,
-            MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
-            t_branch.BranchName,
-            GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
-            t_tickets.AssignedITstaffId,
-            t_tickets.TicketStatus,
-            t_tickets.TimeResolved,
-            t_tickets.Resolution
-        FROM t_ticketissues
+//Ticket table 
+$sql = "SELECT * FROM t_ticketissues
         JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
         JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
-        JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
-        WHERE 
-            t_tickets.TicketStatus = 'pending'
-            OR (t_tickets.TicketStatus = 'ongoing' AND t_tickets.AssignedITstaffId = :userId)
-            OR (t_tickets.TicketStatus = 'completed' AND t_tickets.AssignedITstaffId = :userId)
-        GROUP BY 
-            t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, 
-            t_tickets.TicketStatus, t_tickets.TimeResolved, t_tickets.Resolution
-        ORDER BY TimeSubmitted ASC";
-
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':userId', $userId);
+        JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId";
+$stmt = $conn->prepare(query: $sql);
 $stmt->execute();
-$tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-$pendingCount = 0;
-$ongoingCount = 0;
-$completedCount = 0;
-
-foreach ($tickets as $ticket) {
-    switch (strtolower($ticket['TicketStatus'])) {
-        case 'pending':
-            $pendingCount++;
-            break;
-        case 'ongoing':
-            $ongoingCount++;
-            break;
-        case 'completed':
-            $completedCount++;
-            break;
-    }
-}
-$totalCount = $pendingCount + $ongoingCount + $completedCount;
-
+$tickets =$stmt->fetchAll(mode: PDO::FETCH_ASSOC);
 
 if ($_SESSION['RoleId'] != 3) {
     header('Location: ../employee/home.php');
@@ -116,36 +75,47 @@ if ($_SESSION['RoleId'] != 3) {
                         <div class="div-mods inactive" onclick="window.location.href='ITcompletedTickets.php'">
                             <span class="mods">Completed Tickets</span>
                         </div>
-                        
+                        <div class="div-mods inactive" onclick="window.location.href='ITarchivedTickets.php'">
+                            <span class="mods">Ticket History Archive</span>
+                        </div>
                     </div>
 
                     <!-- Controls Section -->
                     <div class="d-flex flex-wrap flex-lg-nowrap align-items-center gap-2">
-                        <!-- Search Bar -->
-                    <div class="input-group" style="max-width: 380px;">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+                        <!-- Search -->
+                        <div class="input-group" style="max-width: 280px;">
+                            <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+                            <span class="input-group-text control-btn"><i class="fa fa-search"></i></span>
+                        </div>
 
-                    <span class="input-group-text control-btn" id="search-icon">
-                        <i class="fa fa-search"></i>
-                    </span>
-                    </div>
+                        <!-- Date Button -->
+                        <button class="btn btn-outline-secondary control-btn" type="button">
+                            <i class="fa fa-calendar me-1"></i> Select Date
+                        </button>
 
-                     
+                        <!-- Filter Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
+                                <i class="fa fa-filter me-1"></i>
+                            </button>
+                            <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-chart-simple me-2"></i>Status</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-dot me-2"></i>Type of Issue</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-circle me-2"></i>IT Technician</a></li>
+                            </ul>
+                        </div>
 
                         <!-- Sort Dropdown -->
-<div class="dropdown">
-  <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
-    <i class="fa fa-sort me-1"></i> Sort
-  </button>
-  <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 0, true)">Ticket ID ↑</a></li>
-    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 0, false)">Ticket ID ↓</a></li>
-    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 1, true)">Submitted At ↑</a></li>
-    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 1, false)">Submitted At ↓</a></li>
-    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 2, true)">Branch ↑</a></li>
-    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 2, false)">Branch ↓</a></li>
-  </ul>
-</div>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
+                                <i class="fa fa-sort me-1"></i>
+                            </button>
+                            <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-up me-2"></i>Ascending</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sort-alpha-down me-2"></i>Descending</a></li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -163,7 +133,7 @@ if ($_SESSION['RoleId'] != 3) {
                         <a class="nav-link" id="ongoing-tab" data-bs-toggle="tab" href="#ongoing" role="tab" aria-controls="ongoing" aria-selected="false">On Going</a>
                     </li>
                     <li class="nav-item">
-                                <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
+                        <a class="nav-link" id="alltix-tab" data-bs-toggle="tab" href="#alltix" role="tab" aria-controls="alltix" aria-selected="false">All Tickets</a>
                     </li>
                 </ul>
             </div>
@@ -258,60 +228,7 @@ if ($_SESSION['RoleId'] != 3) {
     </div>
 </div>
     <!-- End of Main Content -->
-
-    <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-
-    if (!searchInput) return; // Prevent errors if input is missing
-
-    searchInput.addEventListener('keyup', function () {
-      const filter = this.value.toLowerCase();
-
-      const tableIds = ['TicketTablePending', 'TicketTableOngoing', 'TicketTableCompleted'];
-
-      tableIds.forEach(tableId => {
-        const rows = document.querySelectorAll(`#${tableId} tbody tr`);
-        rows.forEach(row => {
-          const cells = Array.from(row.getElementsByTagName('td'));
-          const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
-          row.style.display = match ? '' : 'none';
-        });
-      });
-    });
-  });
-</script>
-
-<script>
-  function sortTable(columnIndex, ascending = true) {
-    const tableIds = ['TicketTablePending', 'TicketTableOngoing', 'TicketTableCompleted'];
-
-    tableIds.forEach(tableId => {
-      const table = document.getElementById(tableId);
-      if (!table) return;
-
-      const rows = Array.from(table.querySelectorAll('tbody tr'));
-
-      rows.sort((a, b) => {
-        const cellA = a.cells[columnIndex]?.innerText.trim().toLowerCase() || '';
-        const cellB = b.cells[columnIndex]?.innerText.trim().toLowerCase() || '';
-
-        const isNumeric = !isNaN(Date.parse(cellA)) || !isNaN(cellA);
-
-        let valA = isNumeric ? (isNaN(Date.parse(cellA)) ? parseFloat(cellA) : new Date(cellA)) : cellA;
-        let valB = isNumeric ? (isNaN(Date.parse(cellB)) ? parseFloat(cellB) : new Date(cellB)) : cellB;
-
-        if (valA < valB) return ascending ? -1 : 1;
-        if (valA > valB) return ascending ? 1 : -1;
-        return 0;
-      });
-
-      const tbody = table.querySelector('tbody');
-      rows.forEach(row => tbody.appendChild(row));
-    });
-  }
-</script>
-
-
+    <!-- View Ticket Modal -->
+    <?php include '../modals/viewTicketInfo.php'; ?>
 </body>
 </html>
