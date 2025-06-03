@@ -4,6 +4,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $roleId = $_SESSION['RoleId'];
 ?>
+ <link rel="stylesheet" href="../asset/css/notif.css">
+
 
 <!-- Start of Header -->
 <div class="layout-container d-flex">
@@ -222,3 +224,5 @@ $roleId = $_SESSION['RoleId'];
     </div>
     <!-- End of Sidebar -->
 </div>
+
+<script src="../asset/js/notif.js"></script>

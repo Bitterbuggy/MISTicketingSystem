@@ -1,4 +1,5 @@
 <?php
+
 require_once '../Includes/config.php';
 
 $loggedInEmployeeId = $_SESSION['UserId'] ?? null;
