@@ -3,29 +3,32 @@
 </script>
 
 <?php
+
 include '../Includes/config.php';
 include '../Includes/check_session.php';
 
 $sql = "SELECT
-            t_tickets.TicketId,
-            MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
-            t_branch.BranchName,
-            GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
-            t_tickets.AssignedITstaffId,
-            t_tickets.TicketStatus,
-            t_tickets.TimeResolved,
-            t_tickets.Resolution
-        FROM t_ticketissues
-        JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
-        JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
-        JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
-        GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, 
-                t_tickets.TicketStatus,  t_tickets.TimeResolved, t_tickets.Resolution
-        ORDER BY TimeSubmitted ASC";
+    t_tickets.TicketId,
+    MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
+    t_branch.BranchName,
+    GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
+    CONCAT(t_users.FirstName, ' ', t_users.LastName) AS AssignedStaffName,
+    t_tickets.TicketStatus,
+    t_tickets.TimeResolved,
+    t_tickets.Resolution
+FROM t_ticketissues
+JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
+JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
+JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
+LEFT JOIN t_users ON t_tickets.AssignedITstaffId = t_users.UserId
+GROUP BY t_tickets.TicketId, t_branch.BranchName, AssignedStaffName, t_tickets.TicketStatus, t_tickets.TimeResolved, t_tickets.Resolution
+ORDER BY TimeSubmitted ASC;";
+
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 $pendingCount = 0;
 $ongoingCount = 0;
@@ -47,8 +50,9 @@ foreach ($tickets as $ticket) {
 
 $totalCount = count($tickets);
 
+
 if ($_SESSION['RoleId'] != 1) {
-    header('Location: ../auth/login_error.php');
+    header('Location: ../employee/home.php');
     exit();
 }
 ?>
@@ -82,6 +86,7 @@ if ($_SESSION['RoleId'] != 1) {
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+   
 </head>
 
 <body>
@@ -105,11 +110,11 @@ if ($_SESSION['RoleId'] != 1) {
                                     <span id="location">Quezon City, Philippines</span>
                                 </div>
                             </div>
-                            <img src="../asset/img/admin-IT_dashboard.png" alt="QCPL STS Welcome Card" class="card-image1">
+                            <img src="../asset/img/admin-IT_dashboard.png" alt="QCPL STS Welcome Card" class="card-image">
                         </div>
                     </div>
-<?php
 
+                   <?php
 try {
     $recentQuery = "
         SELECT
@@ -136,6 +141,7 @@ try {
 
 $displayTicketId = substr($recentTicket['TicketId'], -6);
 
+
 function abbreviateBranch($branchName) {
     $words = explode(' ', $branchName);
     $abbreviation = '';
@@ -146,6 +152,8 @@ function abbreviateBranch($branchName) {
 }
 
 $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
+
+
 ?>
                     <!-- Recent Ticket Card -->
                     <div class="col-md-4 mb-3">
@@ -157,6 +165,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                             <div class="ticket-body">
                                 <div class="ticket-grid">
                                     <div>Ticket ID<br><span id="ticket-id"><?= htmlspecialchars($displayTicketId) ?></span></div>
+
                                     <div>Status<br><span id="ticket-status"><?= htmlspecialchars($recentTicket['TicketStatus']) ?></span></div>
                                 </div>
                                 <div class="ticket-grid">
@@ -257,187 +266,170 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                     </div>
                     </div>
 
-                    <!-- Tabs for Ticket Summary -->
-                    <div class="d-flex justify-content-between align-items-center mb-1 mt-4 flex-wrap">
-                    <!-- Ticket Status Tabs -->
-                    <ul class="nav nav-tabs mt-2" id="nav-tix" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="ongoing-tab" data-bs-toggle="tab" href="#ongoing" role="tab" aria-controls="ongoing" aria-selected="false">On Going</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
-                        </li>
-                    </ul>
+                        <!-- Tabs for Ticket Summary -->
+                        <div class="d-flex justify-content-between align-items-center mb-1 mt-4 flex-wrap">
+                            <!-- Ticket Status Tabs -->
+                            <ul class="nav nav-tabs mt-2" id="nav-tix" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="ongoing-tab" data-bs-toggle="tab" href="#ongoing" role="tab" aria-controls="ongoing" aria-selected="false">On Going</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="completed-tab" data-bs-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
+                                </li>
+                            </ul>
 
-                    <!-- Filter and View Link Container -->
-                    <div class="d-flex align-items-center gap-3 ms-auto mt-2 mt-md-0">
-                        <!-- Branch Filter Dropdown -->
-                        <div class="dropdown branch-filter me-2">
-                        <button class="btn btn-outline-primary dropdown-toggle rounded-pill filter-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-filter"></i>
-                            <span>Filter by Branch</span>
-                        </button>
-                        <ul class="dropdown-menu px-2" id="branchDropdown">
-                            <!-- Search input inside dropdown -->
-                            <li class="mb-2">
-                            <input type="text" class="form-control" id="branchSearchInput" placeholder="Search Branch...">
-                            </li>
+                            <!-- Search and View Link Container -->
+                            <div class="d-flex align-items-center gap-3 flex-nowrap ms-auto mt-2 mt-md-0">
+                                <!-- Search Bar -->
+                                <div class="input-group" style="max-width: 380px;">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
 
-                            <!-- Generated branch list -->
-                            <?php
-                                include '../Includes/config.php';
-                                $stmt = $conn->query("SELECT BranchId, BranchName FROM t_branch");
-                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                    echo '<li><a class="dropdown-item" href="?branch=' . $row['BranchId'] . '">' . htmlspecialchars($row['BranchName']) . '</a></li>';
-                                }
-                            ?>
-                        </ul>
+                                <span class="input-group-text control-btn" id="search-icon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                </div>
+
+                            <!-- View All Tickets Link -->
+                            <button class="btn btn-outline-primary rounded-pill view-tix-btn" onclick="location.href='adminTicketMgmt.php'">
+                                <span>View All Tickets</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            </div>
                         </div>
 
-                        <!-- View All Tickets Link -->
-                        <button class="btn btn-outline-primary rounded-pill view-tix-btn" onclick="location.href='adminTicketMgmt.php'">
-                            <span>View All Tickets</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    </div>
+                        <!-- Tab Content Container -->
+                        <div class="tab-content" id="nav-tix-content">
+                           <!-- Pending Tab -->
+                            <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                                <div class="table-responsive mt-0">
+                                    <table id="TicketTablePending" class="table table-striped table-bordered table-hover mb-0">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Ticket Id</th>
+                                                <th>Submitted At</th>
+                                                <th>Branch</th>
+                                                <th>Issue</th>
+                                                <th>Assigned IT</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($tickets as $ticket) : ?>
+                                                <?php if ($ticket['TicketStatus'] == 'Pending') : ?>
+                                                    <tr>
+                                                        <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+                                                        <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
+                                                        <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
+                                                        <td><?= htmlspecialchars($ticket['Issues']) ?></td>
+                                                        <td><?= htmlspecialchars($ticket['AssignedStaffName']) ?></td>
+                                                        <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+                                                        <td>
+                                                            <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-                    <!-- Tab Content Container -->
-                    <div class="tab-content" id="nav-tix-content">
-                    <!-- Pending Tab -->
-                    <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                        <div class="table-responsive mt-0">
-                            <table id="TicketTablePending" class="table table-striped table-bordered table-hover mb-0">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Ticket ID</th>
-                                        <th>Submitted At</th>
-                                        <th>Branch</th>
-                                        <th>Issue</th>
-                                        <th>Assigned IT</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($tickets as $ticket) : ?>
-                                        <?php if ($ticket['TicketStatus'] == 'Pending') : ?>
-                                            <tr class="ticket-row"
-                                                data-ticket-id="<?= htmlspecialchars($ticket['TicketId']) ?>"
-                                                data-submitted-at="<?= htmlspecialchars($ticket['TimeSubmitted']) ?>"
-                                                data-branch="<?= htmlspecialchars($ticket['BranchName']) ?>"
-                                                data-issue="<?= htmlspecialchars($ticket['Issues']) ?>"
-                                                data-assigned="<?= htmlspecialchars($ticket['AssignedITstaffId']) ?>"
-                                                data-status="<?= htmlspecialchars($ticket['TicketStatus']) ?>"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#viewTicketModal"
-                                                style="cursor: pointer;">
+                        <!-- On Going Tab -->
+                        <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
+                            <div class="table-responsive mt-0">
+                                <table id="TicketTableOngoing" class="table table-striped table-bordered table-hover mb-0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Ticket Id</th>
+                                            <th>Submitted At</th>
+                                            <th>Branch</th>
+                                            <th>Issue</th>
+                                            <th>Assigned IT</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($tickets as $ticket) : ?>
+                                            <?php if ($ticket['TicketStatus'] == 'Ongoing') : ?>
+                                                <tr>
                                                     <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
                                                     <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
                                                     <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                                                     <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['AssignedStaffName']) ?></td>
                                                     <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
                                                     <td>
                                                         <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
                                                     </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                                </tr>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Completed Tab -->  
+                        <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                            <div class="table-responsive mt-0">
+                                <table id="TicketTableCompleted" class="table table-striped table-bordered table-hover mb-0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Ticket Id</th>
+                                            <th>Submitted At</th>
+                                            <th>Branch</th>
+                                            <th>Issue</th>
+                                            <th>Assigned IT</th>
+                                            <th>Status</th>
+                                            <th>Resolved At</th>
+                                            <th>Resolution</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($tickets as $ticket) : ?>
+                                            <?php if ($ticket['TicketStatus'] === 'Completed') : ?>
+                                                <tr>
+                                                    <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['Issues']) ?></td>
+                                                <td><?= htmlspecialchars($ticket['AssignedStaffName']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+                                                    <td><?= htmlspecialchars($ticket['TimeResolved']) ?></td>
+                                                    <td><?= nl2br(htmlspecialchars($ticket['Resolution'])) ?></td>
+                                                    <td>
+                                                        <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-info">View</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Ongoing Tab -->
-                    <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
-                        <div class="table-responsive mt-0">
-                            <table id="TicketTableOngoing" class="table table-striped table-bordered table-hover mb-0">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Ticket ID</th>
-                                        <th>Submitted At</th>
-                                        <th>Branch</th>
-                                        <th>Issue</th>
-                                        <th>Assigned IT</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($tickets as $ticket) : ?>
-                                        <?php if ($ticket['TicketStatus'] == 'Ongoing') : ?>
-                                            <tr>
-                                                <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
-                                                <td>
-                                                    <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
-                                                </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Completed Tab -->
-                    <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                        <div class="table-responsive mt-0">
-                            <table id="TicketTableCompleted" class="table table-striped table-bordered table-hover mb-0">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Ticket ID</th>
-                                        <th>Submitted At</th>
-                                        <th>Branch</th>
-                                        <th>Issue</th>
-                                        <th>Assigned IT</th>
-                                        <th>Status</th>
-                                        <th>Resolved At</th>
-                                        <th>Resolution</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($tickets as $ticket) : ?>
-                                        <?php if ($ticket['TicketStatus'] == 'Completed') : ?>
-                                            <tr>
-                                                <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['Issues']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['AssignedITstaffId']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
-                                                <td><?= htmlspecialchars($ticket['TimeResolved']) ?></td>
-                                                <td><?= nl2br(htmlspecialchars($ticket['Resolution'])) ?></td>
-                                                <td>
-                                                    <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
-                                                </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
-            </div>
+        </div>
+        </div>
+            </main>
         </div>
     </div>
-    <!-- View Ticket Info Modal -->
-    <?php include '../modals/viewTicketInfo.php'; ?>
 
-    <!-- External JS Link/s -->
+    <!-- View Ticket Info Modal -->
+    
+    <!-- External JS Link -->
+    <script src="../asset/js/adminCharts.js"></script>
+
+     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
-    <script src="../asset/js/adminCharts.js"></script>
     <script src="../asset/js/greetingCard.js"></script>
     <script src="../asset/js/recentTicket.js"></script>
     <script src="../asset/js/ticketSummary.js"></script>
@@ -457,58 +449,79 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
     });
     </script>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const donutCtx = document.getElementById('branchMostTicketChart').getContext('2d');
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const donutCtx = document.getElementById('branchMostTicketChart').getContext('2d');
 
-    fetch('getBranchTicketData.php')
-        .then(response => response.json())
-        .then(chartData => {
-        new Chart(donutCtx, {
-            type: 'doughnut',
-            data: {
-            labels: chartData.labels,
-            datasets: [{
-                data: chartData.data,
-                backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#6f42c1', '#17a2b8'], // Add more if needed
-                borderRadius: 5,
-                hoverOffset: 8
-            }]
-            },
-            options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                position: 'bottom',
-                labels: {
-                    font: {
-                    size: 12,
-                    family: "Inter"
-                }
-                }
-                },
-                title: {
-                display: true,
-                text: "Branches with Most Tickets",
+  fetch('getBranchTicketData.php')
+    .then(response => response.json())
+    .then(chartData => {
+      new Chart(donutCtx, {
+        type: 'doughnut',
+        data: {
+          labels: chartData.labels,
+          datasets: [{
+            data: chartData.data,
+            backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#6f42c1', '#17a2b8'], // Add more if needed
+            borderRadius: 5,
+            hoverOffset: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
                 font: {
-                    size: 20,
-                    family: 'Inter',
-                    weight: 'bold'
-                },
-                padding: {
-                    top: 5,
-                    bottom: 12
+                  size: 12,
+                  family: "Inter"
                 }
-                }
+              }
+            },
+            title: {
+              display: true,
+              text: "Branches with Most Tickets",
+              font: {
+                size: 20,
+                family: 'Inter',
+                weight: 'bold'
+              },
+              padding: {
+                top: 5,
+                bottom: 12
+              }
             }
-            }
-        });
-        })
-        .catch(error => {
-        console.error('Error loading donut chart data:', error);
-        });
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error loading donut chart data:', error);
     });
-    </script>
+});
+</script>
+
+<script>
+  document.getElementById('searchInput').addEventListener('keyup', function () {
+    const filter = this.value.toLowerCase();
+
+    // Ilagay mo dito lahat ng table IDs na gusto mong isama sa search
+    const tableIds = ['TicketTablePending','TicketTableOngoing', 'TicketTableCompleted'];
+
+    tableIds.forEach(tableId => {
+      const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+      rows.forEach(row => {
+        const cells = Array.from(row.getElementsByTagName('td'));
+        const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+        row.style.display = match ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+
 </body>
 </html>
