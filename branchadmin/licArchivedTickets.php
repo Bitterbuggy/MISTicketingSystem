@@ -148,10 +148,7 @@ if ($_SESSION['RoleId'] != 2) {
                 </div>
             </div>
 
-            <div class="pagination-container">
-                <ul class="pagination" id="pagination">
-                    <!-- Pagination -->
-                </ul>
+            <div class="pagination-container" id="paginationContainer">
             </div>
         </main>
     </div>

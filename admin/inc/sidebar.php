@@ -61,10 +61,10 @@ $roleId = $_SESSION['RoleId'];
 
             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                 <li>
-                <a class="dropdown-item" href="../auth/updateAcc.php" data-bs-toggle="modal" data-bs-target="#updateAccModal">Update Account</a>
+                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#updateAccModal">Update Account</a>
                 </li>
                 <li>
-                <a class="dropdown-item" href="../auth/updatePass.php" data-bs-toggle="modal" data-bs-target="#updatePassModal">Update Password</a>
+                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#updatePassModal">Update Password</a>
                 </li>
             </ul>
             </div>

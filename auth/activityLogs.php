@@ -187,11 +187,20 @@ $redirectLink = match ($roleId) {
             </div>
         </div>
     </main>
-    </div>
+        <!-- Pagination -->
+        <div class="pagination-container" id="paginationContainer">
+            <!-- Pagination will be added here -->
+        </div>
     </div>
 
     <!-- Download Report Modal -->
     <?php include '../modals/DownloadReport.php'; ?>
+
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
 
     <script>
     document.getElementById('searchInput').addEventListener('keyup', function () {

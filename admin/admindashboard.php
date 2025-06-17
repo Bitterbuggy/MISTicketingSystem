@@ -85,8 +85,6 @@ if ($_SESSION['RoleId'] != 1) {
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-   
 </head>
 
 <body>
@@ -454,6 +452,8 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
     </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../asset/js/updatePass.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const donutCtx = document.getElementById('branchMostTicketChart').getContext('2d');
@@ -509,21 +509,21 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-  document.getElementById('searchInput').addEventListener('keyup', function () {
+document.getElementById('searchInput').addEventListener('keyup', function () {
     const filter = this.value.toLowerCase();
 
     // Ilagay mo dito lahat ng table IDs na gusto mong isama sa search
     const tableIds = ['TicketTablePending','TicketTableOngoing', 'TicketTableCompleted'];
 
     tableIds.forEach(tableId => {
-      const rows = document.querySelectorAll(`#${tableId} tbody tr`);
-      rows.forEach(row => {
+    const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+    rows.forEach(row => {
         const cells = Array.from(row.getElementsByTagName('td'));
         const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
         row.style.display = match ? '' : 'none';
-      });
     });
-  });
+    });
+});
 </script>
 </body>
 </html>
