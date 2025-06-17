@@ -105,11 +105,6 @@ $redirectLink = match ($roleId) {
                         <i class="fa fa-search"></i>
                     </span>
                     </div>
-                    
-                    <!-- Date Button -->
-                    <button class="btn btn-outline-secondary control-btn" type="button">
-                        <i class="fa fa-calendar me-1"></i> Select Date
-                    </button>
 
                     <?php if ($roleId == 1 || $roleId == 3) { ?>
                     <!-- Filter Dropdown -->

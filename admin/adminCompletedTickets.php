@@ -83,12 +83,7 @@ if ($_SESSION['RoleId'] != 1) {
                         <input type="text" class="form-control" placeholder="Search" aria-label="Search">
                         <span class="input-group-text control-btn"><i class="fa fa-search"></i></span>
                     </div>
-
-                    <!-- Date Button -->
-                    <button class="btn btn-outline-secondary control-btn" type="button">
-                        <i class="fa fa-calendar me-1"></i> Select Date
-                    </button>
-
+                    
                     <!-- Filter Dropdown -->
                     <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">

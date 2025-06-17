@@ -3,7 +3,6 @@
 session_start();
 include '../Includes/config.php'; // Assumes $conn is a PDO instance
 
-
 $ticketId = $_GET['id'] ?? null;
 
 if ($ticketId) $ticketId = $_GET['id'] ?? null;
@@ -29,6 +28,7 @@ if ($ticketId) {
     $stmt->execute(['ticketId' => $ticketId]);
     $ticketDetails = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 // Debugging info to check if logged in
 if (isset($_SESSION['UserId']) && isset($_SESSION['RoleId'])) {
     echo "<p>Logged in as User ID: " . $_SESSION['UserId'] . " | Role ID: " . $_SESSION['RoleId'] . "</p>";
@@ -44,7 +44,6 @@ $loggedInUserId = $_SESSION['UserId'];
 $loggedInRoleId = $_SESSION['RoleId'];
 
 ?>
-
 
 <?php if (!empty($ticketDetails)): ?>
     <?php $first = $ticketDetails[0]; ?>
@@ -78,8 +77,6 @@ $loggedInRoleId = $_SESSION['RoleId'];
             <textarea name="completion_message" id="completion_message" rows="4" cols="50" required placeholder="Describe what was done to fix the issue..."></textarea><br><br>
             <button type="submit" name="action" value="complete" class="btn btn-primary">Complete</button>
         <?php endif; ?>
-
-
     </form>
 
 <?php else: ?>

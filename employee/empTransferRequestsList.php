@@ -79,11 +79,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <i class="fa fa-search"></i>
             </span>
             </div>
-
-            <!-- Date Button -->
-            <button class="btn btn-outline-secondary control-btn" type="button">
-                <i class="fa fa-calendar me-1"></i> Select Date
-            </button>
             
             <!-- Filter Dropdown -->
             <div class="dropdown">
