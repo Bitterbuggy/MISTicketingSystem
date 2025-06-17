@@ -8,10 +8,10 @@ include '../Includes/config.php'; // Ensure this is included at the top
 
 if (isset($_SESSION['success_message'])): ?>
     <div id="successModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p><?php echo $_SESSION['success_message']; ?></p>
-      </div>
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p><?php echo $_SESSION['success_message']; ?></p>
+        </div>
     </div>
     <?php unset($_SESSION['success_message']); ?>
     <?php endif; 
@@ -21,7 +21,7 @@ if (isset($_SESSION['success_message'])): ?>
 <!-- External CSS Link -->
 <link rel="stylesheet" href="../asset/css/modals.css">
 
-<!-- Register LIC Modal -->
+<!-- Register Employee Modal -->
     <div class="modal fade" id="registerEmpModal" tabindex="-1" aria-labelledby="registerEmpModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">

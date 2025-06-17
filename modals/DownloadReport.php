@@ -1,13 +1,13 @@
 <?php
 include '../Includes/config.php';
 
-if (!isset($_SESSION['admin_id'])) {
+if (!isset($_SESSION['RoleId'])) {
     header("Location: ../index.php");
     exit();
 }
 
-$adminId = $_SESSION['admin_id'];
-$redirectLink = "../admin/adminActivityLogs.php";
+$adminId = $_SESSION['RoleId'];
+$redirectLink = "../auth/activityLogs.php";
 ?>
 
 <!-- External CSS Link -->
@@ -25,7 +25,7 @@ $redirectLink = "../admin/adminActivityLogs.php";
             <div class="modal-body" style="padding: 20px;">
                 <div class="row mb-3"> <!-- Added margin bottom to create space below -->
                     <div class="col">
-                        <input type="text" id="report_type" class="form-control" value="Summary of Document Services Administered" readonly>
+                        <input type="text" id="report_type" class="form-control" value="Tickets" readonly>
                     </div>
                 </div>
 

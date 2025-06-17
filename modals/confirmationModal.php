@@ -4,48 +4,6 @@
 <!-- Font Awesome CDN Link -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<!-- Confirm Update for Account Modal -->
-<div class="modal" id="updateConfirmAccModal" tabindex="-1" aria-labelledby="updateConfirmAccModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <i class="fa-solid fa-circle-question md-icon"></i>
-                <h1>Confirm Update</h1>
-                <h3>Are you sure you want to update the information?</h3>
-                <p class="p-warning mt-4">Once updated, the account information will be changed.</p>
-
-                <div class="modal-footer">
-                <div class="d-flex justify-content-around">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Confirm</button>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Confirm Update for Asset Modal -->
-<div class="modal" id="updateConfirmAssetModal" tabindex="-1" aria-labelledby="updateConfirmAssetModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <i class="fa-solid fa-circle-question md-icon"></i>
-                <h1>Confirm Update</h1>
-                <h3>Are you sure you want to update the information?</h3>
-                <p class="p-warning mt-4">Once updated, the asset information will be changed.</p>
-
-                <div class="modal-footer">
-                <div class="d-flex justify-content-around">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Confirm</button>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Confirm Delete for Account Modal -->
 <div class="modal fade" id="deleteConfirmAccModal" tabindex="-1" aria-labelledby="deleteConfirmAccLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
