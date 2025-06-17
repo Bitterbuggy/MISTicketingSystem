@@ -36,13 +36,13 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/div_mods.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
     <link rel="stylesheet" href="../asset/css/tbl_charts.css">
     <link rel="stylesheet" href="../asset/css/tbl-controls.css">
-    <link rel="stylesheet" href="../asset/css/buttons.css">
+    <link rel="stylesheet" href="../asset/css/buttons.css">    
     <link rel ="stylesheet" href="../asset/css/pagination.css">
-    <link rel ="stylesheet" href="../asset/css/modals.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -55,6 +55,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
 </head>
 
 <body>

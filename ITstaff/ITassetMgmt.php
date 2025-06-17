@@ -57,6 +57,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/div_mods.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
     <link rel="stylesheet" href="../asset/css/tbl_charts.css">
@@ -75,6 +76,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
 </head>
 
 <body>
@@ -205,12 +207,21 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Register Asset Modal -->
     <?php include '../modals/RegisterAsset.php'; ?>
+
     <!-- Update Asset Modal -->
     <?php include '../modals/UpdateAsset.php'; ?>
+
     <!-- Delete Asset Modal -->
     <?php include '../modals/confirmationModal.php'; ?>
+
     <!-- Success Modal -->
     <?php include '../modals/successModal.php'; ?>
+    
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
 
     <!-- External JS Files -->
     <script src="../asset/js/fetchModal.js"></script>

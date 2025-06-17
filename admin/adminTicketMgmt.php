@@ -33,11 +33,12 @@ if ($_SESSION['RoleId'] != 1) {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/div_mods.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
     <link rel="stylesheet" href="../asset/css/tbl_charts.css">
     <link rel="stylesheet" href="../asset/css/tbl-controls.css">
-    <link rel="stylesheet" href="../asset/css/buttons.css">
+    <link rel="stylesheet" href="../asset/css/buttons.css">    
     <link rel ="stylesheet" href="../asset/css/pagination.css">
 
     <!-- Bootstrap CSS -->
@@ -49,9 +50,14 @@ if ($_SESSION['RoleId'] != 1) {
     <!-- Font Awesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Chart.js CDN Link -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Custom JS Link/s -->
     <script src="../asset/js/adminNavTables.js"></script>
+    <script src="../asset/js/adminCharts.js"></script>
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
     <script src="../asset/js/adminAllTickets.js"></script>
 </head>
 
@@ -229,7 +235,10 @@ if ($_SESSION['RoleId'] != 1) {
 </div>
     <!-- End of Main Content -->
 
-    <!-- View Ticket Modal -->
-    <?php include '../modals/viewTicketInfo.php'; ?>
+        <!-- Account Profile Update Modal -->
+        <?php include '../auth/updateAcc.php'; ?>
+
+        <!-- Account Password Update Modal -->
+        <?php include '../auth/updatePass.php'; ?>
 </body>
 </html>

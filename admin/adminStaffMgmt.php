@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/div_mods.css">
     <link rel="stylesheet" href="../asset/css/tbl_charts.css">
     <link rel="stylesheet" href="../asset/css/tbl-controls.css">
@@ -93,6 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- External JS Files -->
+    <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/fetchModal.js"></script>
 </head>
 
 <body>
@@ -199,14 +205,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <!-- Register IT Staff Modal -->
     <?php include '../modals/RegisterIT.php'; ?>
+
     <!-- Update IT Staff Modal -->
     <?php include '../modals/UpdateIT.php'; ?>
+
     <!-- Delete IT Staff Modal -->
     <?php include '../modals/confirmationModal.php'; ?>
 
-    <!-- External JS Files -->
-    <script src="../asset/js/sidebar.js"></script>
-    <script src="../asset/js/fetchModal.js"></script>
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
     
     <script>
     document.getElementById('searchInput').addEventListener('keyup', function () {

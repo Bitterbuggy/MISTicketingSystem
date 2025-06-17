@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/div_mods.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
     <link rel="stylesheet" href="../asset/css/tbl_charts.css">
@@ -82,6 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- External JS Link/s -->
+    <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
 </head>
 
 <body>
@@ -201,7 +206,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include '../modals/confirmationModal.php'; ?>
 
     <!-- External JS Files -->
-    <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/fetchModal.js"></script>
 
     <script>

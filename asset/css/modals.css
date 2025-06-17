@@ -87,13 +87,13 @@
 
 #submitTicketModal .form-select,
 #submitTicketModal .form-control {
-  border-radius: 12px;
+    border-radius: 12px;
 }
 
 #submitTicketModal .modal-content {
-  border-radius: 16px;
+    border-radius: 16px;
 }
 
 #submitTicketModal strong {
-  white-space: nowrap;
+    white-space: nowrap;
 }

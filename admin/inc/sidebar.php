@@ -53,9 +53,20 @@ $roleId = $_SESSION['RoleId'];
                         </div>
                 </div>
             </div>
-            <!-- User Profile -->
-            <div class="profile-icon">
+            <!-- User Profile with Dropdown -->
+            <div class="dropdown">
+            <div class="profile-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
                 <i class="fa-solid fa-user-circle"></i>
+            </div>
+
+            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <li>
+                <a class="dropdown-item" href="../auth/updateAcc.php" data-bs-toggle="modal" data-bs-target="#updateAccModal">Update Account</a>
+                </li>
+                <li>
+                <a class="dropdown-item" href="../auth/updatePass.php" data-bs-toggle="modal" data-bs-target="#updatePassModal">Update Password</a>
+                </li>
+            </ul>
             </div>
         </div>
     </div>

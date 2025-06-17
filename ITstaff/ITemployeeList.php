@@ -176,9 +176,20 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     </main>
 </div>
+    <!-- Register Employee Modal -->
     <?php include '../modals/RegisterEmployee.php'; ?>
+
+    <!-- Update Employee Modal -->
     <?php include '../modals/UpdateEmp.php'; ?>
+
+    <!-- Delete Employee Modal -->
     <?php include '../modals/confirmationModal.php'; ?>
+    
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
 
     <script>
     document.getElementById('searchInput').addEventListener('keyup', function () {

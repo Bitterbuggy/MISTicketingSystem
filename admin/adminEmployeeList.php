@@ -58,6 +58,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/div_mods.css">
     <link rel="stylesheet" href="../asset/css/tbl_charts.css">
     <link rel="stylesheet" href="../asset/css/tbl-controls.css">
@@ -75,6 +76,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- External JS Files -->
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
     <script src="../asset/js/fetchModal.js"></script>
 </head>
 

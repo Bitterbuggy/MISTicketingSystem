@@ -154,5 +154,10 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </main>
         </div>
     </div>
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
 </body>
 </html>
