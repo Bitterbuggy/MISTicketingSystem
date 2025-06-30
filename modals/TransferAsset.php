@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- Transfer Asset Modal -->
     <div class="modal fade" id="transferAssetModal" tabindex="-1" aria-labelledby="transferAssetModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-xxl">
         <div class="modal-content">
         <form action="#" method="POST">
             <div class="modal-header">
@@ -57,7 +57,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="modal-body">
             <form action="#" method="POST">
                 <div class="row mb-3">
+                    <label for="acquisitionType" class="form-label">Acquisition Type</label>
                     <div class="col-md-6">
+                        <input type="radio" id="donation" name="donation" value="Donation">
+                        <label for="donation">Donation</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" id="qcg" name="qcg" value="QCG">
+                        <label for="qcg">QCG</label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
                         <label for="assetName" class="form-label">Asset</label>
                         <select name="AssetName" id="assetName" class="form-select rounded-pill" required>
                             <option value="" default></option>

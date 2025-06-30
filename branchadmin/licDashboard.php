@@ -421,8 +421,8 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
             </div>
         </div>
     </div>
-    <!-- View Ticket Info Modal -->
-    <?php include '../modals/viewTicketInfo.php'; ?>
+    <!-- Submit Ticket Modal -->
+    <?php include '../modals/submitTicket.php'; ?>
 
     <!-- Account Profile Update Modal -->
     <?php include '../auth/updateAcc.php'; ?>
@@ -432,6 +432,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
 
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/updatePass.js"></script>
     <script src="../asset/js/notif.js"></script>
     <script src="../asset/js/adminCharts.js"></script>
     <script src="../asset/js/greetingCard.js"></script>

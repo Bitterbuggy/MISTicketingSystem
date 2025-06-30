@@ -73,16 +73,13 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <!-- Left: Add New Asset Button -->
             <!-- Tabs Section -->
             <div class="d-flex flex-wrap gap-2">
-                <div class="div-mods action" data-bs-toggle="modal" data-bs-target="#transferAssetModal">
-                    <span class="mods">Transfer an Asset</span>
-                </div>
                 <div class="div-mods inactive" onclick="window.location.href='adminAssetMgmt.php'">
                     <span class="mods">All Assets</span>
                 </div>
-                <div class="div-mods active" onclick="window.location.href='adminTransferRequestsList.php'">
+                <div class="div-mods inactive" onclick="window.location.href='adminTransferRequestsList.php'">
                     <span class="mods">Transfer Requests</span>
                 </div>
-                <div class="div-mods inactive" onclick="window.location.href='adminForCondemn.php'">
+                <div class="div-mods active" onclick="window.location.href='adminForCondemn.php'">
                     <span class="mods">For Condemn</span>
                 </div>
             </div>
@@ -130,12 +127,12 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <thead>
                                 <tr>
                                     <th style="width: 1%;">Request ID</th>
-                                    <th style="width: 2%;">Asset Name</th>
+                                    <th style="width: 3%;">Asset Name</th>
                                     <th style="width: 3%;">Dispatching Branch</th>
                                     <th style="width: 3%;">Receiving Branch</th>
                                     <th style="width: 1%;">Requested Date</th>
                                     <th style="width: 2%;">Requested By</th>
-                                    <th style="width: 2%;">Status</th>                               
+                                    <th style="width: 1%;">Status</th>                               
                                 </tr>
                             </thead>
                             <tbody>
@@ -146,13 +143,20 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php else: ?>
                                     <?php foreach ($assets as $asset): ?>
                                         <tr>
-                                            <td>0</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td>
+                                            <!-- Dispose Button -->
+                                            <button 
+                                                class="btn btn-danger btn-sm" 
+                                                onclick="openDeleteModal2(<?php echo $user['AssetId']; ?>)">
+                                                Dispose
+                                            </button>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
