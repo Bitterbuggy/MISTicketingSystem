@@ -442,6 +442,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
 
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/updatePass.js"></script>
     <script src="../asset/js/notif.js"></script>
     <script src="../asset/js/adminCharts.js"></script>
     <script src="../asset/js/greetingCard.js"></script>

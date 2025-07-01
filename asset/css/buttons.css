@@ -1,52 +1,3 @@
-/* TICKET STATUS BUTTONS */
-/* FOR ALL STATUSES */
-.btn-status {
-    border-radius: 30px !important;
-    font-size: 15px !important;
-    width: 100%;
-    color: white !important;
-    font-weight: 650 !important;
-    pointer-events: none;
-}
-
-.btn-pending {
-    background-color: #ffc107 !important;
-}
-
-.btn-ongoing {
-    background-color: #17a2b8 !important;
-}
-
-.btn-approved {
-    background-color: #0038a8 !important;
-}
-
-.btn-completed {
-    background-color: #0fa100 !important;
-}
-
-.btn-cancelled, .btn-rejected {
-    background-color: #cf1127 !important;
-}
-
-/* ISSUE TYPE BUTTON */
-
-.btn-type {
-    border-radius: 30px !important;
-    font-size: 15px !important;
-    width: 70%;
-    color: white !important;
-    font-weight: 650 !important;
-}
-
-.btn-software {
-    background-color: #fca335 !important;
-}
-
-.btn-hardware {
-    background-color: #c17cfc !important;
-}
-
 /* EDIT AND DELETE BUTTONS */
 .btn-edit, .btn-danger {
     border-radius: 5px !important;
@@ -97,3 +48,52 @@
     height: 2.4rem !important;
     color: white !important;
 }
+
+/* TICKET STATUS BUTTONS */
+/* FOR ALL STATUSES 
+.btn-status {
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 100%;
+    color: white !important;
+    font-weight: 650 !important;
+    pointer-events: none;
+}
+
+.btn-pending {
+    background-color: #ffc107 !important;
+}
+
+.btn-ongoing {
+    background-color: #17a2b8 !important;
+}
+
+.btn-approved {
+    background-color: #0038a8 !important;
+}
+
+.btn-completed {
+    background-color: #0fa100 !important;
+}
+
+.btn-cancelled, .btn-rejected {
+    background-color: #cf1127 !important;
+}*/
+
+/* ISSUE TYPE BUTTON 
+
+.btn-type {
+    border-radius: 30px !important;
+    font-size: 15px !important;
+    width: 70%;
+    color: white !important;
+    font-weight: 650 !important;
+}
+
+.btn-software {
+    background-color: #fca335 !important;
+}
+
+.btn-hardware {
+    background-color: #c17cfc !important;
+}*/

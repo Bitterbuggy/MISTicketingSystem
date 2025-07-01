@@ -77,6 +77,7 @@ $redirectLink = match ($roleId) {
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/pagination.js"></script>
 </head>
 
 <body>
@@ -188,8 +189,10 @@ $redirectLink = match ($roleId) {
         </div>
     </main>
         <!-- Pagination -->
-        <div class="pagination-container" id="paginationContainer">
+        <div class="pagination-container">
+            <ul class="paginationContainer">
             <!-- Pagination will be added here -->
+            </ul>
         </div>
     </div>
 
@@ -213,6 +216,6 @@ $redirectLink = match ($roleId) {
         row.style.display = match ? '' : 'none';
     });
     });
-</script>
+    </script>
 </body>
 </html>

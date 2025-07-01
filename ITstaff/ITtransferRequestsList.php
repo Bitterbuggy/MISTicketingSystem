@@ -74,15 +74,18 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <!-- Left: Add New Asset Button -->
             <!-- Tabs Section -->
             <div class="d-flex flex-wrap gap-2">
+                <div class="div-mods action" data-bs-toggle="modal" data-bs-target="#transferAssetModal">
+                    <span class="mods">Transfer an Asset</span>
+                </div>
                 <div class="div-mods inactive" onclick="window.location.href='ITassetMgmt.php'">
                     <span class="mods">All Assets</span>
                 </div>
                 <div class="div-mods active" onclick="window.location.href='ITtransferRequestsList.php'">
                     <span class="mods">Transfer Requests</span>
                 </div>
-                <div class="div-mods action" data-bs-toggle="modal" data-bs-target="#transferAssetModal">
-                    <span class="mods">Transfer an Asset</span>
-                </div>
+                <div class="div-mods inactive" onclick="window.location.href='ITforCondemn.php'">
+                    <span class="mods">For Condemn</span>
+                </div>                
             </div>
 
             <!-- Right: Table Controls -->

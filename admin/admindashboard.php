@@ -112,7 +112,7 @@ if ($_SESSION['RoleId'] != 1) {
                         </div>
                     </div>
 
-                   <?php
+                <?php
 try {
     $recentQuery = "
         SELECT
@@ -300,18 +300,17 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
 
                         <!-- Tab Content Container -->
                         <div class="tab-content" id="nav-tix-content">
-                           <!-- Pending Tab -->
+                            <!-- Pending Tab -->
                             <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                                 <div class="table-responsive mt-0">
                                     <table id="TicketTablePending" class="table table-striped table-bordered table-hover mb-0">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Ticket Id</th>
+                                                <th>Ticket ID</th>
                                                 <th>Submitted At</th>
                                                 <th>Branch</th>
                                                 <th>Issue</th>
                                                 <th>Assigned IT</th>
-                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -324,7 +323,6 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                                         <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                                                         <td><?= htmlspecialchars($ticket['Issues']) ?></td>
                                                         <td><?= htmlspecialchars($ticket['AssignedStaffName']) ?></td>
-                                                        <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
                                                         <td>
                                                             <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
                                                         </td>
@@ -347,7 +345,6 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                             <th>Branch</th>
                                             <th>Issue</th>
                                             <th>Assigned IT</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -360,7 +357,6 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                                     <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                                                     <td><?= htmlspecialchars($ticket['Issues']) ?></td>
                                                     <td><?= htmlspecialchars($ticket['AssignedStaffName']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
                                                     <td>
                                                         <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-primary">View</a>
                                                     </td>
@@ -383,7 +379,6 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                             <th>Branch</th>
                                             <th>Issue</th>
                                             <th>Assigned IT</th>
-                                            <th>Status</th>
                                             <th>Resolved At</th>
                                             <th>Resolution</th>
                                             <th>Action</th>
@@ -398,7 +393,6 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                                                     <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                                                     <td><?= htmlspecialchars($ticket['Issues']) ?></td>
                                                 <td><?= htmlspecialchars($ticket['AssignedStaffName']) ?></td>
-                                                    <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
                                                     <td><?= htmlspecialchars($ticket['TimeResolved']) ?></td>
                                                     <td><?= nl2br(htmlspecialchars($ticket['Resolution'])) ?></td>
                                                     <td>
