@@ -16,7 +16,7 @@ body {
 
 /* Container & Card */
 .container {
-    max-width: 880px !important;
+    max-width: 850px !important;
     position: relative;
     margin-bottom: 30px;
 }
@@ -28,7 +28,7 @@ body {
     box-shadow: 0 10px 25px #00000026;
 }
 
-.card h1 {
+.card h2 {
     font-weight: 700;
     color: #0038a8;
     text-align: center;
