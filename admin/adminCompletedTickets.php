@@ -47,6 +47,7 @@ if ($_SESSION['RoleId'] != 1) {
     <script src="../asset/js/adminCharts.js"></script>
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/pagination.js"></script>
     <script src="../asset/js/adminAllTickets.js"></script>
 
 </head>
@@ -115,7 +116,7 @@ if ($_SESSION['RoleId'] != 1) {
             <div class="row no-gutters mt-4">
                 <div class="col-12">
                 <div class="table-responsive mt-0">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table id="completedTixTable" class="table table-bordered table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Ticket ID</th>
@@ -132,6 +133,22 @@ if ($_SESSION['RoleId'] != 1) {
                 </div>
                 </div>
             </div>
+            <!-- Pagination -->
+            <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                <div class="custom-pagination" id="completedTixTablePagination"></div>
+
+                <!-- Records per page selector -->
+                <div class="d-flex align-items-center gap-2">
+                    <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                    <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                    <span id="totalItemCount" class="text-muted">of 0 items</span>
+                </div>
+            </div>
             </main>
         </div>
     </div>
@@ -140,5 +157,14 @@ if ($_SESSION['RoleId'] != 1) {
 
         <!-- Account Password Update Modal -->
         <?php include '../auth/updatePass.php'; ?>
+
+        <script>
+        paginateTableWithLimitSelector(
+        '#completedTixTable',
+        '#completedTixTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+    );
+    </script>
 </body>
 </html>

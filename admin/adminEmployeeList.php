@@ -77,6 +77,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- External JS Files -->
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/pagination.js"></script>
     <script src="../asset/js/fetchModal.js"></script>
 </head>
 
@@ -176,11 +177,33 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div>
+    <!-- Pagination -->
+    <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+        <div class="custom-pagination" id="empTablePagination"></div>
+
+        <!-- Records per page selector -->
+        <div class="d-flex align-items-center gap-2">
+            <label for="perPageSelect" class="form-label mb-0">Show:</label>
+            <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
+            <span id="totalItemCount" class="text-muted">of 0 items</span>
+        </div>
+    </div>
     </main>
 </div>
     <?php include '../modals/RegisterEmployee.php'; ?>
     <?php include '../modals/UpdateEmp.php'; ?>
     <?php include '../modals/confirmationModal.php'; ?>
+    
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
 
     <script>
     document.getElementById('searchInput').addEventListener('keyup', function () {
@@ -193,6 +216,15 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         row.style.display = match ? '' : 'none';
     });
     });
+    </script>
+
+    <script>
+        paginateTableWithLimitSelector(
+        '#empTable',
+        '#empTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+    );
     </script>
 </body>
 </html>

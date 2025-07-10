@@ -22,6 +22,7 @@ if ($_SESSION['RoleId'] != 3) {
 
     <!-- External CSS Link/s -->
     <link rel ="stylesheet" href="../asset/css/sidebar.css">
+    <link rel="stylesheet" href="../asset/css/notif.css">
     <link rel="stylesheet" href="../asset/css/div_mods.css">
     <link rel="stylesheet" href="../asset/css/navtabs.css">
     <link rel="stylesheet" href="../asset/css/tbl_charts.css">
@@ -45,6 +46,8 @@ if ($_SESSION['RoleId'] != 3) {
     <script src="../asset/js/adminNavTables.js"></script>
     <script src="../asset/js/adminCharts.js"></script>
     <script src="../asset/js/sidebar.js"></script>
+    <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/pagination.js"></script>
     <script src="../asset/js/adminAllTickets.js"></script>
 </head>
 
@@ -112,7 +115,7 @@ if ($_SESSION['RoleId'] != 3) {
             <div class="row no-gutters mt-4">
                 <div class="col-12">
                 <div class="table-responsive mt-0">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table id="completedTixTable" class="table table-bordered table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Ticket ID</th>
@@ -129,13 +132,39 @@ if ($_SESSION['RoleId'] != 3) {
                 </div>
                 </div>
             </div>
+            <!-- Pagination -->
+            <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                <div class="custom-pagination" id="completedTixTablePagination"></div>
+
+                <!-- Records per page selector -->
+                <div class="d-flex align-items-center gap-2">
+                    <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                    <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                    <span id="totalItemCount" class="text-muted">of 0 items</span>
+                </div>
+            </div>
             </main>
         </div>
     </div>
-</body>
     <!-- Account Profile Update Modal -->
     <?php include '../auth/updateAcc.php'; ?>
 
     <!-- Account Password Update Modal -->
     <?php include '../auth/updatePass.php'; ?>
+    
+    <script>
+        paginateTableWithLimitSelector(
+        '#completedTixTable',
+        '#completedTixTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+    );
+    </script>
+</body>
+
 </html>

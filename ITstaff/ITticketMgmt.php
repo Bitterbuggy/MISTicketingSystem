@@ -1,5 +1,5 @@
 <script>
-  var pageTitle = "Ticket Management";
+    var pageTitle = "Ticket Management";
 </script>
 
 <?php
@@ -54,6 +54,7 @@ if ($_SESSION['RoleId'] != 3) {
     <script src="../asset/js/adminNavTables.js"></script>
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/pagination.js"></script>
     <script src="../asset/js/adminAllTickets.js"></script>
 </head>
 
@@ -140,7 +141,7 @@ if ($_SESSION['RoleId'] != 3) {
             <!-- Pending Tab Pane -->
             <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                 <div class="table-responsive mt-0">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table id="pendingTable" class="table table-bordered table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Ticket ID</th>
@@ -166,13 +167,29 @@ if ($_SESSION['RoleId'] != 3) {
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <!-- Pagination -->
+                    <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                        <div class="custom-pagination" id="pendingTablePagination"></div>
+
+                        <!-- Records per page selector -->
+                        <div class="d-flex align-items-center gap-2">
+                            <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                            <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                            <span id="totalItemCount" class="text-muted">of 0 items</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Ongoing Tab Pane -->
             <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
                 <div class="table-responsive mt-0">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table id="ongoingTable" class="table table-bordered table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Ticket ID</th>
@@ -198,13 +215,29 @@ if ($_SESSION['RoleId'] != 3) {
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <!-- Pagination -->
+                    <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                        <div class="custom-pagination" id="ongoingTablePagination"></div>
+
+                        <!-- Records per page selector -->
+                        <div class="d-flex align-items-center gap-2">
+                            <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                            <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                            <span id="totalItemCount" class="text-muted">of 0 items</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- All Tickets Tab Pane -->
             <div class="tab-pane fade" id="alltix" role="tabpanel" aria-labelledby="alltix-tab">
                 <div class="table-responsive mt-0">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table id="alltixTable" class="table table-bordered table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Ticket ID</th>
@@ -219,6 +252,22 @@ if ($_SESSION['RoleId'] != 3) {
                             <!-- Rows will be dynamically added via JavaScript -->
                         </tbody>
                     </table>
+                    <!-- Pagination -->
+                    <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                        <div class="custom-pagination" id="alltixTablePagination"></div>
+
+                        <!-- Records per page selector -->
+                        <div class="d-flex align-items-center gap-2">
+                            <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                            <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                            <span id="totalItemCount" class="text-muted">of 0 items</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -227,5 +276,34 @@ if ($_SESSION['RoleId'] != 3) {
     <!-- End of Main Content -->
     <!-- View Ticket Modal -->
     <?php include '../modals/viewTicketInfo.php'; ?>
+
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
+
+    <script>
+        paginateTableWithLimitSelector(
+        '#pendingTable',
+        '#pendingTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+        );
+
+        paginateTableWithLimitSelector(
+        '#ongoingTable',
+        '#ongoingTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+        );
+
+        paginateTableWithLimitSelector(
+        '#alltixTable',
+        '#alltixTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+        );
+        </script>
 </body>
 </html>

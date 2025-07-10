@@ -87,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/pagination.js"></script>
 </head>
 
 <body>
@@ -195,6 +196,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                <div class="custom-pagination" id="licTablePagination"></div>
+
+                <!-- Records per page selector -->
+                <div class="d-flex align-items-center gap-2">
+                    <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                    <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                    <span id="totalItemCount" class="text-muted">of 0 items</span>
+                </div>
+        </div>
         </main>
     </div>
 
@@ -205,20 +222,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Delete LIC Modal -->
     <?php include '../modals/confirmationModal.php'; ?>
 
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
+
     <!-- External JS Files -->
     <script src="../asset/js/fetchModal.js"></script>
 
     <script>
-  document.getElementById('searchInput').addEventListener('keyup', function () {
+    document.getElementById('searchInput').addEventListener('keyup', function () {
     const filter = this.value.toLowerCase();
     const rows = document.querySelectorAll('#licTable tbody tr');
 
     rows.forEach(row => {
-      const cells = Array.from(row.getElementsByTagName('td'));
-      const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
-      row.style.display = match ? '' : 'none';
+        const cells = Array.from(row.getElementsByTagName('td'));
+        const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+        row.style.display = match ? '' : 'none';
     });
-  });
+    });
+</script>
+
+<script>
+        paginateTableWithLimitSelector(
+        '#licTable',
+        '#licTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+    );
 </script>
 </body>
 </html>

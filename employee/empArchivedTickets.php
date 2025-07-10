@@ -43,6 +43,7 @@ if ($_SESSION['RoleId'] != 4) {
     <script src="../asset/js/adminNavTables.js"></script>
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/pagination.js"></script>
     <script src="../asset/js/adminAllTickets.js"></script>
 </head>
 
@@ -109,7 +110,7 @@ if ($_SESSION['RoleId'] != 4) {
             <div class="row no-gutters mt-3">
             <div class="col-12">
                 <div class="table-responsive"> 
-                    <table class="table table-striped table-hover" id="tblArchivedTickets">
+                    <table id="archivedTixTable" class="table table-striped table-hover">
                     <thead class="thead-dark" style="text-align: center;">
                         <tr>
                             <th style="width: 4%;">Submitted At</th>
@@ -148,11 +149,22 @@ if ($_SESSION['RoleId'] != 4) {
                 </div>
             </div>
 
-            <div class="pagination-container">
-                <ul class="pagination" id="pagination">
-                    <!-- Pagination -->
-                </ul>
-            </div>
+            <!-- Pagination -->
+            <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                    <div class="custom-pagination" id="archivedTixTablePagination"></div>
+
+                    <!-- Records per page selector -->
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                        <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                            <option value="5">5</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                        <span id="totalItemCount" class="text-muted">of 0 items</span>
+                    </div>
+                </div>
         </main>
     </div>
 </div>
@@ -161,5 +173,14 @@ if ($_SESSION['RoleId'] != 4) {
 
     <!-- Account Password Update Modal -->
     <?php include '../auth/updatePass.php'; ?>
+
+    <script>
+        paginateTableWithLimitSelector(
+        '#archivedTixTable',
+        '#archivedTixTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+        );
+    </script>
 </body>
 </html>

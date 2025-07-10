@@ -56,6 +56,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- External JS Link/s -->
     <script src="../asset/js/sidebar.js"></script>
     <script src="../asset/js/notif.js"></script>
+    <script src="../asset/js/pagination.js"></script>
 </head>
 
 <body>
@@ -123,7 +124,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="row no-gutters mt-4">
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
+                        <table id="forCondemnTable" class="table table-striped table-bordered table-hover">
                         <thead>
                                 <tr>
                                     <th style="width: 1%;">Request ID</th>
@@ -165,10 +166,41 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </div>
+            <!-- Pagination -->
+            <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                <div class="custom-pagination" id="forCondemnTablePagination"></div>
+
+                <!-- Records per page selector -->
+                <div class="d-flex align-items-center gap-2">
+                    <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                    <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                    <span id="totalItemCount" class="text-muted">of 0 items</span>
+                </div>
+            </div>
         </main>
         </div>
     </div>
     <?php include '../modals/TransferAsset.php'; ?>
+
+    <!-- Account Profile Update Modal -->
+    <?php include '../auth/updateAcc.php'; ?>
+
+    <!-- Account Password Update Modal -->
+    <?php include '../auth/updatePass.php'; ?>
+
     <script src="../asset/js/fetchModal.js"></script>
+    <script>
+        paginateTableWithLimitSelector(
+        '#forCondemnTable',
+        '#forCondemnTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+    );
+    </script>
 </body>
 </html>

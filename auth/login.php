@@ -38,8 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
     } else {
-        header("Location: ../auth/login_error.php");
-    exit();
+        $_SESSION['login_error'] = "You have entered an invalid email or password. Please try again.";
+        header("Location: ../index.php"); // Send back to form
+        exit();
     }
 }
 ?>

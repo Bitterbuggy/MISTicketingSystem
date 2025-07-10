@@ -1,5 +1,5 @@
 <script>
-  var pageTitle = "Activity Logs";
+    var pageTitle = "Activity Logs";
 </script>
 
 <?php
@@ -186,14 +186,24 @@ $redirectLink = match ($roleId) {
                     </div>
                 </div>
             </div>
+            <!-- Pagination -->
+            <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pe-4">
+                <div class="custom-pagination" id="logsTablePagination"></div>
+
+                <!-- Records per page selector -->
+                <div class="d-flex align-items-center gap-2">
+                    <label for="perPageSelect" class="form-label mb-0">Show:</label>
+                    <select id="perPageSelect" class="form-select form-select-sm" style="width: 70px;">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                    <span id="totalItemCount" class="text-muted">of 0 items</span>
+                </div>
+            </div>
         </div>
     </main>
-        <!-- Pagination -->
-        <div class="pagination-container">
-            <ul class="paginationContainer">
-            <!-- Pagination will be added here -->
-            </ul>
-        </div>
     </div>
 
     <!-- Download Report Modal -->
@@ -216,6 +226,15 @@ $redirectLink = match ($roleId) {
         row.style.display = match ? '' : 'none';
     });
     });
+    </script>
+
+    <script>
+        paginateTableWithLimitSelector(
+        '#logsTable',
+        '#logsTablePagination',
+        'perPageSelect',
+        'totalItemCount'
+    );
     </script>
 </body>
 </html>
