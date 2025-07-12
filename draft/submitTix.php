@@ -28,6 +28,7 @@ foreach ($subtypes as $sub) {
 <head>
     <meta charset="UTF-8">
     <title>QCPL STS - Submit Support Ticket</title>
+    <link rel="icon" type="image/x-icon" href="../asset/img/qcpl-sts-logo.png">
     <link rel="stylesheet" href="../asset/css/submitTix.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
