@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message = ($action === 'accept') 
                 ? "Ticket successfully accepted and assigned for fixing." 
                 : "Ticket has been rejected/cancelled.";
-            header("Location: admindashboard.php?msg=" . urlencode($message));
+            header("Location: ITdashboard.php?msg=" . urlencode($message));
             exit;
         }
 

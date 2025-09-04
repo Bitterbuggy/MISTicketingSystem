@@ -11,18 +11,30 @@ $sql = "SELECT
             MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
             t_branch.BranchName,
             GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
-            t_tickets.AssignedITstaffId,
-            t_tickets.TicketStatus
+            CONCAT(t_useremp.FirstName, ' ', t_useremp.LastName) as EmployeeName,
+            CONCAT(t_users.FirstName, ' ', t_users.LastName) as AssignedITstaffName,
+            t_tickets.TicketStatus,
+            t_tickets.TimeResolved,
+            t_tickets.Resolution
+            
         FROM t_ticketissues
         JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
         JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
         JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
-        GROUP BY t_tickets.TicketId, t_branch.BranchName, t_tickets.AssignedITstaffId, t_tickets.TicketStatus
+        LEFT JOIN t_users ON t_tickets.AssignedITstaffId = t_users.UserId
+        LEFT JOIN t_useremp ON t_tickets.EmployeeId = t_useremp.UserId
+       
+        WHERE 
+        t_tickets.TicketStatus ='pending' AND t_tickets.EmployeeId = :employeeId
+        OR (t_tickets.TicketStatus ='ongoing' AND t_tickets.EmployeeId = :employeeId)
+        OR (t_tickets.TicketStatus ='completed' AND t_tickets.EmployeeId = :employeeId)
+
+        GROUP BY t_tickets.TicketId, t_branch.BranchName,t_tickets.EmployeeId, t_tickets.AssignedITstaffId, t_tickets.TicketStatus
         ORDER BY TimeSubmitted ASC";
 
 $stmt = $conn->prepare($sql);
+$stmt->bindParam(':EmployeeId', $userId); // Only once is enough
 $stmt->execute();
-$tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $pendingCount = 0;
 $ongoingCount = 0;
@@ -42,7 +54,7 @@ foreach ($tickets as $ticket) {
     }
 }
 
-$totalCount = count($tickets);
+$totalCount = $pendingCount + $ongoingCount + $completedCount;
 
 if ($_SESSION['RoleId'] != 4) {
     header('Location: ..auth/login_error.php');

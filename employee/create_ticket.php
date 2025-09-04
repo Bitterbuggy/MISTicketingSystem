@@ -69,7 +69,13 @@ try {
         $stmt->execute([$ticketId, $issueIds[$i], $subtypeIds[$i]]);
     }
 
-    echo "Ticket submitted successfully with ID: $ticketId";
+      echo "<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            alert('Ticket submitted successfully with ID: $ticketId');
+        });
+    </script>";
+    header("Location: home.php?success=1&ticketId=$ticketId");
+exit;
 
 } catch (Exception $e) {
     echo "Error submitting ticket: " . $e->getMessage();

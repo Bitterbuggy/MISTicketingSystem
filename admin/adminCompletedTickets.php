@@ -6,6 +6,32 @@
 
 include '../Includes/config.php';
 include '../Includes/check_session.php';
+
+$sql = "SELECT
+    t_tickets.TicketId,
+    MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
+    t_branch.BranchName,
+    GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
+    CONCAT(emp_user.FirstName, ' ', emp_user.LastName) AS EmployeeName,
+    CONCAT(t_users.FirstName, ' ', t_users.LastName) AS AssignedStaffName,
+    t_tickets.TicketStatus,
+    t_tickets.TimeResolved,
+    t_tickets.Resolution
+FROM t_ticketissues
+JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
+JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
+JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
+LEFT JOIN t_users ON t_tickets.AssignedITstaffId = t_users.UserId
+LEFT JOIN t_useremp ON t_tickets.EmployeeId = t_useremp.EmployeeId
+LEFT JOIN t_users AS emp_user ON t_useremp.UserId = emp_user.UserId
+GROUP BY t_tickets.TicketId, t_branch.BranchName, AssignedStaffName, t_tickets.TicketStatus, t_tickets.TimeResolved, t_tickets.Resolution
+ORDER BY TimeSubmitted ASC;";
+
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 if ($_SESSION['RoleId'] != 1) {
     header('Location: ../employee/home.php');
     exit();
@@ -62,108 +88,124 @@ if ($_SESSION['RoleId'] != 1) {
                         <span class="mods">Repair Requests</span>
                     </div>
                     <div class="div-mods active" onclick="window.location.href='adminCompletedTickets.php'">
-                        <span class="mods">Completed Tickets</span>
+                        <span class="mods">All Tickets</span>
                     </div>
-                    <div class="div-mods inactive" onclick="window.location.href='adminArchivedTickets.php'">
-                        <span class="mods">Ticket History Archive</span>
-                    </div>
+                  
                 </div>
 
                 <!-- Controls Section -->
                 <div class="d-flex flex-wrap flex-lg-nowrap align-items-center gap-2 controls-container">
-                    <!-- Search -->
-                    <div class="input-group" style="max-width: 280px;">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search">
-                        <span class="input-group-text control-btn"><i class="fa fa-search"></i></span>
+                     <!-- Search Bar -->
+                    <div class="input-group" style="max-width: 380px;">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
+
+                    <span class="input-group-text control-btn" id="search-icon">
+                        <i class="fa fa-search"></i>
+                    </span>
                     </div>
 
-                    <!-- Date Button -->
-                    <button class="btn btn-outline-secondary control-btn" type="button">
-                        <i class="fa fa-calendar me-1"></i> Select Date
-                    </button>
+                  
 
-                    <!-- Filter Dropdown -->
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
-                            <i class="fa fa-filter me-1"></i> Filter
-                        </button>
-                        <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-toolbox me-2"></i>Type of Issue</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book-open me-2"></i>Branch</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2"></i>IT Technician</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Sort Dropdown -->
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
-                            <i class="fa fa-sort me-1"></i> Sort
-                        </button>
-                        <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-down-short-wide me-2"></i>Ascending</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-arrow-up-short-wide me-2"></i>Descending</a></li>
-                        </ul>
-                    </div>
+                   <!-- Sort Dropdown -->
+<div class="dropdown">
+  <button class="btn btn-outline-secondary dropdown-toggle control-btn" type="button" data-bs-toggle="dropdown">
+    <i class="fa fa-sort me-1"></i> Sort
+  </button>
+  <ul class="dropdown-menu shadow-sm p-2 rounded-3 border-0">
+    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 0, true)">Ticket ID ↑</a></li>
+    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 0, false)">Ticket ID ↓</a></li>
+    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 1, true)">Submitted At ↑</a></li>
+    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 1, false)">Submitted At ↓</a></li>
+    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 2, true)">Branch ↑</a></li>
+    <li><a class="dropdown-item" href="#" onclick="sortTable('TicketTableAlltickets', 2, false)">Branch ↓</a></li>
+  </ul>
+</div>
                 </div>
 
                 </div>
                 </div>
 
-        <!-- Completed Tickets Table -->
-            <div class="row no-gutters mt-4">
-                <div class="col-12">
-                    <div class="table-responsive"> 
-                        <table class="table table-striped table-hover" id="tblCompletedTickets">
-                        <thead class="thead-dark" style="text-align: center;">
-                            <tr>
-                                <th style="width: 4%;">Submitted At</th>
-                                <th style="width: 3%;">Ticket ID</th>
-                                <th style="width: 3%;">Type of Issue</th>
-                                <th style="width: 6%;">Branch</th>
-                                <th style="width: 5%;">Assigned IT</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Apr 12, 2025, 09:43:15</td>
-                                <td id="tixID">1001</td>
-                                <td id="tixType">Hardware</td>
-                                <td>QCPL</td>
-                                <td>Jane Smith</td>  
-                            </tr>
-                            <tr>
-                                <td>Apr 12, 2025, 09:43:15</td>
-                                <td>1002</td>
-                                <td>Software</td>
-                                <td>QCPL</td>
-                                <td>John Doe</td>
-                            </tr>
-                            <tr>
-                                <td>Apr 12, 2025, 09:43:15</td>
-                                <td>1003</td>
-                                <td>Software</td>
-                                <td>QCPL</td>
-                                <td>Jane Adams</td>
-                            </tr>
-                            <tr>
-                                <td>Apr 12, 2025, 09:43:15</td>
-                                <td>1004</td>
-                                <td>Software</td>
-                                <td>QCPL</td>
-                                <td>Jack Johnson</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-
-                <div class="pagination-container">
-                    <ul class="pagination" id="pagination">
-                        <!-- Pagination -->
-                    </ul>
-                </div>
-            </main>
-        </div>
+        <!-- All tickets Tab -->  
+                      <div class="tab-pane fade show active" id="Alltickets" role="tabpanel" aria-labelledby="Alltickets-tab">
+    <div class="table-responsive mt-3">
+        <table id="TicketTableAlltickets" class="table table-striped table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Ticket Id</th>
+                    <th>Submitted By</th>
+                    <th>Submitted At</th>
+                    <th>Branch</th>
+                    <th>Issue</th>
+               
+                    <th>Status</th>
+                    <th>Resolved At</th>
+                    <th>Resolution</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+<?php foreach ($tickets as $ticket) : ?>
+    <tr>
+        <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+        <td><?= htmlspecialchars($ticket['EmployeeName']) ?></td>
+        <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
+        <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
+        <td><?= htmlspecialchars($ticket['Issues']) ?></td>
+        <td><?= htmlspecialchars($ticket['TicketStatus']) ?></td>
+        <td><?= htmlspecialchars($ticket['TimeResolved']) ?></td>
+        <td><?= nl2br(htmlspecialchars($ticket['Resolution'])) ?></td>
+        <td>
+            <a href="ticketDetails.php?id=<?= urlencode($ticket['TicketId']) ?>" class="btn btn-sm btn-info">View</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
     </div>
+
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+
+    if (!searchInput) return; // Prevent errors if input is missing
+
+    searchInput.addEventListener('keyup', function () {
+      const filter = this.value.toLowerCase();
+
+      const tableIds = ['TicketTableAlltickets'];
+
+      tableIds.forEach(tableId => {
+        const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+        rows.forEach(row => {
+          const cells = Array.from(row.getElementsByTagName('td'));
+          const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+          row.style.display = match ? '' : 'none';
+        });
+      });
+    });
+  });
+</script>
+
+    <script>
+  function sortTable(tableId, columnIndex, ascending = true) {
+    const table = document.getElementById(tableId);
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+    rows.sort((a, b) => {
+      const cellA = a.cells[columnIndex].innerText.trim().toLowerCase();
+      const cellB = b.cells[columnIndex].innerText.trim().toLowerCase();
+
+      const isNumeric = !isNaN(Date.parse(cellA)) || !isNaN(cellA);
+
+      let valA = isNumeric ? (isNaN(Date.parse(cellA)) ? parseFloat(cellA) : new Date(cellA)) : cellA;
+      let valB = isNumeric ? (isNaN(Date.parse(cellB)) ? parseFloat(cellB) : new Date(cellB)) : cellB;
+
+      if (valA < valB) return ascending ? -1 : 1;
+      if (valA > valB) return ascending ? 1 : -1;
+      return 0;
+    });
+
+    const tbody = table.querySelector('tbody');
+    rows.forEach(row => tbody.appendChild(row));
+  }
+</script>
 </body>
 </html>

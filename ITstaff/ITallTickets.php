@@ -90,8 +90,8 @@ $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="div-mods inactive" onclick="window.location.href='ITticketMgmt.php'">
                         <span class="mods">Repair Requests</span>
                     </div>
-                    <div class="div-mods active" onclick="window.location.href='adminCompletedTickets.php'">
-                        <span class="mods">Completed Tickets</span>
+                    <div class="div-mods active" onclick="window.location.href='ITallTickets.php'">
+                        <span class="mods">All Tickets</span>
                     </div>
                     
                 </div>

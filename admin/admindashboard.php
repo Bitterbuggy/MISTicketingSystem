@@ -12,6 +12,7 @@ $sql = "SELECT
     MIN(t_tickets.TimeSubmitted) as TimeSubmitted,
     t_branch.BranchName,
     GROUP_CONCAT(t_issuedtype.IssueType SEPARATOR ', ') as Issues,
+    CONCAT(emp_user.FirstName, ' ', emp_user.LastName) AS EmployeeName,
     CONCAT(t_users.FirstName, ' ', t_users.LastName) AS AssignedStaffName,
     t_tickets.TicketStatus,
     t_tickets.TimeResolved,
@@ -21,7 +22,10 @@ JOIN t_tickets ON t_ticketissues.TicketId = t_tickets.TicketId
 JOIN t_branch ON t_tickets.BranchId = t_branch.BranchId
 JOIN t_issuedtype ON t_ticketissues.IssueId = t_issuedtype.IssueId
 LEFT JOIN t_users ON t_tickets.AssignedITstaffId = t_users.UserId
-GROUP BY t_tickets.TicketId, t_branch.BranchName, AssignedStaffName, t_tickets.TicketStatus, t_tickets.TimeResolved, t_tickets.Resolution
+LEFT JOIN t_useremp ON t_tickets.EmployeeId = t_useremp.EmployeeId
+LEFT JOIN t_users AS emp_user ON t_useremp.UserId = emp_user.UserId
+
+GROUP BY t_tickets.TicketId, t_branch.BranchName, EmployeeName, AssignedStaffName, t_tickets.TicketStatus, t_tickets.TimeResolved, t_tickets.Resolution
 ORDER BY TimeSubmitted ASC;";
 
 
@@ -309,6 +313,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
             <thead class="thead-dark">
                 <tr>
                     <th>Ticket Id</th>
+                    <th>Submitted By</th>
                     <th>Submitted At</th>
                     <th>Branch</th>
                     <th>Issue</th>
@@ -322,6 +327,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                     <?php if ($ticket['TicketStatus'] == 'Pending') : ?>
                         <tr>
                             <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+                            <td><?= htmlspecialchars($ticket['EmployeeName']) ?></td>
                             <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
                             <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                             <td><?= htmlspecialchars($ticket['Issues']) ?></td>
@@ -350,6 +356,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
             <thead class="thead-dark">
                 <tr>
                     <th>Ticket Id</th>
+                    <th>Submitted By</th>
                     <th>Submitted At</th>
                     <th>Branch</th>
                     <th>Issue</th>
@@ -363,6 +370,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                     <?php if ($ticket['TicketStatus'] == 'Ongoing') : ?>
                         <tr>
                             <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+                            <td><?= htmlspecialchars($ticket['EmployeeName']) ?></td>
                             <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
                             <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                             <td><?= htmlspecialchars($ticket['Issues']) ?></td>
@@ -386,6 +394,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
             <thead class="thead-dark">
                 <tr>
                     <th>Ticket Id</th>
+                    <th>Submitted By</th>
                     <th>Submitted At</th>
                     <th>Branch</th>
                     <th>Issue</th>
@@ -401,6 +410,7 @@ $abbreviatedBranch = abbreviateBranch($recentTicket['BranchName']);
                     <?php if ($ticket['TicketStatus'] === 'Completed') : ?>
                         <tr>
                             <td><?= htmlspecialchars($ticket['TicketId']) ?></td>
+                            <td><?= htmlspecialchars($ticket['EmployeeName']) ?></td>
                             <td><?= htmlspecialchars($ticket['TimeSubmitted']) ?></td>
                             <td><?= htmlspecialchars($ticket['BranchName']) ?></td>
                             <td><?= htmlspecialchars($ticket['Issues']) ?></td>

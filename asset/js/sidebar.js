@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dashboard: ['admindashboard.php', 'ITdashboard.php', 'bradmindashboard.php', 'emphome.php'],
         tickets: ['adminTicketMgmt.php', 'adminCompletedTickets.php', 'adminArchivedTickets.php',
                     'ITticketMgmt.php', 'bradminTicketMgmt.php', 'empticketMgmt.php', 'empCompletedTickets.php',
-                    'empArchivedTickets.php'],
+                    'empArchivedTickets.php', 'ITallTickets.php'],
         assets: ['adminAssetMgmt.php', 'adminTransferRequestsList.php',
                     'ITassetMgmt.php', 'bradminAssetMgmt.php', 'empassetMgmt.php'],
         staff: ['adminStaffMgmt.php'],

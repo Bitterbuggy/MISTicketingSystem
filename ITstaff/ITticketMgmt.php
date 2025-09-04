@@ -106,11 +106,11 @@ if ($_SESSION['RoleId'] != 3) {
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2">
                     <!-- Tabs Section -->
                     <div class="d-flex flex-wrap gap-2">
-                        <div class="div-mods active" onclick="window.location.href='adminTicketMgmt.php'">
+                        <div class="div-mods active" onclick="window.location.href='ITticketMgmt.php'">
                             <span class="mods">Repair Requests</span>
                         </div>
-                        <div class="div-mods inactive" onclick="window.location.href='adminCompletedTickets.php'">
-                            <span class="mods">Completed Tickets</span>
+                        <div class="div-mods inactive" onclick="window.location.href='ITallTickets.php'">
+                            <span class="mods">All Tickets</span>
                         </div>
                         
                     </div>
@@ -254,7 +254,6 @@ if ($_SESSION['RoleId'] != 3) {
                     <th>Submitted At</th>
                     <th>Branch</th>
                     <th>Issue</th>
-               
                     <th>Status</th>
                     <th>Resolved At</th>
                     <th>Resolution</th>
